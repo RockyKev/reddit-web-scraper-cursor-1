@@ -1,9 +1,14 @@
 // Types for Reddit data
+export type RedditSortType = 'hot' | 'new' | 'top' | 'rising' | 'controversial';
+export type RedditTimeFilter = 'hour' | 'day' | 'week' | 'month' | 'year' | 'all';
+
 export interface RedditPost {
   id: string;
   title: string;
   content: string;
   url: string;
+  permalink: string;
+  post_type: string;
   author: string;
   score: number;
   commentCount: number;
@@ -25,6 +30,6 @@ export interface RedditComment {
 // Base interface for Reddit scraper
 export interface IRedditScraper {
   subreddit: string;
-  getPosts(limit?: number): Promise<RedditPost[]>;
+  getPosts(limit?: number, sort?: RedditSortType, time?: RedditTimeFilter): Promise<RedditPost[]>;
   getComments(postId: string): Promise<RedditComment[]>;
 } 

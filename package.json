@@ -13,6 +13,7 @@
     "test": "jest",
     "test:unit": "node --loader ts-node/esm tests/test-reddit-scraper.ts",
     "test:db": "node --loader ts-node/esm tests/test-reddit-collector.ts",
+    "collect:live": "node --loader ts-node/esm src/scripts/collect-live-posts.ts",
     "db:migrate-create": "node-pg-migrate create --migrations-dir src/db/migrations --config-file src/config/migrations.ts",
     "db:migrate-up": "node-pg-migrate up --migrations-dir src/db/migrations --config-file src/config/migrations.ts",
     "db:migrate-down": "node-pg-migrate down --migrations-dir src/db/migrations --config-file src/config/migrations.ts",

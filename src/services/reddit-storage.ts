@@ -14,6 +14,8 @@ interface RedditPost {
   createdAt: Date;
   isArchived: boolean;
   isLocked: boolean;
+  permalink: string;
+  post_type: string;
 }
 
 interface RedditComment {
@@ -56,16 +58,18 @@ export class RedditStorage {
       const result = await this.pool.query(
         `INSERT INTO posts (
           subreddit_id, reddit_id, title, content, author,
-          score, comment_count, url, reddit_created_at,
-          is_archived, is_locked
+          score, comment_count, url, permalink, post_type,
+          reddit_created_at, is_archived, is_locked
         )
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
         ON CONFLICT (reddit_id) DO UPDATE
         SET
           title = EXCLUDED.title,
           content = EXCLUDED.content,
           score = EXCLUDED.score,
           comment_count = EXCLUDED.comment_count,
+          permalink = EXCLUDED.permalink,
+          post_type = EXCLUDED.post_type,
           is_archived = EXCLUDED.is_archived,
           is_locked = EXCLUDED.is_locked,
           updated_at = CURRENT_TIMESTAMP
@@ -79,6 +83,8 @@ export class RedditStorage {
           post.score,
           post.commentCount,
           post.url,
+          post.permalink,
+          post.post_type,
           post.createdAt,
           post.isArchived,
           post.isLocked

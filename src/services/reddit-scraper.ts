@@ -2,7 +2,7 @@ import axios from 'axios';
 import axiosRetry from 'axios-retry';
 import * as cheerio from 'cheerio';
 import { logger } from '../utils/logger.ts';
-import { RedditPost, RedditComment, IRedditScraper } from '../types/reddit.ts';
+import { RedditPost, RedditComment, IRedditScraper, RedditSortType, RedditTimeFilter } from '../types/reddit.ts';
 
 // Configure axios with retry logic
 // We keep this configuration in this file since it's specific to Reddit scraping
@@ -38,7 +38,8 @@ axiosRetry(client, {
 
 export class RedditScraper implements IRedditScraper {
   private lastRequestTime: number = 0;
-  private readonly minRequestInterval: number = 2000; // 2 seconds between requests
+  private readonly minRequestInterval: number = 5000; // 5 seconds between requests
+  private readonly commentRequestInterval: number = 8000; // 8 seconds between comment requests
   private readonly _subreddit: string;
 
   constructor(subreddit: string) {
@@ -49,24 +50,36 @@ export class RedditScraper implements IRedditScraper {
     return this._subreddit;
   }
 
-  private async rateLimit(): Promise<void> {
+  private async rateLimit(isCommentRequest: boolean = false): Promise<void> {
     const now = Date.now();
     const timeSinceLastRequest = now - this.lastRequestTime;
+    const requiredDelay = isCommentRequest ? this.commentRequestInterval : this.minRequestInterval;
     
-    if (timeSinceLastRequest < this.minRequestInterval) {
-      const delay = this.minRequestInterval - timeSinceLastRequest;
+    if (timeSinceLastRequest < requiredDelay) {
+      const delay = requiredDelay - timeSinceLastRequest;
+      logger.info(`Rate limiting: waiting ${Math.round(delay/1000)} seconds...`);
       await new Promise(resolve => setTimeout(resolve, delay));
     }
     
     this.lastRequestTime = Date.now();
   }
 
-  public async getPosts(limit: number = 25): Promise<RedditPost[]> {
+  public async getPosts(
+    limit: number = 25,
+    sort: RedditSortType = 'hot',
+    time: RedditTimeFilter = 'day'
+  ): Promise<RedditPost[]> {
     try {
       await this.rateLimit();
-      const url = `https://www.reddit.com/r/${this._subreddit}.json`;
+      const url = `https://www.reddit.com/r/${this._subreddit}/${sort}.json`;
       
-      const response = await client.get(url);
+      const response = await client.get(url, {
+        params: {
+          t: time,
+          limit: Math.min(limit, 100) // Reddit's max limit is 100
+        }
+      });
+      
       const data = response.data;
       const posts: RedditPost[] = [];
 
@@ -81,6 +94,8 @@ export class RedditScraper implements IRedditScraper {
             title: post.title,
             content: post.selftext,
             url: post.url,
+            permalink: post.permalink,
+            post_type: post.post_hint || 'text',
             author: post.author,
             score: post.score,
             commentCount: post.num_comments,
@@ -100,7 +115,7 @@ export class RedditScraper implements IRedditScraper {
 
   public async getComments(postId: string): Promise<RedditComment[]> {
     try {
-      await this.rateLimit();
+      await this.rateLimit(true); // Use longer delay for comment requests
       const url = `https://www.reddit.com/r/${this._subreddit}/comments/${postId}.json`;
       
       const response = await client.get(url);

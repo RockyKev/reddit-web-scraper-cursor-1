@@ -25,6 +25,8 @@ export function createMockPost(
     title,
     content,
     url: `https://www.reddit.com/r/test/comments/${id}`,
+    permalink: `/r/test/comments/${id}`,
+    post_type: 'text',
     author,
     score,
     commentCount,
