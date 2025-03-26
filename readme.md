@@ -11,12 +11,12 @@ The project consists of two main components:
 ## Development Phases
 
 ### Phase 1: Core API Development
-- [ ] API service setup with PostgreSQL
-- [ ] Reddit scraping implementation with retry logic
-- [ ] Database schema and data storage
-- [ ] Logging system
+- [x] API service setup with PostgreSQL
+- [x] Reddit scraping implementation with retry logic
+- [x] Database schema and data storage
+- [x] Logging system
 - [ ] Basic API endpoints with OpenAPI specification
-- [ ] Data collection scheduling (4:30 AM EST daily)
+- [x] Data collection scheduling (4:30 AM EST daily)
 
 ### Phase 2: Frontend Implementation
 - [ ] Basic authentication system
@@ -84,7 +84,66 @@ For detailed database setup and management instructions, see [Database Documenta
 
 ## Development
 
-[To be added: Development guidelines]
+### Project Structure
+
+```
+reddit-web-scraper/
+├── src/                    # Source code
+│   ├── api/               # API routes and controllers
+│   ├── config/            # Configuration files
+│   │   ├── database.ts    # Database configuration
+│   │   └── migrations.ts  # Migration configuration
+│   ├── db/               # Database related files
+│   │   └── migrations/   # Database migrations
+│   ├── services/         # Core business logic
+│   │   ├── reddit-collector.ts  # Main data collection service
+│   │   ├── reddit-scraper.ts    # Reddit API interaction
+│   │   └── reddit-storage.ts    # Database operations
+│   ├── types/            # TypeScript type definitions
+│   └── utils/            # Shared utilities
+│       └── logger.ts     # Logging utility
+├── tests/                # Test files
+│   ├── mocks/           # Mock implementations for testing
+│   └── *.ts             # Test files
+├── docs/                # Documentation
+│   ├── architecture.md  # System architecture
+│   └── reddit-data-collection.md  # Data collection details
+└── package.json         # Project configuration
+```
+
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build the project
+- `npm start` - Start production server
+- `npm test` - Run tests
+- `npm run test:scraper` - Test Reddit scraper functionality
+- `npm run test:db` - Test database operations
+- `npm run lint` - Run ESLint
+- `npm run format` - Format code with Prettier
+- `npm run migrate:*` - Database migration commands
+
+### Key Components
+
+1. **Reddit Collector** (`src/services/reddit-collector.ts`)
+   - Coordinates the data collection process
+   - Manages scheduling and error handling
+   - Orchestrates scraping and storage operations
+
+2. **Reddit Scraper** (`src/services/reddit-scraper.ts`)
+   - Handles Reddit API interactions
+   - Implements rate limiting and retry logic
+   - Transforms API responses into domain models
+
+3. **Reddit Storage** (`src/services/reddit-storage.ts`)
+   - Manages database operations
+   - Handles data persistence
+   - Implements data deduplication
+
+4. **Database Migrations** (`src/db/migrations/`)
+   - Manages database schema changes
+   - Handles version control of database structure
+   - Provides rollback capabilities
 
 ## API Documentation
 
@@ -92,22 +151,4 @@ For detailed database setup and management instructions, see [Database Documenta
 
 ## License
 
-[To be added: License information]
-
-## Project Structure
-
-```
-reddit-web-scraper/
-├── .gitignore
-├── package.json
-├── tsconfig.json
-├── src/
-│   ├── api/
-│   ├── config/
-│   ├── models/
-│   ├── services/
-│   └── utils/
-├── tests/
-├── docs/
-└── scripts/
-``` 
+[To be added: License information] 
