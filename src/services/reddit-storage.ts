@@ -1,6 +1,7 @@
-import { Pool } from 'pg';
-import { logger } from '../utils/logger';
-import { getPool } from '../config/database';
+import pkg from 'pg';
+const { Pool } = pkg;
+import { logger } from '../utils/logger.ts';
+import { getPool } from '../config/database.ts';
 
 interface RedditPost {
   id: string;
@@ -26,7 +27,7 @@ interface RedditComment {
 }
 
 export class RedditStorage {
-  private pool: Pool;
+  private readonly pool: InstanceType<typeof Pool>;
 
   constructor() {
     this.pool = getPool();

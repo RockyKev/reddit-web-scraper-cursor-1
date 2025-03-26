@@ -1,5 +1,6 @@
-import { Pool } from 'pg';
-import { logger } from '../utils/logger';
+import pkg from 'pg';
+const { Pool } = pkg;
+import { logger } from '../utils/logger.ts';
 
 const pool = new Pool({
   host: process.env.DB_HOST,
@@ -9,15 +10,9 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
 });
 
-export const setupDatabase = async (): Promise<void> => {
-  try {
-    // Test the connection
-    await pool.query('SELECT NOW()');
-    logger.info('Database connection established successfully');
-  } catch (error) {
-    logger.error('Database connection failed:', error);
-    throw error;
-  }
-};
+pool.on('error', (err) => {
+  logger.error('Unexpected error on idle client', err);
+  process.exit(-1);
+});
 
-export const getPool = (): Pool => pool; 
+export const getPool = (): InstanceType<typeof Pool> => pool; 

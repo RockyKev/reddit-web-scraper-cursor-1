@@ -1,7 +1,7 @@
 import 'dotenv/config';
-import { RedditService } from '../services/reddit-service.ts';
-import { createRedditScraper } from '../services/reddit-scraper.ts';
-import { logger } from '../utils/logger.ts';
+import { RedditService } from '../src/services/reddit-service.ts';
+import { createRedditScraper } from '../src/services/reddit-scraper.ts';
+import { logger } from '../src/utils/logger.ts';
 
 async function main() {
   try {
