@@ -42,7 +42,45 @@ The project consists of two main components:
 
 ## Getting Started
 
-[To be added: Setup instructions]
+### Prerequisites
+
+1. **Node.js and npm**
+   - Install Node.js v23 from [nodejs.org](https://nodejs.org/)
+   - npm comes bundled with Node.js
+
+2. **Docker Desktop**
+   - Install Docker Desktop from [docker.com](https://www.docker.com/products/docker-desktop/)
+   - Required for running PostgreSQL locally
+
+3. **Reddit API Credentials**
+   - Create a Reddit application at [reddit.com/prefs/apps](https://www.reddit.com/prefs/apps)
+   - Note down the client ID and client secret
+
+### Initial Setup
+
+1. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+2. **Set up environment variables**
+   ```bash
+   cp .env.example .env
+   ```
+   Edit `.env` with your Reddit API credentials and other configuration values.
+
+3. **Start the database and run migrations**
+   ```bash
+   docker-compose up -d
+   npm run migrate:up
+   ```
+
+4. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+For detailed database setup and management instructions, see [Database Documentation](docs/database.md).
 
 ## Development
 
