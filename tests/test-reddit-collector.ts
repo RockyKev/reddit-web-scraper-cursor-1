@@ -1,12 +1,14 @@
 import 'dotenv/config';
 import { RedditCollector } from '../src/services/reddit-collector.ts';
-import { createRedditScraper } from '../src/services/reddit-scraper.ts';
+import { RedditScraper } from '../src/services/reddit-scraper.ts';
+import { MockRedditScraper } from './mocks/reddit-scraper.mock.ts';
 import { logger } from '../src/utils/logger.ts';
 
 async function main() {
   try {
     const subreddit = 'Portland';
-    const collector = new RedditCollector(createRedditScraper(subreddit, true)); // Use mock scraper
+    const mockScraper = new MockRedditScraper(subreddit);
+    const collector = new RedditCollector(mockScraper);
 
     // Test basic collection and storage
     logger.info(`Testing collection for subreddit: ${subreddit}`);

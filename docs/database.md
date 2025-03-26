@@ -4,7 +4,7 @@ This document provides detailed information about the database setup and managem
 
 ## Prerequisites
 
-- Node.js v23
+- Node.js v23.10.0 or higher
 - Docker Desktop
 - PostgreSQL (provided via Docker)
 
@@ -49,27 +49,94 @@ The project uses `node-pg-migrate` for database migrations. This ensures consist
 
 #### Create a New Migration
 ```bash
-npm run migrate:create -- migration_name
+npm run db:migrate-create <migration-name>
 ```
-This will create a new migration file in the `src/db/migrations` directory.
+Creates a new migration file in `src/db/migrations` with a timestamp prefix.
 
-#### Apply Pending Migrations
+#### Apply Migrations
 ```bash
-npm run migrate:up
+npm run db:migrate-up
 ```
-This will run all pending migrations in order.
+Runs any pending migrations to update the database schema.
 
 #### Rollback Last Migration
 ```bash
-npm run migrate:down
+npm run db:migrate-down
 ```
-This will undo the most recent migration.
+Reverses the most recent migration. Useful for fixing mistakes.
 
 #### Check Migration Status
 ```bash
-npm run migrate:status
+npm run db:migrate-status
 ```
-This will show which migrations have been applied and which are pending.
+Shows which migrations have been run and which are pending.
+
+#### Reset Database
+```bash
+npm run db:reset
+```
+Drops and recreates the database, then runs all migrations. Useful for development and testing.
+
+### Migration Workflow
+
+1. Create a new migration:
+   ```bash
+   npm run db:migrate-create add_new_column
+   ```
+
+2. Edit the generated migration file in `src/db/migrations`:
+   ```sql
+   -- Up migration
+   ALTER TABLE posts ADD COLUMN new_column TEXT;
+
+   -- Down migration
+   ALTER TABLE posts DROP COLUMN new_column;
+   ```
+
+3. Apply the migration:
+   ```bash
+   npm run db:migrate-up
+   ```
+
+4. If needed, rollback:
+   ```bash
+   npm run db:migrate-down
+   ```
+
+## Development Workflow
+
+1. Start the database:
+   ```bash
+   docker-compose up -d
+   ```
+
+2. Reset the database (if needed):
+   ```bash
+   npm run db:reset
+   ```
+
+3. Run database tests:
+   ```bash
+   npm run test:db
+   ```
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Database Connection Errors**
+   - Ensure Docker is running
+   - Check if the database container is up: `docker ps`
+   - Verify environment variables in `.env`
+
+2. **Migration Errors**
+   - Check migration file syntax
+   - Ensure all required tables exist
+   - Verify foreign key constraints
+
+3. **Permission Issues**
+   - Ensure correct database user permissions
+   - Check Docker volume permissions
 
 ## Database Schema
 
@@ -112,24 +179,5 @@ The database includes several indexes to optimize query performance:
 - `posts_reddit_id_idx`: Index on post's Reddit ID
 - `comments_post_id_idx`: Index on comment's post ID
 - `comments_reddit_id_idx`: Index on comment's Reddit ID
-
-## Troubleshooting
-
-### Common Issues
-
-1. **Database Connection Issues**
-   - Ensure Docker is running
-   - Check if the database container is up: `docker-compose ps`
-   - Verify environment variables in `.env`
-
-2. **Migration Failures**
-   - Check migration logs for specific errors
-   - Ensure all previous migrations are applied
-   - Verify database credentials are correct
-
-3. **Performance Issues**
-   - Check if indexes are being used: `EXPLAIN ANALYZE`
-   - Monitor database size and growth
-   - Review query patterns and optimize as needed
 
 For additional support, please refer to the project's issue tracker or contact the development team. 

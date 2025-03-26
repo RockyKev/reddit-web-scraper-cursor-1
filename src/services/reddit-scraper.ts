@@ -3,7 +3,6 @@ import axiosRetry from 'axios-retry';
 import * as cheerio from 'cheerio';
 import { logger } from '../utils/logger.ts';
 import { RedditPost, RedditComment, IRedditScraper } from '../types/reddit.ts';
-import { MockRedditScraper } from '../../tests/mocks/reddit-scraper.mock.ts';
 
 // Configure axios with retry logic
 // We keep this configuration in this file since it's specific to Reddit scraping
@@ -136,8 +135,4 @@ export class RedditScraper implements IRedditScraper {
       throw error;
     }
   }
-}
-
-export function createRedditScraper(subreddit: string, useMock: boolean = false): IRedditScraper {
-  return useMock ? new MockRedditScraper(subreddit) : new RedditScraper(subreddit);
 } 

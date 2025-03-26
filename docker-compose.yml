@@ -6,6 +6,7 @@ services:
       POSTGRES_USER: reddit_scraper
       POSTGRES_PASSWORD: reddit_scraper_password
       POSTGRES_DB: reddit_scraper
+      POSTGRES_SUPERUSER_PASSWORD: postgres
     ports:
       - "5432:5432"
     volumes:
