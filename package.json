@@ -10,10 +10,11 @@
     "test": "jest",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"src/**/*.ts\"",
-    "migrate:create": "node-pg-migrate create",
-    "migrate:up": "node-pg-migrate up",
-    "migrate:down": "node-pg-migrate down",
-    "migrate:status": "node-pg-migrate status"
+    "migrate:create": "node-pg-migrate create --migrations-dir src/db/migrations --config-file src/config/migrations.ts",
+    "migrate:up": "node-pg-migrate up --migrations-dir src/db/migrations --config-file src/config/migrations.ts",
+    "migrate:down": "node-pg-migrate down --migrations-dir src/db/migrations --config-file src/config/migrations.ts",
+    "migrate:status": "node-pg-migrate status --migrations-dir src/db/migrations --config-file src/config/migrations.ts",
+    "test:scraper": "ts-node src/scripts/test-scraper.ts"
   },
   "keywords": [
     "reddit",
@@ -25,6 +26,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.8.4",
+    "axios-retry": "^4.5.0",
+    "cheerio": "^1.0.0",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "node-schedule": "^2.1.1",
