@@ -15,7 +15,7 @@
     "migrate:up": "node-pg-migrate up --migrations-dir src/db/migrations --config-file src/config/migrations.ts",
     "migrate:down": "node-pg-migrate down --migrations-dir src/db/migrations --config-file src/config/migrations.ts",
     "migrate:status": "node-pg-migrate status --migrations-dir src/db/migrations --config-file src/config/migrations.ts",
-    "test:scraper": "ts-node src/scripts/test-reddit-scraper.ts",
+    "test:scraper": "node --loader ts-node/esm tests/test-reddit-scraper.ts",
     "test:db": "node --loader ts-node/esm tests/test-reddit-collector.ts"
   },
   "keywords": [
