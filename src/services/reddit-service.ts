@@ -1,13 +1,13 @@
-import { logger } from '../utils/logger';
-import { RedditScraper } from './reddit-scraper';
-import { RedditStorage } from './reddit-storage';
+import { logger } from '../utils/logger.ts';
+import { RedditScraper, MockRedditScraper } from './reddit-scraper.ts';
+import { RedditStorage } from './reddit-storage.ts';
 
 export class RedditService {
-  private scraper: RedditScraper;
+  private scraper: RedditScraper | MockRedditScraper;
   private storage: RedditStorage;
 
-  constructor(subreddit: string) {
-    this.scraper = new RedditScraper(subreddit);
+  constructor(scraper: RedditScraper | MockRedditScraper) {
+    this.scraper = scraper;
     this.storage = new RedditStorage();
   }
 
