@@ -15,6 +15,10 @@
 - [x] Live data collection implementation with rate limiting
 - [x] Post type tracking and categorization
 - [x] Comment collection with proper rate limiting
+- [ ] Test framework standardization
+  - [ ] Convert all tests to Jest for consistency
+  - [ ] Update test documentation
+  - [ ] Standardize test naming and organization
 
 ## Phase 2: Data Analysis & Processing
 - [ ] Implement scoring system for post ranking
