@@ -1,7 +1,7 @@
 # Reddit Data Collection Architecture
 
 ## Overview
-This document outlines the architecture for collecting and storing Reddit data from Portland-related subreddits. The system is designed to run daily at 4:30 AM EST, fetching posts and comments from specified subreddits and storing them in PostgreSQL.
+This document outlines the architecture for collecting and storing Reddit data from Portland-related subreddits. The system is designed to run daily at 4:30 AM EST, fetching posts and comments from specified subreddits, processing them for ranking and analysis, and storing them in PostgreSQL.
 
 ## Core Components
 
@@ -33,7 +33,13 @@ interface RedditPost {
   author: string;
   subreddit: string;
   created: Date;
-  // ... other fields
+  score: number;
+  numComments: number;
+  url: string;
+  permalink: string;
+  postType: string;
+  isArchived: boolean;
+  isLocked: boolean;
 }
 
 interface RedditComment {
@@ -42,13 +48,57 @@ interface RedditComment {
   content: string;
   author: string;
   created: Date;
-  // ... other fields
+  score: number;
+  parentId: string;
+  isArchived: boolean;
 }
 ```
 
-### 3. Data Storage (`src/services/reddit/reddit-storage.ts`)
+### 3. Post Ranking (`src/services/reddit/post-ranker.ts`)
+**Purpose**: Calculate post rankings and scores
+- Implement ranking algorithm based on upvotes and comments
+- Calculate daily scores for posts
+- Determine top posts per subreddit
+- Update post rankings in database
+
+**Key Methods**:
+```typescript
+async calculatePostScore(post: RedditPost): Promise<number>
+async rankDailyPosts(date: Date): Promise<void>
+async getTopPostsPerSubreddit(date: Date, limit: number): Promise<RedditPost[]>
+```
+
+### 4. Keyword Extraction (`src/services/reddit/keyword-extractor.ts`)
+**Purpose**: Extract and analyze keywords from content
+- Extract keywords from posts and comments
+- Apply frequency-based weighting
+- Filter common words
+- Store keywords in database
+
+**Key Methods**:
+```typescript
+async extractKeywords(text: string): Promise<Keyword[]>
+async weightKeywords(keywords: Keyword[]): Promise<WeightedKeyword[]>
+async storeKeywords(entityId: string, keywords: WeightedKeyword[]): Promise<void>
+```
+
+### 5. User Tracking (`src/services/reddit/user-tracker.ts`)
+**Purpose**: Track user contributions and statistics
+- Track post authors and top commenters
+- Calculate user contribution scores
+- Maintain user statistics
+- Identify key community members
+
+**Key Methods**:
+```typescript
+async trackUserContribution(userId: string, contribution: UserContribution): Promise<void>
+async updateUserStats(userId: string): Promise<void>
+async getTopContributors(limit: number): Promise<User[]>
+```
+
+### 6. Data Storage (`src/services/reddit/reddit-storage.ts`)
 **Purpose**: Manage database operations for Reddit data
-- Store posts and comments in PostgreSQL
+- Store posts, comments, and related data in PostgreSQL
 - Handle data deduplication
 - Manage database connections and transactions
 
@@ -56,9 +106,11 @@ interface RedditComment {
 ```typescript
 async storePost(post: RedditPost): Promise<void>
 async storeComment(comment: RedditComment): Promise<void>
+async storeUser(user: User): Promise<void>
+async storeKeywords(keywords: WeightedKeyword[]): Promise<void>
 ```
 
-### 4. Data Collection (`src/services/reddit/reddit-collector.ts`)
+### 7. Data Collection (`src/services/reddit/reddit-collector.ts`)
 **Purpose**: Coordinate the data collection process
 - Orchestrate the fetching, processing, and storage of data
 - Handle scheduling (4:30 AM EST daily)
@@ -69,6 +121,7 @@ async storeComment(comment: RedditComment): Promise<void>
 ```typescript
 async collectSubredditData(subreddit: string): Promise<void>
 async startCollectionSchedule(): Promise<void>
+async processDailyData(date: Date): Promise<void>
 ```
 
 ## Data Flow
@@ -76,16 +129,23 @@ async startCollectionSchedule(): Promise<void>
 2. `reddit-fetch.ts` retrieves data from Reddit API
 3. `reddit-scraper.ts` processes the raw data into domain models
 4. `reddit-storage.ts` persists the data to PostgreSQL
+5. `post-ranker.ts` calculates post rankings and scores
+6. `keyword-extractor.ts` extracts and analyzes keywords
+7. `user-tracker.ts` updates user statistics and contributions
 
 ## Testing Guidelines
 - Unit tests for each component
 - Integration tests for the complete data flow
 - Mock Reddit API responses for testing
 - Database transaction rollback in tests
+- Test data generation for ranking and analysis
 
 ## Best Practices
 - Implement proper error handling and logging
 - Use TypeScript for type safety
 - Follow the single responsibility principle
 - Maintain clear separation of concerns
-- Document all public methods and interfaces 
+- Document all public methods and interfaces
+- Cache frequently accessed data
+- Use environment variables for configuration
+- Implement proper rate limiting 

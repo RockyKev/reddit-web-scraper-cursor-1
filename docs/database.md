@@ -161,6 +161,13 @@ The database schema includes the following main tables:
 - `num_comments`: INTEGER
 - `created_at`: TIMESTAMP
 - `updated_at`: TIMESTAMP
+- `reddit_created_at`: TIMESTAMP
+- `is_archived`: BOOLEAN
+- `is_locked`: BOOLEAN
+- `post_type`: VARCHAR(50)
+- `daily_rank`: FLOAT
+- `daily_score`: FLOAT
+- `author_id`: UUID (Foreign Key to Users)
 
 ### Comments
 - `id`: UUID (Primary Key)
@@ -170,6 +177,45 @@ The database schema includes the following main tables:
 - `score`: INTEGER
 - `created_at`: TIMESTAMP
 - `updated_at`: TIMESTAMP
+- `reddit_created_at`: TIMESTAMP
+- `is_archived`: BOOLEAN
+- `is_top_comment`: BOOLEAN
+- `author_id`: UUID (Foreign Key to Users)
+
+### Users
+- `id`: UUID (Primary Key)
+- `username`: VARCHAR(255)
+- `total_posts`: INTEGER
+- `total_comments`: INTEGER
+- `top_posts_count`: INTEGER
+- `top_comments_count`: INTEGER
+- `first_seen`: TIMESTAMP
+- `last_seen`: TIMESTAMP
+- `created_at`: TIMESTAMP
+- `updated_at`: TIMESTAMP
+
+### User Contributions
+- `id`: UUID (Primary Key)
+- `user_id`: UUID (Foreign Key to Users)
+- `post_id`: UUID (Foreign Key to Posts)
+- `comment_id`: UUID (Foreign Key to Comments)
+- `contribution_type`: VARCHAR(50)
+- `score`: INTEGER
+- `created_at`: TIMESTAMP
+
+### Post Keywords
+- `id`: UUID (Primary Key)
+- `post_id`: UUID (Foreign Key to Posts)
+- `keyword`: VARCHAR(100)
+- `relevance`: FLOAT
+- `created_at`: TIMESTAMP
+
+### Comment Keywords
+- `id`: UUID (Primary Key)
+- `comment_id`: UUID (Foreign Key to Comments)
+- `keyword`: VARCHAR(100)
+- `relevance`: FLOAT
+- `created_at`: TIMESTAMP
 
 ## Indexes and Performance
 
@@ -177,7 +223,14 @@ The database includes several indexes to optimize query performance:
 - `subreddits_name_idx`: Index on subreddit name
 - `posts_subreddit_id_idx`: Index on post's subreddit ID
 - `posts_reddit_id_idx`: Index on post's Reddit ID
+- `posts_author_id_idx`: Index on post's author ID
+- `posts_daily_rank_idx`: Index on post's daily rank
 - `comments_post_id_idx`: Index on comment's post ID
 - `comments_reddit_id_idx`: Index on comment's Reddit ID
+- `comments_author_id_idx`: Index on comment's author ID
+- `users_username_idx`: Index on username
+- `user_contributions_user_id_idx`: Index on user contributions
+- `post_keywords_post_id_idx`: Index on post keywords
+- `comment_keywords_comment_id_idx`: Index on comment keywords
 
 For additional support, please refer to the project's issue tracker or contact the development team. 

@@ -38,6 +38,8 @@ This document outlines the architecture and responsibilities of each component i
 - `storePost(subredditId, post)`: Stores a post in the database
 - `storeComment(postId, comment)`: Stores a comment in the database
 - `getPosts(subredditId)`: Retrieves posts from the database
+- `getTopPosts(date)`: Gets top posts for a specific date
+- `getUserStats(userId)`: Gets user contribution statistics
 
 ### 4. reddit-collector.ts
 **Responsibility**: Data collection process
@@ -50,16 +52,53 @@ This document outlines the architecture and responsibilities of each component i
 - `collectPosts(subreddit, limit)`: Collects and stores posts
 - `collectComments(postId)`: Collects and stores comments for a post
 
-### 5. reddit-search.ts
-**Responsibility**: Search operations
-- Handles search-specific operations
-- Uses fetch and scrape components
-- Manages search result storage
-- Separate from collection process
+### 5. post-ranker.ts
+**Responsibility**: Post ranking and scoring
+- Calculates daily scores for posts
+- Implements configurable scoring algorithm
+- Determines top posts per subreddit
+- Updates post rankings in database
 
 **Key Methods**:
-- `searchAndStore(query, limit)`: Searches and stores results
-- `searchPosts(query, limit)`: Searches posts without storing
+- `calculatePostScore(post)`: Calculates score based on upvotes and comments
+- `rankDailyPosts(date)`: Ranks posts for a specific date
+- `getTopPostsPerSubreddit(date, limit)`: Gets top N posts per subreddit
+
+### 6. keyword-extractor.ts
+**Responsibility**: Keyword analysis
+- Extracts keywords from posts and comments
+- Implements frequency-based weighting
+- Filters common words
+- Stores keywords in database
+
+**Key Methods**:
+- `extractKeywords(text)`: Extracts keywords from text
+- `weightKeywords(keywords)`: Applies frequency-based weighting
+- `storeKeywords(entityId, keywords)`: Stores keywords for an entity
+
+### 7. user-tracker.ts
+**Responsibility**: User tracking and statistics
+- Tracks user contributions
+- Calculates user scores
+- Maintains user statistics
+- Identifies key community members
+
+**Key Methods**:
+- `trackUserContribution(userId, contribution)`: Records a user contribution
+- `updateUserStats(userId)`: Updates user statistics
+- `getTopContributors(limit)`: Gets top N contributors
+
+### 8. digest-generator.ts
+**Responsibility**: Daily digest generation
+- Generates daily digest of top content
+- Combines posts, keywords, and user stats
+- Formats data for API response
+- Handles digest-specific business logic
+
+**Key Methods**:
+- `generateDailyDigest(date)`: Creates daily digest
+- `formatDigestResponse(digest)`: Formats digest for API
+- `getDigestStats(date)`: Gets digest statistics
 
 ## Data Flow
 
@@ -69,10 +108,14 @@ reddit-fetch.ts → reddit-scraper.ts → reddit-storage.ts
 (coordinated by reddit-collector.ts)
 ```
 
-2. **Search Flow**:
+2. **Daily Processing Flow**:
 ```
-reddit-fetch.ts → reddit-scraper.ts → reddit-storage.ts
-(coordinated by reddit-search.ts)
+reddit-storage.ts → post-ranker.ts → keyword-extractor.ts → user-tracker.ts → digest-generator.ts
+```
+
+3. **API Request Flow**:
+```
+API Request → digest-generator.ts → reddit-storage.ts → API Response
 ```
 
 ## Testing
@@ -82,7 +125,10 @@ Each component can be tested in isolation:
 - `reddit-scraper.ts`: Test with raw data samples
 - `reddit-storage.ts`: Use test database
 - `reddit-collector.ts`: Mock fetch and storage
-- `reddit-search.ts`: Mock fetch and storage
+- `post-ranker.ts`: Test with sample posts
+- `keyword-extractor.ts`: Test with sample text
+- `user-tracker.ts`: Test with sample contributions
+- `digest-generator.ts`: Test with sample data
 
 ## Adding New Features
 
@@ -98,4 +144,7 @@ When adding new features:
 2. Use interfaces to define component contracts
 3. Maintain clear data flow between components
 4. Write tests for each component
-5. Document any new methods or significant changes 
+5. Document any new methods or significant changes
+6. Use environment variables for configurable values
+7. Implement proper error handling and logging
+8. Cache frequently accessed data when appropriate 

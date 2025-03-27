@@ -1,12 +1,28 @@
 # Reddit PDX Scraper
 
-A TypeScript + Node.js web application that tracks daily Reddit posts and comments from Portland-related subreddits. The application stores post and comment data in PostgreSQL, providing a frontend dashboard to view and filter the collected data.
+A TypeScript + Node.js web application that creates a daily digest of the best Reddit content from Portland-related subreddits. The application collects, analyzes, and serves top posts and comments through a RESTful API, with plans for various output formats (web, RSS, Slack, email, mobile app).
 
 ## Project Overview
 
 The project consists of two main components:
-1. A Core API service for data collection and management
-2. A Frontend web interface for data visualization
+1. A Core API service for data collection, analysis, and delivery
+2. A Frontend web interface for viewing the daily digest
+
+### Key Features
+- Daily collection of posts and comments from configured Portland subreddits
+- Intelligent scoring system for identifying top content
+- Keyword extraction from text using TF-IDF
+- User contribution tracking
+- Configurable thresholds and limits
+- Future AI-powered summaries and sentiment analysis
+
+### Future Roadmap
+- RSS feed generation
+- Slack bot integration
+- Email digest delivery
+- Mobile app development
+- AI-powered post and comment summaries
+- Sentiment analysis for posts and comments
 
 For detailed information about the project's development phases and roadmap, see [Development Phases](docs/development-phases.md).
 
@@ -68,6 +84,7 @@ For detailed database setup and management instructions, see [Database Documenta
 reddit-web-scraper/
 ├── src/                    # Source code
 │   ├── api/               # API routes and controllers
+│   │   └── api.ts        # API routes and controllers
 │   ├── config/            # Configuration files
 │   │   ├── database.ts    # Database configuration
 │   │   └── migrations.ts  # Migration configuration
@@ -76,7 +93,9 @@ reddit-web-scraper/
 │   ├── services/         # Core business logic
 │   │   ├── reddit-collector.ts  # Main data collection service
 │   │   ├── reddit-scraper.ts    # Reddit API interaction
-│   │   └── reddit-storage.ts    # Database operations
+│   │   ├── reddit-storage.ts    # Database operations
+│   │   ├── keyword-extractor.ts # Comment keyword analysis
+│   │   └── user-tracker.ts      # User contribution tracking
 │   ├── types/            # TypeScript type definitions
 │   └── utils/            # Shared utilities
 │       └── logger.ts     # Logging utility
@@ -118,14 +137,66 @@ reddit-web-scraper/
    - Handles data persistence
    - Implements data deduplication
 
-4. **Database Migrations** (`src/db/migrations/`)
+4. **Keyword Extractor** (`src/services/keyword-extractor.ts`)
+   - Analyzes comments for relevant keywords
+   - Implements frequency-based weighting
+   - Excludes common words and noise
+
+5. **User Tracker** (`src/services/user-tracker.ts`)
+   - Tracks post authors and top commenters
+   - Maintains contribution scores
+   - Identifies key community members
+
+6. **Database Migrations** (`src/db/migrations/`)
    - Manages database schema changes
    - Handles version control of database structure
    - Provides rollback capabilities
 
 ## API Documentation
 
-[To be added: API endpoint documentation]
+The API provides endpoints for accessing the daily digest of top Reddit content:
+
+### GET /api/digest
+Returns the daily digest of top posts and comments.
+
+Query Parameters:
+- `date`: Optional date in YYYY-MM-DD format. If not provided, returns the current day's digest.
+
+Example Response:
+```json
+{
+  "date": "2024-03-20",
+  "summary": {
+    "total_posts": 150,
+    "total_comments": 1200,
+    "top_subreddits": ["r/Portland", "r/askportland"]
+  },
+  "top_posts": [
+    {
+      "id": "abc123",
+      "subreddit": "r/Portland",
+      "title": "Post Title",
+      "type": "text",
+      "upvotes": 500,
+      "comment_count": 100,
+      "permalink": "https://reddit.com/...",
+      "keywords": ["keyword1", "keyword2", "keyword3"],
+      "author": {
+        "username": "PDX_Dave",
+        "contribution_score": 2
+      },
+      "top_commenters": [
+        {
+          "username": "CatLadySarah",
+          "contribution_score": 5
+        }
+      ],
+      "summary": null,
+      "sentiment": null
+    }
+  ]
+}
+```
 
 ## License
 
