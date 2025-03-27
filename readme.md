@@ -8,29 +8,7 @@ The project consists of two main components:
 1. A Core API service for data collection and management
 2. A Frontend web interface for data visualization
 
-## Development Phases
-
-### Phase 1: Core API Development
-- [x] API service setup with PostgreSQL
-- [x] Reddit scraping implementation with retry logic
-- [x] Database schema and data storage
-- [x] Logging system
-- [ ] Basic API endpoints with OpenAPI specification
-- [x] Data collection scheduling (4:30 AM EST daily)
-
-### Phase 2: Frontend Implementation
-- [ ] Basic authentication system
-- [ ] Data display and filtering interface
-- [ ] Post type tracking and categorization
-- [ ] Basic data export functionality (CSV/JSON)
-- [ ] User-friendly dashboard
-
-### Phase 3: Enhanced Features
-- [ ] Keyword extraction from posts and comments
-- [ ] Basic sentiment analysis
-- [ ] Data visualization and trends
-- [ ] Advanced API features
-- [ ] Multi-subreddit support
+For detailed information about the project's development phases and roadmap, see [Development Phases](docs/development-phases.md).
 
 ## Technical Stack
 
