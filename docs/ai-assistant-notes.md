@@ -1,6 +1,123 @@
 # AI Assistant Notes
 
-This document contains learnings and quirks about the project that are helpful for AI assistance.
+This document contains notes and guidelines for AI assistants working on the Reddit PDX Scraper project.
+
+## Project Structure
+
+### Documentation Organization
+- README.md serves as the main entry point and project overview
+- Detailed documentation is split into focused guides:
+  - architecture.md: System design and components
+  - development.md: Development workflow and guidelines
+  - database.md: Database setup and management
+  - testing.md: Testing strategy and procedures
+  - api.md: API endpoints and usage
+  - data-collection.md: Reddit data collection process
+
+### Database Management
+- Using a custom migration system instead of node-pg-migrate
+- Migration files follow timestamp-based naming: YYYYMMDDHHMMSS_migration_name.sql
+- Each migration can include up and down sections
+- Migrations are tracked in a dedicated migrations table
+- Supports transaction-based rollbacks
+
+### Testing Framework
+- Using Jest as the primary testing framework
+- Mock implementations available in tests/mocks/
+- Test files follow .test.ts naming convention
+- Database tests use a separate test database
+
+## Common Tasks
+
+### Database Changes
+1. Create new migration file with timestamp
+2. Include both up and down migrations
+3. Test migrations locally
+4. Apply migrations using npm run migrate:up
+5. Verify changes in database
+
+### Testing
+1. Write unit tests for new functionality
+2. Use mock implementations for external dependencies
+3. Follow Arrange-Act-Assert pattern
+4. Run tests with npm test
+5. Check coverage with npm run test:coverage
+
+### Documentation
+1. Keep README.md focused on high-level overview
+2. Add detailed information to appropriate guide
+3. Update API documentation for new endpoints
+4. Include examples where helpful
+5. Cross-reference related documentation
+
+## Best Practices
+
+### Code Style
+- Use TypeScript's strict mode
+- Follow project naming conventions
+- Document public APIs
+- Keep files focused and small
+
+### Testing
+- Test each component in isolation
+- Use mocks for external dependencies
+- Clean up after tests
+- Aim for high test coverage
+
+### Documentation
+- Keep it up to date
+- Include examples
+- Cross-reference related docs
+- Use clear, concise language
+
+## Common Issues
+
+### Database
+- Check Docker status for connection issues
+- Verify environment variables
+- Monitor query performance
+- Use appropriate indexes
+
+### Reddit API
+- Respect rate limits
+- Implement retry logic
+- Cache responses when possible
+- Handle API errors gracefully
+
+### Testing
+- Clear test database between runs
+- Check mock implementations
+- Verify test environment
+- Handle async operations properly
+
+## Future Considerations
+
+### Planned Features
+- RSS feed generation
+- Slack bot integration
+- Email digest delivery
+- Mobile app development
+- AI-powered summaries
+- Sentiment analysis
+
+### Technical Debt
+- Monitor test coverage
+- Review and update dependencies
+- Optimize database queries
+- Improve error handling
+
+## Notes for AI Assistants
+
+1. Always check existing documentation before making changes
+2. Keep documentation consistent across files
+3. Update related documentation when making changes
+4. Follow project conventions and best practices
+5. Provide clear explanations and examples
+6. Cross-reference related documentation
+7. Keep the README.md focused and high-level
+8. Use appropriate formatting and structure
+9. Include code examples where helpful
+10. Maintain backward compatibility
 
 ## PowerShell Console Issues
 - The PowerShell console has issues with long commit messages, causing `System.ArgumentOutOfRangeException`
