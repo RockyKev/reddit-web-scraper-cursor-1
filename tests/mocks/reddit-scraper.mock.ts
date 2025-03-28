@@ -1,4 +1,4 @@
-import { RedditPost, RedditComment, IRedditScraper } from '../../src/types/reddit.ts';
+import { RedditPost, RedditComment, IRedditScraper, RedditSentiment } from '../../src/types/reddit';
 
 /**
  * Helper function to create a mock Reddit post
@@ -9,6 +9,13 @@ import { RedditPost, RedditComment, IRedditScraper } from '../../src/types/reddi
  * @param score - Post score
  * @param commentCount - Number of comments
  * @param createdAt - Creation timestamp
+ * @param postType - Type of post (text, image, link)
+ * @param isArchived - Whether the post is archived
+ * @param isLocked - Whether the post is locked
+ * @param keywords - Array of keywords extracted from the post
+ * @param authorScore - Author's contribution score
+ * @param topCommenters - Array of top commenters with their scores
+ * @param sentiment - Sentiment analysis results
  * @returns A mock Reddit post
  */
 export function createMockPost(
@@ -18,7 +25,14 @@ export function createMockPost(
   author: string,
   score: number,
   commentCount: number,
-  createdAt: Date
+  createdAt: Date,
+  postType: string = 'text',
+  isArchived: boolean = false,
+  isLocked: boolean = false,
+  keywords: string[] = [],
+  authorScore: number = 0,
+  topCommenters: Array<{ username: string; contribution_score: number }> = [],
+  sentiment: RedditSentiment | null = null
 ): RedditPost {
   return {
     id,
@@ -26,13 +40,18 @@ export function createMockPost(
     content,
     url: `https://www.reddit.com/r/test/comments/${id}`,
     permalink: `/r/test/comments/${id}`,
-    post_type: 'text',
+    post_type: postType,
     author,
     score,
     commentCount,
     createdAt,
-    isArchived: false,
-    isLocked: false
+    isArchived,
+    isLocked,
+    keywords,
+    author_score: authorScore,
+    top_commenters: topCommenters,
+    summary: null,
+    sentiment
   };
 }
 
@@ -44,6 +63,8 @@ export function createMockPost(
  * @param score - Comment score
  * @param createdAt - Creation timestamp
  * @param parentId - Optional parent comment ID
+ * @param isArchived - Whether the comment is archived
+ * @param contributionScore - Commenter's contribution score
  * @returns A mock Reddit comment
  */
 export function createMockComment(
@@ -52,7 +73,9 @@ export function createMockComment(
   author: string,
   score: number,
   createdAt: Date,
-  parentId?: string
+  parentId?: string,
+  isArchived: boolean = false,
+  contributionScore: number = 0
 ): RedditComment {
   return {
     id,
@@ -60,8 +83,9 @@ export function createMockComment(
     author,
     score,
     createdAt,
-    isArchived: false,
-    parentId
+    isArchived,
+    parentId,
+    contribution_score: contributionScore
   };
 }
 
@@ -77,7 +101,13 @@ export const MOCK_POSTS: RedditPost[] = [
     'testuser1',
     100,
     5,
-    new Date('2024-03-26T00:00:00Z')
+    new Date('2024-03-26T00:00:00Z'),
+    'text',
+    false,
+    false,
+    ['test', 'content', 'portland'],
+    2,
+    [{ username: 'commenter1', contribution_score: 5 }]
   ),
   createMockPost(
     'mock2',
@@ -86,7 +116,58 @@ export const MOCK_POSTS: RedditPost[] = [
     'testuser2',
     50,
     3,
-    new Date('2024-03-26T01:00:00Z')
+    new Date('2024-03-26T01:00:00Z'),
+    'text',
+    false,
+    false,
+    ['housing', 'portland', 'rent'],
+    1,
+    [{ username: 'commenter3', contribution_score: 3 }]
+  ),
+  createMockPost(
+    'mock3',
+    'Image Post',
+    '',
+    'testuser3',
+    75,
+    8,
+    new Date('2024-03-26T02:00:00Z'),
+    'image',
+    false,
+    false,
+    ['image', 'portland'],
+    3,
+    [{ username: 'commenter2', contribution_score: 4 }]
+  ),
+  createMockPost(
+    'mock4',
+    'Archived Post',
+    'This post is archived',
+    'testuser4',
+    25,
+    2,
+    new Date('2024-03-26T03:00:00Z'),
+    'text',
+    true,
+    false,
+    ['archived', 'portland'],
+    1,
+    []
+  ),
+  createMockPost(
+    'mock5',
+    'Locked Post',
+    'This post is locked',
+    'testuser5',
+    150,
+    12,
+    new Date('2024-03-26T04:00:00Z'),
+    'text',
+    false,
+    true,
+    ['locked', 'portland'],
+    4,
+    [{ username: 'commenter4', contribution_score: 6 }]
   )
 ];
 
@@ -97,7 +178,10 @@ export const MOCK_COMMENTS: Record<string, RedditComment[]> = {
       'Test comment 1',
       'commenter1',
       10,
-      new Date('2024-03-26T00:05:00Z')
+      new Date('2024-03-26T00:05:00Z'),
+      undefined,
+      false,
+      5
     ),
     createMockComment(
       'comment2',
@@ -105,7 +189,9 @@ export const MOCK_COMMENTS: Record<string, RedditComment[]> = {
       'commenter2',
       5,
       new Date('2024-03-26T00:10:00Z'),
-      'comment1'
+      'comment1',
+      false,
+      3
     )
   ],
   'mock2': [
@@ -114,7 +200,20 @@ export const MOCK_COMMENTS: Record<string, RedditComment[]> = {
       'Housing related comment',
       'commenter3',
       15,
-      new Date('2024-03-26T01:05:00Z')
+      new Date('2024-03-26T01:05:00Z'),
+      undefined,
+      false,
+      3
+    ),
+    createMockComment(
+      'comment4',
+      '[deleted]',
+      '[deleted]',
+      0,
+      new Date('2024-03-26T01:10:00Z'),
+      undefined,
+      true,
+      0
     )
   ]
 };
@@ -124,49 +223,48 @@ export const MOCK_COMMENTS: Record<string, RedditComment[]> = {
  */
 export class MockRedditScraper implements IRedditScraper {
   private readonly _subreddit: string;
+  private lastRequestTime: number = 0;
+  private readonly minRequestInterval: number = 5000; // 5 seconds between requests
+  private readonly commentRequestInterval: number = 8000; // 8 seconds between comment requests
+  public getPosts: jest.Mock;
+  public getComments: jest.Mock;
 
   constructor(subreddit: string) {
     this._subreddit = subreddit;
+    
+    // Initialize Jest mocks
+    this.getPosts = jest.fn().mockImplementation(this._getPosts);
+    this.getComments = jest.fn().mockImplementation(this._getComments);
   }
 
   public get subreddit(): string {
     return this._subreddit;
   }
 
-  public async getPosts(limit: number = 25): Promise<RedditPost[]> {
-    const posts: RedditPost[] = [];
-    const now = new Date();
-
-    for (let i = 0; i < limit; i++) {
-      posts.push(createMockPost(
-        `post-${i}`,
-        `Test Post ${i}`,
-        `This is test post content ${i}`,
-        `user${i}`,
-        Math.floor(Math.random() * 100),
-        Math.floor(Math.random() * 50),
-        new Date(now.getTime() - i * 3600000) // Each post is 1 hour older than the previous
-      ));
+  private async rateLimit(isCommentRequest: boolean = false): Promise<void> {
+    const now = Date.now();
+    const timeSinceLastRequest = now - this.lastRequestTime;
+    const requiredDelay = isCommentRequest ? this.commentRequestInterval : this.minRequestInterval;
+    
+    if (timeSinceLastRequest < requiredDelay) {
+      const delay = requiredDelay - timeSinceLastRequest;
+      await new Promise(resolve => setTimeout(resolve, delay));
     }
-
-    return posts;
+    
+    this.lastRequestTime = Date.now();
   }
 
-  public async getComments(postId: string): Promise<RedditComment[]> {
-    const comments: RedditComment[] = [];
-    const now = new Date();
+  private async _getPosts(limit: number = 25): Promise<RedditPost[]> {
+    await this.rateLimit();
+    
+    // Return mock posts up to the limit
+    return MOCK_POSTS.slice(0, limit);
+  }
 
-    for (let i = 0; i < 5; i++) {
-      comments.push(createMockComment(
-        `comment-${i}`,
-        `This is test comment ${i}`,
-        `user${i}`,
-        Math.floor(Math.random() * 50),
-        new Date(now.getTime() - i * 1800000), // Each comment is 30 minutes older than the previous
-        i > 0 ? `comment-${i - 1}` : undefined
-      ));
-    }
-
-    return comments;
+  private async _getComments(postId: string): Promise<RedditComment[]> {
+    await this.rateLimit(true);
+    
+    // Return mock comments for the post if they exist
+    return MOCK_COMMENTS[postId] || [];
   }
 } 

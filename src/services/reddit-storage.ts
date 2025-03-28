@@ -2,31 +2,7 @@ import pkg from 'pg';
 const { Pool } = pkg;
 import { logger } from '../utils/logger.ts';
 import { getPool } from '../config/database.ts';
-
-interface RedditPost {
-  id: string;
-  title: string;
-  content: string;
-  url: string;
-  author: string;
-  score: number;
-  commentCount: number;
-  createdAt: Date;
-  isArchived: boolean;
-  isLocked: boolean;
-  permalink: string;
-  post_type: string;
-}
-
-interface RedditComment {
-  id: string;
-  content: string;
-  author: string;
-  score: number;
-  createdAt: Date;
-  isArchived: boolean;
-  parentId?: string;
-}
+import { RedditPost, RedditComment } from '../types/reddit.ts';
 
 export class RedditStorage {
   private readonly pool: InstanceType<typeof Pool>;
@@ -59,9 +35,11 @@ export class RedditStorage {
         `INSERT INTO posts (
           subreddit_id, reddit_id, title, content, author,
           score, comment_count, url, permalink, post_type,
-          reddit_created_at, is_archived, is_locked
+          reddit_created_at, is_archived, is_locked,
+          keywords, author_score, top_commenters,
+          summary, sentiment
         )
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14::text[], $15, $16::jsonb, $17, $18::jsonb)
         ON CONFLICT (reddit_id) DO UPDATE
         SET
           title = EXCLUDED.title,
@@ -72,6 +50,11 @@ export class RedditStorage {
           post_type = EXCLUDED.post_type,
           is_archived = EXCLUDED.is_archived,
           is_locked = EXCLUDED.is_locked,
+          keywords = EXCLUDED.keywords,
+          author_score = EXCLUDED.author_score,
+          top_commenters = EXCLUDED.top_commenters,
+          summary = EXCLUDED.summary,
+          sentiment = EXCLUDED.sentiment,
           updated_at = CURRENT_TIMESTAMP
         RETURNING id`,
         [
@@ -87,7 +70,12 @@ export class RedditStorage {
           post.post_type,
           post.createdAt,
           post.isArchived,
-          post.isLocked
+          post.isLocked,
+          post.keywords,
+          post.author_score,
+          JSON.stringify(post.top_commenters),
+          post.summary,
+          post.sentiment ? JSON.stringify(post.sentiment) : null
         ]
       );
 
@@ -103,14 +91,16 @@ export class RedditStorage {
       const result = await this.pool.query(
         `INSERT INTO comments (
           post_id, reddit_id, content, author,
-          score, parent_id, reddit_created_at, is_archived
+          score, parent_id, reddit_created_at, is_archived,
+          contribution_score
         )
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
         ON CONFLICT (reddit_id) DO UPDATE
         SET
           content = EXCLUDED.content,
           score = EXCLUDED.score,
           is_archived = EXCLUDED.is_archived,
+          contribution_score = EXCLUDED.contribution_score,
           updated_at = CURRENT_TIMESTAMP
         RETURNING id`,
         [
@@ -121,7 +111,8 @@ export class RedditStorage {
           comment.score,
           comment.parentId,
           comment.createdAt,
-          comment.isArchived
+          comment.isArchived,
+          comment.contribution_score
         ]
       );
 

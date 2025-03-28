@@ -43,31 +43,45 @@ docker-compose restart postgres
 
 ## Database Migrations
 
-The project uses `node-pg-migrate` for database migrations. This ensures consistent database schema across all environments.
+The project uses a custom migration system built with TypeScript to manage database schema changes. This system provides a robust way to track and apply database changes across all environments.
+
+### Migration Structure
+
+Migrations are stored in `src/db/migrations` and follow a timestamp-based naming convention:
+```
+YYYYMMDDHHMMSS_migration_name.sql
+```
+
+Each migration file can contain two sections:
+1. Up Migration: Contains the changes to apply
+2. Down Migration: Contains the rollback changes (optional)
+
+Example migration file:
+```sql
+-- Up Migration
+ALTER TABLE posts ADD COLUMN new_column TEXT;
+
+-- Down Migration
+ALTER TABLE posts DROP COLUMN new_column;
+```
 
 ### Available Commands
 
-#### Create a New Migration
-```bash
-npm run db:migrate-create <migration-name>
-```
-Creates a new migration file in `src/db/migrations` with a timestamp prefix.
-
 #### Apply Migrations
 ```bash
-npm run db:migrate-up
+npm run migrate:up
 ```
 Runs any pending migrations to update the database schema.
 
-#### Rollback Last Migration
+#### Rollback Migrations
 ```bash
-npm run db:migrate-down
+npm run migrate:down [n]
 ```
-Reverses the most recent migration. Useful for fixing mistakes.
+Rolls back the specified number of migrations (default: 1). Useful for fixing mistakes.
 
 #### Check Migration Status
 ```bash
-npm run db:migrate-status
+npm run migrate:status
 ```
 Shows which migrations have been run and which are pending.
 
@@ -79,29 +93,51 @@ Drops and recreates the database, then runs all migrations. Useful for developme
 
 ### Migration Workflow
 
-1. Create a new migration:
+1. Create a new migration file in `src/db/migrations` with the appropriate timestamp:
    ```bash
-   npm run db:migrate-create add_new_column
+   # Example: 20240328000002_add_new_column.sql
    ```
 
-2. Edit the generated migration file in `src/db/migrations`:
+2. Add the migration SQL with up and down sections:
    ```sql
-   -- Up migration
+   -- Up Migration
    ALTER TABLE posts ADD COLUMN new_column TEXT;
 
-   -- Down migration
+   -- Down Migration
    ALTER TABLE posts DROP COLUMN new_column;
    ```
 
 3. Apply the migration:
    ```bash
-   npm run db:migrate-up
+   npm run migrate:up
    ```
 
-4. If needed, rollback:
-   ```bash
-   npm run db:migrate-down
-   ```
+### Migration Tracking
+
+The system maintains a `migrations` table in the database to track which migrations have been applied:
+```sql
+CREATE TABLE migrations (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    applied_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+### Best Practices
+
+1. Always include a down migration when possible to support rollbacks
+2. Use transactions in migrations to ensure atomic changes
+3. Test migrations in a development environment before applying to production
+4. Keep migrations focused and atomic - one logical change per migration
+5. Use meaningful names for migration files that describe the changes
+
+### Error Handling
+
+The migration system includes built-in error handling:
+- Each migration runs in a transaction
+- If a migration fails, all changes are rolled back
+- The migration status is only updated after successful completion
+- Detailed error messages are provided for troubleshooting
 
 ## Development Workflow
 

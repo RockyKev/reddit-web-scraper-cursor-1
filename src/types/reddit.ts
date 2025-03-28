@@ -2,6 +2,16 @@
 export type RedditSortType = 'hot' | 'new' | 'top' | 'rising' | 'controversial';
 export type RedditTimeFilter = 'hour' | 'day' | 'week' | 'month' | 'year' | 'all';
 
+export interface RedditAuthor {
+  username: string;
+  contribution_score: number;
+}
+
+export interface RedditSentiment {
+  positive: number;
+  negative: number;
+}
+
 export interface RedditPost {
   id: string;
   title: string;
@@ -15,6 +25,11 @@ export interface RedditPost {
   createdAt: Date;
   isArchived: boolean;
   isLocked: boolean;
+  keywords: string[];
+  author_score: number;
+  top_commenters: RedditAuthor[];
+  summary: string | null;
+  sentiment: RedditSentiment | null;
 }
 
 export interface RedditComment {
@@ -25,6 +40,7 @@ export interface RedditComment {
   createdAt: Date;
   isArchived: boolean;
   parentId?: string;
+  contribution_score: number;
 }
 
 // Base interface for Reddit scraper
