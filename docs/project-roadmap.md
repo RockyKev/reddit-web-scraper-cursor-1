@@ -1,77 +1,121 @@
-# Development Phases
+# Development Roadmap
 
-## Phase 1: Core API Development
-- [x] API service setup with PostgreSQL
-- [x] Reddit scraping implementation with retry logic
-- [x] Database schema and data storage
-- [x] Logging system
+## Version 1: Core Data Collection (Completed)
+**Outcome**: A working system that collects and stores Reddit posts and comments from Portland subreddits.
+
+### Completed Features
+- [x] PostgreSQL database setup with Docker
+- [x] Reddit API integration with rate limiting
+- [x] Daily data collection (4:30 AM EST)
+- [x] Basic post and comment storage
 - [x] Daily digest API endpoint
-  - [x] GET /api/digest endpoint for current day
-  - [x] Date parameter support for historical digests
-  - [x] OpenAPI specification
-  - [x] Basic response structure matching API docs
-- [x] Data collection scheduling (4:30 AM EST daily)
-- [x] Database management scripts (create, drop, reset)
-- [x] Mock data generation for testing
-- [x] Live data collection implementation with rate limiting
-- [x] Post type tracking and categorization
-- [x] Comment collection with proper rate limiting
-- [x] Test framework standardization
-  - [x] Convert all tests to Jest for consistency
-  - [x] Update test documentation
-  - [x] Standardize test naming and organization
+- [x] Test framework with Jest
+- [x] Database management scripts
 
-## Phase 2: Data Analysis & Processing
-- [x] Daily digest API endpoint Updates
-  - [ ] Integration with Phase 2 features (keywords, scoring)
-- [ ] Implement scoring system for post ranking
-  - [ ] Configurable weights for upvotes and comments
-  - [ ] Dynamic threshold calculation
-  - [ ] Top N posts per subreddit selection
-- [x] Keyword extraction system
-  - [x] Text tokenization and processing
-  - [x] TF-IDF based relevance scoring
-  - [x] Stop word filtering
-  - [x] Unit tests for keyword extraction
-  - [ ] Integration with data collection pipeline
-  - [ ] Keyword storage in database
-- [ ] User tracking system
-  - [ ] Post author tracking
-  - [ ] Top commenter tracking
-  - [ ] Contribution score calculation
-  - [ ] User statistics aggregation
-- [ ] Test improvements
-  - [ ] Fix failing test in reddit-storage.test.ts (currently blocked)
-  - [ ] Add more comprehensive test coverage for data analysis features
-- [ ] Database Organization
-  - [ ] Determine if migrate files are necessary
-- [ ] Create CRON job implementation
-  - [ ] Daily fetch to create digest
+## Version 2: Data Analysis Foundation
+**Outcome**: A system that can analyze and score posts based on engagement metrics.
 
-## Phase 3: Frontend Implementation
-- [ ] Basic authentication system
-- [ ] Daily digest view
-  - [ ] Post list with sorting options
-  - [ ] Keyword display
-  - [ ] User contribution scores
-  - [ ] Direct Reddit post links
-- [ ] Statistics dashboard
-  - [ ] Daily activity metrics
-  - [ ] Top contributors
-  - [ ] Popular keywords
-- [ ] Basic data export functionality (CSV/JSON)
+### Features
+- [ ] Post Scoring System
+  - [ ] Implement scoring formula: `score = (upvotes * 1.0) + (comments * 2.0)`
+  - [ ] Add configurable weights in database
+  - [ ] Create scoring service with unit tests
+  - [ ] Add scoring to daily digest API response
 
-## Phase 4: Enhanced Features
-- [ ] AI-powered content analysis
-  - [ ] Post and comment summarization
-  - [ ] Sentiment analysis
-  - [ ] Topic categorization
-- [ ] Alternative output formats
+- [ ] Keyword Analysis
+  - [ ] Store keywords in database (new table)
+  - [ ] Add keyword extraction to data collection pipeline
+  - [ ] Include top keywords in daily digest
+  - [ ] Add keyword filtering to API
+
+- [ ] Database Improvements
+  - [ ] Add indexes for common queries
+  - [ ] Implement database migrations
+  - [ ] Add data cleanup routines
+
+## Version 3: User Analytics
+**Outcome**: Track and analyze user contributions across subreddits.
+
+### Features
+- [ ] User Tracking
+  - [ ] Create users table with contribution metrics
+  - [ ] Track post authors and commenters
+  - [ ] Calculate user scores based on contributions
+  - [ ] Add user statistics to daily digest
+
+## Version 4: Web Interface
+**Outcome**: A functional web interface for viewing daily digests and analytics.
+
+### Features
+- [ ] Basic Authentication
+  - [ ] User registration and login
+  - [ ] JWT token authentication
+  - [ ] Protected API routes
+
+- [ ] Daily Digest View
+  - [ ] Post list with sorting/filtering
+  - [ ] Direct links to Reddit posts
+
+## Version 5: Production Deployment
+**Outcome**: A production-ready system running on a server with automated data collection.
+
+### Features
+- [ ] Server Setup
+  - [ ] Set up Digital Ocean droplet
+  - [ ] Configure Nginx as reverse proxy
+  - [ ] Set up SSL certificates
+  - [ ] Configure firewall rules
+
+- [ ] Database Deployment
+  - [ ] Set up production PostgreSQL
+  - [ ] Configure database backups
+  - [ ] Set up monitoring
+  - [ ] Implement connection pooling
+
+- [ ] Automated Collection
+  - [ ] Create collection script
+  - [ ] Set up systemd service
+  - [ ] Configure cron job (4:30 AM EST)
+  - [ ] Add logging and monitoring
+  - [ ] Set up error notifications
+
+## Version 6: Export & Integration
+**Outcome**: Multiple ways to access and export the data.
+
+### Features
+- [ ] Data Export
+  - [ ] CSV export for posts and comments
+  - [ ] JSON API for historical data
+  - [ ] Custom date range selection
+  - [ ] Batch export functionality
+
+- [ ] External Integrations
   - [ ] RSS feed generation
-  - [ ] Slack bot integration
+  - [ ] Slack bot for daily updates
   - [ ] Email digest delivery
-- [ ] Mobile app development
-- [ ] Advanced API features
-  - [ ] Historical data access
-  - [ ] Custom date ranges
-  - [ ] Advanced filtering 
+  - [ ] Webhook support for updates
+
+
+## Version 7: AI Enhancement
+**Outcome**: Intelligent content analysis and summarization.
+
+### Features
+- [ ] Content Analysis
+  - [ ] Post summarization using AI
+  - [ ] Sentiment analysis for posts/comments
+  - [ ] Topic categorization
+  - [ ] Content quality scoring
+
+- [ ] Mobile Experience
+  - [ ] Responsive web design
+  - [ ] Progressive Web App support
+  - [ ] Mobile-optimized views
+  - [ ] Push notifications
+
+## Future Considerations
+- Advanced filtering and search
+- Custom subreddit monitoring
+- User preferences and customization
+- API rate limiting and quotas
+- Caching layer for performance
+- Automated testing improvements 

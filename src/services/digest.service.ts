@@ -1,5 +1,6 @@
 import { db } from '../db';
 import { DbPost, DbComment, DbUser, DbSubredditStats, DbCommenterStats } from '../types/database';
+import { ScoringService } from './scoringService';
 
 interface DigestSummary {
   total_posts: number;
@@ -24,6 +25,8 @@ interface Post {
   type: string;
   upvotes: number;
   comment_count: number;
+  daily_score: number;
+  daily_rank: number;
   permalink: string;
   selftext: string;
   url: string;
@@ -41,12 +44,21 @@ interface DigestResponse {
 }
 
 export class DigestService {
+  private scoringService: ScoringService;
+
+  constructor() {
+    this.scoringService = new ScoringService(db);
+  }
+
   async getDigest(date?: string): Promise<DigestResponse> {
     const targetDate = date || new Date().toISOString().split('T')[0];
     
-    // Get posts for the date
+    // Update scores and ranks for the date
+    await this.scoringService.updateDailyScores(new Date(targetDate));
+    
+    // Get posts for the date, ordered by daily rank
     const postsResult = await db.query<DbPost>(
-      'SELECT * FROM posts WHERE DATE(created_at) = $1 ORDER BY upvotes DESC',
+      'SELECT * FROM posts WHERE DATE(created_at) = $1 ORDER BY daily_rank ASC',
       [targetDate]
     );
 
@@ -86,6 +98,8 @@ export class DigestService {
           keywords: [], // Will be populated in Phase 2
           selftext: post.selftext || '', // Include selftext field
           url: post.url || '', // Include url field
+          daily_score: post.daily_score || 0,
+          daily_rank: post.daily_rank || 0,
           author: {
             username: authorResult.rows[0]?.username || 'unknown',
             contribution_score: 0 // Will be calculated in Phase 2

@@ -10,6 +10,8 @@ export interface DbPost {
   url: string;
   author_id: string;
   created_at: Date;
+  daily_score: number;
+  daily_rank: number;
 }
 
 export interface DbComment {
