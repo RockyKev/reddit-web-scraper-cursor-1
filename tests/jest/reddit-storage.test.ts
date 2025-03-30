@@ -387,4 +387,70 @@ describe('RedditStorage', () => {
       expect(retrieved).toBeNull();
     });
   });
+
+  describe('storePostWithComments', () => {
+    it('should store post with comments and extract keywords', async () => {
+      const subredditId = await storage.storeSubreddit('Portland');
+      
+      const post: RedditPost = {
+        id: 'test-post-6',
+        title: 'Best sushi restaurants in Portland',
+        content: 'Looking for recommendations for sushi places in Portland. Preferably downtown area.',
+        url: 'https://reddit.com/test',
+        author: 'testuser',
+        score: 100,
+        commentCount: 3,
+        createdAt: new Date(),
+        isArchived: false,
+        isLocked: false,
+        permalink: '/r/Portland/test-post-6',
+        post_type: 'text',
+        keywords: [],
+        author_score: 2,
+        top_commenters: [],
+        summary: null,
+        sentiment: null
+      };
+
+      const comments: RedditComment[] = [
+        {
+          id: 'test-comment-5',
+          content: 'Sushi Hana is amazing! They have the best rolls.',
+          author: 'user1',
+          score: 50,
+          createdAt: new Date(),
+          isArchived: false,
+          parentId: undefined,
+          contribution_score: 3
+        },
+        {
+          id: 'test-comment-6',
+          content: 'I love Bamboo Sushi, especially their sustainable options.',
+          author: 'user2',
+          score: 45,
+          createdAt: new Date(),
+          isArchived: false,
+          parentId: undefined,
+          contribution_score: 3
+        }
+      ];
+
+      const postId = await storage.storePostWithComments(subredditId, post, comments);
+      expect(postId).toBeDefined();
+
+      // Verify post was stored with keywords
+      const postResult = await pool.query('SELECT * FROM posts WHERE id = $1', [postId]);
+      expect(postResult.rows).toHaveLength(1);
+      expect(postResult.rows[0].keywords).toBeDefined();
+      expect(postResult.rows[0].keywords).toContain('sushi');
+      expect(postResult.rows[0].keywords).toContain('portland');
+      expect(postResult.rows[0].keywords).toContain('restaurants');
+
+      // Verify comments were stored
+      const commentsResult = await pool.query('SELECT * FROM comments WHERE post_id = $1', [postId]);
+      expect(commentsResult.rows).toHaveLength(2);
+      expect(commentsResult.rows[0].content).toBe(comments[0].content);
+      expect(commentsResult.rows[1].content).toBe(comments[1].content);
+    });
+  });
 }); 

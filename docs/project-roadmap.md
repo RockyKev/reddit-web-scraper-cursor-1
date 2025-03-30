@@ -27,9 +27,11 @@
     - [x] Create KeywordExtractor service
     - [x] Add unit tests for basic functionality
     - [x] Use TF-IDF for keyword extraction
-  - [ ] Add keyword extraction to data collection pipeline
-  - [ ] Include top keywords in daily digest
-  - [ ] Add keyword filtering to API
+  - [x] Integrate with data collection
+    - [x] Get top comments based on upvotes (using TOP_COMMENTERS_PER_POST)
+    - [x] Extract keywords from post title, content, and top comments
+    - [x] Store keywords array in posts table
+  - [x] Include keywords in daily digest API response
 
 ## Version 3: User Analytics
 **Outcome**: Track and analyze user contributions across subreddits.

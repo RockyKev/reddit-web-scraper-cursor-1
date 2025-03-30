@@ -3,12 +3,15 @@ const { Pool } = pkg;
 import { logger } from '../utils/logger.ts';
 import { getPool } from '../config/database.ts';
 import { RedditPost, RedditComment } from '../types/reddit.ts';
+import { KeywordAnalysisService } from './keyword-analysis-service';
 
 export class RedditStorage {
   private readonly pool: InstanceType<typeof Pool>;
+  private readonly keywordAnalyzer: KeywordAnalysisService;
 
   constructor() {
     this.pool = getPool();
+    this.keywordAnalyzer = new KeywordAnalysisService();
   }
 
   public async storeSubreddit(name: string, description?: string): Promise<string> {
@@ -147,6 +150,43 @@ export class RedditStorage {
       return result.rows[0] || null;
     } catch (error) {
       logger.error('Error getting post:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Store a post with its comments and extracted keywords
+   * @param subredditId The ID of the subreddit
+   * @param post The Reddit post
+   * @param comments Array of comments on the post
+   * @returns The stored post ID
+   */
+  public async storePostWithComments(
+    subredditId: string,
+    post: RedditPost,
+    comments: RedditComment[]
+  ): Promise<string> {
+    try {
+      // Extract keywords from post and comments
+      const keywords = this.keywordAnalyzer.extractKeywordsFromPost(post, comments);
+      
+      // Update post with extracted keywords
+      const postWithKeywords = {
+        ...post,
+        keywords
+      };
+
+      // Store the post
+      const postId = await this.storePost(subredditId, postWithKeywords);
+
+      // Store all comments
+      for (const comment of comments) {
+        await this.storeComment(postId, comment);
+      }
+
+      return postId;
+    } catch (error) {
+      logger.error('Error storing post with comments:', error);
       throw error;
     }
   }
