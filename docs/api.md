@@ -44,20 +44,32 @@ Returns the daily digest of top posts and comments.
       "subreddit": "r/Portland",
       "title": "Post Title",
       "type": "text",
-      "upvotes": 500,
+      "content": "This is the content of the post",
+      "score": 100,
+      "score_ratio": 0.98,
       "comment_count": 100,
+      "daily_rank": 3,
+      "daily_score": 120,
       "permalink": "https://reddit.com/...",
-      "selftext": "This is the content of the post",
-      "url": "https://example.com/image.jpg",
       "keywords": ["keyword1", "keyword2", "keyword3"],
+      "locked": false,
       "author": {
         "username": "PDX_Dave",
+        "fullname": "t2_123abc",
         "contribution_score": 2
       },
       "top_commenters": [
         {
           "username": "CatLadySarah",
           "contribution_score": 5
+        },
+        {
+          "username": "Zesty Steve",
+          "contribution_score": 7
+        },
+        {
+          "username": "Banana123",
+          "contribution_score": 10
         }
       ],
       "summary": null,
@@ -86,16 +98,33 @@ Returns the daily digest of top posts and comments.
 | subreddit        | string  | Name of the subreddit                          |
 | title            | string  | Post title                                     |
 | type             | string  | Type of post (text, link, image, video, etc.)  |
+| content          | string  | Post content (text or URL)                     |
 | upvotes          | integer | Number of upvotes                              |
 | comment_count    | integer | Number of comments                             |
+| daily_rank       | integer | Post's rank for the day                        |
+| daily_score      | integer | Post's calculated score for the day            |
 | permalink        | string  | Reddit permalink URL                           |
-| selftext         | string  | Text content of the post (empty for link posts) |
-| url              | string  | External URL for link posts (empty for text posts) |
-| keywords         | array   | Extracted keywords from the post               |
+| keywords         | array   | Extracted keywords from post and top comments  |
+| locked           | boolean | Whether the post is locked                     |
 | author           | object  | Post author information                        |
 | top_commenters   | array   | List of top commenters on the post             |
 | summary          | string  | AI-generated summary (if available)            |
 | sentiment        | object  | Sentiment analysis results (if available)      |
+
+#### Author Object Fields
+
+| Field              | Type    | Description                                    |
+|-------------------|---------|------------------------------------------------|
+| username          | string  | Reddit username                                |
+| fullname          | string  | Reddit user ID                                 |
+| contribution_score| integer | User's contribution score                      |
+
+#### Top Commenter Object Fields
+
+| Field              | Type    | Description                                    |
+|-------------------|---------|------------------------------------------------|
+| username          | string  | Reddit username                                |
+| contribution_score| integer | User's contribution score                      |
 
 ## Rate Limiting
 

@@ -1,144 +1,90 @@
-import { stopwords, TfIdf } from 'natural';
-import { logger } from '../utils/logger';
+import { RedditPost, RedditComment } from '../types/reddit';
+import { WordTokenizer, TfIdf } from 'natural';
 
-interface WeightedKeyword {
-  word: string;
-  relevance: number;
-}
+// Common English stop words to filter out
+const STOP_WORDS = new Set([
+  'the', 'be', 'to', 'of', 'and', 'a', 'in', 'that', 'have', 'i',
+  'it', 'for', 'not', 'on', 'with', 'he', 'as', 'you', 'do', 'at',
+  'this', 'but', 'his', 'by', 'from', 'they', 'we', 'say', 'her', 'she',
+  'or', 'an', 'will', 'my', 'one', 'all', 'would', 'there', 'their', 'what',
+  'so', 'up', 'out', 'if', 'about', 'who', 'get', 'which', 'go', 'me',
+  'when', 'make', 'can', 'like', 'time', 'no', 'just', 'him', 'know', 'take',
+  'people', 'into', 'year', 'your', 'good', 'some', 'could', 'them', 'see', 'other',
+  'than', 'then', 'now', 'look', 'only', 'come', 'its', 'over', 'think', 'also',
+  'back', 'after', 'use', 'two', 'how', 'our', 'work', 'first', 'well', 'way',
+  'even', 'new', 'want', 'because', 'any', 'these', 'give', 'day', 'most', 'us'
+]);
 
 export class KeywordExtractor {
+  private tokenizer: WordTokenizer;
   private tfidf: TfIdf;
 
   constructor() {
+    this.tokenizer = new WordTokenizer();
     this.tfidf = new TfIdf();
   }
 
   /**
-   * Extracts keywords from text using TF-IDF and frequency analysis
-   * @param text The text to extract keywords from
-   * @param maxKeywords Maximum number of keywords to return
-   * @returns Array of weighted keywords
+   * Extract keywords from a post and its comments
+   * @param post The Reddit post
+   * @param comments Array of comments on the post
+   * @returns Array of keywords
    */
-  async extractKeywords(text: string, maxKeywords: number = 15): Promise<WeightedKeyword[]> {
-    try {
-      // For single document, we'll use a simpler frequency-based approach
-      const tokens = this.tokenize(text);
-      const wordFreq = new Map<string, number>();
-
-      // Count word frequencies
-      tokens.forEach(word => {
-        wordFreq.set(word, (wordFreq.get(word) || 0) + 1);
-      });
-
-      // Convert to array and sort by frequency
-      const keywords = Array.from(wordFreq.entries())
-        .map(([word, frequency]) => ({ 
-          word, 
-          relevance: frequency / tokens.length // Normalize by document length
-        }))
-        .sort((a, b) => {
-          // Sort by relevance first, then alphabetically for equal relevance
-          if (b.relevance !== a.relevance) {
-            return b.relevance - a.relevance;
-          }
-          return a.word.localeCompare(b.word);
-        })
-        .slice(0, maxKeywords);
-
-      return keywords;
-    } catch (error) {
-      logger.error('Error extracting keywords:', error);
-      throw error;
-    }
-  }
-
-  /**
-   * Extracts keywords from multiple texts and combines their relevance scores
-   * @param texts Array of texts to extract keywords from
-   * @param maxKeywords Maximum number of keywords to return
-   * @returns Array of weighted keywords
-   */
-  async extractKeywordsFromMultiple(texts: string[], maxKeywords: number = 15): Promise<WeightedKeyword[]> {
-    try {
-      if (texts.length === 0) {
-        return [];
-      }
-
-      // Reset TF-IDF
-      this.tfidf = new TfIdf();
-
-      // Process each text
-      const nonEmptyTexts = texts.filter(text => text.trim().length > 0);
-      if (nonEmptyTexts.length === 0) {
-        return [];
-      }
-
-      // Add documents to TF-IDF
-      nonEmptyTexts.forEach(text => {
-        const tokens = this.tokenize(text);
-        if (tokens.length > 0) {
-          this.tfidf.addDocument(tokens);
-        }
-      });
-
-      // Get combined TF-IDF scores
-      const termScores = new Map<string, number>();
-      const allTokens = new Set<string>();
-
-      // Collect all unique tokens
-      nonEmptyTexts.forEach(text => {
-        const tokens = this.tokenize(text);
-        tokens.forEach(token => allTokens.add(token));
-      });
-
-      // Calculate scores for each term
-      allTokens.forEach(term => {
-        if (!stopwords.includes(term)) {
-          let totalScore = 0;
-          // Get TF-IDF score for each document
-          for (let i = 0; i < nonEmptyTexts.length; i++) {
-            totalScore += this.tfidf.tfidf(term, i);
-          }
-          termScores.set(term, totalScore);
-        }
-      });
-
-      // Convert to array and sort by relevance
-      const keywords = Array.from(termScores.entries())
-        .map(([word, relevance]) => ({ word, relevance }))
-        .sort((a, b) => {
-          // Sort by relevance first, then alphabetically for equal relevance
-          if (b.relevance !== a.relevance) {
-            return b.relevance - a.relevance;
-          }
-          return a.word.localeCompare(b.word);
-        })
-        .slice(0, maxKeywords);
-
-      return keywords;
-    } catch (error) {
-      logger.error('Error extracting keywords from multiple texts:', error);
-      throw error;
-    }
-  }
-
-  /**
-   * Tokenizes text and removes stop words
-   * @param text The text to tokenize
-   * @returns Array of tokens
-   */
-  private tokenize(text: string): string[] {
-    // Convert to lowercase and split into words
-    const words = text.toLowerCase()
-      .split(/\s+/)
-      .map(word => word.replace(/[^a-z]/g, '')) // Remove non-alphabetic chars from each word
-      .filter(word => word.length > 0); // Remove empty strings
+  public extractKeywords(post: RedditPost, comments: RedditComment[]): string[] {
+    // Combine post content and comments
+    const text = this.combineText(post, comments);
     
-    // Remove stop words and short words
-    return words.filter(word => 
-      word.length > 2 && 
-      !stopwords.includes(word) &&
-      /^[a-z]+$/.test(word) // Only keep alphabetic words
-    );
+    // Add document to TF-IDF
+    this.tfidf.addDocument(text);
+    
+    // Get top terms
+    const terms: string[] = [];
+    this.tfidf.listTerms(0 /* document index */)
+      .slice(0, 10)  // Get top 10 terms
+      .forEach(item => terms.push(item.term));
+    
+    return terms;
+  }
+
+  /**
+   * Combine post content and comments into a single text
+   */
+  private combineText(post: RedditPost, comments: RedditComment[]): string {
+    const texts = [
+      post.title,
+      post.content || '',
+      ...comments.map(c => c.content)
+    ];
+    return texts.join(' ').toLowerCase();
+  }
+
+  /**
+   * Count word frequencies in text
+   */
+  private countWordFrequencies(text: string): Map<string, number> {
+    const wordFreq = new Map<string, number>();
+    
+    // Split into words and count frequencies
+    const words = text.split(/\W+/);
+    for (const word of words) {
+      // Skip empty strings, numbers, and stop words
+      if (word.length < 3 || /^\d+$/.test(word) || STOP_WORDS.has(word)) {
+        continue;
+      }
+      
+      wordFreq.set(word, (wordFreq.get(word) || 0) + 1);
+    }
+    
+    return wordFreq;
+  }
+
+  /**
+   * Get top N most frequent words
+   */
+  private getTopWords(wordFreq: Map<string, number>, n: number): string[] {
+    return Array.from(wordFreq.entries())
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, n)
+      .map(([word]) => word);
   }
 } 

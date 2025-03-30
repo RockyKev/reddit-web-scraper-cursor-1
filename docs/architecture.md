@@ -37,6 +37,7 @@ This document outlines the architecture and responsibilities of each component i
 **Key Methods**:
 - `storePost(subredditId, post)`: Stores a post in the database
 - `storeComment(postId, comment)`: Stores a comment in the database
+- `storePostWithComments(subredditId, post, comments)`: Stores a post with its comments and extracted keywords
 - `getPosts(subredditId)`: Retrieves posts from the database
 - `getTopPosts(date)`: Gets top posts for a specific date
 - `getUserStats(userId)`: Gets user contribution statistics
@@ -51,6 +52,7 @@ This document outlines the architecture and responsibilities of each component i
 **Key Methods**:
 - `collectPosts(subreddit, limit)`: Collects and stores posts
 - `collectComments(postId)`: Collects and stores comments for a post
+- `collectAndStore(limit, sort, time, fetchComments)`: Main method that coordinates the entire collection process
 
 ### 5. post-ranker.ts
 **Responsibility**: Post ranking and scoring
@@ -66,17 +68,29 @@ This document outlines the architecture and responsibilities of each component i
 
 ### 6. keyword-extractor.ts
 **Responsibility**: Keyword analysis
-- Extracts keywords from posts and comments
+- Extracts keywords from posts and comments using TF-IDF
 - Implements frequency-based weighting
-- Filters common words
-- Stores keywords in database
+- Filters common words and stop words
+- Returns top keywords for content
 
 **Key Methods**:
-- `extractKeywords(text)`: Extracts keywords from text
-- `weightKeywords(keywords)`: Applies frequency-based weighting
-- `storeKeywords(entityId, keywords)`: Stores keywords for an entity
+- `extractKeywords(post, comments)`: Extracts keywords from post and comments
+- `combineText(post, comments)`: Combines text for analysis
+- `countWordFrequencies(text)`: Counts word frequencies
+- `getTopWords(wordFreq, n)`: Gets top N most frequent words
 
-### 7. user-tracker.ts
+### 7. keyword-analysis-service.ts
+**Responsibility**: Keyword analysis coordination
+- Coordinates keyword extraction process
+- Manages top comments selection
+- Handles error cases and logging
+- Provides high-level keyword analysis interface
+
+**Key Methods**:
+- `extractKeywordsFromPost(post, comments)`: Main method for keyword extraction
+- `getTopComments(comments)`: Gets top comments based on score
+
+### 8. user-tracker.ts
 **Responsibility**: User tracking and statistics
 - Tracks user contributions
 - Calculates user scores
@@ -88,7 +102,7 @@ This document outlines the architecture and responsibilities of each component i
 - `updateUserStats(userId)`: Updates user statistics
 - `getTopContributors(limit)`: Gets top N contributors
 
-### 8. digest-generator.ts
+### 9. digest-generator.ts
 **Responsibility**: Daily digest generation
 - Generates daily digest of top content
 - Combines posts, keywords, and user stats
@@ -104,16 +118,21 @@ This document outlines the architecture and responsibilities of each component i
 
 1. **Collection Flow**:
 ```
-reddit-fetch.ts → reddit-scraper.ts → reddit-storage.ts
+reddit-fetch.ts → reddit-scraper.ts → reddit-collector.ts → reddit-storage.ts
 (coordinated by reddit-collector.ts)
 ```
 
-2. **Daily Processing Flow**:
+2. **Keyword Analysis Flow**:
 ```
-reddit-storage.ts → post-ranker.ts → keyword-extractor.ts → user-tracker.ts → digest-generator.ts
+reddit-collector.ts → keyword-analysis-service.ts → keyword-extractor.ts → reddit-storage.ts
 ```
 
-3. **API Request Flow**:
+3. **Daily Processing Flow**:
+```
+reddit-storage.ts → post-ranker.ts → keyword-analysis-service.ts → user-tracker.ts → digest-generator.ts
+```
+
+4. **API Request Flow**:
 ```
 API Request → digest-generator.ts → reddit-storage.ts → API Response
 ```
@@ -127,6 +146,7 @@ Each component can be tested in isolation:
 - `reddit-collector.ts`: Mock fetch and storage
 - `post-ranker.ts`: Test with sample posts
 - `keyword-extractor.ts`: Test with sample text
+- `keyword-analysis-service.ts`: Test with sample posts and comments
 - `user-tracker.ts`: Test with sample contributions
 - `digest-generator.ts`: Test with sample data
 

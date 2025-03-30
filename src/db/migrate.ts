@@ -1,7 +1,12 @@
-import { Pool } from 'pg';
+import pkg from 'pg';
+const { Pool } = pkg;
 import { readFileSync, readdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const MIGRATIONS_DIR = join(__dirname, 'migrations');
@@ -12,11 +17,15 @@ interface Migration {
     down: string;
 }
 
+interface MigrationRow {
+    name: string;
+}
+
 class MigrationRunner {
-    private pool: Pool;
+    private pool: InstanceType<typeof Pool>;
     private migrations: Migration[] = [];
 
-    constructor(pool: Pool) {
+    constructor(pool: InstanceType<typeof Pool>) {
         this.pool = pool;
     }
 
@@ -53,7 +62,7 @@ class MigrationRunner {
     }
 
     async getAppliedMigrations(): Promise<string[]> {
-        const result = await this.pool.query(
+        const result = await this.pool.query<MigrationRow>(
             'SELECT name FROM migrations ORDER BY id'
         );
         return result.rows.map(row => row.name);

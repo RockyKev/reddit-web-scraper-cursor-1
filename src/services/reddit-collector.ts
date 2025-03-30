@@ -28,21 +28,15 @@ export class RedditCollector {
       const posts = await this.scraper.getPosts(limit, sort, time);
       logger.info(`Found ${posts.length} posts`);
 
-      // Store each post and optionally its comments
+      // Store each post and its comments
       for (const post of posts) {
-        const postId = await this.storage.storePost(subredditId, post);
-        logger.info(`Stored post: ${post.id}`);
+        // Always fetch comments since we need them for keyword extraction
+        const comments = await this.scraper.getComments(post.id);
+        logger.info(`Found ${comments.length} comments for post ${post.id}`);
 
-        // Only fetch comments if explicitly requested
-        if (fetchComments) {
-          // Get and store comments
-          const comments = await this.scraper.getComments(post.id);
-          logger.info(`Found ${comments.length} comments for post ${post.id}`);
-
-          for (const comment of comments) {
-            await this.storage.storeComment(postId, comment);
-          }
-        }
+        // Store post with comments and extract keywords
+        await this.storage.storePostWithComments(subredditId, post, comments);
+        logger.info(`Stored post ${post.id} with ${comments.length} comments and keywords`);
       }
 
       logger.info('Collection and storage completed successfully');
