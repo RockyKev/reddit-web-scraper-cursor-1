@@ -16,11 +16,11 @@
 **Outcome**: A system that can analyze and score posts based on engagement metrics.
 
 ### Features
-- [ ] Post Scoring System
-  - [ ] Implement scoring formula: `score = (upvotes * 1.0) + (comments * 2.0)`
-  - [ ] Add configurable weights in database
-  - [ ] Create scoring service with unit tests
-  - [ ] Add scoring to daily digest API response
+- [x] Post Scoring System
+  - [x] Implement scoring formula: `score = (upvotes * 1.0) + (comments * 2.0)`
+  - [x] Add configurable weights in database
+  - [x] Create scoring service with unit tests
+  - [x] Add scoring to daily digest API response
 
 - [ ] Keyword Analysis
   - [ ] Store keywords in database (new table)
@@ -28,20 +28,15 @@
   - [ ] Include top keywords in daily digest
   - [ ] Add keyword filtering to API
 
-- [ ] Database Improvements
-  - [ ] Add indexes for common queries
-  - [ ] Implement database migrations
-  - [ ] Add data cleanup routines
-
 ## Version 3: User Analytics
 **Outcome**: Track and analyze user contributions across subreddits.
 
 ### Features
-- [ ] User Tracking
-  - [ ] Create users table with contribution metrics
-  - [ ] Track post authors and commenters
-  - [ ] Calculate user scores based on contributions
-  - [ ] Add user statistics to daily digest
+- [x] User Tracking
+  - [x] Create users table with contribution metrics
+  - [x] Track post authors and commenters
+  - [x] Calculate user scores based on contributions
+  - [x] Add user statistics to daily digest
 
 ## Version 4: Web Interface
 **Outcome**: A functional web interface for viewing daily digests and analytics.
@@ -56,7 +51,44 @@
   - [ ] Post list with sorting/filtering
   - [ ] Direct links to Reddit posts
 
-## Version 5: Production Deployment
+## Version 5: Database Optimization
+**Outcome**: A clean, efficient, and well-organized database structure ready for production.
+
+### Features
+- [ ] Database Cleanup
+  - [ ] Review and remove redundant columns
+  - [ ] Consolidate similar tables if needed
+  - [ ] Standardize naming conventions
+  - [ ] Add proper constraints and foreign keys
+
+- [ ] Performance Optimization
+  - [ ] Add indexes for common queries
+  - [ ] Optimize table structures
+  - [ ] Implement connection pooling
+  - [ ] Add query caching where beneficial
+
+- [ ] Data Management
+  - [ ] Implement data retention policies
+  - [ ] Add data cleanup routines
+  - [ ] Create backup procedures
+  - [ ] Add data validation rules
+
+- [ ] Migration System
+  - [ ] Review and clean up migration history
+  - [ ] Consolidate migrations where possible
+  - [ ] Add proper rollback procedures
+  - [ ] Document migration process
+  - [ ] Migration System Decision
+    - [ ] Evaluate custom migration system vs node-pg-migrate
+    - [ ] Document pros and cons of each approach
+    - [ ] Make final decision and standardize on one system
+    - [ ] Migrate existing migrations to chosen system
+    - [ ] Update documentation and scripts
+
+- [ ] Start fetching data from the internet
+  - [ ] Testing that the endpoint works
+
+## Version 6: Production Deployment
 **Outcome**: A production-ready system running on a server with automated data collection.
 
 ### Features
@@ -79,7 +111,7 @@
   - [ ] Add logging and monitoring
   - [ ] Set up error notifications
 
-## Version 6: Export & Integration
+## Version 7: Export & Integration
 **Outcome**: Multiple ways to access and export the data.
 
 ### Features
@@ -95,8 +127,7 @@
   - [ ] Email digest delivery
   - [ ] Webhook support for updates
 
-
-## Version 7: AI Enhancement
+## Version 8: AI Enhancement
 **Outcome**: Intelligent content analysis and summarization.
 
 ### Features
