@@ -22,8 +22,11 @@
   - [x] Create scoring service with unit tests
   - [x] Add scoring to daily digest API response
 
-- [ ] Keyword Analysis
-  - [ ] Store keywords in database (new table)
+- [x] Keyword Analysis
+  - [x] Implement keyword extraction using natural library
+    - [x] Create KeywordExtractor service
+    - [x] Add unit tests for basic functionality
+    - [x] Use TF-IDF for keyword extraction
   - [ ] Add keyword extraction to data collection pipeline
   - [ ] Include top keywords in daily digest
   - [ ] Add keyword filtering to API
