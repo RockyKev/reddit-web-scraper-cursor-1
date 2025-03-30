@@ -1,6 +1,6 @@
 import { db } from '../db';
 import { DbPost, DbComment, DbUser, DbSubredditStats, DbCommenterStats } from '../types/database';
-import { ScoringService } from './scoringService';
+import { ScoringService } from './scoring-service';
 
 interface DigestSummary {
   total_posts: number;

@@ -1,5 +1,5 @@
 import { Pool, QueryResult } from 'pg';
-import { ScoringService } from '../../src/services/scoringService';
+import { ScoringService } from '../../src/services/scoring-service';
 import { Post } from '../../src/types/post';
 
 // Mock the pg Pool
