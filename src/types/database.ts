@@ -6,6 +6,8 @@ export interface DbPost {
   upvotes: number;
   comment_count: number;
   permalink: string;
+  selftext: string;
+  url: string;
   author_id: string;
   created_at: Date;
 }

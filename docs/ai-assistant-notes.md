@@ -256,6 +256,8 @@ Note: `[example.com]/api/digest/` gives the current date.
       "score": 100, // This is the score from the reddit output
       "score_ratio": 0.98, // This is the upvote_ratio from the reddit output.
       "comment_count": 100, // This is the num_comments from the reddit output.
+      "daily_rank": 3, // This is a rank in the database we create
+      "daily_score": 120, // This is a score in the database we create
       "permalink": "https://reddit.com/...",   // This is the permalink from the reddit output.
       "keywords": ["keyword1", "keyword2", "keyword3"], // Read note 2
       "locked": false, // This is the locked from the reddit output

@@ -47,7 +47,8 @@ Returns the daily digest of top posts and comments.
       "upvotes": 500,
       "comment_count": 100,
       "permalink": "https://reddit.com/...",
-	  "selftext": "This is the content of the post"
+      "selftext": "This is the content of the post",
+      "url": "https://example.com/image.jpg",
       "keywords": ["keyword1", "keyword2", "keyword3"],
       "author": {
         "username": "PDX_Dave",
@@ -84,10 +85,12 @@ Returns the daily digest of top posts and comments.
 | id               | string  | Unique identifier for the post                 |
 | subreddit        | string  | Name of the subreddit                          |
 | title            | string  | Post title                                     |
-| type             | string  | Type of post (text, link, image, etc.)         |
+| type             | string  | Type of post (text, link, image, video, etc.)  |
 | upvotes          | integer | Number of upvotes                              |
 | comment_count    | integer | Number of comments                             |
 | permalink        | string  | Reddit permalink URL                           |
+| selftext         | string  | Text content of the post (empty for link posts) |
+| url              | string  | External URL for link posts (empty for text posts) |
 | keywords         | array   | Extracted keywords from the post               |
 | author           | object  | Post author information                        |
 | top_commenters   | array   | List of top commenters on the post             |

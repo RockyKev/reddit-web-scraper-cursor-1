@@ -25,6 +25,9 @@ export const mockPosts = [
     upvotes: 100,
     comment_count: 50,
     permalink: 'https://reddit.com/r/Portland/post1',
+    selftext: 'This is a test text post',
+    url: '',
+    keywords: ['test', 'portland', 'text'],
     author_id: 'user1',
     created_at: new Date()
   },
@@ -36,7 +39,24 @@ export const mockPosts = [
     upvotes: 75,
     comment_count: 30,
     permalink: 'https://reddit.com/r/askportland/post2',
+    selftext: '',
+    url: 'https://example.com/image.jpg',
+    keywords: ['test', 'portland', 'link'],
     author_id: 'user2',
+    created_at: new Date()
+  },
+  {
+    id: 'post3',
+    subreddit: 'r/Portland',
+    title: 'Test Post 3',
+    type: 'image',
+    upvotes: 50,
+    comment_count: 20,
+    permalink: 'https://reddit.com/r/Portland/post3',
+    selftext: '',
+    url: 'https://example.com/image2.jpg',
+    keywords: ['test', 'portland', 'image'],
+    author_id: 'user3',
     created_at: new Date()
   }
 ];

@@ -25,6 +25,8 @@ interface Post {
   upvotes: number;
   comment_count: number;
   permalink: string;
+  selftext: string;
+  url: string;
   keywords: string[];
   author: PostAuthor;
   top_commenters: TopCommenter[];
@@ -82,6 +84,8 @@ export class DigestService {
         return {
           ...post,
           keywords: [], // Will be populated in Phase 2
+          selftext: post.selftext || '', // Include selftext field
+          url: post.url || '', // Include url field
           author: {
             username: authorResult.rows[0]?.username || 'unknown',
             contribution_score: 0 // Will be calculated in Phase 2
