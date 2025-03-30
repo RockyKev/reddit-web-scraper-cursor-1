@@ -1,5 +1,5 @@
-import { KeywordAnalysisService } from '../../src/services/keyword-analysis-service';
-import { RedditPost, RedditComment } from '../../src/types/reddit';
+import { KeywordAnalysisService } from '../../backend/services/keyword-analysis-service.js';
+import { RedditPost, RedditComment } from '../../backend/types/reddit.js';
 
 describe('KeywordAnalysisService', () => {
   let service: KeywordAnalysisService;

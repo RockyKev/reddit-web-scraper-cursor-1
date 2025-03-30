@@ -72,7 +72,7 @@ function transformRedditPost(post: RedditPost, rank: number): Post {
 
 export function getMockDigest(): DigestData {
   // Read mock data from file
-  const mockDataPath = join(process.cwd(), 'data', 'testdata-reddit-portland-output.json');
+  const mockDataPath = join(process.cwd(), 'mock-data', 'reddit', 'testdata-reddit-portland-output.json');
   const mockData: RedditResponse = JSON.parse(readFileSync(mockDataPath, 'utf-8'));
 
   // Transform posts and sort by score

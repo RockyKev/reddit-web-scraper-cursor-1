@@ -1,6 +1,6 @@
-import { db } from '../db';
-import { DbPost, DbComment, DbUser, DbSubredditStats, DbCommenterStats } from '../types/database';
-import { ScoringService } from './scoring-service';
+import { db } from '../db.ts';
+import { DbPost, DbComment, DbUser, DbSubredditStats, DbCommenterStats } from '../types/database.ts';
+import { ScoringService } from './scoring-service.ts';
 
 interface DigestSummary {
   total_posts: number;

@@ -1,6 +1,6 @@
-import { RedditStorage } from '../../src/services/reddit-storage';
-import { RedditPost, RedditComment } from '../../src/types/reddit';
-import { getPool } from '../../src/config/database';
+import { RedditStorage } from '../../backend/services/reddit-storage.js';
+import { RedditPost, RedditComment } from '../../backend/types/reddit.js';
+import { getPool } from '../../backend/config/database.js';
 
 describe('RedditStorage', () => {
   let storage: RedditStorage;

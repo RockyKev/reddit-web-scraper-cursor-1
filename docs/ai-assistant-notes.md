@@ -1,7 +1,19 @@
 # AI Assistant Notes
 
+This document contains notes and guidelines for AI assistants working on the Reddit PDX Scraper project.
+
 ## Project Overview
 This is a Reddit PDX Digest application that aggregates and displays daily Reddit activity from Portland-related subreddits. The project uses a modern tech stack with TypeScript, Express, and a vanilla JavaScript frontend.
+
+## Documentation Organization
+- README.md serves as the main entry point and project overview
+- Detailed documentation is split into focused guides:
+  - architecture.md: System design and components
+  - development.md: Development workflow and guidelines
+  - database.md: Database setup and management
+  - testing.md: Testing strategy and procedures
+  - api.md: API endpoints and usage
+  - data-collection.md: Reddit data collection process
 
 ## Key Decisions
 
@@ -63,18 +75,16 @@ This is a Reddit PDX Digest application that aggregates and displays daily Reddi
 - Implement real Reddit API integration
 
 ## Project Structure
+- Frontend: `frontend/` - Vite + vanilla JS + Tailwind CSS
+- Backend: `backend/` - Node.js + Express + TypeScript
+- Database: `database/` - PostgreSQL migrations and setup
+- Tests: `tests/` - Jest test files
+- Mock Data: `mock-data/` - Development data files
+- Docs: `docs/` - Project documentation
+- Scripts: `scripts/` - Utility scripts
+- Config: `config/` - Configuration files
 
-### Documentation Organization
-- README.md serves as the main entry point and project overview
-- Detailed documentation is split into focused guides:
-  - architecture.md: System design and components
-  - development.md: Development workflow and guidelines
-  - database.md: Database setup and management
-  - testing.md: Testing strategy and procedures
-  - api.md: API endpoints and usage
-  - data-collection.md: Reddit data collection process
-
-### Database Management
+## Database Management
 - Currently using both custom migration system and node-pg-migrate (to be standardized in Version 5)
 - Migration files follow timestamp-based naming: YYYYMMDDHHMMSS_migration_name.sql
 - Each migration can include up and down sections
@@ -82,11 +92,121 @@ This is a Reddit PDX Digest application that aggregates and displays daily Reddi
 - Supports transaction-based rollbacks
 - Note: Migration system choice will be finalized in Version 5
 
-### Testing Framework
-- Using Jest as the primary testing framework
-- Mock implementations available in tests/mocks/
-- Test files follow .test.ts naming convention
-- Database tests use a separate test database
+## TypeScript Guidelines
+1. File Extensions:
+   - Use `.ts` extension in import statements (e.g., `import { foo } from './bar.ts'`)
+   - Never use `.js` extensions in imports, even though the compiled output will be `.js`
+   - This is required for proper TypeScript module resolution
+
+2. Module Resolution:
+   - Project uses ES modules (type: "module" in package.json)
+   - All imports must use explicit file extensions
+   - Use relative paths for internal imports
+   - Use package names for external dependencies
+
+3. Type Definitions:
+   - Keep type definitions in `backend/types/`
+   - Use interfaces for object shapes
+   - Use type aliases for complex types
+   - Export all types that are used across multiple files
+
+4. Project Organization:
+   - Backend code goes in `backend/`
+   - Frontend code goes in `frontend/`
+   - Database migrations in `database/migrations/`
+   - Test files mirror the source structure in `tests/`
+
+## Frontend Guidelines
+1. Vanilla JavaScript:
+   - No framework dependencies
+   - Use ES modules for code organization
+   - Keep components in `frontend/components/`
+   - Use Tailwind CSS for styling
+
+2. State Management:
+   - Use browser's localStorage for persistence
+   - Keep state management simple and centralized
+   - Avoid complex state management libraries
+
+## Backend Guidelines
+1. API Structure:
+   - RESTful endpoints in `backend/api/routes/`
+   - Services in `backend/services/`
+   - Types in `backend/types/`
+   - Utils in `backend/utils/`
+
+2. Database:
+   - Use migrations for schema changes
+   - Keep database setup scripts in `database/setup/`
+   - Use environment variables for configuration
+
+## Testing Guidelines
+1. Test Organization:
+   - Unit tests in `tests/jest/`
+   - API tests in `tests/api/`
+   - Mock data in `tests/mocks/`
+   - Test utilities in `tests/utils/`
+
+2. Test Coverage:
+   - Aim for high test coverage
+   - Mock external dependencies
+   - Use test databases for integration tests
+
+## Development Workflow
+1. Code Style:
+   - Use TypeScript's strict mode
+   - Follow ESLint rules
+   - Use Prettier for formatting
+   - Keep functions small and focused
+
+2. Git Workflow:
+   - Feature branches from main
+   - PR reviews required
+   - Squash merges preferred
+   - Keep commits atomic
+
+3. Environment:
+   - Use .env for local development
+   - Keep sensitive data out of version control
+   - Document all environment variables
+
+## Common Pitfalls to Avoid
+1. TypeScript:
+   - Don't use `any` type unless absolutely necessary
+   - Don't mix `.js` and `.ts` extensions in imports
+   - Don't ignore type errors
+   - Don't use `require()` - use ES imports
+
+2. Project Structure:
+   - Don't put frontend code in backend
+   - Don't mix concerns between layers
+   - Don't duplicate type definitions
+   - Don't ignore migration files
+
+3. Testing:
+   - Don't skip writing tests
+   - Don't use production database for tests
+   - Don't ignore test failures
+   - Don't write brittle tests
+
+## Future Considerations
+1. Scalability:
+   - Consider caching strategies
+   - Plan for database sharding
+   - Think about CDN usage
+   - Consider rate limiting
+
+2. Monitoring:
+   - Add error tracking
+   - Implement logging
+   - Set up performance monitoring
+   - Add health checks
+
+3. Security:
+   - Regular dependency updates
+   - Security scanning
+   - Input validation
+   - Rate limiting
 
 ## Common Tasks
 
@@ -131,22 +251,6 @@ This is a Reddit PDX Digest application that aggregates and displays daily Reddi
 - Verify test environment
 - Handle async operations properly
 
-## Future Considerations
-
-### Planned Features
-- RSS feed generation
-- Slack bot integration
-- Email digest delivery
-- Mobile app development
-- AI-powered summaries
-- Sentiment analysis
-
-### Technical Debt
-- Monitor test coverage
-- Review and update dependencies
-- Optimize database queries
-- Improve error handling
-
 ## Notes for AI Assistants
 
 1. Always check existing documentation before making changes
@@ -169,70 +273,6 @@ This is a Reddit PDX Digest application that aggregates and displays daily Reddi
 - When committing changes, prefer shorter commit messages to avoid PowerShell console issues
 - Use `git add *` to stage all changes when working with multiple files
 - The repository is hosted at: https://github.com/robingamedev/reddit-web-scraper-cursor.git
-
-## Project Structure
-- The project uses TypeScript with Node.js
-- Main source code is in `src/` directory
-- Test files are in `tests/` directory
-- Documentation is in `docs/` directory
-- Scripts for various tasks are in `src/scripts/` directory
-
-## Database
-- Uses PostgreSQL
-- Database management commands are available through npm scripts:
-  - `npm run db:migrate-up` - Run migrations
-  - `npm run db:migrate-down` - Rollback migrations
-  - `npm run db:drop` - Drop the database
-  - `npm run db:reset` - Drop and recreate the database
-
-## Reddit API
-- Rate limiting is important to respect
-- Live data collection should be done with conservative delays between requests
-- Post types and permalinks need to be properly handled to avoid null values
-
-## Content Handling
-- Reddit posts can be of different types:
-  - `link`: External links to other websites
-  - `self`: Text posts within Reddit
-  - `image`: Image posts (can be single or multiple images)
-  - `video`: Video posts (hosted on Reddit or external platforms)
-  - `gallery`: Multiple image posts
-  - `poll`: Reddit polls
-  - `rich_video`: Rich media posts (e.g., YouTube embeds)
-  - `crosspost`: Posts crossposted from other subreddits
-- Each type requires specific handling:
-  - `link`: Store the external URL and title
-  - `self`: Store the text content and markdown formatting
-  - `image`: Store image URLs and metadata
-  - `video`: Store video URLs and playback information
-  - `gallery`: Store multiple image URLs and gallery metadata
-  - `poll`: Store poll options and voting data
-  - `rich_video`: Store embed URLs and metadata
-  - `crosspost`: Store original post reference and crosspost metadata
-- Always verify post_type and permalink fields are populated
-- Handle null values gracefully in the API response
-- Consider content type when generating summaries or extracting keywords
-
-## Common Fixes
-1. Database Issues:
-   - If database operations fail, try running `npm run db:reset`
-   - Check for proper environment variables in `.env` file
-
-2. TypeScript Issues:
-   - Ensure proper type definitions in `src/types/`
-   - Check for missing imports in service files
-
-3. Reddit Data Collection:
-   - Verify post_type and permalink fields are populated
-   - Implement proper rate limiting between API calls
-   - Use the live collection scripts for real-time data gathering
-
-## Development Workflow
-1. Make changes to source files
-2. Test changes using appropriate npm scripts
-3. Update documentation if needed
-4. Commit changes with concise messages
-5. Push to remote repository
 
 ## Useful npm Scripts
 - `npm run dev` - Start development server
@@ -420,3 +460,44 @@ Note 2: Keywords is generated by collecting a list of the top comments and pulli
 - Separate package.json for frontend and backend
 - Frontend uses Vite for development and building
 - Backend uses Express for API server
+
+## Content Handling
+- Reddit posts can be of different types:
+  - `link`: External links to other websites
+  - `self`: Text posts within Reddit
+  - `image`: Image posts (can be single or multiple images)
+  - `video`: Video posts (hosted on Reddit or external platforms)
+  - `gallery`: Multiple image posts
+  - `poll`: Reddit polls
+  - `rich_video`: Rich media posts (e.g., YouTube embeds)
+  - `crosspost`: Posts crossposted from other subreddits
+- Each type requires specific handling:
+  - `link`: Store the external URL and title
+  - `self`: Store the text content and markdown formatting
+  - `image`: Store image URLs and metadata
+  - `video`: Store video URLs and playback information
+  - `gallery`: Store multiple image URLs and gallery metadata
+  - `poll`: Store poll options and voting data
+  - `rich_video`: Store embed URLs and metadata
+  - `crosspost`: Store original post reference and crosspost metadata
+- Always verify post_type and permalink fields are populated
+- Handle null values gracefully in the API response
+- Consider content type when generating summaries or extracting keywords
+
+## Common Fixes
+1. Database Issues:
+   - If database operations fail, try running `npm run db:reset`
+   - Check for proper environment variables in `.env` file
+
+2. TypeScript Issues:
+   - Ensure proper type definitions in `backend/types/`
+   - Check for missing imports in service files
+   - Don't use `any` type unless absolutely necessary
+   - Don't mix `.js` and `.ts` extensions in imports
+   - Don't ignore type errors
+   - Don't use `require()` - use ES imports
+
+3. Reddit Data Collection:
+   - Verify post_type and permalink fields are populated
+   - Implement proper rate limiting between API calls
+   - Use the live collection scripts for real-time data gathering

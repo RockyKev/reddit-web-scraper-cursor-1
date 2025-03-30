@@ -1,4 +1,4 @@
-import { RedditPost, RedditComment } from '../types/reddit';
+import { RedditPost, RedditComment } from '../types/reddit.ts';
 import { WordTokenizer, TfIdf } from 'natural';
 
 // Common English stop words to filter out

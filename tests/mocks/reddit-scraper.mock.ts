@@ -1,4 +1,4 @@
-import { RedditPost, RedditComment, IRedditScraper, RedditSentiment } from '../../src/types/reddit';
+import { RedditPost, RedditComment, IRedditScraper, RedditSentiment } from '../../backend/types/reddit.js';
 
 /**
  * Helper function to create a mock Reddit post

@@ -3,7 +3,7 @@ const { Pool } = pkg;
 import { logger } from '../utils/logger.ts';
 import { getPool } from '../config/database.ts';
 import { RedditPost, RedditComment } from '../types/reddit.ts';
-import { KeywordAnalysisService } from './keyword-analysis-service';
+import { KeywordAnalysisService } from './keyword-analysis-service.ts';
 
 export class RedditStorage {
   private readonly pool: InstanceType<typeof Pool>;

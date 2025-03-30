@@ -1,7 +1,7 @@
 import request from 'supertest';
-import { app } from '../../src/app';
-import { db } from '../../src/db';
-import { mockPosts, mockComments, mockUsers } from '../mocks/reddit-data';
+import { app } from '../../backend/app.js';
+import { db } from '../../backend/db.js';
+import { mockPosts, mockComments, mockUsers } from '../mocks/reddit-data.js';
 
 describe('GET /api/digest', () => {
   beforeEach(async () => {

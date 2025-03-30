@@ -1,0 +1,1 @@
+// Copying from jest.config.js 

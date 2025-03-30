@@ -106,17 +106,36 @@ The project consists of two main components:
 
 ```
 reddit-web-scraper/
-├── frontend/           # Frontend application
-│   ├── src/           # Source files
-│   ├── public/        # Static assets
-│   └── index.html     # Main HTML file
-├── src/               # Backend source files
-│   ├── api/          # API routes and controllers
-│   ├── config/       # Configuration files
-│   ├── services/     # Business logic
-│   └── utils/        # Utility functions
-├── data/             # Mock data files
-└── docs/             # Documentation
+├── frontend/                 # Frontend application
+│   ├── src/                 # Source files
+│   ├── public/              # Static assets
+│   └── index.html           # Main HTML file
+├── backend/                  # Backend application
+│   ├── api/                 # API routes and controllers
+│   ├── config/              # Configuration files
+│   ├── services/            # Business logic
+│   ├── types/               # TypeScript type definitions
+│   └── utils/               # Shared utilities
+├── database/                # Database related files
+│   ├── migrations/          # Database migrations
+│   └── setup/               # Database setup scripts
+├── tests/                   # Test files
+│   ├── api/                 # API tests
+│   ├── services/            # Service tests
+│   └── setup/               # Test setup files
+├── mock-data/               # Mock data for development
+│   └── reddit/              # Reddit-specific mock data
+├── docs/                    # Documentation
+│   ├── architecture.md
+│   ├── development.md
+│   └── ...
+├── scripts/                 # Project-wide scripts
+│   └── dev/                 # Development scripts
+├── config/                  # Project-wide configuration
+│   ├── jest.config.js
+│   ├── tsconfig.json
+│   └── docker-compose.yml
+└── package.json            # Root package.json
 ```
 
 ## Documentation

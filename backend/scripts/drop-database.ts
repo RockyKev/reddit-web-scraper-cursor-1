@@ -1,5 +1,6 @@
 import pkg from 'pg';
 const { Pool } = pkg;
+import { getPool } from '../config/database.ts';
 import { logger } from '../utils/logger.ts';
 import dotenv from 'dotenv';
 

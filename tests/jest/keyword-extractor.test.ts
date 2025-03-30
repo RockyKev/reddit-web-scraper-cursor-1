@@ -1,5 +1,5 @@
-import { KeywordExtractor } from '../../src/services/keyword-extractor';
-import { RedditPost, RedditComment } from '../../src/types/reddit';
+import { KeywordExtractor } from '../../backend/services/keyword-extractor.js';
+import { RedditPost, RedditComment } from '../../backend/types/reddit.js';
 
 describe('KeywordExtractor', () => {
   let extractor: KeywordExtractor;

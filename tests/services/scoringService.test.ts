@@ -1,6 +1,6 @@
 import { Pool, QueryResult } from 'pg';
-import { ScoringService } from '../../src/services/scoring-service';
-import { Post } from '../../src/types/post';
+import { ScoringService } from '../../backend/services/scoring-service.js';
+import { Post } from '../../backend/types/post.js';
 
 // Mock the pg Pool
 jest.mock('pg', () => {

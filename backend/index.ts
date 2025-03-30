@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import { setupRoutes } from './api/routes/index.ts';
+import { setupRoutes } from './routes.ts';
 import { setupDatabase } from './config/database.ts';
 import { logger } from './utils/logger.ts';
 

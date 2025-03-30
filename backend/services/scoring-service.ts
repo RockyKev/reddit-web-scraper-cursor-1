@@ -1,5 +1,5 @@
 import { Pool } from 'pg';
-import { Post } from '../types/post';
+import { Post } from '../types/post.ts';
 
 export class ScoringService {
     private db: Pool;

@@ -1,12 +1,17 @@
-import { Express, Request, Response, NextFunction } from 'express';
+import express from 'express';
+import type { Express, Request, Response, NextFunction } from 'express';
 import swaggerUi from 'swagger-ui-express';
-import { logger } from '../utils/logger';
+import { logger } from './utils/logger.ts';
+import digestRoutes from './routes/digest.routes.ts';
 
 export const setupRoutes = (app: Express): void => {
   // Health check endpoint
   app.get('/health', (req: Request, res: Response) => {
     res.json({ status: 'ok' });
   });
+
+  // API routes
+  app.use('/api', digestRoutes);
 
   // API documentation
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup({

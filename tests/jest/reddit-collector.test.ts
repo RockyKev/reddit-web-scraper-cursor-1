@@ -1,6 +1,6 @@
-import { RedditCollector } from '../../src/services/reddit-collector';
-import { MockRedditScraper } from '../mocks/reddit-scraper.mock';
-import { RedditStorage } from '../../src/services/reddit-storage';
+import { RedditCollector } from '../../backend/services/reddit-collector.js';
+import { MockRedditScraper } from '../mocks/reddit-scraper.mock.js';
+import { RedditStorage } from '../../backend/services/reddit-storage.js';
 
 // Mock the RedditStorage class
 jest.mock('../../src/services/reddit-storage');

@@ -1,6 +1,6 @@
-import { RedditScraper } from '../../src/services/reddit-scraper';
-import { RedditPost, RedditComment } from '../../src/types/reddit';
-import { MockRedditScraper } from '../mocks/reddit-scraper.mock';
+import { RedditScraper } from '../../backend/services/reddit-scraper.js';
+import { RedditPost, RedditComment } from '../../backend/types/reddit.js';
+import { MockRedditScraper } from '../mocks/reddit-scraper.mock.js';
 
 describe('RedditScraper', () => {
   let scraper: MockRedditScraper;
