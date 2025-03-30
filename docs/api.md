@@ -47,6 +47,7 @@ Returns the daily digest of top posts and comments.
       "upvotes": 500,
       "comment_count": 100,
       "permalink": "https://reddit.com/...",
+	  "selftext": "This is the content of the post"
       "keywords": ["keyword1", "keyword2", "keyword3"],
       "author": {
         "username": "PDX_Dave",
@@ -138,19 +139,3 @@ curl http://localhost:3000/api/digest
 # Get digest for a specific date
 curl http://localhost:3000/api/digest?date=2024-03-20
 ```
-
-## Future Endpoints
-
-The following endpoints are planned for future releases:
-
-### GET /api/subreddits
-List all configured subreddits and their statistics
-
-### GET /api/users/{username}
-Get detailed information about a specific user
-
-### GET /api/posts/{id}
-Get detailed information about a specific post
-
-### GET /api/comments/{id}
-Get detailed information about a specific comment 
