@@ -28,14 +28,13 @@ The project consists of two main components:
 - **Backend**: Node.js + TypeScript
 - **Database**: PostgreSQL
 - **API Documentation**: OpenAPI/Swagger
-- **Frontend**: Server-rendered approach
+- **Frontend**: Vanilla JavaScript with TypeScript, Tailwind CSS
+- **Development**: Vite
 - **Deployment**: Digital Ocean
 
-## Getting Started
-
-### Prerequisites
+## Prerequisites
 1. **Node.js and npm**
-   - Install Node.js v23 from [nodejs.org](https://nodejs.org/)
+  - Install Node.js v23 from [nodejs.org](https://nodejs.org/)
    - npm comes bundled with Node.js
 
 2. **Docker Desktop**
@@ -46,28 +45,79 @@ The project consists of two main components:
    - Create a Reddit application at [reddit.com/prefs/apps](https://www.reddit.com/prefs/apps)
    - Note down the client ID and client secret
 
-### Initial Setup
-1. **Install dependencies**
+## Getting Started
+
+1. Clone the repository:
    ```bash
+   git clone <repository-url>
+   cd reddit-web-scraper
+   ```
+
+2. Install dependencies:
+   ```bash
+   # Install backend dependencies
+   npm install
+
+   # Install frontend dependencies
+   cd frontend
    npm install
    ```
 
-2. **Set up environment variables**
+3. Set up environment variables:
    ```bash
-   cp .env.example .env
-   ```
-   Edit `.env` with your Reddit API credentials and other configuration values.
+   # Backend (.env)
+   PORT=3000
+   FRONTEND_URL=http://localhost:5173
+   NODE_ENV=development
+   
+   # Reddit API Credentials
+   REDDIT_CLIENT_ID=your_client_id_here
+   REDDIT_CLIENT_SECRET=your_client_secret_here
+   REDDIT_USER_AGENT=your_user_agent_here
+   
+   # Database Configuration
+   DB_HOST=localhost
+   DB_PORT=5432
+   DB_NAME=reddit_scraper
+   DB_USER=reddit_scraper
+   DB_PASSWORD=reddit_scraper_password
+   DATABASE_URL=postgresql://reddit_scraper:reddit_scraper_password@localhost:5432/reddit_scraper
 
-3. **Start the database and run migrations**
-   ```bash
-   docker-compose up -d
-   npm run migrate:up
+   # Frontend (frontend/.env)
+   VITE_API_URL=http://localhost:3000
    ```
 
-4. **Start the development server**
+4. Start the development servers:
    ```bash
+   # Start backend server (from project root)
+   npm run api:start
+
+   # Start frontend server (from frontend directory)
+   cd frontend
    npm run dev
    ```
+
+5. Open your browser and navigate to:
+   ```
+   http://localhost:5173
+   ```
+
+## Project Structure
+
+```
+reddit-web-scraper/
+├── frontend/           # Frontend application
+│   ├── src/           # Source files
+│   ├── public/        # Static assets
+│   └── index.html     # Main HTML file
+├── src/               # Backend source files
+│   ├── api/          # API routes and controllers
+│   ├── config/       # Configuration files
+│   ├── services/     # Business logic
+│   └── utils/        # Utility functions
+├── data/             # Mock data files
+└── docs/             # Documentation
+```
 
 ## Documentation
 
@@ -78,33 +128,19 @@ The project consists of two main components:
 - [API Documentation](docs/api.md) - API endpoints and usage
 - [Data Collection](docs/data-collection.md) - Reddit data collection process
 
-## Project Structure
-
-```
-reddit-web-scraper/
-├── src/                    # Source code
-│   ├── api/               # API routes and controllers
-│   ├── config/            # Configuration files
-│   ├── db/               # Database related files
-│   ├── services/         # Core business logic
-│   ├── types/            # TypeScript type definitions
-│   └── utils/            # Shared utilities
-├── tests/                # Test files
-│   ├── mocks/           # Mock implementations for testing
-│   └── *.ts             # Test files
-├── docs/                # Documentation
-└── package.json         # Project configuration
-```
-
 For detailed information about the project's development phases and roadmap, see [Development Phases](docs/development-phases.md).
 
-## Contributing
+## Development
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+- Backend runs on `http://localhost:3000`
+- Frontend runs on `http://localhost:5173`
+- API endpoints are prefixed with `/api`
+- Mock data is used for development
+
+## API Endpoints
+
+- `GET /api/digest` - Get the daily digest of Reddit posts
+- `GET /api/digest/2025-03-20` - Get the March 3, 2025 post.
 
 ## License
 

@@ -15,4 +15,9 @@ pool.on('error', (err) => {
   process.exit(-1);
 });
 
-export const getPool = (): InstanceType<typeof Pool> => pool; 
+export const getPool = (): InstanceType<typeof Pool> => pool;
+
+export async function setupDatabase() {
+  // For now, we'll just return a resolved promise since we're using mock data
+  return Promise.resolve();
+} 

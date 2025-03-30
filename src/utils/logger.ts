@@ -1,19 +1,8 @@
-import winston from 'winston';
-
-const logLevel = process.env.LOG_LEVEL || 'info';
-
-export const logger = winston.createLogger({
-  level: logLevel,
-  format: winston.format.combine(
-    winston.format.timestamp(),
-    winston.format.json()
-  ),
-  transports: [
-    new winston.transports.Console({
-      format: winston.format.combine(
-        winston.format.colorize(),
-        winston.format.simple()
-      ),
-    }),
-  ],
-}); 
+export const logger = {
+  info: (message: string, ...args: any[]) => {
+    console.log(`[INFO] ${message}`, ...args);
+  },
+  error: (message: string, ...args: any[]) => {
+    console.error(`[ERROR] ${message}`, ...args);
+  }
+}; 

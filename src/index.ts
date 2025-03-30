@@ -1,17 +1,24 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import { setupRoutes } from './api/routes';
-import { setupDatabase } from './config/database';
-import { logger } from './utils/logger';
+import cors from 'cors';
+import { setupRoutes } from './api/routes/index.ts';
+import { setupDatabase } from './config/database.ts';
+import { logger } from './utils/logger.ts';
 
 // Load environment variables
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
+const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
 
 // Middleware
 app.use(express.json());
+app.use(cors({
+  origin: frontendUrl,
+  methods: ['GET'], // Only allow GET since we're only reading data
+  allowedHeaders: ['Content-Type']
+}));
 
 // Setup routes
 setupRoutes(app);
@@ -21,6 +28,7 @@ setupDatabase()
   .then(() => {
     app.listen(port, () => {
       logger.info(`Server is running on port ${port}`);
+      logger.info(`CORS enabled for frontend at ${frontendUrl}`);
     });
   })
   .catch((error) => {
