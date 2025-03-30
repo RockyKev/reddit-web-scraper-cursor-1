@@ -120,6 +120,10 @@
 **Outcome**: A clean, efficient, and well-organized project ready for production.
 
 ### Features
+- [ ] /api/digest 
+  - [ ] You can test mock data
+  - [ ] You can set the api to get from the database
+
 - [ ] Database Cleanup
   - [ ] Review and remove redundant columns
   - [ ] Consolidate similar tables if needed
