@@ -11,13 +11,13 @@
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "NodeNext",
     "resolveJsonModule": true,
-    "allowImportingTsExtensions": true,
-    "noEmit": true,
+    "allowImportingTsExtensions": false,
+    "noEmit": false,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["backend/*"]
     }
   },
-  "include": ["src/**/*", "tests/**/*"],
+  "include": ["backend/**/*", "tests/**/*"],
   "exclude": ["node_modules", "dist"]
 } 

@@ -1,6 +1,6 @@
-import { RedditPost, RedditComment } from '../types/reddit.ts';
-import { KeywordExtractor } from './keyword-extractor.ts';
-import { logger } from '../utils/logger.ts';
+import { RedditPost, RedditComment } from '../types/reddit.js';
+import { KeywordExtractor } from './keyword-extractor.js';
+import { logger } from '../utils/logger.js';
 
 export class KeywordAnalysisService {
   private keywordExtractor: KeywordExtractor;

@@ -1,11 +1,14 @@
-import { Pool } from 'pg';
-import { Post } from '../types/post.ts';
+import pkg from 'pg';
+const { Pool } = pkg;
+import type { DbPool } from '../types/shared.js';
+import { Post } from '../types/post.js';
+import { db } from '../db/index.js';
 
 export class ScoringService {
-    private db: Pool;
+    private readonly pool: DbPool;
 
-    constructor(db: Pool) {
-        this.db = db;
+    constructor(db: DbPool) {
+        this.pool = db;
     }
 
     /**
@@ -20,7 +23,7 @@ export class ScoringService {
      * Update scores and ranks for all posts from a specific date
      */
     public async updateDailyScores(date: Date): Promise<void> {
-        const client = await this.db.connect();
+        const client = await this.pool.connect();
         try {
             await client.query('BEGIN');
 
@@ -70,7 +73,7 @@ export class ScoringService {
      * Get posts for a specific date, ordered by daily rank
      */
     public async getDailyPosts(date: Date): Promise<Post[]> {
-        const result = await this.db.query(
+        const result = await this.pool.query(
             `SELECT * FROM posts 
              WHERE DATE(created_at) = $1 
              ORDER BY daily_rank ASC`,

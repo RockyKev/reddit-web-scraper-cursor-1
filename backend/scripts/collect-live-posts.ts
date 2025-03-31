@@ -1,8 +1,8 @@
 import 'dotenv/config';
-import { RedditCollector } from '../services/reddit-collector.ts';
-import { RedditScraper } from '../services/reddit-scraper.ts';
-import { logger } from '../utils/logger.ts';
-import { RedditSortType, RedditTimeFilter } from '../types/reddit.ts';
+import { RedditCollector } from '../services/reddit-collector.js';
+import { RedditScraper } from '../services/reddit-scraper.js';
+import { logger } from '../utils/logger.js';
+import { RedditSortType, RedditTimeFilter } from '../types/reddit.js';
 
 async function main() {
   try {

@@ -5,14 +5,14 @@
   "type": "module",
   "main": "backend/index.ts",
   "scripts": {
-    "start": "ts-node backend/index.ts",
-    "dev": "nodemon backend/index.ts",
+    "start": "node --loader ts-node/esm backend/index.ts",
+    "dev": "nodemon --exec 'node --loader ts-node/esm' backend/index.ts",
     "build": "tsc",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "api:start": "ts-node backend/index.ts",
-    "api:dev": "nodemon backend/index.ts",
+    "api:start": "cross-env USE_MOCK_DATA=false node --loader ts-node/esm backend/index.ts",
+    "api:dev": "nodemon --exec 'node --loader ts-node/esm' backend/index.ts",
     "api:build": "tsc",
     "frontend:dev": "cd frontend && npm run dev",
     "frontend:build": "cd frontend && npm run build",
@@ -32,7 +32,8 @@
     "db:migrate-status": "node-pg-migrate status --migrations-dir database/migrations --config-file config/migrations.ts",
     "db:drop": "node --loader ts-node/esm backend/scripts/drop-database.ts",
     "db:reset": "npm run db:drop && npm run db:migrate-up",
-    "db:setup": "ts-node database/setup/setup-test-db.ts"
+    "db:setup": "node --loader ts-node/esm database/setup/setup-test-db.ts",
+    "api:test": "cross-env USE_MOCK_DATA=true node --loader ts-node/esm backend/index.ts"
   },
   "keywords": [
     "reddit",
@@ -67,6 +68,7 @@
     "@types/swagger-ui-express": "^4.1.6",
     "@typescript-eslint/eslint-plugin": "^6.15.0",
     "@typescript-eslint/parser": "^6.15.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.56.0",
     "jest": "^29.7.0",
     "node-pg-migrate": "^7.9.1",

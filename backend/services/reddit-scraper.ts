@@ -1,8 +1,8 @@
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
 import * as cheerio from 'cheerio';
-import { logger } from '../utils/logger.ts';
-import { RedditPost, RedditComment, IRedditScraper, RedditSortType, RedditTimeFilter } from '../types/reddit.ts';
+import { logger } from '../utils/logger.js';
+import { RedditPost, RedditComment, IRedditScraper, RedditSortType, RedditTimeFilter } from '../types/reddit.js';
 
 // Configure axios with retry logic
 // We keep this configuration in this file since it's specific to Reddit scraping

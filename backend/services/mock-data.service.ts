@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { Author, TopCommenter, PostType } from '../types/shared.js';
 
 interface RedditPost {
   data: {
@@ -24,7 +25,7 @@ interface RedditResponse {
 interface Post {
   title: string;
   subreddit: string;
-  author: string;
+  author: Author;
   contribution_score: number;
   content: string;
   score: number;
@@ -32,6 +33,8 @@ interface Post {
   permalink: string;
   keywords: string[];
   daily_rank: number;
+  post_type: PostType;
+  top_commenters: TopCommenter[];
 }
 
 interface DigestData {
@@ -59,14 +62,19 @@ function transformRedditPost(post: RedditPost, rank: number): Post {
   return {
     title: post.data.title,
     subreddit: post.data.subreddit,
-    author: post.data.author,
-    contribution_score: post.data.score + (post.data.num_comments * 2), // Simple scoring
+    author: {
+      username: post.data.author,
+      contribution_score: post.data.score + (post.data.num_comments * 2)
+    },
+    contribution_score: post.data.score + (post.data.num_comments * 2),
     content: post.data.selftext,
     score: post.data.score,
     score_ratio: post.data.upvote_ratio,
     permalink: post.data.permalink,
     keywords: generateMockKeywords(),
-    daily_rank: rank
+    daily_rank: rank,
+    post_type: PostType.TEXT,
+    top_commenters: []
   };
 }
 

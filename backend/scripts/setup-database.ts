@@ -1,5 +1,5 @@
 import { Pool } from 'pg';
-import { logger } from '../utils/logger.ts';
+import { logger } from '../utils/logger.js';
 
 const setupDatabase = async () => {
   // Connect to default postgres database first

@@ -1,6 +1,6 @@
 import pkg from 'pg';
 const { Pool } = pkg;
-import { logger } from '../utils/logger.ts';
+import { logger } from '../utils/logger.js';
 
 const pool = new Pool({
   host: process.env.DB_HOST,

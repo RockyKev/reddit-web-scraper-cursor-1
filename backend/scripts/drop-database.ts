@@ -1,7 +1,7 @@
 import pkg from 'pg';
 const { Pool } = pkg;
-import { getPool } from '../config/database.ts';
-import { logger } from '../utils/logger.ts';
+import { getPool } from '../config/database.js';
+import { logger } from '../utils/logger.js';
 import dotenv from 'dotenv';
 
 // Load environment variables

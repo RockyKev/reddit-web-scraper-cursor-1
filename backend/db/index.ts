@@ -1,4 +1,6 @@
-import { Pool, QueryResult } from 'pg';
+import pkg from 'pg';
+const { Pool } = pkg;
+import type { QueryResult, QueryResultRow } from 'pg';
 
 // Create a new pool using environment variables
 const pool = new Pool({
@@ -9,13 +11,8 @@ const pool = new Pool({
   port: parseInt(process.env.DB_PORT || '5432'),
 });
 
-// Extend the Pool type to include our query method
-interface DbPool extends Pool {
-  query<T>(queryText: string, values?: any[]): Promise<QueryResult<T>>;
-}
-
-// Export the typed pool
-export const db = pool as DbPool;
+// Export the pool directly since it already has the correct types
+export const db = pool;
 
 // Test the connection
 pool.connect((err, client, release) => {

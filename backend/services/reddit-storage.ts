@@ -1,12 +1,13 @@
 import pkg from 'pg';
 const { Pool } = pkg;
-import { logger } from '../utils/logger.ts';
-import { getPool } from '../config/database.ts';
-import { RedditPost, RedditComment } from '../types/reddit.ts';
-import { KeywordAnalysisService } from './keyword-analysis-service.ts';
+import { logger } from '../utils/logger.js';
+import { getPool } from '../config/database.js';
+import { RedditPost, RedditComment } from '../types/reddit.js';
+import { KeywordAnalysisService } from './keyword-analysis-service.js';
+import type { DbPool } from '../types/shared.js';
 
 export class RedditStorage {
-  private readonly pool: InstanceType<typeof Pool>;
+  private readonly pool: DbPool;
   private readonly keywordAnalyzer: KeywordAnalysisService;
 
   constructor() {

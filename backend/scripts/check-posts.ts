@@ -1,6 +1,6 @@
 import 'dotenv/config';
-import { getPool } from '../config/database.ts';
-import { logger } from '../utils/logger.ts';
+import { getPool } from '../config/database.js';
+import { logger } from '../utils/logger.js';
 
 async function checkPosts() {
   try {

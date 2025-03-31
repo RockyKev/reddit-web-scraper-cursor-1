@@ -1,9 +1,9 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import { setupRoutes } from './routes.ts';
-import { setupDatabase } from './config/database.ts';
-import { logger } from './utils/logger.ts';
+import { setupRoutes } from './routes.js';
+import { setupDatabase } from './config/database.js';
+import { logger } from './utils/logger.js';
 
 // Load environment variables
 dotenv.config();
