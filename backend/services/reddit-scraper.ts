@@ -86,42 +86,53 @@ export class RedditScraper implements IRedditScraper {
         }
       });
       
+      if (!response.data || !response.data.data || !response.data.data.children) {
+        logger.error('Invalid response format from Reddit API');
+        throw new Error('Invalid response format from Reddit API');
+      }
+
       const data = response.data;
       const posts: RedditPost[] = [];
 
       // Parse posts from the JSON response
-      if (data.data?.children) {
-        for (const child of data.data.children) {
-          if (posts.length >= limit) break;
-          
-          const post = child.data;
-          
-          // Skip deleted or removed posts
-          if (!post || post.author === '[deleted]' || post.author === '[removed]') {
-            logger.info(`Skipping deleted/removed post: ${post?.id || 'unknown'}`);
+      for (const child of data.data.children) {
+        if (posts.length >= limit) break;
+        
+        const post = child.data;
+        
+        // Skip deleted or removed posts
+        if (!post || post.author === '[deleted]' || post.author === '[removed]') {
+          logger.info(`Skipping deleted/removed post: ${post?.id || 'unknown'}`);
+          continue;
+        }
+
+        try {
+          // Ensure we have a valid timestamp
+          const timestamp = Number(post.created_utc);
+          if (isNaN(timestamp)) {
+            logger.warn(`Invalid timestamp for post ${post.id}`);
             continue;
           }
 
-          try {
-            posts.push({
-              id: post.id,
-              title: post.title,
-              content: post.selftext || '',
-              url: post.url || '',
-              permalink: post.permalink,
-              post_type: post.post_hint || 'text',
-              author: post.author,
-              score: post.score || 0,
-              commentCount: post.num_comments || 0,
-              createdAt: new Date(post.created_utc * 1000),
-              isArchived: post.archived || false,
-              isLocked: post.locked || false
-            });
-            logger.info(`Successfully parsed post: ${post.id}`);
-          } catch (error) {
-            logger.error(`Error parsing post ${post.id}:`, error);
-            continue;
-          }
+          posts.push({
+            id: post.id,
+            title: post.title || '',
+            content: post.selftext || '',
+            url: post.url || '',
+            permalink: post.permalink || '',
+            post_type: post.post_hint || 'text',
+            author_fullname: post.author_fullname || `t2_${post.id}`,
+            author: post.author || '[unknown]',
+            score: post.score || 0,
+            commentCount: post.num_comments || 0,
+            createdAt: new Date(timestamp * 1000),
+            isArchived: post.archived || false,
+            isLocked: post.locked || false
+          });
+          logger.info(`Successfully parsed post: ${post.id}`);
+        } catch (error) {
+          logger.error(`Error parsing post ${post.id}:`, error);
+          continue;
         }
       }
 
@@ -147,6 +158,12 @@ export class RedditScraper implements IRedditScraper {
       
       logger.info(`Fetching comments from ${url}`);
       const response = await client.get(url);
+
+      if (!response.data || !Array.isArray(response.data) || response.data.length < 2) {
+        logger.error('Invalid response format from Reddit API');
+        throw new Error('Invalid response format from Reddit API');
+      }
+
       const data = response.data;
       const comments: RedditComment[] = [];
 
@@ -172,7 +189,8 @@ export class RedditScraper implements IRedditScraper {
             comments.push({
               id: comment.id,
               content: comment.body || '',
-              author: comment.author,
+              author_fullname: comment.author_fullname || '[unknown]',
+              author: comment.author || '[unknown]',
               score: comment.score || 0,
               createdAt: new Date(timestamp * 1000),
               isArchived: comment.archived || false,

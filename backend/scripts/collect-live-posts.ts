@@ -10,6 +10,15 @@ import { getPool } from '../config/database.js';
 
 async function main() {
   try {
+    // Log environment variables (without sensitive data)
+    logger.info('Environment check:', {
+      NODE_ENV: process.env.NODE_ENV,
+      TARGET_SUBREDDITS: process.env.TARGET_SUBREDDITS,
+      POSTS_PER_SUBREDDIT: process.env.POSTS_PER_SUBREDDIT,
+      REDDIT_SORT: process.env.REDDIT_SORT,
+      REDDIT_TIME: process.env.REDDIT_TIME
+    });
+
     // Get target subreddits from environment variable
     const subreddits = process.env.TARGET_SUBREDDITS?.split(',') || ['Portland'];
     const postLimit = parseInt(process.env.POSTS_PER_SUBREDDIT || '1');
@@ -24,6 +33,17 @@ async function main() {
       Sort: ${sort}
       Time: ${time}`);
 
+    // Test database connection first
+    try {
+      const pool = getPool();
+      const client = await pool.connect();
+      logger.info('Database connection successful');
+      client.release();
+    } catch (dbError) {
+      logger.error('Failed to connect to database:', dbError);
+      throw dbError;
+    }
+
     const storage = new RedditStorage();
     const scoringService = new ScoringService(getPool());
 
@@ -33,6 +53,9 @@ async function main() {
         const scraper = new RedditScraper(subreddit.trim());
 
         logger.info(`Fetching ${sort}/${time} posts from r/${subreddit}`);
+
+        
+
         const posts = await scraper.getPosts(postLimit, sort, time);
         
         if (!posts || posts.length === 0) {
@@ -109,7 +132,7 @@ async function main() {
   }
 }
 
-// Run the test
+// Run the main function
 main().catch(error => {
   logger.error('Unhandled error in main:', error);
   if (error instanceof Error) {
