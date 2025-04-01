@@ -15,6 +15,24 @@ export class RedditStorage {
     this.keywordAnalyzer = new KeywordAnalysisService();
   }
 
+  public async storeUser(username: string): Promise<string> {
+    try {
+      const result = await this.pool.query(
+        `INSERT INTO users (id, username)
+         VALUES ($1, $2)
+         ON CONFLICT (id) DO UPDATE
+         SET username = EXCLUDED.username
+         RETURNING id`,
+        [username, username]
+      );
+
+      return result.rows[0].id;
+    } catch (error) {
+      logger.error('Error storing user:', error);
+      throw error;
+    }
+  }
+
   public async storeSubreddit(name: string, description?: string): Promise<string> {
     try {
       const result = await this.pool.query(
@@ -37,20 +55,20 @@ export class RedditStorage {
     try {
       const result = await this.pool.query(
         `INSERT INTO posts (
-          subreddit_id, reddit_id, title, content, author,
-          score, comment_count, url, permalink, post_type,
+          subreddit_id, author_id, title, selftext, url,
+          score, num_comments, permalink, post_type,
           reddit_created_at, is_archived, is_locked,
           keywords, author_score, top_commenters,
           summary, sentiment
         )
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14::text[], $15, $16::jsonb, $17, $18::jsonb)
-        ON CONFLICT (reddit_id) DO UPDATE
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13::text[], $14, $15::jsonb, $16, $17::jsonb)
+        ON CONFLICT (author_id, permalink) DO UPDATE
         SET
           title = EXCLUDED.title,
-          content = EXCLUDED.content,
+          selftext = EXCLUDED.selftext,
+          url = EXCLUDED.url,
           score = EXCLUDED.score,
-          comment_count = EXCLUDED.comment_count,
-          permalink = EXCLUDED.permalink,
+          num_comments = EXCLUDED.num_comments,
           post_type = EXCLUDED.post_type,
           is_archived = EXCLUDED.is_archived,
           is_locked = EXCLUDED.is_locked,
@@ -63,13 +81,12 @@ export class RedditStorage {
         RETURNING id`,
         [
           subredditId,
-          post.id,
+          post.author,
           post.title,
           post.content,
-          post.author,
+          post.url,
           post.score,
           post.commentCount,
-          post.url,
           post.permalink,
           post.post_type,
           post.createdAt,
@@ -94,11 +111,11 @@ export class RedditStorage {
     try {
       const result = await this.pool.query(
         `INSERT INTO comments (
-          post_id, reddit_id, content, author,
-          score, parent_id, reddit_created_at, is_archived,
+          post_id, reddit_id, content, author_id,
+          score, reddit_created_at, is_archived,
           contribution_score
         )
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
         ON CONFLICT (reddit_id) DO UPDATE
         SET
           content = EXCLUDED.content,
@@ -113,7 +130,6 @@ export class RedditStorage {
           comment.content,
           comment.author,
           comment.score,
-          comment.parentId,
           comment.createdAt,
           comment.isArchived,
           comment.contribution_score
@@ -168,6 +184,16 @@ export class RedditStorage {
     comments: RedditComment[]
   ): Promise<string> {
     try {
+      // Store the post author
+      await this.storeUser(post.author);
+
+      // Store comment authors
+      for (const comment of comments) {
+        if (comment.author !== '[deleted]' && comment.author !== '[removed]') {
+          await this.storeUser(comment.author);
+        }
+      }
+
       // Extract keywords from post and comments
       const keywords = this.keywordAnalyzer.extractKeywordsFromPost(post, comments);
       

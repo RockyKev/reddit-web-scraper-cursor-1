@@ -88,30 +88,115 @@ This document provides comprehensive information for developers working on the R
 
 ### Core Services
 
-1. **Reddit Collector** (`src/services/reddit-collector.ts`)
-   - Coordinates the data collection process
-   - Manages scheduling and error handling
-   - Orchestrates scraping and storage operations
-
-2. **Reddit Scraper** (`src/services/reddit-scraper.ts`)
-   - Handles Reddit API interactions
+1. **Reddit Scraper** (`backend/services/reddit-scraper.ts`)
+   - Fetches posts and comments from Reddit's JSON API
    - Implements rate limiting and retry logic
-   - Transforms API responses into domain models
+   - Handles error cases and network issues
+   - Returns structured data for posts and comments
 
-3. **Reddit Storage** (`src/services/reddit-storage.ts`)
-   - Manages database operations
-   - Handles data persistence
-   - Implements data deduplication
+2. **Reddit Collector** (`backend/services/reddit-collector.ts`)
+   - Orchestrates the data collection process
+   - Coordinates between scraper and storage
+   - Manages subreddit processing
+   - Handles error recovery and retries
 
-4. **Keyword Extractor** (`src/services/keyword-extractor.ts`)
-   - Analyzes comments for relevant keywords
-   - Implements frequency-based weighting
-   - Excludes common words and noise
+3. **Reddit Storage** (`backend/services/reddit-storage.ts`)
+   - Manages all database operations
+   - Handles upserts for posts and comments
+   - Maintains relationships between entities
+   - Implements efficient query patterns
 
-5. **User Tracker** (`src/services/user-tracker.ts`)
-   - Tracks post authors and top commenters
-   - Maintains contribution scores
-   - Identifies key community members
+4. **Keyword Analysis** (`backend/services/keyword-analysis-service.ts`)
+   - Coordinates keyword extraction process
+   - Processes post content and comments
+   - Integrates with keyword extractor
+   - Manages analysis results
+
+5. **Keyword Extractor** (`backend/services/keyword-extractor.ts`)
+   - Implements TF-IDF algorithm
+   - Filters stop words and common terms
+   - Identifies significant keywords
+   - Processes text normalization
+
+6. **Scoring Service** (`backend/services/scoring-service.ts`)
+   - Calculates user contribution scores
+   - Processes post and comment metrics
+   - Handles ranking algorithms
+   - Manages score updates
+
+7. **Digest Service** (`backend/services/digest-service.ts`)
+   - Generates daily summaries
+   - Aggregates statistics
+   - Creates trend analysis
+   - Manages digest scheduling
+
+8. **Mock Data Service** (`backend/services/mock-data.service.ts`)
+   - Provides test data for development
+   - Simulates Reddit API responses
+   - Generates realistic sample data
+   - Supports testing scenarios
+
+Each service follows these principles:
+- Single Responsibility Principle
+- Clear interface definitions
+- Comprehensive error handling
+- Detailed logging
+- Type safety with TypeScript
+- ESM module system
+- Unit test coverage
+
+### Data Flow
+
+The data collection process starts with the `collect:live` script (`backend/scripts/collect-live-posts.ts`), which orchestrates the entire flow:
+
+1. **Initialization**
+   - Script reads configuration from `.env` (subreddits, limits, etc.)
+   - Tests database connection
+   - Sets up logging
+
+2. **Data Collection Process**
+   ```
+   collect:live
+   └── RedditCollector
+       ├── RedditScraper (for each subreddit)
+       │   └── Fetches posts and comments from Reddit API
+       └── RedditStorage
+           ├── Stores subreddits
+           ├── Stores posts
+           └── Stores comments
+   ```
+
+3. **Data Processing Pipeline**
+   ```
+   Raw Data → Storage → Analysis → API
+   ```
+   - **Raw Data**: Posts and comments from Reddit
+   - **Storage**: PostgreSQL database tables
+   - **Analysis**: 
+     - Keyword extraction from posts/comments
+     - User scoring and rankings
+     - Daily digest generation
+   - **API**: REST endpoints serving processed data
+
+4. **Database Schema**
+   ```
+   subreddits
+   └── posts
+       └── comments
+   ```
+   - Each subreddit has many posts
+   - Each post has many comments
+   - All entities have timestamps and metadata
+
+5. **API Access**
+   - Data becomes available through REST endpoints
+   - Endpoints serve processed and analyzed data
+   - Frontend consumes API for display
+
+The process runs on a schedule (default: daily at 4:30 AM EST) and can be triggered manually using:
+```bash
+npm run collect:live
+```
 
 ### Database Management
 

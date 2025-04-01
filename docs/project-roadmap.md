@@ -120,54 +120,61 @@
 **Outcome**: A clean, efficient, and well-organized project ready for production.
 
 ### Features
-- [ ] /api/digest 
-  - [ ] You can test mock data
-  - [ ] You can set the api to get from the database
+- [x] /api/digest 
+  - [x] You can test mock data
+  - [x] You can set the api to get from the database
 
-- [ ] Database Cleanup
-  - [ ] Review and remove redundant columns
-  - [ ] Consolidate similar tables if needed
-  - [ ] Standardize naming conventions
-  - [ ] Add proper constraints and foreign keys
+- [x] Database Cleanup
+  - [x] Review and remove redundant columns
+  - [x] Consolidate similar tables if needed
+  - [x] Standardize naming conventions
+  - [x] Add proper constraints and foreign keys
 
-- [ ] Performance Optimization
-  - [ ] Add indexes for common queries
-  - [ ] Optimize table structures
-  - [ ] Implement connection pooling
-  - [ ] Add query caching where beneficial
+- [x] Performance Optimization
+  - [x] Add indexes for common queries
+  - [x] Optimize table structures
+  - [x] Implement connection pooling
+  - [x] Add query caching where beneficial
 
-- [ ] Data Management
-  - [ ] Implement data retention policies
-  - [ ] Add data cleanup routines
-  - [ ] Create backup procedures
-  - [ ] Add data validation rules
+- [x] Data Management
+  - [x] Implement data retention policies
+  - [x] Add data cleanup routines
+  - [x] Create backup procedures
+  - [x] Add data validation rules
 
-- [ ] Migration System
-  - [ ] Review and clean up migration history
-  - [ ] Consolidate migrations where possible
-  - [ ] Add proper rollback procedures
-  - [ ] Document migration process
-  - [ ] Migration System Decision
-    - [ ] Evaluate custom migration system vs node-pg-migrate
-    - [ ] Document pros and cons of each approach
-    - [ ] Make final decision and standardize on one system
-    - [ ] Migrate existing migrations to chosen system
-    - [ ] Update documentation and scripts
+- [x] Migration System
+  - [x] Review and clean up migration history
+  - [x] Consolidate migrations where possible
+  - [x] Add proper rollback procedures
+  - [x] Document migration process
+  - [x] Migration System Decision
+    - [x] Evaluate custom migration system vs node-pg-migrate
+    - [x] Document pros and cons of each approach
+    - [x] Make final decision and standardize on one system
+    - [x] Migrate existing migrations to chosen system
+    - [x] Update documentation and scripts
 
 - [ ] Start fetching data from the internet
-  - [ ] Testing that the endpoint works
+  - [ ] Have "npm run collect:live" fetch data
+  - [ ] That data then gets saved to postgres
+  - [ ] The other services get ran on that data for scoring/ranking
+  - [ ] Testing that the endpoint is pulling data from postgres
+  - [ ] Clean up the "backend/services" code and figure out what to do with all the debugging code
 
+## Version 6: Production Deployment
+**Outcome**: A production-ready system running on a server with automated data collection.
+
+### Features
 - [ ] Review all the package.json scripts
   - [ ] tests start with "test:[action]"
   - [ ] database actions start with "db:[action]"
   - [ ] api endpoint actions start with "api:[action]"
   - [ ] frontend actions start with "frontend:[action]"
   - [ ] anything that's not related to any of them should be reviewed
+  - [ ] Review the scripts so there's no redundancies.
+  - [ ] Organize the scripts so it make sense.
+  - [ ] update the doc/development.md file
 
-## Version 6: Production Deployment
-**Outcome**: A production-ready system running on a server with automated data collection.
-
-### Features
 - [ ] Server Setup
   - [ ] Set up Digital Ocean droplet
   - [ ] Configure Nginx as reverse proxy
@@ -193,6 +200,14 @@
   - [ ] Configure cron job (4:30 AM EST)
   - [ ] Add logging and monitoring
   - [ ] Set up error notifications
+
+- [ ] Review all the package.json scripts
+  - [ ] tests start with "test:[action]"
+  - [ ] database actions start with "db:[action]"
+  - [ ] api endpoint actions start with "api:[action]"
+  - [ ] frontend actions start with "frontend:[action]"
+  - [ ] anything that's not related to any of them should be reviewed
+
 
 ## Version 7: Export & Integration
 **Outcome**: Multiple ways to access and export the data.

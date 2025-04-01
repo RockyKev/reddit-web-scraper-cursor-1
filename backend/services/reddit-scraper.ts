@@ -11,16 +11,10 @@ import { RedditPost, RedditComment, IRedditScraper, RedditSortType, RedditTimeFi
 const client = axios.create({
   headers: {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'Accept': 'application/json',
     'Accept-Language': 'en-US,en;q=0.9',
     'Accept-Encoding': 'gzip, deflate, br',
-    'Connection': 'keep-alive',
-    'Upgrade-Insecure-Requests': '1',
-    'Sec-Fetch-Dest': 'document',
-    'Sec-Fetch-Mode': 'navigate',
-    'Sec-Fetch-Site': 'none',
-    'Sec-Fetch-User': '?1',
-    'Cache-Control': 'max-age=0'
+    'Connection': 'keep-alive'
   }
 });
 
@@ -38,11 +32,22 @@ axiosRetry(client, {
 
 export class RedditScraper implements IRedditScraper {
   private lastRequestTime: number = 0;
-  private readonly minRequestInterval: number = 5000; // 5 seconds between requests
-  private readonly commentRequestInterval: number = 8000; // 8 seconds between comment requests
+  private readonly minRequestInterval: number; // 5 seconds between requests
+  private readonly commentRequestInterval: number; // 8 seconds between comment requests
+
+
   private readonly _subreddit: string;
 
   constructor(subreddit: string) {
+    const rawRate = process.env.API_RATE_WAIT_TIME;
+    const parsedRate = parseInt(rawRate || '', 10);
+
+    // Fallback to 5000 if the env var is missing or invalid
+    const rate = Number.isNaN(parsedRate) ? 5000 : parsedRate;
+
+    this.minRequestInterval = rate;
+    this.commentRequestInterval = rate + 3000; // add delay for comment fetches
+ 
     this._subreddit = subreddit;
   }
 
@@ -65,14 +70,15 @@ export class RedditScraper implements IRedditScraper {
   }
 
   public async getPosts(
-    limit: number = 25,
-    sort: RedditSortType = 'hot',
+    limit: number = 10,
+    sort: RedditSortType = 'top',
     time: RedditTimeFilter = 'day'
   ): Promise<RedditPost[]> {
     try {
       await this.rateLimit();
       const url = `https://www.reddit.com/r/${this._subreddit}/${sort}.json`;
       
+      logger.info(`Fetching posts from ${url}`);
       const response = await client.get(url, {
         params: {
           t: time,
@@ -89,26 +95,47 @@ export class RedditScraper implements IRedditScraper {
           if (posts.length >= limit) break;
           
           const post = child.data;
-          posts.push({
-            id: post.id,
-            title: post.title,
-            content: post.selftext,
-            url: post.url,
-            permalink: post.permalink,
-            post_type: post.post_hint || 'text',
-            author: post.author,
-            score: post.score,
-            commentCount: post.num_comments,
-            createdAt: new Date(post.created_utc * 1000),
-            isArchived: post.archived,
-            isLocked: post.locked
-          });
+          
+          // Skip deleted or removed posts
+          if (!post || post.author === '[deleted]' || post.author === '[removed]') {
+            logger.info(`Skipping deleted/removed post: ${post?.id || 'unknown'}`);
+            continue;
+          }
+
+          try {
+            posts.push({
+              id: post.id,
+              title: post.title,
+              content: post.selftext || '',
+              url: post.url || '',
+              permalink: post.permalink,
+              post_type: post.post_hint || 'text',
+              author: post.author,
+              score: post.score || 0,
+              commentCount: post.num_comments || 0,
+              createdAt: new Date(post.created_utc * 1000),
+              isArchived: post.archived || false,
+              isLocked: post.locked || false
+            });
+            logger.info(`Successfully parsed post: ${post.id}`);
+          } catch (error) {
+            logger.error(`Error parsing post ${post.id}:`, error);
+            continue;
+          }
         }
       }
 
+      logger.info(`Successfully fetched ${posts.length} posts`);
       return posts;
     } catch (error) {
       logger.error('Error fetching posts:', error);
+      if (axios.isAxiosError(error)) {
+        logger.error('Axios error details:', {
+          status: error.response?.status,
+          statusText: error.response?.statusText,
+          data: error.response?.data
+        });
+      }
       throw error;
     }
   }
@@ -118,6 +145,7 @@ export class RedditScraper implements IRedditScraper {
       await this.rateLimit(true); // Use longer delay for comment requests
       const url = `https://www.reddit.com/r/${this._subreddit}/comments/${postId}.json`;
       
+      logger.info(`Fetching comments from ${url}`);
       const response = await client.get(url);
       const data = response.data;
       const comments: RedditComment[] = [];
@@ -126,27 +154,48 @@ export class RedditScraper implements IRedditScraper {
       if (data[1]?.data?.children) {
         for (const child of data[1].data.children) {
           const comment = child.data;
-          if (comment.kind === 'more' || !comment.created_utc) continue;
+          
+          // Skip deleted, removed, or "more" comments
+          if (!comment || comment.kind === 'more' || !comment.created_utc || 
+              comment.author === '[deleted]' || comment.author === '[removed]') {
+            continue;
+          }
           
           // Ensure we have a valid timestamp
           const timestamp = Number(comment.created_utc);
-          if (isNaN(timestamp)) continue;
+          if (isNaN(timestamp)) {
+            logger.warn(`Invalid timestamp for comment ${comment.id}`);
+            continue;
+          }
           
-          comments.push({
-            id: comment.id,
-            content: comment.body,
-            author: comment.author,
-            score: comment.score,
-            createdAt: new Date(timestamp * 1000),
-            isArchived: comment.archived,
-            parentId: comment.parent_id?.replace('t1_', '')
-          });
+          try {
+            comments.push({
+              id: comment.id,
+              content: comment.body || '',
+              author: comment.author,
+              score: comment.score || 0,
+              createdAt: new Date(timestamp * 1000),
+              isArchived: comment.archived || false,
+              parentId: comment.parent_id?.replace('t1_', '')
+            });
+          } catch (error) {
+            logger.error(`Error parsing comment ${comment.id}:`, error);
+            continue;
+          }
         }
       }
 
+      logger.info(`Successfully fetched ${comments.length} comments for post ${postId}`);
       return comments;
     } catch (error) {
       logger.error('Error fetching comments:', error);
+      if (axios.isAxiosError(error)) {
+        logger.error('Axios error details:', {
+          status: error.response?.status,
+          statusText: error.response?.statusText,
+          data: error.response?.data
+        });
+      }
       throw error;
     }
   }

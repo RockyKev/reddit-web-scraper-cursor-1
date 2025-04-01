@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { setupRoutes } from './routes.js';
-import { setupDatabase } from './scripts/setup-database.js';
+import { setupDatabase } from '../database/setup.js';
 import { logger } from './utils/logger.js';
 
 // Load environment variables

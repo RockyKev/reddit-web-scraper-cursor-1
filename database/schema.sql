@@ -40,7 +40,8 @@ CREATE TABLE posts (
     author_score FLOAT,
     top_commenters JSONB,
     summary TEXT,
-    sentiment JSONB
+    sentiment JSONB,
+    UNIQUE(author_id, permalink)
 );
 
 -- Create comments table
@@ -54,7 +55,8 @@ CREATE TABLE comments (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     reddit_created_at TIMESTAMP WITH TIME ZONE,
-    is_archived BOOLEAN DEFAULT FALSE
+    is_archived BOOLEAN DEFAULT FALSE,
+    reddit_id VARCHAR(255) UNIQUE
 );
 
 -- Create indexes for better query performance

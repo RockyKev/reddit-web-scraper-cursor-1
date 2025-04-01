@@ -25,11 +25,11 @@ export interface RedditPost {
   createdAt: Date;
   isArchived: boolean;
   isLocked: boolean;
-  keywords: string[];
-  author_score: number;
-  top_commenters: RedditAuthor[];
-  summary: string | null;
-  sentiment: RedditSentiment | null;
+  keywords?: string[];
+  author_score?: number;
+  top_commenters?: RedditAuthor[];
+  summary?: string | null;
+  sentiment?: RedditSentiment | null;
 }
 
 export interface RedditComment {
@@ -40,7 +40,7 @@ export interface RedditComment {
   createdAt: Date;
   isArchived: boolean;
   parentId?: string;
-  contribution_score: number;
+  contribution_score?: number;
 }
 
 // Base interface for Reddit scraper

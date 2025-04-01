@@ -573,3 +573,94 @@ const { Pool } = pkg;
    - Show both raw and derived fields
    - Explain field relationships clearly
    - Provide examples of different content types
+
+## Database Refactoring Experience
+
+### Directory Structure Improvements
+- Moved all database-related code from `backend/db` to the root `database` directory
+- Consolidated database setup scripts into a single location
+- Eliminated duplicate functionality between `backend/scripts/setup-database.ts` and `database/setup/setup-test-db.ts`
+
+### Database Setup Improvements
+1. Created a unified setup script (`database/setup.ts`) that:
+   - Handles both test and production database setup
+   - Uses a single schema file (`database/schema.sql`)
+   - Properly handles SQL statement splitting with dollar-quoted strings
+   - Gracefully handles existing tables (ignores "relation already exists" errors)
+   - Provides clear logging and error messages
+
+2. Database Connection Management:
+   - Moved from callback-style to async/await for better error handling
+   - Added explicit connection testing functionality
+   - Improved connection pool management for tests
+   - Added proper cleanup in test environment
+
+### Test Suite Improvements
+1. Test Setup:
+   - Consolidated test database setup into a single approach
+   - Added proper console output suppression during tests
+   - Implemented proper database connection cleanup
+   - Added appropriate timeouts for database operations
+
+2. Test Structure:
+   - Organized test data setup in `beforeAll` blocks
+   - Added proper cleanup in `afterAll` blocks
+   - Implemented comprehensive test cases for different scenarios
+   - Added proper error handling for missing data
+
+### NPM Scripts Organization
+Consolidated and improved database-related npm scripts:
+```json
+{
+  "db:setup": "tsx database/setup.ts",
+  "db:setup:test": "tsx database/setup.ts --test",
+  "db:migrate": "tsx database/migrate.ts up",
+  "db:migrate:down": "tsx database/migrate.ts down",
+  "db:migrate:status": "tsx database/migrate.ts status"
+}
+```
+
+### Lessons Learned
+1. SQL Statement Handling:
+   - Need to properly handle dollar-quoted strings in PostgreSQL
+   - Better to execute schema as individual statements
+   - Important to handle existing relations gracefully
+
+2. Test Environment:
+   - Jest requires proper cleanup of database connections
+   - Console output should be suppressed but restorable
+   - Test database should be properly isolated
+   - Important to test both success and error cases
+
+3. Code Organization:
+   - Keep database-related code in a single location
+   - Use consistent import paths
+   - Maintain clear separation between test and production code
+   - Avoid duplicate functionality across different scripts
+
+4. Error Handling:
+   - Properly handle database connection errors
+   - Add informative error messages
+   - Include proper type checking for errors
+   - Add graceful fallbacks where appropriate
+
+### Future Improvements
+1. Consider adding:
+   - Database migration versioning
+   - Automatic test database naming
+   - More comprehensive error handling
+   - Better logging and monitoring
+   - Transaction support for test data setup
+   - Database connection pooling configuration
+
+2. Potential Optimizations:
+   - Batch database operations
+   - Improve schema loading performance
+   - Add connection pooling metrics
+   - Implement query timeout handling
+   - Add retry mechanisms for transient failures
+
+
+## Code Quality
+
+Avoid wrapping every method in try/catch. Only catch errors when you intend to handle them meaningfully—such as logging, adding context, or recovering safely. Let unexpected errors propagate upward so they can be handled at a higher level or cause a controlled failure. Catching and suppressing errors (especially by returning default values) hides problems, making debugging harder and leading to misleading behavior. Prioritize visibility and traceability over silent recovery.

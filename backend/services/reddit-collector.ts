@@ -1,6 +1,5 @@
 import { logger } from '../utils/logger.js';
 import { RedditScraper } from './reddit-scraper.js';
-import { MockRedditScraper } from '../../tests/mocks/reddit-scraper.mock.js';
 import { RedditStorage } from './reddit-storage.js';
 import { IRedditScraper, RedditSortType, RedditTimeFilter } from '../types/reddit.js';
 

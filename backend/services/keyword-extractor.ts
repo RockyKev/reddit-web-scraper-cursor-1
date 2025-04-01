@@ -1,5 +1,6 @@
 import { RedditPost, RedditComment } from '../types/reddit.js';
-import { WordTokenizer, TfIdf } from 'natural';
+import pkg from 'natural';
+const { WordTokenizer, TfIdf } = pkg;
 
 // Common English stop words to filter out
 const STOP_WORDS = new Set([
@@ -16,8 +17,8 @@ const STOP_WORDS = new Set([
 ]);
 
 export class KeywordExtractor {
-  private tokenizer: WordTokenizer;
-  private tfidf: TfIdf;
+  private tokenizer: InstanceType<typeof WordTokenizer>;
+  private tfidf: InstanceType<typeof TfIdf>;
 
   constructor() {
     this.tokenizer = new WordTokenizer();
@@ -41,7 +42,7 @@ export class KeywordExtractor {
     const terms: string[] = [];
     this.tfidf.listTerms(0 /* document index */)
       .slice(0, 10)  // Get top 10 terms
-      .forEach(item => terms.push(item.term));
+      .forEach((item: { term: string }) => terms.push(item.term));
     
     return terms;
   }

@@ -108,8 +108,9 @@ docker-compose restart postgres
 - `username`: VARCHAR(255)
 - `total_posts`: INTEGER
 - `total_comments`: INTEGER
-- `top_posts_count`: INTEGER
-- `top_comments_count`: INTEGER
+- `total_posts_score`: INTEGER
+- `total_comments_score`: INTEGER
+- `contributor_score`: INTEGER
 - `first_seen`: TIMESTAMP
 - `last_seen`: TIMESTAMP
 - `created_at`: TIMESTAMP

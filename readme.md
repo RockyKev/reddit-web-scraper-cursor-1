@@ -70,11 +70,7 @@ The project consists of two main components:
    FRONTEND_URL=http://localhost:5173
    NODE_ENV=development
    
-   # Reddit API Credentials
-   REDDIT_CLIENT_ID=your_client_id_here
-   REDDIT_CLIENT_SECRET=your_client_secret_here
-   REDDIT_USER_AGENT=your_user_agent_here
-   
+
    # Database Configuration
    DB_HOST=localhost
    DB_PORT=5432
