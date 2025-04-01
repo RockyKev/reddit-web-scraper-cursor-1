@@ -1,36 +1,48 @@
 import dotenv from 'dotenv';
+import { jest } from '@jest/globals';
+import { db, testConnection } from '../../database/index.js';
+import { setupDatabase } from '../../database/setup.js';
 
 // Load test environment variables
 dotenv.config({ path: '.env.test' });
 
-// Set default test database configuration if not provided
-process.env.DB_HOST = process.env.DB_HOST || 'localhost';
-process.env.DB_PORT = process.env.DB_PORT || '5432';
-process.env.DB_NAME = process.env.DB_NAME || 'reddit_scraper_test';
-process.env.DB_USER = process.env.DB_USER || 'postgres';
-process.env.DB_PASSWORD = process.env.DB_PASSWORD || 'postgres';
-
-// Increase Jest timeout for database operations
-jest.setTimeout(10000);
-
-// Increase timeout for all tests
+// Increase timeouts for database operations
 jest.setTimeout(30000);
 
-// Store original console methods
-const originalConsole = { ...console };
-
 // Suppress console logs during tests
-beforeAll(() => {
-  // Override console methods to do nothing during tests
+const originalConsole = {
+  log: console.log,
+  error: console.error,
+  warn: console.warn,
+  info: console.info,
+  debug: console.debug
+};
+
+beforeAll(async () => {
+  // Override console methods
   console.log = jest.fn();
   console.error = jest.fn();
   console.warn = jest.fn();
   console.info = jest.fn();
+  console.debug = jest.fn();
+
+  // Test database connection
+  await testConnection();
+
+  // Setup test database
+  await setupDatabase(true);
 });
 
-// Restore original console methods after all tests
-afterAll(() => {
-  console = originalConsole;
+afterAll(async () => {
+  // Restore original console methods
+  console.log = originalConsole.log;
+  console.error = originalConsole.error;
+  console.warn = originalConsole.warn;
+  console.info = originalConsole.info;
+  console.debug = originalConsole.debug;
+
+  // Close database connection
+  await db.end();
 });
 
 // Clear all mocks after each test

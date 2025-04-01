@@ -1,12 +1,13 @@
 export interface DbPost {
   id: string;
   subreddit_id: string;
-  reddit_id: string;
+  author_id: string;
   title: string;
-  selftext: string;
-  url: string;
+  selftext: string | null;
+  url: string | null;
   score: number;
   num_comments: number;
+  permalink: string;
   created_at: Date;
   updated_at: Date;
   reddit_created_at: Date;
@@ -15,21 +16,30 @@ export interface DbPost {
   post_type: string;
   daily_rank: number;
   daily_score: number;
-  author_id: string;
   keywords: string[];
   author_score: number;
-  top_commenters: any;
-  summary: string;
-  sentiment: any;
+  top_commenters: {
+    username: string;
+    contribution_score: number;
+  }[];
+  summary: string | null;
+  sentiment: {
+    score: number;
+    label: string;
+  } | null;
 }
 
 export interface DbComment {
   id: string;
   post_id: string;
   author_id: string;
-  body: string;
+  content: string;
   score: number;
+  contribution_score: number;
   created_at: Date;
+  updated_at: Date;
+  reddit_created_at: Date;
+  is_archived: boolean;
 }
 
 export interface DbUser {
@@ -39,7 +49,7 @@ export interface DbUser {
 }
 
 export interface DbSubredditStats {
-  subreddit: string;
+  name: string;
   post_count: number;
 }
 

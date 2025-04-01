@@ -1,15 +1,19 @@
-import { db } from '../db/index.js';
+import { db } from '../../database/index.js';
 import { DbPost, DbComment, DbUser, DbSubredditStats, DbCommenterStats } from '../types/database.js';
 import { ScoringService } from './scoring-service.js';
 
 interface DigestSummary {
   total_posts: number;
   total_comments: number;
-  top_subreddits: string[];
+  top_subreddits: Array<{
+    name: string;
+    post_count: number;
+  }>;
 }
 
-interface PostAuthor {
+interface Author {
   username: string;
+  reddit_id: string;
   contribution_score: number;
 }
 
@@ -20,24 +24,18 @@ interface TopCommenter {
 
 interface Post {
   id: string;
-  subreddit_id: string;
-  reddit_id: string;
   title: string;
-  selftext: string;
-  url: string;
+  content: string;
   score: number;
   num_comments: number;
   created_at: Date;
-  updated_at: Date;
-  reddit_created_at: Date;
   is_archived: boolean;
   is_locked: boolean;
   post_type: string;
   daily_rank: number;
   daily_score: number;
-  author_id: string;
+  author: Author;
   keywords: string[];
-  author_score: number;
   top_commenters: TopCommenter[];
   summary: string | null;
   sentiment: any | null;
@@ -47,6 +45,7 @@ interface DigestResponse {
   date: string;
   summary: DigestSummary;
   top_posts: Post[];
+  top_commenters: TopCommenter[];
 }
 
 export class DigestService {
@@ -54,6 +53,13 @@ export class DigestService {
 
   constructor() {
     this.scoringService = new ScoringService(db);
+  }
+
+  private getPostContent(post: DbPost): string {
+    if (post.post_type === 'self') {
+      return post.selftext || '';
+    }
+    return post.url || '';
   }
 
   async getDigest(date?: string): Promise<DigestResponse> {
@@ -78,9 +84,28 @@ export class DigestService {
       [targetDate]
     );
 
-    // Get top subreddits
+    // Get top subreddits with post counts
     const subredditsResult = await db.query<DbSubredditStats>(
-      'SELECT subreddit, COUNT(*) as post_count FROM posts WHERE DATE(created_at) = $1 GROUP BY subreddit ORDER BY post_count DESC LIMIT 5',
+      `SELECT s.name, COUNT(p.id) as post_count 
+       FROM subreddits s 
+       JOIN posts p ON s.id = p.subreddit_id 
+       WHERE DATE(p.created_at) = $1 
+       GROUP BY s.name 
+       ORDER BY post_count DESC 
+       LIMIT 5`,
+      [targetDate]
+    );
+
+    // Get top commenters for the day
+    const topCommentersResult = await db.query<DbCommenterStats>(
+      `SELECT u.username, COUNT(*) as comment_count 
+       FROM comments c 
+       JOIN users u ON c.author_id = u.id 
+       JOIN posts p ON c.post_id = p.id 
+       WHERE DATE(p.created_at) = $1 
+       GROUP BY u.username 
+       ORDER BY comment_count DESC 
+       LIMIT 5`,
       [targetDate]
     );
 
@@ -89,42 +114,46 @@ export class DigestService {
       postsResult.rows.map(async (post: DbPost) => {
         // Get post author
         const authorResult = await db.query<DbUser>(
-          'SELECT username FROM users WHERE id = $1',
+          'SELECT * FROM users WHERE id = $1',
           [post.author_id]
         );
 
         // Get top commenters for this post
-        const topCommentersResult = await db.query<DbCommenterStats>(
-          'SELECT u.username, COUNT(*) as comment_count FROM comments c JOIN users u ON c.author_id = u.id WHERE c.post_id = $1 GROUP BY u.username ORDER BY comment_count DESC LIMIT 3',
+        const postTopCommentersResult = await db.query<DbCommenterStats>(
+          `SELECT u.username, COUNT(*) as comment_count 
+           FROM comments c 
+           JOIN users u ON c.author_id = u.id 
+           WHERE c.post_id = $1 
+           GROUP BY u.username 
+           ORDER BY comment_count DESC 
+           LIMIT 3`,
           [post.id]
         );
 
         return {
           id: post.id,
-          subreddit_id: post.subreddit_id,
-          reddit_id: post.reddit_id,
           title: post.title,
-          selftext: post.selftext || '',
-          url: post.url || '',
+          content: this.getPostContent(post),
           score: post.score,
           num_comments: post.num_comments,
           created_at: post.created_at,
-          updated_at: post.updated_at,
-          reddit_created_at: post.reddit_created_at,
           is_archived: post.is_archived,
           is_locked: post.is_locked,
           post_type: post.post_type,
           daily_rank: post.daily_rank || 0,
           daily_score: post.daily_score || 0,
-          author_id: post.author_id,
-          keywords: [], // Will be populated in Phase 2
-          author_score: 0, // Will be calculated in Phase 2
-          top_commenters: topCommentersResult.rows.map((row: DbCommenterStats) => ({
+          author: {
+            username: authorResult.rows[0]?.username || 'unknown',
+            reddit_id: post.author_id,
+            contribution_score: post.author_score || 0
+          },
+          keywords: post.keywords || [],
+          top_commenters: postTopCommentersResult.rows.map((row: DbCommenterStats) => ({
             username: row.username,
             contribution_score: 0 // Will be calculated in Phase 2
           })),
-          summary: null, // Will be populated in Phase 4
-          sentiment: null // Will be populated in Phase 4
+          summary: post.summary,
+          sentiment: post.sentiment
         };
       })
     );
@@ -134,9 +163,16 @@ export class DigestService {
       summary: {
         total_posts: postsResult.rows.length,
         total_comments: commentsResult.rows.length,
-        top_subreddits: subredditsResult.rows.map((row: DbSubredditStats) => row.subreddit)
+        top_subreddits: subredditsResult.rows.map((row: DbSubredditStats) => ({
+          name: row.name,
+          post_count: parseInt(row.post_count.toString())
+        }))
       },
-      top_posts: processedPosts
+      top_posts: processedPosts,
+      top_commenters: topCommentersResult.rows.map((row: DbCommenterStats) => ({
+        username: row.username,
+        contribution_score: 0 // Will be calculated in Phase 2
+      }))
     };
   }
 } 

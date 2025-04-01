@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["backend/*"]
-    }
+    },
+    "isolatedModules": true
   },
   "include": ["backend/**/*", "tests/**/*"],
   "exclude": ["node_modules", "dist"]

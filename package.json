@@ -8,9 +8,9 @@
     "start": "node --loader ts-node/esm backend/index.ts",
     "dev": "nodemon --exec 'node --loader ts-node/esm' backend/index.ts",
     "build": "tsc",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
+    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
     "api:start": "cross-env USE_MOCK_DATA=false node --loader ts-node/esm backend/index.ts",
     "api:dev": "nodemon --exec 'node --loader ts-node/esm' backend/index.ts",
     "api:build": "tsc",
@@ -33,7 +33,12 @@
     "db:drop": "node --loader ts-node/esm backend/scripts/drop-database.ts",
     "db:reset": "npm run db:drop && npm run db:migrate-up",
     "db:setup": "node --loader ts-node/esm database/setup/setup-test-db.ts",
-    "api:test": "cross-env USE_MOCK_DATA=true node --loader ts-node/esm backend/index.ts"
+    "api:test": "cross-env USE_MOCK_DATA=true node --loader ts-node/esm backend/index.ts",
+    "db:setup": "tsx database/setup.ts",
+    "db:setup:test": "tsx database/setup.ts --test",
+    "db:migrate": "tsx database/migrate.ts up",
+    "db:migrate:down": "tsx database/migrate.ts down",
+    "db:migrate:status": "tsx database/migrate.ts status"
   },
   "keywords": [
     "reddit",
