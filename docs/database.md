@@ -70,8 +70,8 @@ docker-compose restart postgres
 - `subreddit_id`: UUID (Foreign Key)
 - `reddit_id`: VARCHAR(255)
 - `title`: VARCHAR(500)
-- `selftext`: TEXT
-- `url`: VARCHAR(1000)
+- `selftext`: TEXT (Post content for text posts)
+- `url`: VARCHAR(1000) (Post URL for link posts)
 - `score`: INTEGER
 - `num_comments`: INTEGER
 - `created_at`: TIMESTAMP
@@ -79,7 +79,7 @@ docker-compose restart postgres
 - `reddit_created_at`: TIMESTAMP
 - `is_archived`: BOOLEAN
 - `is_locked`: BOOLEAN
-- `post_type`: VARCHAR(50)
+- `post_type`: VARCHAR(50) (Determines which field contains the main content: 'text' uses selftext, 'link' uses url)
 - `daily_rank`: FLOAT
 - `daily_score`: FLOAT
 - `author_id`: UUID (Foreign Key to Users)

@@ -13,7 +13,7 @@ export class ScoringService {
 
     /**
      * Calculate the score for a post using the formula:
-     * score = (upvotes * 1.0) + (comments * 2.0)
+     * score = (score * 1.0) + (num_comments * 2.0)
      */
     public calculatePostScore(post: Post): number {
         return (post.score * 1.0) + (post.num_comments * 2.0);

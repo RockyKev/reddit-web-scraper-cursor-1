@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import path from 'path';
-import pg from 'pg';
+import pkg from 'pg';
+const { Pool } = pkg;
 import { fileURLToPath } from 'url';
 
 dotenv.config();
@@ -8,7 +9,7 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const pool = new pg.Pool({
+const pool = new Pool({
   host: process.env.DB_HOST,
   port: parseInt(process.env.DB_PORT || '5432'),
   database: process.env.DB_NAME,

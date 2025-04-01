@@ -535,3 +535,41 @@ const { Pool } = pkg;
 2. Use the `pkg` import pattern for CommonJS modules
 3. Consider creating a central database connection file to avoid repeating this pattern
 4. Document this pattern in project documentation for future reference
+
+## Data Structure Guidelines
+
+### Post Content Handling
+1. Posts have multiple content-related fields:
+   - `selftext`: Raw text content for text posts
+   - `url`: Raw URL for link posts
+   - `post_type`: Determines which field contains the main content
+   - `content`: Frontend-friendly field derived from either selftext or url based on post_type
+
+2. Content Field Rules:
+   - For text posts: `content` is derived from `selftext`
+   - For link posts: `content` is derived from `url`
+   - The raw fields (`selftext`, `url`) are always included in the API response
+   - Frontend should primarily use the `content` field for display
+
+### Author Structure
+1. Author information is returned as an object with three fields:
+   - `username`: Clean, human-readable username for display
+   - `reddit_id`: Reddit's database ID (t2_...)
+   - `contribution_score`: Score based on frequency in our database
+
+2. Author Data Rules:
+   - Always include all three fields in the author object
+   - Keep usernames clean and human-readable
+   - Maintain Reddit's ID format for reddit_id
+   - Calculate contribution_score based on user activity
+
+### Documentation Requirements
+1. Database Schema:
+   - Document raw fields and their purposes
+   - Include notes about field relationships
+   - Specify which fields determine content type
+
+2. API Documentation:
+   - Show both raw and derived fields
+   - Explain field relationships clearly
+   - Provide examples of different content types

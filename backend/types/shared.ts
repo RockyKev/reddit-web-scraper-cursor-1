@@ -1,7 +1,6 @@
-import type { Pool } from 'pg';
-
-// Database types
-export type DbPool = Pool;
+import pkg from 'pg';
+const { Pool } = pkg;
+export type DbPool = InstanceType<typeof Pool>;
 
 // Common interfaces
 export interface BaseEntity {

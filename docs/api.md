@@ -41,28 +41,28 @@ Returns the daily digest of top posts and comments.
   "top_posts": [
     {
       "id": "abc123",
-      "subreddit": "r/Portland",
+      "subreddit_id": "t5_2qh49",
+      "reddit_id": "t3_abc123",
       "title": "Post Title",
-      "type": "text",
-      "content": "This is the content of the post",
+      "selftext": "This is the content of the post",
+      "url": "https://reddit.com/...",
       "score": 100,
-      "score_ratio": 0.98,
-      "comment_count": 100,
+      "num_comments": 50,
+      "created_at": "2024-03-20T08:00:00Z",
+      "updated_at": "2024-03-20T12:00:00Z",
+      "reddit_created_at": "2024-03-20T08:00:00Z",
+      "is_archived": false,
+      "is_locked": false,
+      "post_type": "text",
       "daily_rank": 3,
       "daily_score": 120,
-      "permalink": "https://reddit.com/...",
-      "keywords": ["keyword1", "keyword2", "keyword3"],
-      "locked": false,
       "author": {
-        "username": "PDX_Dave",
-        "fullname": "t2_123abc",
-        "contribution_score": 2
+        "username": "CatLadySarah",
+        "reddit_id": "t2_123abc",
+        "contribution_score": 5
       },
+      "keywords": ["keyword1", "keyword2", "keyword3"],
       "top_commenters": [
-        {
-          "username": "CatLadySarah",
-          "contribution_score": 5
-        },
         {
           "username": "Zesty Steve",
           "contribution_score": 7
@@ -95,18 +95,24 @@ Returns the daily digest of top posts and comments.
 | Field            | Type    | Description                                    |
 |------------------|---------|------------------------------------------------|
 | id               | string  | Unique identifier for the post                 |
-| subreddit        | string  | Name of the subreddit                          |
+| subreddit_id     | string  | ID of the subreddit                           |
+| reddit_id        | string  | Reddit's unique identifier                     |
 | title            | string  | Post title                                     |
-| type             | string  | Type of post (text, link, image, video, etc.)  |
-| content          | string  | Post content (text or URL)                     |
-| upvotes          | integer | Number of upvotes                              |
-| comment_count    | integer | Number of comments                             |
+| content          | string  | Main post content (derived from selftext for text posts, url for link posts) |
+| selftext         | string  | Raw text content (used when post_type is 'text') |
+| url              | string  | Raw URL (used when post_type is 'link')        |
+| post_type        | string  | Type of post ('text' uses selftext, 'link' uses url) |
+| score            | integer | Post score (upvotes)                           |
+| num_comments     | integer | Number of comments                             |
+| created_at       | string  | When the post was created in our database      |
+| updated_at       | string  | When the post was last updated                 |
+| reddit_created_at| string  | When the post was created on Reddit            |
+| is_archived      | boolean | Whether the post is archived on Reddit         |
+| is_locked        | boolean | Whether the post is locked                     |
 | daily_rank       | integer | Post's rank for the day                        |
 | daily_score      | integer | Post's calculated score for the day            |
-| permalink        | string  | Reddit permalink URL                           |
-| keywords         | array   | Extracted keywords from post and top comments  |
-| locked           | boolean | Whether the post is locked                     |
 | author           | object  | Post author information                        |
+| keywords         | array   | Extracted keywords from post and top comments  |
 | top_commenters   | array   | List of top commenters on the post             |
 | summary          | string  | AI-generated summary (if available)            |
 | sentiment        | object  | Sentiment analysis results (if available)      |
@@ -115,9 +121,9 @@ Returns the daily digest of top posts and comments.
 
 | Field              | Type    | Description                                    |
 |-------------------|---------|------------------------------------------------|
-| username          | string  | Reddit username                                |
-| fullname          | string  | Reddit user ID                                 |
-| contribution_score| integer | User's contribution score                      |
+| username          | string  | Clean, human-readable username                 |
+| reddit_id         | string  | Reddit's database ID (t2_...)                  |
+| contribution_score| integer | Score based on frequency in our database       |
 
 #### Top Commenter Object Fields
 

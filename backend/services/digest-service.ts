@@ -20,18 +20,24 @@ interface TopCommenter {
 
 interface Post {
   id: string;
-  subreddit: string;
+  subreddit_id: string;
+  reddit_id: string;
   title: string;
-  type: string;
-  upvotes: number;
-  comment_count: number;
-  daily_score: number;
-  daily_rank: number;
-  permalink: string;
   selftext: string;
   url: string;
+  score: number;
+  num_comments: number;
+  created_at: Date;
+  updated_at: Date;
+  reddit_created_at: Date;
+  is_archived: boolean;
+  is_locked: boolean;
+  post_type: string;
+  daily_rank: number;
+  daily_score: number;
+  author_id: string;
   keywords: string[];
-  author: PostAuthor;
+  author_score: number;
   top_commenters: TopCommenter[];
   summary: string | null;
   sentiment: any | null;
@@ -94,16 +100,25 @@ export class DigestService {
         );
 
         return {
-          ...post,
-          keywords: [], // Will be populated in Phase 2
-          selftext: post.selftext || '', // Include selftext field
-          url: post.url || '', // Include url field
-          daily_score: post.daily_score || 0,
+          id: post.id,
+          subreddit_id: post.subreddit_id,
+          reddit_id: post.reddit_id,
+          title: post.title,
+          selftext: post.selftext || '',
+          url: post.url || '',
+          score: post.score,
+          num_comments: post.num_comments,
+          created_at: post.created_at,
+          updated_at: post.updated_at,
+          reddit_created_at: post.reddit_created_at,
+          is_archived: post.is_archived,
+          is_locked: post.is_locked,
+          post_type: post.post_type,
           daily_rank: post.daily_rank || 0,
-          author: {
-            username: authorResult.rows[0]?.username || 'unknown',
-            contribution_score: 0 // Will be calculated in Phase 2
-          },
+          daily_score: post.daily_score || 0,
+          author_id: post.author_id,
+          keywords: [], // Will be populated in Phase 2
+          author_score: 0, // Will be calculated in Phase 2
           top_commenters: topCommentersResult.rows.map((row: DbCommenterStats) => ({
             username: row.username,
             contribution_score: 0 // Will be calculated in Phase 2

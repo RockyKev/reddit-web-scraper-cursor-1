@@ -23,26 +23,41 @@ interface RedditResponse {
 }
 
 interface Post {
+  id: string;
+  subreddit_id: string;
+  reddit_id: string;
   title: string;
-  subreddit: string;
-  author: Author;
-  contribution_score: number;
-  content: string;
+  selftext: string;
+  url: string;
   score: number;
-  score_ratio: number;
-  permalink: string;
-  keywords: string[];
+  num_comments: number;
+  created_at: Date;
+  updated_at: Date;
+  reddit_created_at: Date;
+  is_archived: boolean;
+  is_locked: boolean;
+  post_type: string;
   daily_rank: number;
-  post_type: PostType;
-  top_commenters: TopCommenter[];
+  daily_score: number;
+  author_id: string;
+  keywords: string[];
+  author_score: number;
+  top_commenters: Array<{
+    username: string;
+    contribution_score: number;
+  }>;
+  summary: string | null;
+  sentiment: any | null;
 }
 
 interface DigestData {
   date: string;
-  total_posts: number;
-  total_comments: number;
-  subreddits: string[];
-  posts: Post[];
+  summary: {
+    total_posts: number;
+    total_comments: number;
+    top_subreddits: string[];
+  };
+  top_posts: Post[];
 }
 
 // Mock keywords for testing
@@ -59,22 +74,32 @@ function generateMockKeywords(): string[] {
 }
 
 function transformRedditPost(post: RedditPost, rank: number): Post {
+  const now = new Date();
+  const redditCreatedAt = new Date(post.data.created_utc * 1000);
+  
   return {
+    id: `mock-${post.data.permalink.split('/').pop()}`,
+    subreddit_id: `t5_${post.data.subreddit.toLowerCase()}`,
+    reddit_id: `t3_${post.data.permalink.split('/')[4]}`,
     title: post.data.title,
-    subreddit: post.data.subreddit,
-    author: {
-      username: post.data.author,
-      contribution_score: post.data.score + (post.data.num_comments * 2)
-    },
-    contribution_score: post.data.score + (post.data.num_comments * 2),
-    content: post.data.selftext,
+    selftext: post.data.selftext,
+    url: `https://reddit.com${post.data.permalink}`,
     score: post.data.score,
-    score_ratio: post.data.upvote_ratio,
-    permalink: post.data.permalink,
-    keywords: generateMockKeywords(),
+    num_comments: post.data.num_comments,
+    created_at: now,
+    updated_at: now,
+    reddit_created_at: redditCreatedAt,
+    is_archived: false,
+    is_locked: false,
+    post_type: 'text',
     daily_rank: rank,
-    post_type: PostType.TEXT,
-    top_commenters: []
+    daily_score: post.data.score + (post.data.num_comments * 2),
+    author_id: `t2_${post.data.author.toLowerCase()}`,
+    keywords: generateMockKeywords(),
+    author_score: post.data.score + (post.data.num_comments * 2),
+    top_commenters: [],
+    summary: null,
+    sentiment: null
   };
 }
 
@@ -86,19 +111,19 @@ export function getMockDigest(): DigestData {
   // Transform posts and sort by score
   const posts = mockData.data.children
     .map((post, index) => transformRedditPost(post, index + 1))
-    .sort((a, b) => b.score - a.score);
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 20); // Limit to 20 posts
 
   // Get unique subreddits
-  const subreddits = [...new Set(posts.map(post => post.subreddit))];
-
-  // Calculate total comments
-  const totalComments = posts.reduce((sum, post) => sum + (post.score * 2), 0);
+  const subreddits = [...new Set(posts.map(post => post.subreddit_id))];
 
   return {
     date: new Date().toISOString(),
-    total_posts: posts.length,
-    total_comments: totalComments,
-    subreddits,
-    posts: posts.slice(0, 20) // Limit to 20 posts for now
+    summary: {
+      total_posts: posts.length,
+      total_comments: posts.reduce((sum, post) => sum + post.num_comments, 0),
+      top_subreddits: subreddits
+    },
+    top_posts: posts
   };
 } 
