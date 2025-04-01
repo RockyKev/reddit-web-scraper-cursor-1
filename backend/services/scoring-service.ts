@@ -2,7 +2,7 @@ import pkg from 'pg';
 const { Pool } = pkg;
 import type { DbPool } from '../types/shared.js';
 import { Post } from '../types/post.js';
-import { db } from '../../database/index.js';
+import { getPool } from '../config/database.js';
 
 export class ScoringService {
     private readonly pool: DbPool;

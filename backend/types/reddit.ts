@@ -19,7 +19,8 @@ export interface RedditPost {
   url: string;
   permalink: string;
   post_type: string;
-  author: string;
+  author_fullname: string;      // Reddit's author_fullname (e.g., t2_xu6jr)
+  author: string; // Reddit's author (e.g., picturesofbowls)
   score: number;
   commentCount: number;
   createdAt: Date;
@@ -35,7 +36,8 @@ export interface RedditPost {
 export interface RedditComment {
   id: string;
   content: string;
-  author: string;
+  author_fullname: string;      // Reddit's author_fullname (e.g., t2_xu6jr)
+  author: string; // Reddit's author (e.g., picturesofbowls)
   score: number;
   createdAt: Date;
   isArchived: boolean;

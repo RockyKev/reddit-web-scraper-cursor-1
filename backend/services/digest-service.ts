@@ -1,4 +1,4 @@
-import { db } from '../../database/index.js';
+import { getPool } from '../config/database.js';
 import { DbPost, DbComment, DbUser, DbSubredditStats, DbCommenterStats } from '../types/database.js';
 import { ScoringService } from './scoring-service.js';
 
@@ -49,10 +49,10 @@ interface DigestResponse {
 }
 
 export class DigestService {
-  private scoringService: ScoringService;
+  private readonly scoringService: ScoringService;
 
   constructor() {
-    this.scoringService = new ScoringService(db);
+    this.scoringService = new ScoringService(getPool());
   }
 
   private getPostContent(post: DbPost): string {
@@ -69,7 +69,7 @@ export class DigestService {
     await this.scoringService.updateDailyScores(new Date(targetDate));
     
     // Get posts for the date, ordered by daily rank
-    const postsResult = await db.query<DbPost>(
+    const postsResult = await getPool().query<DbPost>(
       'SELECT * FROM posts WHERE DATE(created_at) = $1 ORDER BY daily_rank ASC',
       [targetDate]
     );
@@ -79,13 +79,13 @@ export class DigestService {
     }
 
     // Get comments for the date
-    const commentsResult = await db.query<DbComment>(
+    const commentsResult = await getPool().query<DbComment>(
       'SELECT c.* FROM comments c JOIN posts p ON c.post_id = p.id WHERE DATE(p.created_at) = $1',
       [targetDate]
     );
 
     // Get top subreddits with post counts
-    const subredditsResult = await db.query<DbSubredditStats>(
+    const subredditsResult = await getPool().query<DbSubredditStats>(
       `SELECT s.name, COUNT(p.id) as post_count 
        FROM subreddits s 
        JOIN posts p ON s.id = p.subreddit_id 
@@ -97,7 +97,7 @@ export class DigestService {
     );
 
     // Get top commenters for the day
-    const topCommentersResult = await db.query<DbCommenterStats>(
+    const topCommentersResult = await getPool().query<DbCommenterStats>(
       `SELECT u.username, COUNT(*) as comment_count 
        FROM comments c 
        JOIN users u ON c.author_id = u.id 
@@ -113,13 +113,13 @@ export class DigestService {
     const processedPosts = await Promise.all(
       postsResult.rows.map(async (post: DbPost) => {
         // Get post author
-        const authorResult = await db.query<DbUser>(
+        const authorResult = await getPool().query<DbUser>(
           'SELECT * FROM users WHERE id = $1',
           [post.author_id]
         );
 
         // Get top commenters for this post
-        const postTopCommentersResult = await db.query<DbCommenterStats>(
+        const postTopCommentersResult = await getPool().query<DbCommenterStats>(
           `SELECT u.username, COUNT(*) as comment_count 
            FROM comments c 
            JOIN users u ON c.author_id = u.id 
@@ -173,6 +173,82 @@ export class DigestService {
         username: row.username,
         contribution_score: 0 // Will be calculated in Phase 2
       }))
+    };
+  }
+
+  public async getDailyDigest(targetDate: Date): Promise<any> {
+    // Get posts for the date, ordered by daily rank
+    const postsResult = await getPool().query<DbPost>(
+      'SELECT * FROM posts WHERE DATE(created_at) = $1 ORDER BY daily_rank ASC',
+      [targetDate]
+    );
+
+    // Get comments for the date
+    const commentsResult = await getPool().query<DbComment>(
+      'SELECT c.* FROM comments c JOIN posts p ON c.post_id = p.id WHERE DATE(p.created_at) = $1',
+      [targetDate]
+    );
+
+    // Get top subreddits with post counts
+    const subredditsResult = await getPool().query<DbSubredditStats>(
+      `SELECT s.name, COUNT(p.id) as post_count 
+       FROM subreddits s 
+       JOIN posts p ON s.id = p.subreddit_id 
+       WHERE DATE(p.created_at) = $1 
+       GROUP BY s.name 
+       ORDER BY post_count DESC 
+       LIMIT 5`,
+      [targetDate]
+    );
+
+    // Get top commenters for the day
+    const topCommentersResult = await getPool().query<DbCommenterStats>(
+      `SELECT u.username, COUNT(*) as comment_count 
+       FROM comments c 
+       JOIN users u ON c.author_id = u.id 
+       JOIN posts p ON c.post_id = p.id 
+       WHERE DATE(p.created_at) = $1 
+       GROUP BY u.username 
+       ORDER BY comment_count DESC 
+       LIMIT 5`,
+      [targetDate]
+    );
+
+    // Enrich posts with author and top commenters
+    const enrichedPosts = await Promise.all(
+      postsResult.rows.map(async (post: DbPost) => {
+        // Get post author
+        const authorResult = await getPool().query<DbUser>(
+          'SELECT * FROM users WHERE id = $1',
+          [post.author_id]
+        );
+
+        // Get top commenters for this post
+        const postTopCommentersResult = await getPool().query<DbCommenterStats>(
+          `SELECT u.username, COUNT(*) as comment_count 
+           FROM comments c 
+           JOIN users u ON c.author_id = u.id 
+           WHERE c.post_id = $1 
+           GROUP BY u.username 
+           ORDER BY comment_count DESC 
+           LIMIT 3`,
+          [post.id]
+        );
+
+        return {
+          ...post,
+          author: authorResult.rows[0],
+          top_commenters: postTopCommentersResult.rows
+        };
+      })
+    );
+
+    return {
+      date: targetDate,
+      posts: enrichedPosts,
+      comments: commentsResult.rows,
+      top_subreddits: subredditsResult.rows,
+      top_commenters: topCommentersResult.rows
     };
   }
 } 

@@ -31,7 +31,7 @@
     "db:migrate-down": "node-pg-migrate down --migrations-dir database/migrations --config-file config/migrations.ts",
     "db:migrate-status": "node-pg-migrate status --migrations-dir database/migrations --config-file config/migrations.ts",
     "db:drop": "node --loader ts-node/esm backend/scripts/drop-database.ts",
-    "db:reset": "npm run db:drop && npm run db:migrate-up",
+    "db:reset": "npm run db:drop && npm run db:setup",
     "db:setup": "node --loader ts-node/esm database/setup.ts",
     "db:setup:test": "node --loader ts-node/esm database/setup.ts --test",
     "db:migrate": "tsx database/migrate.ts up",

@@ -8,6 +8,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 async function dropDatabase() {
+
+  // TODO: Use getPool() instead of Pool
   // Connect to default postgres database with superuser credentials
   const defaultPool = new Pool({
     host: process.env.DB_HOST,

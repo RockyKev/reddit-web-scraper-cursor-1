@@ -1,7 +1,12 @@
-import { db } from './index.js';
+import { getPool } from '../backend/config/database.js';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { logger } from '../backend/utils/logger.js';
+import dotenv from 'dotenv';
+
+// Load environment variables first
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -12,6 +17,8 @@ export async function setupDatabase(isTestDb: boolean = false) {
     const schemaPath = path.join(__dirname, 'schema.sql');
     const schema = fs.readFileSync(schemaPath, 'utf8');
 
+    logger.info(`Setting up ${isTestDb ? 'test ' : ''}database...`);
+
     // Split into individual statements, handling dollar-quoted strings
     const statements = schema
       .split(/;\s*$/)
@@ -21,35 +28,36 @@ export async function setupDatabase(isTestDb: boolean = false) {
     // Execute each statement
     for (const statement of statements) {
       try {
-        await db.query(statement);
+        await getPool().query(statement);
       } catch (error: any) {
         // Ignore "relation already exists" errors
         if (error.code === '42P07') {
-          console.log('Table already exists, skipping...');
+          logger.info('Table already exists, skipping...');
           continue;
         }
         throw error;
       }
     }
 
-    console.log(`Database ${isTestDb ? 'test ' : ''}setup completed successfully`);
+    logger.info(`Database ${isTestDb ? 'test ' : ''}setup completed successfully`);
   } catch (error) {
-    console.error(`Error setting up ${isTestDb ? 'test ' : ''}database:`, error);
+    logger.error(`Error setting up ${isTestDb ? 'test ' : ''}database:`, error);
     throw error;
   }
 }
 
 // Run if this file is executed directly
-if (import.meta.url === `file://${process.argv[1]}`) {
+const isDirectExecution = process.argv[1]?.endsWith('setup.ts');
+
+if (isDirectExecution) {
   const isTestDb = process.argv.includes('--test');
-  
   setupDatabase(isTestDb)
     .then(() => {
-      console.log('Database setup complete');
+      logger.info('Database setup complete');
       process.exit(0);
     })
     .catch((error) => {
-      console.error('Failed to setup database:', error);
+      logger.error('Failed to setup database:', error);
       process.exit(1);
     });
 } 

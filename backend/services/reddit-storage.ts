@@ -15,15 +15,22 @@ export class RedditStorage {
     this.keywordAnalyzer = new KeywordAnalysisService();
   }
 
-  public async storeUser(username: string): Promise<string> {
+  public async storeUser(authorId: string, username: string): Promise<string> {
     try {
       const result = await this.pool.query(
-        `INSERT INTO users (id, username)
-         VALUES ($1, $2)
-         ON CONFLICT (id) DO UPDATE
-         SET username = EXCLUDED.username
-         RETURNING id`,
-        [username, username]
+        `INSERT INTO users (
+          id, username, total_posts, total_comments,
+          total_posts_score, total_comments_score,
+          contributor_score, first_seen, last_seen
+        )
+        VALUES ($1, $2, 0, 0, 0, 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+        ON CONFLICT (id) DO UPDATE
+        SET 
+          username = EXCLUDED.username,
+          last_seen = CURRENT_TIMESTAMP,
+          updated_at = CURRENT_TIMESTAMP
+        RETURNING id`,
+        [authorId, username]
       );
 
       return result.rows[0].id;
@@ -81,7 +88,7 @@ export class RedditStorage {
         RETURNING id`,
         [
           subredditId,
-          post.author,
+          post.author_fullname,
           post.title,
           post.content,
           post.url,
@@ -128,7 +135,7 @@ export class RedditStorage {
           postId,
           comment.id,
           comment.content,
-          comment.author,
+          comment.author_fullname,
           comment.score,
           comment.createdAt,
           comment.isArchived,
@@ -185,12 +192,12 @@ export class RedditStorage {
   ): Promise<string> {
     try {
       // Store the post author
-      await this.storeUser(post.author);
+      await this.storeUser(post.author_fullname, post.author);
 
       // Store comment authors
       for (const comment of comments) {
-        if (comment.author !== '[deleted]' && comment.author !== '[removed]') {
-          await this.storeUser(comment.author);
+        if (comment.author_fullname !== '[deleted]' && comment.author_fullname !== '[removed]') {
+          await this.storeUser(comment.author_fullname, comment.author);
         }
       }
 

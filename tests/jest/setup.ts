@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import { jest } from '@jest/globals';
-import { db, testConnection } from '../../database/index.js';
+import { getPool, testDatabaseConnection } from '../../backend/config/database.js';
 import { setupDatabase } from '../../database/setup.js';
 
 // Load test environment variables
@@ -27,7 +27,7 @@ beforeAll(async () => {
   console.debug = jest.fn();
 
   // Test database connection
-  await testConnection();
+  await testDatabaseConnection();
 
   // Setup test database
   await setupDatabase(true);
@@ -42,7 +42,7 @@ afterAll(async () => {
   console.debug = originalConsole.debug;
 
   // Close database connection
-  await db.end();
+  await getPool().end();
 });
 
 // Clear all mocks after each test

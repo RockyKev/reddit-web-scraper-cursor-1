@@ -30,7 +30,7 @@ export const getPool = (): InstanceType<typeof Pool> => {
       ...dbConfig,
       password: '[REDACTED]',
       passwordType: typeof password,
-      passwordLength: password.length
+      passwordLength: password.length,
     });
 
     pool = new Pool(dbConfig);

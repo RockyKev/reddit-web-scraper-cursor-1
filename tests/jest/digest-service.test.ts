@@ -1,4 +1,4 @@
-import { db } from '../../database/index.js';
+import { getPool } from '../../backend/config/database.js';
 import { DigestService } from '../../backend/services/digest-service.js';
 import { DbPost, DbComment, DbUser } from '../../backend/types/database.js';
 import { MockDigestService } from '../mocks/digest-service.mock.js';
@@ -13,18 +13,18 @@ describe('DigestService', () => {
     await setupDatabase(true);
 
     // Insert test data
-    const subredditResult = await db.query<{ id: string }>(
+    const subredditResult = await getPool().query<{ id: string }>(
       'INSERT INTO subreddits (name, description) VALUES ($1, $2) RETURNING id',
       ['portland', 'Portland, Oregon']
     );
     const subredditId = subredditResult.rows[0].id;
 
-    const userResult = await db.query<DbUser>(
+    const userResult = await getPool().query<DbUser>(
       'INSERT INTO users (id, username) VALUES ($1, $2) RETURNING *',
       ['t2_123abc', 'testuser']
     );
 
-    const postResult = await db.query<DbPost>(
+    const postResult = await getPool().query<DbPost>(
       `INSERT INTO posts (
         subreddit_id, author_id, title, selftext, url, score, num_comments,
         permalink, created_at, post_type, daily_score, daily_rank, keywords,
@@ -52,7 +52,7 @@ describe('DigestService', () => {
       ]
     );
 
-    await db.query<DbComment>(
+    await getPool().query<DbComment>(
       `INSERT INTO comments (
         post_id, author_id, content, score, contribution_score, created_at
       ) VALUES ($1, $2, $3, $4, $5, $6)`,
@@ -71,7 +71,7 @@ describe('DigestService', () => {
 
   afterAll(async () => {
     // Clean up test tables
-    await db.query(`
+    await getPool().query(`
       DROP TABLE IF EXISTS comments;
       DROP TABLE IF EXISTS posts;
       DROP TABLE IF EXISTS users;
@@ -124,18 +124,18 @@ describe('DigestService', () => {
 
     it('should handle different post types correctly', async () => {
       // Insert a link post
-      const subredditResult = await db.query<{ id: string }>(
+      const subredditResult = await getPool().query<{ id: string }>(
         'SELECT id FROM subreddits WHERE name = $1',
         ['portland']
       );
       const subredditId = subredditResult.rows[0].id;
 
-      const userResult = await db.query<DbUser>(
+      const userResult = await getPool().query<DbUser>(
         'SELECT * FROM users WHERE username = $1',
         ['testuser']
       );
 
-      await db.query<DbPost>(
+      await getPool().query<DbPost>(
         `INSERT INTO posts (
           subreddit_id, author_id, title, selftext, url, score, num_comments,
           permalink, created_at, post_type, daily_score, daily_rank
