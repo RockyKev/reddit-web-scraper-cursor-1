@@ -5,17 +5,14 @@ import { getPool } from '../config/database.js';
 import { RedditPost, RedditComment } from '../types/reddit.js';
 import { KeywordAnalysisService } from './keyword-analysis-service.js';
 import type { DbPool } from '../types/shared.js';
-import { ScoringService } from './scoring-service.js';
 
 export class RedditStorage {
   private readonly pool: DbPool;
   private readonly keywordAnalyzer: KeywordAnalysisService;
-  private readonly scoringService: ScoringService;
 
   constructor() {
     this.pool = getPool();
     this.keywordAnalyzer = new KeywordAnalysisService();
-    this.scoringService = new ScoringService(this.pool);
   }
 
   public async storeUser(authorId: string, username: string): Promise<string> {
@@ -270,9 +267,6 @@ export class RedditStorage {
       for (const comment of comments) {
         await this.storeComment(postId, comment);
       }
-
-      // Update daily ranks for all posts from this date
-      await this.scoringService.updateDailyScores(new Date(post.createdAt));
 
       return postId;
     } catch (error) {

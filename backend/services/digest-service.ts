@@ -1,6 +1,7 @@
 import { getPool } from '../config/database.js';
 import { DbPost, DbComment, DbUser, DbSubredditStats, DbCommenterStats } from '../types/database.js';
-import { ScoringService } from './scoring-service.js';
+import { ScoreCalculator } from './score-calculator.js';
+import { logger } from '../utils/logger.js';
 
 interface DigestSummary {
   total_posts: number;
@@ -51,10 +52,10 @@ interface DigestResponse {
 }
 
 export class DigestService {
-  private readonly scoringService: ScoringService;
+  private readonly scoreCalculator: ScoreCalculator;
 
   constructor() {
-    this.scoringService = new ScoringService(getPool());
+    this.scoreCalculator = new ScoreCalculator();
   }
 
   private getPostContent(post: DbPost): string {
@@ -81,7 +82,7 @@ export class DigestService {
     const targetDate = date || new Date().toISOString().split('T')[0];
     
     // Update scores and ranks for the date
-    await this.scoringService.updateDailyScores(new Date(targetDate));
+    await this.scoreCalculator.calculateScoresForDate(targetDate);
     
     // Get posts for the date, ordered by daily rank
     const postsResult = await getPool().query<DbPost>(
@@ -97,15 +98,6 @@ export class DigestService {
        ORDER BY p.daily_rank ASC`,
       [targetDate]
     );
-
-    // Debug log for raw query results
-    console.log('Raw query results:', postsResult.rows.map(row => ({
-      id: row.id,
-      daily_rank: row.daily_rank,
-      daily_score: row.daily_score,
-      score: row.score,
-      num_comments: row.num_comments
-    })));
 
     if (postsResult.rows.length === 0) {
       throw new Error('No data found for the specified date');
@@ -145,13 +137,6 @@ export class DigestService {
     // Process posts to include additional data
     const processedPosts = await Promise.all(
       postsResult.rows.map(async (post: DbPost) => {
-        // Debug log
-        console.log('Processing post:', {
-          id: post.id,
-          daily_rank: post.daily_rank,
-          daily_score: post.daily_score
-        });
-
         // Get post author
         const authorResult = await getPool().query<DbUser>(
           'SELECT * FROM users WHERE id = $1',
@@ -170,7 +155,7 @@ export class DigestService {
           [post.id]
         );
 
-        const processedPost = {
+        return {
           id: post.id,
           title: post.title,
           content: this.getPostContent(post),
@@ -192,20 +177,11 @@ export class DigestService {
           keywords: post.keywords || [],
           top_commenters: postTopCommentersResult.rows.map((row: DbCommenterStats) => ({
             username: row.username,
-            contribution_score: 0 // Will be calculated in Phase 2
+            contribution_score: 0
           })),
           summary: post.summary,
           sentiment: post.sentiment
         };
-
-        // Debug log
-        console.log('Processed post:', {
-          id: processedPost.id,
-          daily_rank: processedPost.daily_rank,
-          daily_score: processedPost.daily_score
-        });
-
-        return processedPost;
       })
     );
 
@@ -222,14 +198,14 @@ export class DigestService {
       top_posts: processedPosts,
       top_commenters: topCommentersResult.rows.map((row: DbCommenterStats) => ({
         username: row.username,
-        contribution_score: 0 // Will be calculated in Phase 2
+        contribution_score: 0
       }))
     };
   }
 
   public async getDailyDigest(targetDate: Date): Promise<any> {
     // Update scores and ranks for the date
-    await this.scoringService.updateDailyScores(targetDate);
+    await this.scoreCalculator.calculateScoresForDate(targetDate);
     
     // Get posts for the date, ordered by daily rank
     const postsResult = await getPool().query<DbPost>(
@@ -329,7 +305,7 @@ export class DigestService {
           keywords: post.keywords || [],
           top_commenters: postTopCommentersResult.rows.map((row: DbCommenterStats) => ({
             username: row.username,
-            contribution_score: 0 // Will be calculated in Phase 2
+            contribution_score: 0
           })),
           summary: post.summary,
           sentiment: post.sentiment
@@ -350,7 +326,7 @@ export class DigestService {
       top_posts: enrichedPosts,
       top_commenters: topCommentersResult.rows.map((row: DbCommenterStats) => ({
         username: row.username,
-        contribution_score: 0 // Will be calculated in Phase 2
+        contribution_score: 0
       }))
     };
   }

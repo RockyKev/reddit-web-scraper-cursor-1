@@ -159,7 +159,7 @@
   - [x] That data then gets saved to postgres
   - [x] The other services get ran on that data for scoring/ranking
   - [x] Testing that the endpoint is pulling data from postgres
-  - [ ] Clean up the "backend/services" code and figure out what to do with all the debugging code
+  - [x] Clean up the "backend/services" code and figure out what to do with all the debugging code
 
 ## Version 6: Production Deployment
 **Outcome**: A production-ready system running on a server with automated data collection.
@@ -200,14 +200,6 @@
   - [ ] Configure cron job (4:30 AM EST)
   - [ ] Add logging and monitoring
   - [ ] Set up error notifications
-
-- [ ] Review all the package.json scripts
-  - [ ] tests start with "test:[action]"
-  - [ ] database actions start with "db:[action]"
-  - [ ] api endpoint actions start with "api:[action]"
-  - [ ] frontend actions start with "frontend:[action]"
-  - [ ] anything that's not related to any of them should be reviewed
-
 
 ## Version 7: Export & Integration
 **Outcome**: Multiple ways to access and export the data.

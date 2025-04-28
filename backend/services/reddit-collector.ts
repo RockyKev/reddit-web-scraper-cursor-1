@@ -2,7 +2,6 @@ import { logger } from '../utils/logger.js';
 import { RedditScraper } from './reddit-scraper.js';
 import { RedditStorage } from './reddit-storage.js';
 import { IRedditScraper, RedditSortType, RedditTimeFilter } from '../types/reddit.js';
-import { ScoringService } from './scoring-service.js';
 import { getPool } from '../config/database.js';
 import { ScoreCalculator } from './score-calculator.js';
 
