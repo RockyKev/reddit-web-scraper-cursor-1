@@ -71,7 +71,7 @@ export class RedditStorage {
 
       const result = await this.pool.query(
         `INSERT INTO posts (
-          subreddit_id, author_id, title, selftext, url,
+          subreddit_id, author_id, title, selftext, content_url,
           score, num_comments, permalink, post_type,
           reddit_created_at, is_archived, is_locked,
           keywords, author_score, top_commenters,
@@ -82,7 +82,7 @@ export class RedditStorage {
         SET
           title = EXCLUDED.title,
           selftext = EXCLUDED.selftext,
-          url = EXCLUDED.url,
+          content_url = EXCLUDED.content_url,
           score = EXCLUDED.score,
           num_comments = EXCLUDED.num_comments,
           post_type = EXCLUDED.post_type,

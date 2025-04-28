@@ -35,7 +35,8 @@
     "db:migrate:down": "node-pg-migrate down --migrations-dir database/migrations --config-file config/migrations.ts",
     "db:migrate:status": "node-pg-migrate status --migrations-dir database/migrations --config-file config/migrations.ts",
     "api:test": "cross-env USE_MOCK_DATA=true node --loader ts-node/esm backend/index.ts",
-    "calculate:scores": "node --loader ts-node/esm backend/scripts/calculate-scores.ts"
+    "calculate:scores": "node --loader ts-node/esm backend/scripts/calculate-scores.ts",
+    "db:backup": "node --loader ts-node/esm backend/scripts/backup-database.ts"
   },
   "keywords": [
     "reddit",
