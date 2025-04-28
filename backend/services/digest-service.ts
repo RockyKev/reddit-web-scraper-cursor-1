@@ -58,8 +58,8 @@ export class DigestService {
   }
 
   private getPostContent(post: DbPost): string {
-    // For text posts, check both selftext and content_url
-    if (post.post_type === 'text') {
+    // For text posts and self posts, check both selftext and content_url
+    if (post.post_type === 'text' || post.post_type === 'self') {
       if (post.selftext) {
         return post.selftext;
       }
@@ -68,8 +68,13 @@ export class DigestService {
       }
     }
 
-    // For other post types, use content_url or permalink
-    return post.content_url || post.permalink;
+    // For link posts and image posts, always use content_url if available
+    if ((post.post_type === 'link' || post.post_type === 'image') && post.content_url) {
+      return post.content_url;
+    }
+
+    // For other post types or if no content_url, use permalink
+    return post.permalink;
   }
 
   async getDigest(date?: string): Promise<DigestResponse> {
@@ -84,7 +89,7 @@ export class DigestService {
         p.id, p.title, p.selftext, p.permalink, p.score, p.num_comments,
         p.created_at, p.is_archived, p.is_locked, p.post_type,
         p.daily_rank, p.daily_score, p.author_id, p.keywords,
-        p.author_score, p.summary, p.sentiment,
+        p.author_score, p.summary, p.sentiment, p.content_url,
         s.name as subreddit_name 
        FROM posts p 
        JOIN subreddits s ON p.subreddit_id = s.id 
@@ -232,7 +237,7 @@ export class DigestService {
         p.id, p.title, p.selftext, p.permalink, p.score, p.num_comments,
         p.created_at, p.is_archived, p.is_locked, p.post_type,
         p.daily_rank, p.daily_score, p.author_id, p.keywords,
-        p.author_score, p.summary, p.sentiment,
+        p.author_score, p.summary, p.sentiment, p.content_url,
         s.name as subreddit_name 
        FROM posts p 
        JOIN subreddits s ON p.subreddit_id = s.id 

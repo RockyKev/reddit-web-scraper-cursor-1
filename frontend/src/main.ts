@@ -181,7 +181,7 @@ function createPostedBySection(post: Post): HTMLElement {
 
 function createPostCard(post: Post): HTMLElement {
   const card = document.createElement('div');
-  card.className = 'bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200';
+  card.className = 'bg-white rounded-lg shadow-md py-2 px-8 hover:shadow-lg transition-shadow duration-200';
   
   const header = document.createElement('div');
   header.className = 'flex justify-between items-start mb-4 gap-12';
@@ -223,7 +223,7 @@ async function initializeApp() {
     const summary = document.getElementById('summary');
     if (summary) {
       summary.innerHTML = `
-        <div class="bg-blue-50 rounded-lg p-6 mb-8">
+        <div class="bg-blue-50 rounded-lg p-2 mb-8">
           <h2 class="text-xl font-semibold text-gray-800 mb-4">Daily Summary</h2>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div class="bg-white p-4 rounded-lg shadow">
@@ -249,7 +249,7 @@ async function initializeApp() {
     // Update posts
     const postsContainer = document.getElementById('posts');
     if (postsContainer) {
-      postsContainer.className = 'grid gap-6 md:grid-cols-1';
+      postsContainer.className = 'grid gap-2 md:grid-cols-1';
       digest.top_posts.forEach(post => {
         postsContainer.appendChild(createPostCard(post));
       });
@@ -259,7 +259,7 @@ async function initializeApp() {
     const app = document.getElementById('app');
     if (app) {
       app.innerHTML = `
-        <div class="bg-red-50 border border-red-200 rounded-lg p-6 text-red-700">
+        <div class="bg-red-50 border border-red-200 rounded-lg p-2 text-red-700">
           <h2 class="text-xl font-semibold mb-2">Error Loading Data</h2>
           <p>Failed to load the digest data. Please try again later.</p>
         </div>
