@@ -2,46 +2,138 @@ import { logger } from '../utils/logger.js';
 import { RedditScraper } from './reddit-scraper.js';
 import { RedditStorage } from './reddit-storage.js';
 import { IRedditScraper, RedditSortType, RedditTimeFilter } from '../types/reddit.js';
+import { ScoringService } from './scoring-service.js';
+import { getPool } from '../config/database.js';
+
+interface CollectionResult {
+  success: boolean;
+  subreddit: string;
+  postsProcessed: number;
+  error?: Error;
+}
 
 export class RedditCollector {
-  private scraper: IRedditScraper;
   private storage: RedditStorage;
+  private scoringService: ScoringService;
 
-  constructor(scraper: IRedditScraper) {
-    this.scraper = scraper;
+  constructor() {
     this.storage = new RedditStorage();
+    this.scoringService = new ScoringService(getPool());
+  }
+
+  private async processPost(
+    scraper: IRedditScraper,
+    subredditId: string,
+    post: any,
+    isLastPost: boolean
+  ): Promise<void> {
+    // Fetch comments for the post
+    const comments = await scraper.getComments(post.id);
+    logger.info(`Found ${comments.length} comments for post: ${post.title}`);
+
+    // Store post with comments
+    await this.storage.storePostWithComments(subredditId, post, comments);
+
+    // Add delay between posts to be nice to Reddit's servers
+    if (!isLastPost) {
+      logger.info('Waiting 8 seconds before next post...');
+      await new Promise(resolve => setTimeout(resolve, 8000));
+    }
+  }
+
+  private async processSubreddit(
+    scraper: IRedditScraper,
+    subreddit: string,
+    postLimit: number,
+    sort: RedditSortType,
+    time: RedditTimeFilter
+  ): Promise<CollectionResult> {
+    logger.info(`Processing subreddit: r/${subreddit}`);
+    
+    // Fetch posts
+    const posts = await scraper.getPosts(postLimit, sort, time);
+    if (!posts || posts.length === 0) {
+      logger.warn(`No posts found for r/${subreddit}`);
+      return { success: true, subreddit, postsProcessed: 0 };
+    }
+
+    // Store subreddit and get its ID
+    const subredditId = await this.storage.storeSubreddit(subreddit.trim());
+
+    // Process each post
+    for (let i = 0; i < posts.length; i++) {
+      const post = posts[i];
+      const isLastPost = i === posts.length - 1;
+      await this.processPost(scraper, subredditId, post, isLastPost);
+    }
+
+    return { success: true, subreddit, postsProcessed: posts.length };
+  }
+
+  private logResults(results: CollectionResult[]): void {
+    const successful = results.filter(r => r.success).length;
+    const total = results.length;
+    logger.info(`Collection completed. Successfully processed ${successful}/${total} subreddits`);
+    
+    results.forEach(result => {
+      if (result.success) {
+        logger.info(`r/${result.subreddit}: Successfully processed ${result.postsProcessed} posts`);
+      } else {
+        logger.error(`r/${result.subreddit}: Failed to process posts`, result.error);
+      }
+    });
+  }
+
+  private checkForFailures(results: CollectionResult[]): void {
+    if (results.some(r => !r.success)) {
+      throw new Error('Some subreddits failed to process');
+    }
   }
 
   public async collectAndStore(
+    subreddits: string[],
     limit: number = 25,
     sort: RedditSortType = 'hot',
-    time: RedditTimeFilter = 'day',
-    fetchComments: boolean = false
+    time: RedditTimeFilter = 'day'
   ): Promise<void> {
-    try {
-      // Get or create subreddit
-      const subredditId = await this.storage.storeSubreddit(this.scraper.subreddit);
-      logger.info(`Processing subreddit: ${this.scraper.subreddit} (${sort}/${time})`);
+    const results: CollectionResult[] = [];
 
-      // Get posts
-      const posts = await this.scraper.getPosts(limit, sort, time);
-      logger.info(`Found ${posts.length} posts`);
+    for (const subreddit of subreddits) {
+      try {
+        const scraper = new RedditScraper(subreddit.trim());
+        const result = await this.processSubreddit(
+          scraper,
+          subreddit,
+          limit,
+          sort,
+          time
+        );
+        results.push(result);
 
-      // Store each post and its comments
-      for (const post of posts) {
-        // Always fetch comments since we need them for keyword extraction
-        const comments = await this.scraper.getComments(post.id);
-        logger.info(`Found ${comments.length} comments for post ${post.id}`);
-
-        // Store post with comments and extract keywords
-        await this.storage.storePostWithComments(subredditId, post, comments);
-        logger.info(`Stored post ${post.id} with ${comments.length} comments and keywords`);
+        // Add delay between subreddits
+        if (subreddit !== subreddits[subreddits.length - 1]) {
+          logger.info('Waiting 5 seconds before next subreddit...');
+          await new Promise(resolve => setTimeout(resolve, 5000));
+        }
+      } catch (error) {
+        // We catch errors here because we want to continue processing other subreddits
+        // even if one fails. This is a meaningful recovery strategy.
+        logger.error(`Failed to process subreddit r/${subreddit}:`, error);
+        results.push({
+          success: false,
+          subreddit,
+          postsProcessed: 0,
+          error: error instanceof Error ? error : new Error('Unknown error')
+        });
       }
-
-      logger.info('Collection and storage completed successfully');
-    } catch (error) {
-      logger.error('Error in collection and storage operation:', error);
-      throw error;
     }
+
+    // Run scoring calculations after collecting all data
+    logger.info('Running scoring calculations...');
+    await this.scoringService.updateDailyScores(new Date());
+
+    // Log results and check for failures
+    this.logResults(results);
+    this.checkForFailures(results);
   }
 } 

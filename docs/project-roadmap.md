@@ -154,9 +154,9 @@
     - [x] Migrate existing migrations to chosen system
     - [x] Update documentation and scripts
 
-- [ ] Start fetching data from the internet
-  - [ ] Have "npm run collect:live" fetch data
-  - [ ] That data then gets saved to postgres
+- [x] Start fetching data from the internet
+  - [x] Have "npm run collect:live" fetch data
+  - [x] That data then gets saved to postgres
   - [ ] The other services get ran on that data for scoring/ranking
   - [ ] Testing that the endpoint is pulling data from postgres
   - [ ] Clean up the "backend/services" code and figure out what to do with all the debugging code

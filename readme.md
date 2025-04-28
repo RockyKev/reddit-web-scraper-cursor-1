@@ -98,6 +98,14 @@ The project consists of two main components:
    http://localhost:5173
    ```
 
+## Verifying that the project is up
+
+1. Get the Postgres server up
+2. Collect live data `npm run collect:live`
+3. Get the api server up `npm run api:start`
+4. Get the frontend server `npm run frontend:build`
+
+
 ## Project Structure
 
 ```

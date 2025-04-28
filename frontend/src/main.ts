@@ -17,15 +17,19 @@ interface Post {
   post_type: string;
   daily_rank: number;
   daily_score: number;
-  author_id: string;
+  author: {
+    username: string;
+    reddit_id: string;
+    contribution_score: number;
+  };
   keywords: string[];
-  author_score: number;
   top_commenters: Array<{
     username: string;
     contribution_score: number;
   }>;
   summary: string | null;
   sentiment: any | null;
+  subreddit: string;
 }
 
 interface DigestData {
@@ -73,7 +77,7 @@ function createPostCard(post: Post): HTMLElement {
   
   const subreddit = document.createElement('span');
   subreddit.className = 'text-sm text-blue-600 font-medium';
-  subreddit.textContent = `r/${post.subreddit_id}`;
+  subreddit.textContent = `r/${post.subreddit}`;
   
   titleContainer.appendChild(title);
   titleContainer.appendChild(subreddit);
@@ -93,7 +97,7 @@ function createPostCard(post: Post): HTMLElement {
   footer.className = 'flex justify-between items-center text-sm text-gray-500';
   
   const author = document.createElement('span');
-  author.textContent = `Posted by u/${post.author_id}`;
+  author.textContent = `Posted by u/${post.author.username}`;
   
   const link = document.createElement('a');
   link.href = post.url;
