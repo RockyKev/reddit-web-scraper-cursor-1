@@ -37,7 +37,10 @@ interface DigestData {
   summary: {
     total_posts: number;
     total_comments: number;
-    top_subreddits: string[];
+    top_subreddits: Array<{
+      name: string;
+      post_count: number;
+    }>;
   };
   top_posts: Post[];
 }
@@ -61,18 +64,38 @@ function formatDate(dateString: string): string {
   });
 }
 
+function getPostTypeIcon(postType: string): string {
+  switch (postType) {
+    case 'text':
+      return '📝';
+    case 'link':
+      return '🔗';
+    case 'hosted:video':
+      return '🎥';
+    default:
+      return '📄';
+  }
+}
+
 function createTitleSection(post: Post): HTMLElement {
   const titleContainer = document.createElement('div');
   titleContainer.className = 'flex-1';
   
   const title = document.createElement('h2');
   title.className = 'text-xl font-semibold text-gray-800 mb-2';
+  
+  // Add post type icon
+  const postTypeIcon = document.createElement('span');
+  postTypeIcon.className = 'mr-2';
+  postTypeIcon.textContent = getPostTypeIcon(post.post_type);
+  
   title.textContent = post.title;
   
   const titleLink = document.createElement('a');
   titleLink.href = `https://www.reddit.com${post.permalink}`;
   titleLink.target = '_blank';
   titleLink.className = 'hover:text-blue-600 transition-colors duration-200';
+  titleLink.appendChild(postTypeIcon);
   titleLink.appendChild(title);
   
   const subreddit = document.createElement('span');
@@ -96,11 +119,11 @@ function createKeywordsSection(post: Post): HTMLElement | null {
   if (!post.keywords?.length) return null;
   
   const container = document.createElement('div');
-  container.className = 'mb-4';
+  container.className = 'mb-4 flex items-center-safe';
   
   const label = document.createElement('div');
-  label.className = 'text-sm font-medium text-gray-600 mb-2';
-  label.textContent = 'Key Topics:';
+  label.className = 'text-sm font-medium text-gray-600 pr-1';
+  label.textContent = 'Key Topics: ';
   
   const list = document.createElement('div');
   list.className = 'flex flex-wrap gap-2';
@@ -117,6 +140,31 @@ function createKeywordsSection(post: Post): HTMLElement | null {
   return container;
 }
 
+function createTopCommentersSection(post: Post): HTMLElement {
+  const container = document.createElement('div');
+  container.className = 'mt-2 text-sm text-gray-600 flex';
+  
+  const label = document.createElement('div');
+  label.className = 'font-medium mb-1 pr-1';
+  label.textContent = 'Top Commenters: ';
+  
+  const commentersList = document.createElement('div');
+  commentersList.className = 'flex flex-wrap gap-2';
+  
+  post.top_commenters.forEach(commenter => {
+    const commenterLink = document.createElement('a');
+    commenterLink.href = `https://www.reddit.com/user/${commenter.username}/`;
+    commenterLink.target = '_blank';
+    commenterLink.className = 'hover:text-blue-600 transition-colors duration-200';
+    commenterLink.textContent = `u/${commenter.username} (${commenter.contribution_score})`;
+    commentersList.appendChild(commenterLink);
+  });
+  
+  container.appendChild(label);
+  container.appendChild(commentersList);
+  return container;
+}
+
 function createFooterSection(post: Post): HTMLElement {
   const footer = document.createElement('div');
   footer.className = 'flex justify-between items-center text-sm text-gray-500';
@@ -125,7 +173,7 @@ function createFooterSection(post: Post): HTMLElement {
   author.href = `https://www.reddit.com/user/${post.author.username}/`;
   author.target = '_blank';
   author.className = 'hover:text-blue-600 transition-colors duration-200';
-  author.textContent = `Posted by u/${post.author.username}`;
+  author.textContent = `Posted by u/${post.author.username} (${post.author.contribution_score})`;
   
   footer.appendChild(author);
   return footer;
@@ -152,6 +200,7 @@ function createPostCard(post: Post): HTMLElement {
     card.appendChild(keywordsSection);
   }
   
+  card.appendChild(createTopCommentersSection(post));
   card.appendChild(createFooterSection(post));
   
   return card;
@@ -185,7 +234,10 @@ async function initializeApp() {
             </div>
             <div class="bg-white p-4 rounded-lg shadow">
               <div class="text-2xl font-bold text-blue-600">${digest.summary.top_subreddits.length}</div>
-              <div class="text-gray-600">Top Subreddits</div>
+              <div class="text-gray-600">Subreddits</div>
+              <div class="mt-2 text-sm text-gray-600">
+                ${digest.summary.top_subreddits.map(sub => `r/${sub.name} (${sub.post_count})`).join(', ')}
+              </div>
             </div>
           </div>
         </div>
