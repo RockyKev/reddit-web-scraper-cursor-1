@@ -4,6 +4,7 @@ import { RedditStorage } from './reddit-storage.js';
 import { IRedditScraper, RedditSortType, RedditTimeFilter } from '../types/reddit.js';
 import { ScoringService } from './scoring-service.js';
 import { getPool } from '../config/database.js';
+import { ScoreCalculator } from './score-calculator.js';
 
 interface CollectionResult {
   success: boolean;
@@ -14,12 +15,12 @@ interface CollectionResult {
 
 export class RedditCollector {
   private storage: RedditStorage;
-  private scoringService: ScoringService;
+  private scoreCalculator: ScoreCalculator;
   private pool: any;
 
   constructor() {
     this.storage = new RedditStorage();
-    this.scoringService = new ScoringService(getPool());
+    this.scoreCalculator = new ScoreCalculator();
     this.pool = getPool();
   }
 
@@ -145,7 +146,12 @@ export class RedditCollector {
     // Run scoring calculations after collecting all data
     if (earliestPostDate) {
       logger.info('Running scoring calculations for date:', earliestPostDate);
-      await this.scoringService.updateDailyScores(earliestPostDate);
+      try {
+        await this.scoreCalculator.calculateScoresForDate(earliestPostDate);
+      } catch (error) {
+        logger.error('Error calculating scores and ranks:', error);
+        throw error;
+      }
     } else {
       logger.warn('No posts found for today, skipping scoring calculations');
     }

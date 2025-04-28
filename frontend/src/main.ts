@@ -179,6 +179,36 @@ function createPostedBySection(post: Post): HTMLElement {
   return footer;
 }
 
+function createContentSection(post: Post): HTMLElement {
+  const content = document.createElement('div');
+  content.className = 'text-gray-700 mb-4';
+
+  // Check if content is a URL
+  if (post.content.startsWith('http')) {
+    // For image posts, show thumbnail
+    if (post.post_type === 'image') {
+      const img = document.createElement('img');
+      img.src = post.content;
+      img.alt = post.title;
+      img.className = 'w-24 h-24 object-cover rounded-lg';
+      content.appendChild(img);
+    } else {
+      // For other URLs, create a clickable link
+      const link = document.createElement('a');
+      link.href = post.content;
+      link.target = '_blank';
+      link.className = 'text-blue-600 hover:text-blue-800 hover:underline';
+      link.textContent = post.content;
+      content.appendChild(link);
+    }
+  } else {
+    // For text content, show as is
+    content.textContent = post.content;
+  }
+
+  return content;
+}
+
 function createPostCard(post: Post): HTMLElement {
   const card = document.createElement('div');
   card.className = 'bg-white rounded-lg shadow-md py-2 px-8 hover:shadow-lg transition-shadow duration-200';
@@ -189,13 +219,8 @@ function createPostCard(post: Post): HTMLElement {
   header.appendChild(createScoreSection(post));
   header.appendChild(createPostedBySection(post));
 
-  const content = document.createElement('p');
-  content.className = 'text-gray-700 mb-4 line-clamp-3';
-  content.textContent = post.content;
-  
   card.appendChild(header);
-
-  card.appendChild(content);
+  card.appendChild(createContentSection(post));
   
   const keywordsSection = createKeywordsSection(post);
   if (keywordsSection) {
@@ -203,7 +228,6 @@ function createPostCard(post: Post): HTMLElement {
   }
   
   card.appendChild(createTopCommentersSection(post));
-
   
   return card;
 }
