@@ -4,82 +4,56 @@ This document outlines the architecture and responsibilities of each component i
 
 ## Component Overview
 
-### 1. reddit-fetch.ts
-**Responsibility**: Raw data fetching from Reddit API
-- Handles all HTTP concerns (axios, retries, rate limiting)
-- Returns raw JSON data from Reddit endpoints
-- Can be configured to use real API or mock data
-- No data transformation or storage logic
+### 1. reddit-scraper.ts
+**Responsibility**: Data fetching and transformation
+- Handles HTTP requests to Reddit API
+- Transforms raw data into domain models
+- Manages rate limiting and retries
+- No storage or business logic
 
 **Key Methods**:
-- `fetchPosts(subreddit, limit)`: Gets raw post data
-- `fetchComments(subreddit, postId)`: Gets raw comment data
-- `fetchSearch(subreddit, query, limit)`: Gets raw search results
-
-### 2. reddit-scraper.ts
-**Responsibility**: Data transformation
-- Takes raw data from reddit-fetch.ts
-- Transforms it into domain models (RedditPost, RedditComment)
-- Handles data cleaning and normalization
-- No HTTP or storage concerns
-
-**Key Methods**:
+- `getPosts(limit, sort, time)`: Gets posts from a subreddit
+- `getComments(postId)`: Gets comments for a post
 - `transformPost(rawData)`: Converts raw post data to RedditPost
 - `transformComment(rawData)`: Converts raw comment data to RedditComment
 
-### 3. reddit-storage.ts
+### 2. reddit-storage.ts
 **Responsibility**: Database operations
 - Handles all PostgreSQL interactions
 - Manages database connections and transactions
-- Provides CRUD operations for posts and comments
-- No knowledge of Reddit API or data transformation
+- Provides CRUD operations for posts, comments, and users
+- Tracks user statistics and contributions
 
 **Key Methods**:
 - `storePost(subredditId, post)`: Stores a post in the database
 - `storeComment(postId, comment)`: Stores a comment in the database
+- `storeUser(authorId, username)`: Stores or updates user information
 - `storePostWithComments(subredditId, post, comments)`: Stores a post with its comments and extracted keywords
-- `getPosts(subredditId)`: Retrieves posts from the database
-- `getTopPosts(date)`: Gets top posts for a specific date
-- `getUserStats(userId)`: Gets user contribution statistics
 
-### 4. reddit-collector.ts
+### 3. reddit-collector.ts
 **Responsibility**: Data collection process
-- Coordinates between fetch and storage components
+- Coordinates between scraper and storage components
 - Manages the flow of collecting and storing data
 - Handles collection-specific business logic
-- No direct HTTP or database operations
+- Triggers scoring calculations after collection
 
 **Key Methods**:
-- `collectPosts(subreddit, limit)`: Collects and stores posts
-- `collectComments(postId)`: Collects and stores comments for a post
-- `collectAndStore(limit, sort, time, fetchComments)`: Main method that coordinates the entire collection process
+- `collectAndStore(subreddits, limit, sort, time)`: Main method that coordinates the entire collection process
+- `processSubreddit(scraper, subreddit, limit, sort, time)`: Processes a single subreddit
+- `processPost(scraper, subredditId, post, isLastPost)`: Processes a single post
 
-### 5. post-ranker.ts
-**Responsibility**: Post ranking and scoring
+### 4. score-calculator.ts
+**Responsibility**: Post scoring and ranking
 - Calculates daily scores for posts
-- Implements configurable scoring algorithm
-- Determines top posts per subreddit
-- Updates post rankings in database
+- Updates user statistics
+- Assigns daily ranks based on scores
+- Provides verification of calculations
 
 **Key Methods**:
-- `calculatePostScore(post)`: Calculates score based on upvotes and comments
-- `rankDailyPosts(date)`: Ranks posts for a specific date
-- `getTopPostsPerSubreddit(date, limit)`: Gets top N posts per subreddit
+- `calculateScoresForDate(date)`: Calculates scores and ranks for a specific date
+- Updates user statistics based on post and comment activity
 
-### 6. keyword-extractor.ts
-**Responsibility**: Keyword analysis
-- Extracts keywords from posts and comments using TF-IDF
-- Implements frequency-based weighting
-- Filters common words and stop words
-- Returns top keywords for content
-
-**Key Methods**:
-- `extractKeywords(post, comments)`: Extracts keywords from post and comments
-- `combineText(post, comments)`: Combines text for analysis
-- `countWordFrequencies(text)`: Counts word frequencies
-- `getTopWords(wordFreq, n)`: Gets top N most frequent words
-
-### 7. keyword-analysis-service.ts
+### 5. keyword-analysis-service.ts
 **Responsibility**: Keyword analysis coordination
 - Coordinates keyword extraction process
 - Manages top comments selection
@@ -90,19 +64,7 @@ This document outlines the architecture and responsibilities of each component i
 - `extractKeywordsFromPost(post, comments)`: Main method for keyword extraction
 - `getTopComments(comments)`: Gets top comments based on score
 
-### 8. user-tracker.ts
-**Responsibility**: User tracking and statistics
-- Tracks user contributions
-- Calculates user scores
-- Maintains user statistics
-- Identifies key community members
-
-**Key Methods**:
-- `trackUserContribution(userId, contribution)`: Records a user contribution
-- `updateUserStats(userId)`: Updates user statistics
-- `getTopContributors(limit)`: Gets top N contributors
-
-### 9. digest-generator.ts
+### 6. digest-service.ts
 **Responsibility**: Daily digest generation
 - Generates daily digest of top content
 - Combines posts, keywords, and user stats
@@ -110,45 +72,36 @@ This document outlines the architecture and responsibilities of each component i
 - Handles digest-specific business logic
 
 **Key Methods**:
-- `generateDailyDigest(date)`: Creates daily digest
-- `formatDigestResponse(digest)`: Formats digest for API
-- `getDigestStats(date)`: Gets digest statistics
+- `getDigest(date)`: Creates daily digest for a specific date
+- `getPostContent(post)`: Determines the appropriate content to display
 
 ## Data Flow
 
 1. **Collection Flow**:
 ```
-reddit-fetch.ts → reddit-scraper.ts → reddit-collector.ts → reddit-storage.ts
+reddit-scraper.ts → reddit-collector.ts → reddit-storage.ts → score-calculator.ts
 (coordinated by reddit-collector.ts)
 ```
 
 2. **Keyword Analysis Flow**:
 ```
-reddit-collector.ts → keyword-analysis-service.ts → keyword-extractor.ts → reddit-storage.ts
+reddit-collector.ts → keyword-analysis-service.ts → reddit-storage.ts
 ```
 
-3. **Daily Processing Flow**:
+3. **Digest Generation Flow**:
 ```
-reddit-storage.ts → post-ranker.ts → keyword-analysis-service.ts → user-tracker.ts → digest-generator.ts
-```
-
-4. **API Request Flow**:
-```
-API Request → digest-generator.ts → reddit-storage.ts → API Response
+API Request → digest-service.ts → score-calculator.ts → reddit-storage.ts → API Response
 ```
 
 ## Testing
 
 Each component can be tested in isolation:
-- `reddit-fetch.ts`: Mock HTTP responses
-- `reddit-scraper.ts`: Test with raw data samples
+- `reddit-scraper.ts`: Mock HTTP responses
 - `reddit-storage.ts`: Use test database
-- `reddit-collector.ts`: Mock fetch and storage
-- `post-ranker.ts`: Test with sample posts
-- `keyword-extractor.ts`: Test with sample text
+- `reddit-collector.ts`: Mock scraper and storage
+- `score-calculator.ts`: Test with sample posts
 - `keyword-analysis-service.ts`: Test with sample posts and comments
-- `user-tracker.ts`: Test with sample contributions
-- `digest-generator.ts`: Test with sample data
+- `digest-service.ts`: Test with sample data
 
 ## Adding New Features
 

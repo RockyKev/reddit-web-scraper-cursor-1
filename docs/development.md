@@ -84,138 +84,134 @@ This document provides comprehensive information for developers working on the R
 - `npm run migrate:status` - Check migration status
 - `npm run db:reset` - Reset database (drops and recreates)
 
-## Key Components
+### Data Collection
+- `npm run collect:live` - Collect data from Reddit
+- `npm run calculate:scores` - Recalculate scores and ranks for a date
 
-### Core Services
+## Core Services
 
-1. **Reddit Scraper** (`backend/services/reddit-scraper.ts`)
-   - Fetches posts and comments from Reddit's JSON API
-   - Implements rate limiting and retry logic
-   - Handles error cases and network issues
-   - Returns structured data for posts and comments
+### 1. Reddit Scraper (`backend/services/reddit-scraper.ts`)
+**Purpose**: Handle all Reddit API interactions and data transformation
+- Fetch posts and comments from specified subreddits
+- Implement rate limiting and retry logic
+- Transform raw API responses into domain models
+- Handle API authentication and error cases
 
-2. **Reddit Collector** (`backend/services/reddit-collector.ts`)
-   - Orchestrates the data collection process
-   - Coordinates between scraper and storage
-   - Manages subreddit processing
-   - Handles error recovery and retries
+**Key Methods**:
+```typescript
+async getPosts(limit: number, sort: RedditSortType, time: RedditTimeFilter): Promise<RedditPost[]>
+async getComments(postId: string): Promise<RedditComment[]>
+```
 
-3. **Reddit Storage** (`backend/services/reddit-storage.ts`)
-   - Manages all database operations
-   - Handles upserts for posts and comments
-   - Maintains relationships between entities
-   - Implements efficient query patterns
+**Data Models**:
+```typescript
+interface RedditPost {
+  id: string;
+  title: string;
+  content: string;
+  author: string;
+  subreddit: string;
+  created: Date;
+  score: number;
+  numComments: number;
+  url: string;
+  permalink: string;
+  postType: string;
+  isArchived: boolean;
+  isLocked: boolean;
+}
 
-4. **Keyword Analysis** (`backend/services/keyword-analysis-service.ts`)
-   - Coordinates keyword extraction process
-   - Processes post content and comments
-   - Integrates with keyword extractor
-   - Manages analysis results
+interface RedditComment {
+  id: string;
+  postId: string;
+  content: string;
+  author: string;
+  created: Date;
+  score: number;
+  parentId: string;
+  isArchived: boolean;
+}
+```
 
-5. **Keyword Extractor** (`backend/services/keyword-extractor.ts`)
-   - Implements TF-IDF algorithm
-   - Filters stop words and common terms
-   - Identifies significant keywords
-   - Processes text normalization
+### 2. Reddit Storage (`backend/services/reddit-storage.ts`)
+**Purpose**: Manage database operations for Reddit data
+- Store posts, comments, and related data in PostgreSQL
+- Handle data deduplication
+- Manage database connections and transactions
+- Track user statistics and contributions
 
-6. **Scoring Service** (`backend/services/scoring-service.ts`)
-   - Calculates user contribution scores
-   - Processes post and comment metrics
-   - Handles ranking algorithms
-   - Manages score updates
+**Key Methods**:
+```typescript
+async storePost(subredditId: string, post: RedditPost): Promise<string>
+async storeComment(postId: string, comment: RedditComment): Promise<string>
+async storeUser(authorId: string, username: string): Promise<string>
+async storePostWithComments(subredditId: string, post: RedditPost, comments: RedditComment[]): Promise<string>
+```
 
-7. **Digest Service** (`backend/services/digest-service.ts`)
-   - Generates daily summaries
-   - Aggregates statistics
-   - Creates trend analysis
-   - Manages digest scheduling
+### 3. Score Calculator (`backend/services/score-calculator.ts`)
+**Purpose**: Calculate post rankings and scores
+- Calculate daily scores for posts
+- Update user statistics
+- Assign daily ranks based on scores
+- Provide verification of calculations
 
-8. **Mock Data Service** (`backend/services/mock-data.service.ts`)
-   - Provides test data for development
-   - Simulates Reddit API responses
-   - Generates realistic sample data
-   - Supports testing scenarios
+**Key Methods**:
+```typescript
+async calculateScoresForDate(date: string | Date): Promise<void>
+```
 
-Each service follows these principles:
-- Single Responsibility Principle
-- Clear interface definitions
-- Comprehensive error handling
-- Detailed logging
-- Type safety with TypeScript
-- ESM module system
-- Unit test coverage
+### 4. Keyword Analysis (`backend/services/keyword-analysis-service.ts`)
+**Purpose**: Extract and analyze keywords from content
+- Extract keywords from posts and comments
+- Apply frequency-based weighting
+- Filter common words
+- Store keywords in database
 
-### Data Flow
+**Key Methods**:
+```typescript
+async extractKeywordsFromPost(post: RedditPost, comments: RedditComment[]): Promise<string[]>
+```
 
-The data collection process starts with the `collect:live` script (`backend/scripts/collect-live-posts.ts`), which orchestrates the entire flow:
+### 5. Reddit Collector (`backend/services/reddit-collector.ts`)
+**Purpose**: Coordinate the data collection process
+- Orchestrate the fetching, processing, and storage of data
+- Manage subreddit processing
+- Handle error recovery and retries
+- Trigger scoring calculations after collection
 
-1. **Initialization**
-   - Script reads configuration from `.env` (subreddits, limits, etc.)
-   - Tests database connection
-   - Sets up logging
+**Key Methods**:
+```typescript
+async collectAndStore(subreddits: string[], limit: number, sort: RedditSortType, time: RedditTimeFilter): Promise<void>
+async processSubreddit(scraper: IRedditScraper, subreddit: string, limit: number, sort: RedditSortType, time: RedditTimeFilter): Promise<CollectionResult>
+```
 
-2. **Data Collection Process**
-   ```
-   collect:live
-   └── RedditCollector
-       ├── RedditScraper (for each subreddit)
-       │   └── Fetches posts and comments from Reddit API
-       └── RedditStorage
-           ├── Stores subreddits
-           ├── Stores posts
-           └── Stores comments
-   ```
+### 6. Digest Service (`backend/services/digest-service.ts`)
+**Purpose**: Generate daily digests
+- Generate daily summaries
+- Aggregate statistics
+- Create trend analysis
+- Manage digest scheduling
 
-3. **Data Processing Pipeline**
-   ```
-   Raw Data → Storage → Analysis → API
-   ```
-   - **Raw Data**: Posts and comments from Reddit
-   - **Storage**: PostgreSQL database tables
-   - **Analysis**: 
-     - Keyword extraction from posts/comments
-     - User scoring and rankings
-     - Daily digest generation
-   - **API**: REST endpoints serving processed data
+**Key Methods**:
+```typescript
+async getDigest(date?: string): Promise<DigestResponse>
+```
 
-4. **Database Schema**
-   ```
-   subreddits
-   └── posts
-       └── comments
-   ```
-   - Each subreddit has many posts
-   - Each post has many comments
-   - All entities have timestamps and metadata
+## Data Flow
 
-5. **API Access**
-   - Data becomes available through REST endpoints
-   - Endpoints serve processed and analyzed data
-   - Frontend consumes API for display
+### Collection Process
+1. `reddit-collector.ts` initiates the collection process
+2. `reddit-scraper.ts` retrieves and transforms data from Reddit API
+3. `reddit-storage.ts` persists the data to PostgreSQL
+4. `score-calculator.ts` calculates scores and ranks
+5. `keyword-analysis-service.ts` extracts and analyzes keywords
+6. `digest-service.ts` generates the daily digest
 
-The process runs on a schedule (default: daily at 4:30 AM EST) and can be triggered manually using:
+### Daily Schedule
+The system runs on a schedule (default: daily at 4:30 AM EST) and can be triggered manually using:
 ```bash
 npm run collect:live
 ```
-
-### Database Management
-
-The project uses a custom migration system for database changes:
-
-1. **Creating Migrations**
-   - Create a new migration file in `src/db/migrations`
-   - Follow the naming convention: `YYYYMMDDHHMMSS_migration_name.sql`
-   - Include both up and down migrations
-
-2. **Applying Migrations**
-   ```bash
-   npm run migrate:up
-   ```
-
-3. **Rolling Back**
-   ```bash
-   npm run migrate:down 1  # Roll back one migration
-   ```
 
 ## Code Style Guide
 

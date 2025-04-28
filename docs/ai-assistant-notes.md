@@ -13,7 +13,6 @@ This is a Reddit PDX Digest application that aggregates and displays daily Reddi
   - database.md: Database setup and management
   - testing.md: Testing strategy and procedures
   - api.md: API endpoints and usage
-  - data-collection.md: Reddit data collection process
 
 ## Key Decisions
 
@@ -25,14 +24,15 @@ This is a Reddit PDX Digest application that aggregates and displays daily Reddi
 
 ### Backend Architecture
 - Express with TypeScript
-- Mock data service for development
+- PostgreSQL for data storage
 - CORS enabled for frontend development
 - Environment-based configuration
 
 ### Data Management
-- Currently using mock data for development
-- PostgreSQL planned for future implementation
+- PostgreSQL for data storage
 - Structured data format for posts and digests
+- Daily scoring and ranking system
+- User contribution tracking
 
 ## Best Practices
 
@@ -52,7 +52,7 @@ This is a Reddit PDX Digest application that aggregates and displays daily Reddi
 - RESTful endpoints
 - Clear error handling
 - CORS configuration for development
-- Mock data support
+- Proper response formatting
 
 ### Frontend Development
 - Responsive design principles
@@ -61,36 +61,26 @@ This is a Reddit PDX Digest application that aggregates and displays daily Reddi
 - Performance optimization
 
 ## Current Status
-- Basic frontend and backend setup complete
-- Mock data service implemented
-- CORS configuration added
-- Environment variables configured
+- Frontend and backend setup complete
+- PostgreSQL database implemented
+- Reddit API integration working
+- Scoring and ranking system implemented
 - Documentation updated
-
-## Next Steps
-- Implement database integration
-- Add authentication
-- Enhance error handling
-- Add testing infrastructure
-- Implement real Reddit API integration
 
 ## Project Structure
 - Frontend: `frontend/` - Vite + vanilla JS + Tailwind CSS
 - Backend: `backend/` - Node.js + Express + TypeScript
 - Database: `database/` - PostgreSQL migrations and setup
 - Tests: `tests/` - Jest test files
-- Mock Data: `mock-data/` - Development data files
 - Docs: `docs/` - Project documentation
 - Scripts: `scripts/` - Utility scripts
-- Config: `config/` - Configuration files
 
 ## Database Management
-- Currently using both custom migration system and node-pg-migrate (to be standardized in Version 5)
+- Using node-pg-migrate for database migrations
 - Migration files follow timestamp-based naming: YYYYMMDDHHMMSS_migration_name.sql
-- Each migration can include up and down sections
+- Each migration includes up and down sections
 - Migrations are tracked in a dedicated migrations table
 - Supports transaction-based rollbacks
-- Note: Migration system choice will be finalized in Version 5
 
 ## TypeScript Guidelines
 1. File Extensions:
@@ -195,25 +185,6 @@ This is a Reddit PDX Digest application that aggregates and displays daily Reddi
    - Don't ignore test failures
    - Don't write brittle tests
 
-## Future Considerations
-1. Scalability:
-   - Consider caching strategies
-   - Plan for database sharding
-   - Think about CDN usage
-   - Consider rate limiting
-
-2. Monitoring:
-   - Add error tracking
-   - Implement logging
-   - Set up performance monitoring
-   - Add health checks
-
-3. Security:
-   - Regular dependency updates
-   - Security scanning
-   - Input validation
-   - Rate limiting
-
 ## Common Tasks
 
 ### Database Changes
@@ -248,97 +219,45 @@ This is a Reddit PDX Digest application that aggregates and displays daily Reddi
 ### Reddit API
 - Respect rate limits
 - Implement retry logic
-- Cache responses when possible
 - Handle API errors gracefully
+- Cache responses when appropriate
 
-### Testing
-- Clear test database between runs
-- Check mock implementations
-- Verify test environment
-- Handle async operations properly
+### Scoring System
+- Verify daily score calculations
+- Check rank assignments
+- Monitor user statistics updates
+- Validate keyword extraction
 
-## Notes for AI Assistants
+## Important Notes for AI Agents
 
-1. Always check existing documentation before making changes
-2. Keep documentation consistent across files
-3. Update related documentation when making changes
-4. Follow project conventions and best practices
-5. Provide clear explanations and examples
-6. Cross-reference related documentation
-7. Keep the README.md focused and high-level
-8. Use appropriate formatting and structure
-9. Include code examples where helpful
-10. Maintain backward compatibility
+1. **Service Dependencies**:
+   - `reddit-scraper.ts` depends on Reddit API
+   - `reddit-storage.ts` depends on PostgreSQL
+   - `score-calculator.ts` depends on `reddit-storage.ts`
+   - `digest-service.ts` depends on `score-calculator.ts`
 
-## PowerShell Console Issues
-- The PowerShell console has issues with long commit messages, causing `System.ArgumentOutOfRangeException`
-- Workaround: Use shorter commit messages or break them into multiple lines
-- Example: Instead of "docs: move development phases to separate file and update Phase 1 progress", use "docs: move dev phases"
+2. **Data Flow**:
+   - Collection: `reddit-collector.ts` → `reddit-scraper.ts` → `reddit-storage.ts`
+   - Scoring: `score-calculator.ts` → `reddit-storage.ts`
+   - Digest: `digest-service.ts` → `score-calculator.ts` → `reddit-storage.ts`
 
-## Git Commands
-- When committing changes, prefer shorter commit messages to avoid PowerShell console issues
-- Use `git add *` to stage all changes when working with multiple files
-- The repository is hosted at: https://github.com/robingamedev/reddit-web-scraper-cursor.git
+3. **Error Handling**:
+   - All services use try-catch blocks
+   - Errors are logged with appropriate context
+   - Database errors are handled with transactions
+   - API errors include retry logic
 
-## Useful npm Scripts
-- `npm run dev` - Start development server
-- `npm run collect:live` - Run live post collection
-- `npm run test:unit` - Run unit tests
-- `npm run test:db` - Test database operations
-- `npm run lint` - Run ESLint
-- `npm run format` - Format code with Prettier
+4. **Testing Strategy**:
+   - Unit tests for each service
+   - Integration tests for data flow
+   - Mock external dependencies
+   - Use test database for integration tests
 
-## Critical Mistakes and Learnings
-
-### Environment Files and Destructive Commands
-- NEVER use `git clean -fdx` or similar destructive commands without explicit warning and confirmation
-- Environment files (.env) are typically not tracked in git for security reasons
-- Always check what files will be affected before running any command
-- Be especially careful with:
-  - Environment files (.env)
-  - Configuration files
-  - Any files containing sensitive data
-  - Local development filesC
-
-### Test Organization
-- Don't assume test files are Jest tests or direct ts-node tests without checking
-- Don't reorganize test files without understanding the current structure
-- Don't make changes to test organization without clear requirements
-
-### General Guidelines
-1. Before running any command:
-   - Check what files will be affected
-   - Warn about potential destructive actions
-   - Ask for confirmation if there's any risk
-2. When dealing with environment files:
-   - Never delete or modify .env files without explicit permission
-   - Always keep .env.example as a template
-   - Document any changes to environment variables
-3. When reorganizing files:
-   - Understand the current structure first
-   - Don't make assumptions about file organization
-   - Get clear requirements before making changes
-
-### Session Context
-- User was working on a Reddit web scraper project
-- Attempted to clean up test organization but made incorrect assumptions
-- Accidentally deleted .env file using git clean
-- Had to recreate .env from template
-- User had to provide their own values for sensitive data
-
-### Future Improvements
-1. For destructive commands:
-   - Always show what will be deleted first
-   - Get explicit confirmation
-   - Provide alternatives if available
-2. For environment files:
-   - Treat them as sensitive data
-   - Never modify without explicit permission
-   - Keep backups if making changes
-3. For test organization:
-   - Understand the current structure
-   - Don't make assumptions about test frameworks
-   - Get clear requirements before reorganizing 
+5. **Documentation Updates**:
+   - Keep architecture.md high-level
+   - Add implementation details to development.md
+   - Update api.md for new endpoints
+   - Document database changes in database.md
 
 ## Response example with details
 
@@ -660,6 +579,77 @@ Consolidated and improved database-related npm scripts:
    - Implement query timeout handling
    - Add retry mechanisms for transient failures
 
+## Lessons Learned
+
+### Critical Mistakes and Learnings
+
+#### Environment Files and Destructive Commands
+- NEVER use `git clean -fdx` or similar destructive commands without explicit warning and confirmation
+- Environment files (.env) are typically not tracked in git for security reasons
+- Always check what files will be affected before running any command
+- Be especially careful with:
+  - Environment files (.env)
+  - Configuration files
+  - Any files containing sensitive data
+  - Local development files
+
+#### Test Organization
+- Don't assume test files are Jest tests or direct ts-node tests without checking
+- Don't reorganize test files without understanding the current structure
+- Don't make changes to test organization without clear requirements
+
+#### General Guidelines
+1. Before running any command:
+   - Check what files will be affected
+   - Warn about potential destructive actions
+   - Ask for confirmation if there's any risk
+2. When dealing with environment files:
+   - Never delete or modify .env files without explicit permission
+   - Always keep .env.example as a template
+   - Document any changes to environment variables
+3. When reorganizing files:
+   - Understand the current structure first
+   - Don't make assumptions about file organization
+   - Get clear requirements before making changes
+
+### Session Context
+- User was working on a Reddit web scraper project
+- Attempted to clean up test organization but made incorrect assumptions
+- Accidentally deleted .env file using git clean
+- Had to recreate .env from template
+- User had to provide their own values for sensitive data
+
+### Future Improvements
+1. For destructive commands:
+   - Always show what will be deleted first
+   - Get explicit confirmation
+   - Provide alternatives if available
+2. For environment files:
+   - Treat them as sensitive data
+   - Never modify without explicit permission
+   - Keep backups if making changes
+3. For test organization:
+   - Understand the current structure
+   - Don't make assumptions about test frameworks
+   - Get clear requirements before reorganizing
+
+### PowerShell Console Issues
+- The PowerShell console has issues with long commit messages, causing `System.ArgumentOutOfRangeException`
+- Workaround: Use shorter commit messages or break them into multiple lines
+- Example: Instead of "docs: move development phases to separate file and update Phase 1 progress", use "docs: move dev phases"
+
+### Git Commands
+- When committing changes, prefer shorter commit messages to avoid PowerShell console issues
+- Use `git add *` to stage all changes when working with multiple files
+- The repository is hosted at: https://github.com/robingamedev/reddit-web-scraper-cursor.git
+
+### Useful npm Scripts
+- `npm run dev` - Start development server
+- `npm run collect:live` - Run live post collection
+- `npm run test:unit` - Run unit tests
+- `npm run test:db` - Test database operations
+- `npm run lint` - Run ESLint
+- `npm run format` - Format code with Prettier
 
 ## Code Quality
 

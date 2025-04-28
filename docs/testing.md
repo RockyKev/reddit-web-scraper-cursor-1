@@ -1,9 +1,7 @@
 # Testing Documentation
 
 ## Overview
-This project uses Jest as its testing framework with TypeScript support via `ts-jest`. Tests are organized in two main directories:
-- `/tests` - For standalone test files and test utilities
-- `/src/**/__tests__` - For tests that are co-located with their source files
+This project uses Jest as its testing framework with TypeScript support via `ts-jest`. Tests are organized in the `/tests` directory, with test files mirroring the structure of the source files.
 
 ## Test Setup
 
@@ -22,15 +20,15 @@ npm run test:setup
 - `npm test` - Run all tests
 - `npm run test:watch` - Run tests in watch mode
 - `npm run test:coverage` - Run tests with coverage reporting
-- `npm run test:unit` - Run Reddit scraper unit tests
-- `npm run test:storage` - Run storage tests
-- `npm run test:collector` - Run collector tests
-- `npm run test:keywords` - Run keyword extractor tests
-- `npm run test:all` - Set up test database and run all tests
+- `npm run test:scraper` - Test Reddit scraper functionality
+- `npm run test:db` - Test database operations
+- `npm run test:collector` - Test collector functionality
+- `npm run test:scoring` - Test scoring and ranking functionality
+- `npm run test:keywords` - Test keyword extraction functionality
 
 ## Test Suites
 
-### RedditStorage Tests (`src/services/__tests__/reddit-storage.test.ts`)
+### RedditStorage Tests (`tests/services/reddit-storage.test.ts`)
 
 #### Subreddit Storage Tests
 1. `should store a new subreddit`
@@ -43,7 +41,7 @@ npm run test:setup
 
 #### Post Storage Tests
 1. `should store a new post`
-   - Purpose: Verifies that a new post with all fields (including arrays and JSON) can be stored
+   - Purpose: Verifies that a new post with all fields can be stored
    - Expected: Successfully stores post with complex data types (keywords array, top commenters JSON, sentiment analysis)
 
 2. `should update existing post`
@@ -59,22 +57,35 @@ npm run test:setup
    - Purpose: Verifies the upsert functionality for comments
    - Expected: Updates comment fields while maintaining parent relationships
 
-#### Retrieval Tests
-1. `should return subreddit by name`
-   - Purpose: Verifies subreddit lookup functionality
-   - Expected: Returns correct subreddit ID for existing subreddit
+### ScoreCalculator Tests (`tests/services/score-calculator.test.ts`)
 
-2. `should return null for non-existent subreddit`
-   - Purpose: Verifies proper handling of missing subreddits
-   - Expected: Returns null for non-existent subreddit name
+#### Score Calculation Tests
+1. `should calculate daily scores correctly`
+   - Purpose: Verifies the scoring formula implementation
+   - Expected: Calculates scores based on post score and comment count
 
-3. `should return post by Reddit ID`
-   - Purpose: Verifies post lookup functionality
-   - Expected: Returns correct post ID for existing Reddit post ID
+2. `should assign daily ranks correctly`
+   - Purpose: Verifies the ranking assignment
+   - Expected: Assigns ranks based on daily scores in descending order
 
-4. `should return null for non-existent post`
-   - Purpose: Verifies proper handling of missing posts
-   - Expected: Returns null for non-existent Reddit post ID
+3. `should update user statistics`
+   - Purpose: Verifies user statistics updates
+   - Expected: Updates user contribution scores and totals
+
+### RedditCollector Tests (`tests/services/reddit-collector.test.ts`)
+
+#### Collection Process Tests
+1. `should collect and store posts`
+   - Purpose: Verifies the complete collection process
+   - Expected: Successfully collects and stores posts with comments
+
+2. `should handle rate limiting`
+   - Purpose: Verifies rate limiting implementation
+   - Expected: Respects Reddit API rate limits
+
+3. `should trigger scoring after collection`
+   - Purpose: Verifies scoring integration
+   - Expected: Triggers score calculation after successful collection
 
 ## Test Coverage
 Current test coverage is monitored for:
@@ -93,4 +104,6 @@ Coverage reports are generated in:
 3. Tests should be independent and not rely on the state from other tests
 4. Use the test database for integration tests
 5. Mock external dependencies when appropriate
-6. Clean up test data in the `beforeEach` hooks 
+6. Clean up test data in the `beforeEach` hooks
+7. Test both success and error cases
+8. Verify database state after operations 

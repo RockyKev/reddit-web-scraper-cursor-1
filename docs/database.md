@@ -60,29 +60,27 @@ docker-compose restart postgres
 #### Subreddits
 - `id`: UUID (Primary Key)
 - `name`: VARCHAR(255)
-- `display_name`: VARCHAR(255)
 - `description`: TEXT
-- `created_at`: TIMESTAMP
-- `updated_at`: TIMESTAMP
+- `created_at`: TIMESTAMP WITH TIME ZONE
+- `updated_at`: TIMESTAMP WITH TIME ZONE
 
 #### Posts
 - `id`: UUID (Primary Key)
 - `subreddit_id`: UUID (Foreign Key)
-- `reddit_id`: VARCHAR(255)
-- `title`: VARCHAR(500)
-- `selftext`: TEXT (Post content for text posts)
-- `url`: VARCHAR(1000) (Post URL for link posts)
+- `author_id`: VARCHAR(255) (Foreign Key to Users)
+- `title`: TEXT
+- `content_url`: TEXT (Post content or URL)
 - `score`: INTEGER
 - `num_comments`: INTEGER
-- `created_at`: TIMESTAMP
-- `updated_at`: TIMESTAMP
-- `reddit_created_at`: TIMESTAMP
+- `permalink`: TEXT
+- `created_at`: TIMESTAMP WITH TIME ZONE
+- `updated_at`: TIMESTAMP WITH TIME ZONE
+- `reddit_created_at`: TIMESTAMP WITH TIME ZONE
 - `is_archived`: BOOLEAN
 - `is_locked`: BOOLEAN
-- `post_type`: VARCHAR(50) (Determines which field contains the main content: 'text' uses selftext, 'link' uses url)
-- `daily_rank`: FLOAT
+- `post_type`: VARCHAR(50) ('text', 'link', 'image', 'hosted:video')
+- `daily_rank`: INTEGER
 - `daily_score`: FLOAT
-- `author_id`: UUID (Foreign Key to Users)
 - `keywords`: TEXT[]
 - `author_score`: FLOAT
 - `top_commenters`: JSONB
@@ -92,73 +90,59 @@ docker-compose restart postgres
 #### Comments
 - `id`: UUID (Primary Key)
 - `post_id`: UUID (Foreign Key)
-- `reddit_id`: VARCHAR(255)
-- `body`: TEXT
+- `author_id`: VARCHAR(255) (Foreign Key to Users)
+- `content`: TEXT
 - `score`: INTEGER
-- `created_at`: TIMESTAMP
-- `updated_at`: TIMESTAMP
-- `reddit_created_at`: TIMESTAMP
-- `is_archived`: BOOLEAN
-- `is_top_comment`: BOOLEAN
-- `author_id`: UUID (Foreign Key to Users)
 - `contribution_score`: FLOAT
+- `created_at`: TIMESTAMP WITH TIME ZONE
+- `updated_at`: TIMESTAMP WITH TIME ZONE
+- `reddit_created_at`: TIMESTAMP WITH TIME ZONE
+- `is_archived`: BOOLEAN
+- `reddit_id`: VARCHAR(255)
 
 #### Users
-- `id`: UUID (Primary Key)
+- `id`: VARCHAR(255) (Primary Key)
 - `username`: VARCHAR(255)
 - `total_posts`: INTEGER
 - `total_comments`: INTEGER
 - `total_posts_score`: INTEGER
 - `total_comments_score`: INTEGER
-- `contributor_score`: INTEGER
-- `first_seen`: TIMESTAMP
-- `last_seen`: TIMESTAMP
-- `created_at`: TIMESTAMP
-- `updated_at`: TIMESTAMP
-
-### Supporting Tables
-
-#### User Contributions
-- `id`: UUID (Primary Key)
-- `user_id`: UUID (Foreign Key to Users)
-- `post_id`: UUID (Foreign Key to Posts)
-- `comment_id`: UUID (Foreign Key to Comments)
-- `contribution_type`: VARCHAR(50)
-- `score`: INTEGER
-- `created_at`: TIMESTAMP
+- `contributor_score`: FLOAT
+- `first_seen`: TIMESTAMP WITH TIME ZONE
+- `last_seen`: TIMESTAMP WITH TIME ZONE
+- `created_at`: TIMESTAMP WITH TIME ZONE
+- `updated_at`: TIMESTAMP WITH TIME ZONE
 
 ### Indexes
 
 The database includes several indexes to optimize query performance:
-- `subreddits_name_idx`: Index on subreddit name
-- `posts_subreddit_id_idx`: Index on post's subreddit ID
-- `posts_reddit_id_idx`: Index on post's Reddit ID
-- `posts_author_id_idx`: Index on post's author ID
-- `posts_daily_rank_idx`: Index on post's daily rank
-- `posts_keywords_idx`: GIN index on post keywords
-- `posts_sentiment_idx`: GIN index on post sentiment
-- `posts_top_commenters_idx`: GIN index on top commenters
-- `comments_post_id_idx`: Index on comment's post ID
-- `comments_reddit_id_idx`: Index on comment's Reddit ID
-- `comments_author_id_idx`: Index on comment's author ID
-- `comments_contribution_score_idx`: Index on contribution score
-- `users_username_idx`: Index on username
-- `user_contributions_user_id_idx`: Index on user contributions
+- `idx_posts_subreddit_id`: Index on post's subreddit ID
+- `idx_posts_author_id`: Index on post's author ID
+- `idx_posts_created_at`: Index on post's creation date
+- `idx_posts_reddit_created_at`: Index on post's Reddit creation date
+- `idx_posts_daily_rank`: Index on post's daily rank
+- `idx_posts_keywords`: GIN index on post keywords
+- `idx_posts_sentiment`: GIN index on post sentiment
+- `idx_posts_top_commenters`: GIN index on top commenters
+- `idx_comments_post_id`: Index on comment's post ID
+- `idx_comments_author_id`: Index on comment's author ID
+- `idx_comments_created_at`: Index on comment's creation date
+- `idx_comments_reddit_created_at`: Index on comment's Reddit creation date
+- `idx_comments_contribution_score`: Index on contribution score
+- `idx_users_username`: Index on username
 
 ## Database Migrations
 
-The project uses a custom migration system built with TypeScript to manage database schema changes. This system provides a robust way to track and apply database changes across all environments.
+The project uses `node-pg-migrate` to manage database schema changes. This system provides a robust way to track and apply database changes across all environments.
 
 ### Migration Structure
 
-Migrations are stored in `src/db/migrations` and follow a timestamp-based naming convention:
+Migrations are stored in `database/migrations` and follow a timestamp-based naming convention:
 ```
 YYYYMMDDHHMMSS_migration_name.sql
 ```
 
-Each migration file can contain two sections:
-1. Up Migration: Contains the changes to apply
-2. Down Migration: Contains the rollback changes (optional)
+Each migration file contains SQL statements for both up and down migrations.
 
 Example migration file:
 ```sql
@@ -195,20 +179,9 @@ npm run db:reset
 ```
 Drops and recreates the database, then runs all migrations. Useful for development and testing.
 
-### Migration Tracking
-
-The system maintains a `migrations` table in the database to track which migrations have been applied:
-```sql
-CREATE TABLE migrations (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL UNIQUE,
-    applied_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-);
-```
-
 ### Best Practices
 
-1. Always include a down migration when possible to support rollbacks
+1. Always include a down migration to support rollbacks
 2. Use transactions in migrations to ensure atomic changes
 3. Test migrations in a development environment before applying to production
 4. Keep migrations focused and atomic - one logical change per migration
