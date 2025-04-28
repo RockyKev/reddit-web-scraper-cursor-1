@@ -5,8 +5,8 @@ interface Post {
   subreddit_id: string;
   reddit_id: string;
   title: string;
-  selftext: string;
-  url: string;
+  content: string;
+  permalink: string;
   score: number;
   num_comments: number;
   created_at: string;
@@ -75,11 +75,18 @@ function createPostCard(post: Post): HTMLElement {
   title.className = 'text-xl font-semibold text-gray-800 mb-2';
   title.textContent = post.title;
   
+  // Make title clickable
+  const titleLink = document.createElement('a');
+  titleLink.href = `https://www.reddit.com${post.permalink}`;
+  titleLink.target = '_blank';
+  titleLink.className = 'hover:text-blue-600 transition-colors duration-200';
+  titleLink.appendChild(title);
+  
   const subreddit = document.createElement('span');
   subreddit.className = 'text-sm text-blue-600 font-medium';
   subreddit.textContent = `r/${post.subreddit}`;
   
-  titleContainer.appendChild(title);
+  titleContainer.appendChild(titleLink);
   titleContainer.appendChild(subreddit);
   
   const score = document.createElement('div');
@@ -91,22 +98,18 @@ function createPostCard(post: Post): HTMLElement {
   
   const content = document.createElement('p');
   content.className = 'text-gray-700 mb-4 line-clamp-3';
-  content.textContent = post.selftext;
+  content.textContent = post.content;
   
   const footer = document.createElement('div');
   footer.className = 'flex justify-between items-center text-sm text-gray-500';
   
-  const author = document.createElement('span');
+  const author = document.createElement('a');
+  author.href = `https://www.reddit.com/user/${post.author.username}/`;
+  author.target = '_blank';
+  author.className = 'hover:text-blue-600 transition-colors duration-200';
   author.textContent = `Posted by u/${post.author.username}`;
   
-  const link = document.createElement('a');
-  link.href = post.url;
-  link.target = '_blank';
-  link.className = 'text-blue-600 hover:text-blue-800';
-  link.textContent = 'View on Reddit';
-  
   footer.appendChild(author);
-  footer.appendChild(link);
   
   card.appendChild(header);
   card.appendChild(content);
@@ -153,7 +156,7 @@ async function initializeApp() {
     // Update posts
     const postsContainer = document.getElementById('posts');
     if (postsContainer) {
-      postsContainer.className = 'grid gap-6 md:grid-cols-2 lg:grid-cols-3';
+      postsContainer.className = 'grid gap-6 md:grid-cols-1';
       digest.top_posts.forEach(post => {
         postsContainer.appendChild(createPostCard(post));
       });

@@ -26,6 +26,7 @@ interface Post {
   id: string;
   title: string;
   content: string;
+  permalink: string;
   score: number;
   num_comments: number;
   created_at: Date;
@@ -57,10 +58,10 @@ export class DigestService {
   }
 
   private getPostContent(post: DbPost): string {
-    if (post.post_type === 'self') {
+    if (post.post_type === 'text') {
       return post.selftext || '';
     }
-    return post.url || '';
+    return post.permalink || '';
   }
 
   async getDigest(date?: string): Promise<DigestResponse> {
@@ -139,6 +140,7 @@ export class DigestService {
           id: post.id,
           title: post.title,
           content: this.getPostContent(post),
+          permalink: post.permalink,
           score: post.score,
           num_comments: post.num_comments,
           created_at: post.created_at,
