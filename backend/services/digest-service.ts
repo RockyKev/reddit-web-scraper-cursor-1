@@ -39,6 +39,7 @@ interface Post {
   top_commenters: TopCommenter[];
   summary: string | null;
   sentiment: any | null;
+  subreddit: string;
 }
 
 interface DigestResponse {
@@ -70,7 +71,11 @@ export class DigestService {
     
     // Get posts for the date, ordered by daily rank
     const postsResult = await getPool().query<DbPost>(
-      'SELECT * FROM posts WHERE DATE(created_at) = $1 ORDER BY daily_rank ASC',
+      `SELECT p.*, s.name as subreddit_name 
+       FROM posts p 
+       JOIN subreddits s ON p.subreddit_id = s.id 
+       WHERE DATE(p.created_at) = $1 
+       ORDER BY p.daily_rank ASC`,
       [targetDate]
     );
 
@@ -142,6 +147,7 @@ export class DigestService {
           post_type: post.post_type,
           daily_rank: post.daily_rank || 0,
           daily_score: post.daily_score || 0,
+          subreddit: post.subreddit_name || 'unknown',
           author: {
             username: authorResult.rows[0]?.username || 'unknown',
             reddit_id: post.author_id,

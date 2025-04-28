@@ -1,6 +1,7 @@
 export interface DbPost {
   id: string;
   subreddit_id: string;
+  subreddit_name?: string;
   author_id: string;
   title: string;
   selftext: string | null;
