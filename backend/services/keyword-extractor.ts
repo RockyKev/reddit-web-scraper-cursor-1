@@ -32,6 +32,9 @@ export class KeywordExtractor {
    * @returns Array of keywords
    */
   public extractKeywords(post: RedditPost, comments: RedditComment[]): string[] {
+    // Reset TF-IDF for this post
+    this.tfidf = new TfIdf();
+    
     // Combine post content and comments
     const text = this.combineText(post, comments);
     

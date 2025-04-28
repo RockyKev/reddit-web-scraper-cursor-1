@@ -58,10 +58,18 @@ export class DigestService {
   }
 
   private getPostContent(post: DbPost): string {
+    // For text posts, check both selftext and content_url
     if (post.post_type === 'text') {
-      return post.selftext || '';
+      if (post.selftext) {
+        return post.selftext;
+      }
+      if (post.content_url) {
+        return post.content_url;
+      }
     }
-    return post.permalink || '';
+
+    // For other post types, use content_url or permalink
+    return post.content_url || post.permalink;
   }
 
   async getDigest(date?: string): Promise<DigestResponse> {

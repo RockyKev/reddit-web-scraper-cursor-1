@@ -66,6 +66,12 @@ export class RedditStorage {
       // Calculate daily score
       const dailyScore = (post.score * 1.0) + (post.commentCount * 2.0);
 
+      // First check if this post already exists
+      const existingPost = await this.pool.query(
+        'SELECT id, score FROM posts WHERE author_id = $1 AND permalink = $2',
+        [post.author_fullname, post.permalink]
+      );
+
       const result = await this.pool.query(
         `INSERT INTO posts (
           subreddit_id, author_id, title, selftext, url,
@@ -115,6 +121,34 @@ export class RedditStorage {
         ]
       );
 
+      // Update user statistics
+      if (existingPost.rows.length === 0) {
+        // New post - increment total_posts
+        await this.pool.query(
+          `UPDATE users 
+           SET 
+             total_posts = total_posts + 1,
+             total_posts_score = total_posts_score + $1,
+             updated_at = CURRENT_TIMESTAMP
+           WHERE id = $2`,
+          [post.score, post.author_fullname]
+        );
+      } else {
+        // Existing post - update score difference
+        const oldScore = existingPost.rows[0].score;
+        const scoreDiff = post.score - oldScore;
+        if (scoreDiff !== 0) {
+          await this.pool.query(
+            `UPDATE users 
+             SET 
+               total_posts_score = total_posts_score + $1,
+               updated_at = CURRENT_TIMESTAMP
+             WHERE id = $2`,
+            [scoreDiff, post.author_fullname]
+          );
+        }
+      }
+
       return result.rows[0].id;
     } catch (error) {
       logger.error('Error storing post:', error);
@@ -149,6 +183,17 @@ export class RedditStorage {
           comment.isArchived,
           comment.contribution_score
         ]
+      );
+
+      // Update user statistics
+      await this.pool.query(
+        `UPDATE users 
+         SET 
+           total_comments = total_comments + 1,
+           total_comments_score = total_comments_score + $1,
+           updated_at = CURRENT_TIMESTAMP
+         WHERE id = $2`,
+        [comment.score, comment.author_fullname]
       );
 
       return result.rows[0].id;

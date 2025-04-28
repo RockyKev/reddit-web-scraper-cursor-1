@@ -15,10 +15,12 @@ interface CollectionResult {
 export class RedditCollector {
   private storage: RedditStorage;
   private scoringService: ScoringService;
+  private pool: any;
 
   constructor() {
     this.storage = new RedditStorage();
     this.scoringService = new ScoringService(getPool());
+    this.pool = getPool();
   }
 
   private async processPost(
@@ -97,6 +99,7 @@ export class RedditCollector {
     time: RedditTimeFilter = 'day'
   ): Promise<void> {
     const results: CollectionResult[] = [];
+    let earliestPostDate: Date | null = null;
 
     for (const subreddit of subreddits) {
       try {
@@ -116,8 +119,6 @@ export class RedditCollector {
           await new Promise(resolve => setTimeout(resolve, 5000));
         }
       } catch (error) {
-        // We catch errors here because we want to continue processing other subreddits
-        // even if one fails. This is a meaningful recovery strategy.
         logger.error(`Failed to process subreddit r/${subreddit}:`, error);
         results.push({
           success: false,
@@ -128,9 +129,26 @@ export class RedditCollector {
       }
     }
 
+    // Get the earliest post date from today's posts
+    const earliestPost = await this.pool.query(
+      `SELECT created_at 
+       FROM posts 
+       WHERE DATE(created_at) = CURRENT_DATE 
+       ORDER BY created_at ASC 
+       LIMIT 1`
+    );
+
+    if (earliestPost.rows.length > 0) {
+      earliestPostDate = new Date(earliestPost.rows[0].created_at);
+    }
+
     // Run scoring calculations after collecting all data
-    logger.info('Running scoring calculations...');
-    await this.scoringService.updateDailyScores(new Date());
+    if (earliestPostDate) {
+      logger.info('Running scoring calculations for date:', earliestPostDate);
+      await this.scoringService.updateDailyScores(earliestPostDate);
+    } else {
+      logger.warn('No posts found for today, skipping scoring calculations');
+    }
 
     // Log results and check for failures
     this.logResults(results);

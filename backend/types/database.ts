@@ -5,7 +5,7 @@ export interface DbPost {
   author_id: string;
   title: string;
   selftext: string | null;
-  url: string | null;
+  content_url: string | null;
   score: number;
   num_comments: number;
   permalink: string;
