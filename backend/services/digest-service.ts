@@ -68,8 +68,8 @@ export class DigestService {
       }
     }
 
-    // For link posts and image posts, always use content_url if available
-    if ((post.post_type === 'link' || post.post_type === 'image') && post.content_url) {
+    // For link posts, image posts, and video posts, always use content_url if available
+    if ((post.post_type === 'link' || post.post_type === 'image' || post.post_type === 'hosted:video') && post.content_url) {
       return post.content_url;
     }
 
