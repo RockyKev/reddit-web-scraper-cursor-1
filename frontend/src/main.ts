@@ -94,7 +94,7 @@ function createTitleSection(post: Post): HTMLElement {
   const titleLink = document.createElement('a');
   titleLink.href = `https://www.reddit.com${post.permalink}`;
   titleLink.target = '_blank';
-  titleLink.className = 'hover:text-blue-600 transition-colors duration-200';
+  titleLink.className = 'hover:text-blue-600 transition-colors duration-200 flex';
   titleLink.appendChild(postTypeIcon);
   titleLink.appendChild(title);
   
@@ -119,7 +119,7 @@ function createKeywordsSection(post: Post): HTMLElement | null {
   if (!post.keywords?.length) return null;
   
   const container = document.createElement('div');
-  container.className = 'mb-4 flex items-center-safe';
+  container.className = 'mb-4 flex items-center';
   
   const label = document.createElement('div');
   label.className = 'text-sm font-medium text-gray-600 pr-1';
@@ -165,7 +165,7 @@ function createTopCommentersSection(post: Post): HTMLElement {
   return container;
 }
 
-function createFooterSection(post: Post): HTMLElement {
+function createPostedBySection(post: Post): HTMLElement {
   const footer = document.createElement('div');
   footer.className = 'flex justify-between items-center text-sm text-gray-500';
   
@@ -184,15 +184,17 @@ function createPostCard(post: Post): HTMLElement {
   card.className = 'bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200';
   
   const header = document.createElement('div');
-  header.className = 'flex justify-between items-start mb-4';
+  header.className = 'flex justify-between items-start mb-4 gap-12';
   header.appendChild(createTitleSection(post));
   header.appendChild(createScoreSection(post));
-  
+  header.appendChild(createPostedBySection(post));
+
   const content = document.createElement('p');
   content.className = 'text-gray-700 mb-4 line-clamp-3';
   content.textContent = post.content;
   
   card.appendChild(header);
+
   card.appendChild(content);
   
   const keywordsSection = createKeywordsSection(post);
@@ -201,7 +203,7 @@ function createPostCard(post: Post): HTMLElement {
   }
   
   card.appendChild(createTopCommentersSection(post));
-  card.appendChild(createFooterSection(post));
+
   
   return card;
 }
