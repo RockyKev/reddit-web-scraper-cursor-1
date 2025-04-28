@@ -61,13 +61,7 @@ function formatDate(dateString: string): string {
   });
 }
 
-function createPostCard(post: Post): HTMLElement {
-  const card = document.createElement('div');
-  card.className = 'bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200';
-  
-  const header = document.createElement('div');
-  header.className = 'flex justify-between items-start mb-4';
-  
+function createTitleSection(post: Post): HTMLElement {
   const titleContainer = document.createElement('div');
   titleContainer.className = 'flex-1';
   
@@ -75,7 +69,6 @@ function createPostCard(post: Post): HTMLElement {
   title.className = 'text-xl font-semibold text-gray-800 mb-2';
   title.textContent = post.title;
   
-  // Make title clickable
   const titleLink = document.createElement('a');
   titleLink.href = `https://www.reddit.com${post.permalink}`;
   titleLink.target = '_blank';
@@ -89,17 +82,42 @@ function createPostCard(post: Post): HTMLElement {
   titleContainer.appendChild(titleLink);
   titleContainer.appendChild(subreddit);
   
+  return titleContainer;
+}
+
+function createScoreSection(post: Post): HTMLElement {
   const score = document.createElement('div');
   score.className = 'text-sm text-gray-600';
   score.textContent = `Score: ${post.score} | Comments: ${post.num_comments}`;
+  return score;
+}
+
+function createKeywordsSection(post: Post): HTMLElement | null {
+  if (!post.keywords?.length) return null;
   
-  header.appendChild(titleContainer);
-  header.appendChild(score);
+  const container = document.createElement('div');
+  container.className = 'mb-4';
   
-  const content = document.createElement('p');
-  content.className = 'text-gray-700 mb-4 line-clamp-3';
-  content.textContent = post.content;
+  const label = document.createElement('div');
+  label.className = 'text-sm font-medium text-gray-600 mb-2';
+  label.textContent = 'Key Topics:';
   
+  const list = document.createElement('div');
+  list.className = 'flex flex-wrap gap-2';
+  
+  post.keywords.forEach(keyword => {
+    const tag = document.createElement('span');
+    tag.className = 'px-2 py-1 bg-gray-100 text-gray-700 text-sm rounded-full';
+    tag.textContent = keyword;
+    list.appendChild(tag);
+  });
+  
+  container.appendChild(label);
+  container.appendChild(list);
+  return container;
+}
+
+function createFooterSection(post: Post): HTMLElement {
   const footer = document.createElement('div');
   footer.className = 'flex justify-between items-center text-sm text-gray-500';
   
@@ -110,10 +128,31 @@ function createPostCard(post: Post): HTMLElement {
   author.textContent = `Posted by u/${post.author.username}`;
   
   footer.appendChild(author);
+  return footer;
+}
+
+function createPostCard(post: Post): HTMLElement {
+  const card = document.createElement('div');
+  card.className = 'bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200';
+  
+  const header = document.createElement('div');
+  header.className = 'flex justify-between items-start mb-4';
+  header.appendChild(createTitleSection(post));
+  header.appendChild(createScoreSection(post));
+  
+  const content = document.createElement('p');
+  content.className = 'text-gray-700 mb-4 line-clamp-3';
+  content.textContent = post.content;
   
   card.appendChild(header);
   card.appendChild(content);
-  card.appendChild(footer);
+  
+  const keywordsSection = createKeywordsSection(post);
+  if (keywordsSection) {
+    card.appendChild(keywordsSection);
+  }
+  
+  card.appendChild(createFooterSection(post));
   
   return card;
 }

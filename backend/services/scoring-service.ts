@@ -35,9 +35,18 @@ export class ScoringService {
                 [date]
             );
 
+            console.log('Posts to update:', posts.rows);
+
             // Calculate scores and update them
             for (const post of posts.rows) {
                 const dailyScore = this.calculatePostScore(post);
+                console.log('Updating post:', {
+                    id: post.id,
+                    score: post.score,
+                    num_comments: post.num_comments,
+                    dailyScore
+                });
+                
                 await client.query(
                     `UPDATE posts 
                      SET daily_score = $1 

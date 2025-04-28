@@ -5,14 +5,17 @@ import { getPool } from '../config/database.js';
 import { RedditPost, RedditComment } from '../types/reddit.js';
 import { KeywordAnalysisService } from './keyword-analysis-service.js';
 import type { DbPool } from '../types/shared.js';
+import { ScoringService } from './scoring-service.js';
 
 export class RedditStorage {
   private readonly pool: DbPool;
   private readonly keywordAnalyzer: KeywordAnalysisService;
+  private readonly scoringService: ScoringService;
 
   constructor() {
     this.pool = getPool();
     this.keywordAnalyzer = new KeywordAnalysisService();
+    this.scoringService = new ScoringService(this.pool);
   }
 
   public async storeUser(authorId: string, username: string): Promise<string> {
@@ -60,15 +63,18 @@ export class RedditStorage {
 
   public async storePost(subredditId: string, post: RedditPost): Promise<string> {
     try {
+      // Calculate daily score
+      const dailyScore = (post.score * 1.0) + (post.commentCount * 2.0);
+
       const result = await this.pool.query(
         `INSERT INTO posts (
           subreddit_id, author_id, title, selftext, url,
           score, num_comments, permalink, post_type,
           reddit_created_at, is_archived, is_locked,
           keywords, author_score, top_commenters,
-          summary, sentiment
+          summary, sentiment, daily_score
         )
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13::text[], $14, $15::jsonb, $16, $17::jsonb)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13::text[], $14, $15::jsonb, $16, $17::jsonb, $18)
         ON CONFLICT (author_id, permalink) DO UPDATE
         SET
           title = EXCLUDED.title,
@@ -84,6 +90,7 @@ export class RedditStorage {
           top_commenters = EXCLUDED.top_commenters,
           summary = EXCLUDED.summary,
           sentiment = EXCLUDED.sentiment,
+          daily_score = EXCLUDED.daily_score,
           updated_at = CURRENT_TIMESTAMP
         RETURNING id`,
         [
@@ -103,7 +110,8 @@ export class RedditStorage {
           post.author_score,
           JSON.stringify(post.top_commenters),
           post.summary,
-          post.sentiment ? JSON.stringify(post.sentiment) : null
+          post.sentiment ? JSON.stringify(post.sentiment) : null,
+          dailyScore
         ]
       );
 
@@ -217,6 +225,9 @@ export class RedditStorage {
       for (const comment of comments) {
         await this.storeComment(postId, comment);
       }
+
+      // Update daily ranks for all posts from this date
+      await this.scoringService.updateDailyScores(new Date(post.createdAt));
 
       return postId;
     } catch (error) {
