@@ -211,7 +211,13 @@ function createContentSection(post: Post): HTMLElement {
 
 function createPostCard(post: Post): HTMLElement {
   const card = document.createElement('div');
-  card.className = 'bg-white rounded-lg shadow-md py-2 px-8 hover:shadow-lg transition-shadow duration-200';
+  card.className = 'bg-white rounded-lg shadow-md py-2 px-8 hover:shadow-lg transition-shadow duration-200 relative';
+  
+  // Add rank indicator
+  const rankIndicator = document.createElement('div');
+  rankIndicator.className = 'absolute -left-2 -top-2 bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center font-bold text-sm z-10';
+  rankIndicator.textContent = post.daily_rank.toString();
+  card.appendChild(rankIndicator);
   
   const header = document.createElement('div');
   header.className = 'flex justify-between items-start mb-4 gap-12';
@@ -273,9 +279,14 @@ async function initializeApp() {
     // Update posts
     const postsContainer = document.getElementById('posts');
     if (postsContainer) {
-      postsContainer.className = 'grid gap-2 md:grid-cols-1';
-      digest.top_posts.forEach(post => {
-        postsContainer.appendChild(createPostCard(post));
+      postsContainer.className = 'grid gap-4 md:grid-cols-1';
+      
+      // Sort posts by daily_rank
+      const sortedPosts = [...digest.top_posts].sort((a, b) => a.daily_rank - b.daily_rank);
+      
+      sortedPosts.forEach(post => {
+        const card = createPostCard(post);
+        postsContainer.appendChild(card);
       });
     }
   } catch (error) {
