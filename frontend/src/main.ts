@@ -46,6 +46,9 @@ interface DigestData {
 }
 
 let currentDate = new Date();
+let pageLoadStartTime = performance.now();
+let apiFetchTime = 0;
+let lastFetchTime: Date | null = null;
 
 async function fetchDigest(date?: Date): Promise<DigestData> {
   const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
@@ -53,6 +56,7 @@ async function fetchDigest(date?: Date): Promise<DigestData> {
   const fullUrl = `${apiUrl}/api/digest${dateParam}`;
   console.log('Making API request to:', fullUrl);
   
+  const fetchStartTime = performance.now();
   try {
     const response = await fetch(fullUrl);
     console.log('API response status:', response.status);
@@ -60,6 +64,8 @@ async function fetchDigest(date?: Date): Promise<DigestData> {
       throw new Error(`Failed to fetch digest data: ${response.status} ${response.statusText}`);
     }
     const data = await response.json();
+    apiFetchTime = performance.now() - fetchStartTime;
+    lastFetchTime = new Date();
     console.log('Received API data:', data);
     return data;
   } catch (error) {
@@ -258,6 +264,31 @@ async function updateUI(date?: Date) {
     const digest = await fetchDigest(date);
     console.log('Received digest data:', digest);
     
+    // Update posts
+    const postsContainer = document.getElementById('posts');
+    if (postsContainer) {
+      postsContainer.innerHTML = '';
+      digest.top_posts.forEach(post => {
+        postsContainer.appendChild(createPostCard(post));
+      });
+    }
+
+    // Update version info
+    const versionInfo = document.getElementById('version-info');
+    if (versionInfo) {
+      const version = import.meta.env.VITE_PROJECT_VERSION || '6';
+      const apiVersion = import.meta.env.VITE_PROJECT_VERSION_API || '6';
+      const dbVersion = import.meta.env.VITE_PROJECT_VERSION_DATABASE || '6';
+      const frontendVersion = import.meta.env.VITE_PROJECT_VERSION_FRONTEND || '6';
+      versionInfo.textContent = `${version} (api: v${apiVersion}, db: ${dbVersion}, frontend: v${frontendVersion})`;
+    }
+
+    // Update last fetch time
+    const lastFetch = document.getElementById('last-fetch');
+    if (lastFetch && lastFetchTime) {
+      lastFetch.textContent = lastFetchTime.toLocaleString();
+    }
+    
     // Update date header
     const dateHeader = document.getElementById('date-header');
     if (dateHeader) {
@@ -308,15 +339,6 @@ async function updateUI(date?: Date) {
           </div>
         </div>
       `;
-    }
-
-    // Update posts
-    const postsContainer = document.getElementById('posts');
-    if (postsContainer) {
-      postsContainer.innerHTML = '';
-      digest.top_posts.forEach(post => {
-        postsContainer.appendChild(createPostCard(post));
-      });
     }
   } catch (error) {
     console.error('Error updating UI:', error);

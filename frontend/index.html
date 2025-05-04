@@ -34,9 +34,33 @@
 
     <footer class="bg-white border-t mt-8">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <p class="text-center text-gray-500 text-sm">
-          Reddit PDX Digest - Daily Portland Reddit Activity
-        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="text-gray-500 text-sm">
+            <p class="mb-2">Reddit PDX Digest - Daily Portland Reddit Activity</p>
+            <p class="mb-2">Version: <span id="version-info">Loading...</span></p>
+            <p class="mb-2">Last Data Fetch: <span id="last-fetch">Never</span></p>
+            <p class="mb-2">Powered by PostgreSQL, TypeScript, Tailwind CSS, and Vite</p>
+          </div>
+          <div class="text-gray-500 text-sm text-right">
+            <div class="space-y-2">
+              <p>
+                <a href="https://github.com/yourusername/reddit-web-scraper" target="_blank" class="hover:text-blue-600 transition-colors duration-200">
+                  GitHub Repository
+                </a>
+              </p>
+              <p>
+                <a href="https://github.com/yourusername/reddit-web-scraper/issues" target="_blank" class="hover:text-blue-600 transition-colors duration-200">
+                  Report an Issue
+                </a>
+              </p>
+              <p>
+                <a href="https://github.com/yourusername/reddit-web-scraper/blob/main/CHANGELOG.md" target="_blank" class="hover:text-blue-600 transition-colors duration-200">
+                  Changelog
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </footer>
 
