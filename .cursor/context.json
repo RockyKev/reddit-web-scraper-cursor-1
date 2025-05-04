@@ -1,0 +1,257 @@
+{
+  "project": {
+    "name": "Reddit PDX Scraper",
+    "description": "A TypeScript + Node.js web application that creates a daily digest of the best Reddit content from Portland-related subreddits",
+    "type": "web-application",
+    "version": "5",
+    "status": "In development, preparing for production deployment"
+  },
+  "architecture": {
+    "frontend": {
+      "framework": "vanilla-javascript",
+      "buildTool": "vite",
+      "styling": "tailwind-css",
+      "location": "frontend/",
+      "features": [
+        "Responsive grid layout",
+        "Post cards with metadata",
+        "Keyword display",
+        "Links to original Reddit posts"
+      ]
+    },
+    "backend": {
+      "framework": "express",
+      "language": "typescript",
+      "database": "postgresql",
+      "location": "backend/",
+      "structure": {
+        "scripts": "backend/scripts/",
+        "services": "backend/services/",
+        "tests": "backend/tests/",
+        "types": "backend/types/",
+        "utils": "backend/utils/",
+        "routes": "backend/routes/",
+        "config": "backend/config/"
+      },
+      "components": {
+        "reddit-scraper": {
+          "responsibility": "Data fetching and transformation",
+          "keyMethods": [
+            "getPosts(limit, sort, time)",
+            "getComments(postId)",
+            "transformPost(rawData)",
+            "transformComment(rawData)"
+          ]
+        },
+        "reddit-storage": {
+          "responsibility": "Database operations",
+          "keyMethods": [
+            "storePost(subredditId, post)",
+            "storeComment(postId, comment)",
+            "storeUser(authorId, username)",
+            "storePostWithComments(subredditId, post, comments)"
+          ]
+        },
+        "reddit-collector": {
+          "responsibility": "Data collection process",
+          "keyMethods": [
+            "collectAndStore(subreddits, limit, sort, time)",
+            "processSubreddit(scraper, subreddit, limit, sort, time)",
+            "processPost(scraper, subredditId, post, isLastPost)"
+          ]
+        },
+        "score-calculator": {
+          "responsibility": "Post scoring and ranking",
+          "keyMethods": [
+            "calculateScoresForDate(date)"
+          ],
+          "formula": "score = (upvotes * 1.0) + (comments * 2.0)"
+        },
+        "keyword-analysis-service": {
+          "responsibility": "Keyword analysis coordination",
+          "keyMethods": [
+            "extractKeywordsFromPost(post, comments)",
+            "getTopComments(comments)"
+          ],
+          "algorithm": "TF-IDF"
+        },
+        "digest-service": {
+          "responsibility": "Daily digest generation",
+          "keyMethods": [
+            "getDigest(date)",
+            "getPostContent(post)"
+          ]
+        }
+      },
+      "middleware": {
+        "cors": {
+          "origin": "FRONTEND_URL env var",
+          "methods": ["GET"],
+          "headers": ["Content-Type"]
+        },
+        "json": "express.json()"
+      }
+    }
+  },
+  "database": {
+    "type": "PostgreSQL",
+    "schema": {
+      "tables": {
+        "subreddits": {
+          "primaryKey": "id (UUID)",
+          "fields": ["name", "description", "created_at", "updated_at"]
+        },
+        "users": {
+          "primaryKey": "id (VARCHAR)",
+          "fields": [
+            "username",
+            "total_posts",
+            "total_comments",
+            "total_posts_score",
+            "total_comments_score",
+            "contributor_score",
+            "first_seen",
+            "last_seen"
+          ]
+        },
+        "posts": {
+          "primaryKey": "id (UUID)",
+          "fields": [
+            "subreddit_id",
+            "author_id",
+            "title",
+            "selftext",
+            "url",
+            "score",
+            "num_comments",
+            "permalink",
+            "daily_score",
+            "daily_rank",
+            "keywords",
+            "author_score",
+            "top_commenters",
+            "summary",
+            "sentiment"
+          ],
+          "indexes": [
+            "subreddit_id",
+            "author_id",
+            "created_at",
+            "reddit_created_at",
+            "daily_rank",
+            "keywords (GIN)",
+            "sentiment (GIN)",
+            "top_commenters (GIN)"
+          ]
+        },
+        "comments": {
+          "primaryKey": "id (UUID)",
+          "fields": [
+            "post_id",
+            "author_id",
+            "content",
+            "score",
+            "contribution_score",
+            "reddit_id"
+          ],
+          "indexes": [
+            "post_id",
+            "author_id",
+            "created_at",
+            "reddit_created_at",
+            "contribution_score"
+          ]
+        }
+      },
+      "triggers": {
+        "update_updated_at_column": "Automatically updates updated_at timestamp"
+      }
+    },
+    "migrations": {
+      "tool": "node-pg-migrate",
+      "location": "database/migrations/",
+      "setup": "database/setup.ts"
+    }
+  },
+  "guidelines": {
+    "typescript": {
+      "fileExtensions": ".js in imports, .ts for source",
+      "moduleSystem": "ES modules",
+      "typeDefinitions": "backend/types/",
+      "strictMode": true
+    },
+    "codeOrganization": {
+      "frontend": "frontend/components/",
+      "backend": {
+        "api": "backend/api/routes/",
+        "services": "backend/services/",
+        "types": "backend/types/",
+        "utils": "backend/utils/"
+      },
+      "database": "database/migrations/",
+      "tests": "tests/"
+    },
+    "testing": {
+      "framework": "jest",
+      "coverage": "high",
+      "locations": {
+        "unit": "tests/jest/",
+        "api": "tests/api/",
+        "mocks": "tests/mocks/",
+        "utils": "tests/utils/"
+      }
+    }
+  },
+  "dependencies": {
+    "services": {
+      "reddit-scraper": ["reddit-api"],
+      "reddit-storage": ["postgresql"],
+      "score-calculator": ["reddit-storage"],
+      "digest-service": ["score-calculator"]
+    },
+    "dataFlow": {
+      "collection": ["reddit-collector", "reddit-scraper", "reddit-storage"],
+      "scoring": ["score-calculator", "reddit-storage"],
+      "digest": ["digest-service", "score-calculator", "reddit-storage"]
+    }
+  },
+  "bestPractices": {
+    "codeStyle": {
+      "typescript": {
+        "avoid": ["any type", "require()", "mixed extensions"],
+        "prefer": ["ES imports", "strict types", "interfaces"]
+      },
+      "structure": {
+        "avoid": ["frontend code in backend", "mixed concerns", "duplicate types"],
+        "prefer": ["clear separation", "modular design"]
+      }
+    },
+    "errorHandling": {
+      "patterns": ["try-catch blocks", "contextual logging", "database transactions", "API retry logic"]
+    }
+  },
+  "deployment": {
+    "environment": {
+      "development": {
+        "api": "http://localhost:3000",
+        "frontend": "http://localhost:5173"
+      },
+      "production": {
+        "platform": "Digital Ocean",
+        "proxy": "Nginx",
+        "ssl": "Required"
+      }
+    },
+    "database": {
+      "type": "PostgreSQL",
+      "migrationTool": "node-pg-migrate",
+      "backup": "Required",
+      "monitoring": "Required"
+    },
+    "collection": {
+      "schedule": "4:30 AM EST",
+      "service": "systemd",
+      "monitoring": "Required"
+    }
+  }
+} 
