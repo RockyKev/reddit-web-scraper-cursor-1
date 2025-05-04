@@ -26,10 +26,11 @@ The project consists of two main components:
 
 ## Quick Start
 
+### Local Development
+
 1. **Prerequisites**
    - Node.js v20.x (LTS) or higher
    - Docker Desktop
-   - Reddit API credentials
 
 2. **Setup**
    ```bash
@@ -41,15 +42,65 @@ The project consists of two main components:
 
    # Start services
    docker-compose up -d
-   npm run db:migrate:up // migrate
-   npm run collect:live // get new data
-   npm run api:start // start api
-   npm run frontend:dev // start frontend
+   npm run db:migrate:up // any migration work
+   npm run api:start // starts api server
+   npm run frontend:dev // starts frontend server
    ```
 
 3. **Access**
    - Frontend: http://localhost:5173
    - API: http://localhost:3000
+
+### Server Deployment
+
+1. **Initial Setup**
+   ```bash
+   # Clone repository
+   git clone <repository-url>
+   cd reddit-web-scraper
+
+   # Install only production dependencies
+   npm install --production
+
+   # Build the application
+   npm run api:build
+   ```
+
+2. **Database Setup**
+   ```bash
+   # Set up the database
+   npm run db:setup
+   npm run db:migrate:up
+   ```
+
+3. **Start Services**
+   ```bash
+   # Start the API server
+   npm run api:prod
+
+   # Start the frontend server (if needed)
+   cd frontend
+   npm install --production
+   npm run build
+   npm run preview
+   ```
+
+4. **Data Collection**
+   ```bash
+   # Collect initial data
+   npm run api:collect:live
+
+   # Set up automated collection (optional)
+   # Add to crontab: 0 4 * * * cd /path/to/project && npm run api:collect:live
+   ```
+
+### Important Notes
+
+- Local development uses `ts-node` for on-the-fly compilation
+- Server deployment uses pre-compiled JavaScript for better performance
+- Always use `--production` flag when installing dependencies on the server
+- Keep your `.env` file secure and never commit it to version control
+- Database backups are available via `npm run db:backup`
 
 ## Documentation
 

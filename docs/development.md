@@ -2,91 +2,41 @@
 
 This document provides comprehensive information for developers working on the Reddit PDX Scraper project.
 
-## Development Workflow
-
-### 1. Setting Up Your Environment
-
-1. **Fork and Clone**
-   ```bash
-   git clone https://github.com/yourusername/reddit-web-scraper.git
-   cd reddit-web-scraper
-   ```
-
-2. **Install Dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Set Up Environment Variables**
-   ```bash
-   cp .env.example .env
-   ```
-   Edit `.env` with your configuration values.
-
-4. **Start Development Services**
-   ```bash
-   docker-compose up -d
-   npm run migrate:up
-   ```
-
-### 2. Development Process
-
-1. **Create a Feature Branch**
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-
-2. **Make Changes**
-   - Write code following the project's style guide
-   - Add tests for new functionality
-   - Update documentation as needed
-
-3. **Run Tests**
-   ```bash
-   npm test
-   ```
-
-4. **Commit Changes**
-   ```bash
-   git add .
-   git commit -m "feat: description of your changes"
-   ```
-
-5. **Push Changes**
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-
-6. **Create Pull Request**
-   - Go to GitHub and create a new PR
-   - Fill in the PR template
-   - Request review from team members
-
 ## Available Scripts
 
-### Development
-- `npm run dev` - Start development server with hot reload
-- `npm run build` - Build the project for production
-- `npm start` - Start production server
-- `npm run lint` - Run ESLint
-- `npm run format` - Format code with Prettier
-
-### Testing
+### Test Scripts
 - `npm test` - Run all tests
-- `npm run test:scraper` - Test Reddit scraper functionality
-- `npm run test:db` - Test database operations
+- `npm run test:all` - Run all tests with database setup
+- `npm run test:unit` - Run unit tests for the Reddit scraper
+- `npm run test:storage` - Run tests for database storage operations
+- `npm run test:collector` - Run tests for the Reddit collector service
+- `npm run test:keywords` - Run tests for keyword extraction
+- `npm run test:setup` - Set up test database
 - `npm run test:watch` - Run tests in watch mode
 - `npm run test:coverage` - Generate test coverage report
 
-### Database
-- `npm run migrate:up` - Apply pending migrations
-- `npm run migrate:down [n]` - Roll back n migrations
-- `npm run migrate:status` - Check migration status
+### Database Scripts
+- `npm run db:setup` - Set up the main database
+- `npm run db:setup:test` - Set up the test database
+- `npm run db:drop` - Drop the database
 - `npm run db:reset` - Reset database (drops and recreates)
+- `npm run db:migrate:create` - Create a new migration
+- `npm run db:migrate:up` - Apply pending migrations
+- `npm run db:migrate:down` - Roll back the last migration
+- `npm run db:migrate:status` - Check migration status
+- `npm run db:backup` - Create a database backup
 
-### Data Collection
-- `npm run collect:live` - Collect data from Reddit
-- `npm run calculate:scores` - Recalculate scores and ranks for a date
+### API Scripts
+- `npm run api:start` - Start the API server (development mode with hot reloading)
+- `npm run api:build` - Build the TypeScript code for production
+- `npm run api:test` - Start the API server in test mode
+- `npm run api:collect:live` - Collect live data from Reddit
+- `npm run api:calculate:scores` - Calculate scores for posts
+
+### Frontend Scripts
+- `npm run frontend:dev` - Start frontend development server
+- `npm run frontend:build` - Build frontend for production
+- `npm run frontend:preview` - Preview production build locally
 
 ## Core Services
 
