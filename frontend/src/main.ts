@@ -46,7 +46,6 @@ interface DigestData {
 }
 
 let currentDate = new Date();
-let pageLoadStartTime = performance.now();
 let apiFetchTime = 0;
 let lastFetchTime: Date | null = null;
 
