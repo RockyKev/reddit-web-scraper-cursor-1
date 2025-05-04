@@ -174,13 +174,6 @@
   - [x] Document all script purposes and usage
   - [x] Update development.md with script documentation
 
-- [ ] Frontend Production Setup
-  - [ ] Basic Build
-    - [ ] Configure Express to serve static files
-    - [ ] Set up build process for frontend
-  - [ ] Environment
-    - [ ] Set up environment variables for production
-    - [ ] Configure CORS for production domain
 
 - [ ] Basic Security
   - [ ] Set up security headers
@@ -196,6 +189,11 @@
     - [ ] Set up application logging
     - [ ] Configure basic error tracking
     - [ ] Implement health check endpoint
+
+- [ ] Frontend Production Setup
+  - [ ] Basic Build
+  - [ ] Environment
+
 
 - [ ] Database Deployment
   - [ ] Basic Setup
