@@ -8,8 +8,19 @@ function getCallerLocation(): string {
   // Line 2 = the logger method (info/warn/error)
   // Line 3 = the actual caller
   const callerLine = stackLines[3] || '';
-  const match = callerLine.match(/\(([^)]+)\)/); // Extract inside (path:line:col)
-  return match?.[1] || callerLine.trim();
+  const match = callerLine.match(/\(([^)]+)\)/);
+  let location = match?.[1] || callerLine.trim();
+
+  // Normalize paths
+  location = location.replace('file://', '').replace(/\\/g, '/');
+
+  // Dynamically trim off everything before project root
+  const projectRoot = process.cwd().replace(/\\/g, '/'); // Normalize slashes
+  if (location.startsWith(projectRoot)) {
+    location = location.slice(projectRoot.length + 1); // +1 to remove the leading slash
+  }
+
+  return location;
 }
 
 

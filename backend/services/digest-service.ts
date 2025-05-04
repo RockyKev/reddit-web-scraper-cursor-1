@@ -2,6 +2,10 @@ import { getPool } from '../config/database.js';
 import { DbPost, DbComment, DbUser, DbSubredditStats, DbCommenterStats } from '../types/database.js';
 import { ScoreCalculator } from './score-calculator.js';
 import { logger } from '../utils/logger.js';
+import dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
 
 interface DigestSummary {
   total_posts: number;
@@ -53,9 +57,11 @@ interface DigestResponse {
 
 export class DigestService {
   private readonly scoreCalculator: ScoreCalculator;
+  private readonly targetSubreddits: string[];
 
   constructor() {
     this.scoreCalculator = new ScoreCalculator();
+    this.targetSubreddits = (process.env.TARGET_SUBREDDITS || '').split(',').map(s => s.trim());
   }
 
   private getPostContent(post: DbPost): string {
@@ -109,16 +115,17 @@ export class DigestService {
       [targetDate]
     );
 
-    // Get top subreddits with post counts
+    // Get all target subreddits and their post counts for the date
     const subredditsResult = await getPool().query<DbSubredditStats>(
-      `SELECT s.name, COUNT(p.id) as post_count 
-       FROM subreddits s 
-       JOIN posts p ON s.id = p.subreddit_id 
-       WHERE DATE(p.created_at) = $1 
-       GROUP BY s.name 
-       ORDER BY post_count DESC 
-       LIMIT 5`,
-      [targetDate]
+      `SELECT 
+        s.name,
+        COALESCE(COUNT(p.id), 0) as post_count
+       FROM subreddits s
+       LEFT JOIN posts p ON s.id = p.subreddit_id AND DATE(p.created_at) = $1
+       WHERE s.name = ANY($2)
+       GROUP BY s.name
+       ORDER BY post_count ASC`,
+      [targetDate, this.targetSubreddits]
     );
 
     // Get top commenters for the day

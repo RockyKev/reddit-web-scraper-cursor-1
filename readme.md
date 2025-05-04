@@ -41,10 +41,10 @@ The project consists of two main components:
 
    # Start services
    docker-compose up -d
-   npm run migrate:up
-   npm run collect:live
-   npm run api:start
-   cd frontend && npm run dev
+   npm run db:migrate:up // migrate
+   npm run collect:live // get new data
+   npm run api:start // start api
+   npm run frontend:dev // start frontend
    ```
 
 3. **Access**
