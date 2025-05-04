@@ -10,16 +10,23 @@ const digestService = new DigestService();
 // GET /api/digest
 router.get('/digest', async (req, res) => {
   try {
+    // Get date from query parameter or use current date
+    const date = req.query.date as string || new Date().toISOString().split('T')[0];
+    logger.info('Fetching digest for date:', date);
+    logger.info('Request query params:', req.query);
+
     // Check if we should use mock data
     const useMockData = process.env.USE_MOCK_DATA === 'true';
+    logger.info('Using mock data:', useMockData);
     
     if (useMockData) {
-      const mockDigest = await getMockDigest();
+      const mockDigest = await getMockDigest(date);
       return res.json(mockDigest);
     }
 
     // Get real data
-    const digest = await digestService.getDigest();
+    const digest = await digestService.getDigest(date);
+    logger.info('Digest response date:', digest.date);
     return res.json(digest);
   } catch (error) {
     logger.error('Error in digest route:', error);

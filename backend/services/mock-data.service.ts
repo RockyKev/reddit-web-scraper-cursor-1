@@ -103,7 +103,7 @@ function transformRedditPost(post: RedditPost, rank: number): Post {
   };
 }
 
-export function getMockDigest(): DigestData {
+export function getMockDigest(date?: string): DigestData {
   // Read mock data from file
   const mockDataPath = join(process.cwd(), 'mock-data', 'reddit', 'testdata-reddit-portland-output.json');
   const mockData: RedditResponse = JSON.parse(readFileSync(mockDataPath, 'utf-8'));
@@ -117,8 +117,11 @@ export function getMockDigest(): DigestData {
   // Get unique subreddits
   const subreddits = [...new Set(posts.map(post => post.subreddit_id))];
 
+  // Use provided date or current date
+  const targetDate = date || new Date().toISOString().split('T')[0];
+
   return {
-    date: new Date().toISOString(),
+    date: targetDate,
     summary: {
       total_posts: posts.length,
       total_comments: posts.reduce((sum, post) => sum + post.num_comments, 0),

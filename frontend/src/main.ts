@@ -45,13 +45,27 @@ interface DigestData {
   top_posts: Post[];
 }
 
-async function fetchDigest(): Promise<DigestData> {
+let currentDate = new Date();
+
+async function fetchDigest(date?: Date): Promise<DigestData> {
   const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
-  const response = await fetch(`${apiUrl}/api/digest`);
-  if (!response.ok) {
-    throw new Error('Failed to fetch digest data');
+  const dateParam = date ? `?date=${date.toISOString().split('T')[0]}` : '';
+  const fullUrl = `${apiUrl}/api/digest${dateParam}`;
+  console.log('Making API request to:', fullUrl);
+  
+  try {
+    const response = await fetch(fullUrl);
+    console.log('API response status:', response.status);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch digest data: ${response.status} ${response.statusText}`);
+    }
+    const data = await response.json();
+    console.log('Received API data:', data);
+    return data;
+  } catch (error) {
+    console.error('Error fetching digest:', error);
+    throw error;
   }
-  return response.json();
 }
 
 function formatDate(dateString: string): string {
@@ -238,70 +252,113 @@ function createPostCard(post: Post): HTMLElement {
   return card;
 }
 
-async function initializeApp() {
+async function updateUI(date?: Date) {
+  console.log('Updating UI for date:', date);
   try {
-    const digest = await fetchDigest();
+    const digest = await fetchDigest(date);
+    console.log('Received digest data:', digest);
     
     // Update date header
     const dateHeader = document.getElementById('date-header');
     if (dateHeader) {
-      dateHeader.textContent = formatDate(digest.date);
-      dateHeader.className = 'text-3xl font-bold mb-6 text-gray-800';
+      const formattedDate = formatDate(digest.date);
+      console.log('Setting date header to:', formattedDate);
+      dateHeader.textContent = formattedDate;
+    } else {
+      console.error('Date header element not found!');
     }
-    
+
     // Update summary
     const summary = document.getElementById('summary');
     if (summary) {
       summary.innerHTML = `
-        <div class="bg-blue-50 rounded-lg p-2 mb-8">
-          <h2 class="text-xl font-semibold text-gray-800 mb-4">Daily Summary</h2>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="bg-white p-4 rounded-lg shadow">
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <h2 class="text-xl font-semibold mb-4">Daily Summary</h2>
+          <div class="grid grid-cols-1 md:grid-cols-[20%_80%] gap-4">
+            <div class="text-left">
               <div class="text-2xl font-bold text-blue-600">${digest.summary.total_posts}</div>
               <div class="text-gray-600">Total Posts</div>
-            </div>
-            <div class="bg-white p-4 rounded-lg shadow">
               <div class="text-2xl font-bold text-blue-600">${digest.summary.total_comments}</div>
               <div class="text-gray-600">Total Comments</div>
-            </div>
-            <div class="bg-white p-4 rounded-lg shadow">
               <div class="text-2xl font-bold text-blue-600">${digest.summary.top_subreddits.length}</div>
-              <div class="text-gray-600">Subreddits</div>
-              <div class="mt-2 text-sm text-gray-600">
-                ${digest.summary.top_subreddits.map(sub => `r/${sub.name} (${sub.post_count})`).join(', ')}
+              <div class="text-gray-600">Total Subreddits</div>
+
+              </div>
+            <div class="text-left">
+              <div class="mt-4">
+                <div class="font-semibold text-gray-700 mb-2">Active Subreddits:</div>
+                <div class="text-sm text-gray-600">
+                  ${digest.summary.top_subreddits
+                    .filter(sub => sub.post_count > 0)
+                    .map(sub => `r/${sub.name} (${sub.post_count})`)
+                    .join(', ')}
+                </div>
+              </div>
+
+              <div class="mt-4">
+                <div class="font-semibold text-gray-700 mb-2">Subreddits without any updates:</div>
+                <div class="text-sm text-gray-600">
+                  ${digest.summary.top_subreddits
+                    .filter(sub => sub.post_count === 0)
+                    .map(sub => `r/${sub.name}`)
+                    .join(', ')}
+                </div>
               </div>
             </div>
           </div>
         </div>
       `;
     }
-    
+
     // Update posts
     const postsContainer = document.getElementById('posts');
     if (postsContainer) {
-      postsContainer.className = 'grid gap-4 md:grid-cols-1';
-      
-      // Sort posts by daily_rank
-      const sortedPosts = [...digest.top_posts].sort((a, b) => a.daily_rank - b.daily_rank);
-      
-      sortedPosts.forEach(post => {
-        const card = createPostCard(post);
-        postsContainer.appendChild(card);
+      postsContainer.innerHTML = '';
+      digest.top_posts.forEach(post => {
+        postsContainer.appendChild(createPostCard(post));
       });
     }
   } catch (error) {
-    console.error('Error initializing app:', error);
-    const app = document.getElementById('app');
-    if (app) {
-      app.innerHTML = `
-        <div class="bg-red-50 border border-red-200 rounded-lg p-2 text-red-700">
-          <h2 class="text-xl font-semibold mb-2">Error Loading Data</h2>
-          <p>Failed to load the digest data. Please try again later.</p>
+    console.error('Error updating UI:', error);
+    // Show error message to user
+    const postsContainer = document.getElementById('posts');
+    if (postsContainer) {
+      postsContainer.innerHTML = `
+        <div class="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">
+          Failed to load digest data. Please try again later.
         </div>
       `;
     }
   }
 }
 
-// Initialize the app when the DOM is loaded
-document.addEventListener('DOMContentLoaded', initializeApp); 
+function setupDateNavigation() {
+  const prevButton = document.getElementById('prev-date');
+  const nextButton = document.getElementById('next-date');
+
+  if (prevButton && nextButton) {
+    prevButton.addEventListener('click', () => {
+      console.log('Previous date clicked');
+      currentDate.setDate(currentDate.getDate() - 1);
+      console.log('New date:', currentDate);
+      updateUI(currentDate);
+    });
+
+    nextButton.addEventListener('click', () => {
+      console.log('Next date clicked');
+      currentDate.setDate(currentDate.getDate() + 1);
+      console.log('New date:', currentDate);
+      updateUI(currentDate);
+    });
+  } else {
+    console.error('Navigation buttons not found!');
+  }
+}
+
+async function initializeApp() {
+  setupDateNavigation();
+  await updateUI();
+}
+
+// Start the application
+initializeApp(); 

@@ -86,6 +86,8 @@ export class DigestService {
 
   async getDigest(date?: string): Promise<DigestResponse> {
     const targetDate = date || new Date().toISOString().split('T')[0];
+    console.log('DigestService.getDigest called with date:', date);
+    console.log('Using targetDate:', targetDate);
     
     // Update scores and ranks for the date
     await this.scoreCalculator.calculateScoresForDate(targetDate);
@@ -104,6 +106,11 @@ export class DigestService {
        ORDER BY p.daily_rank ASC`,
       [targetDate]
     );
+
+    console.log('Posts query result count:', postsResult.rows.length);
+    if (postsResult.rows.length > 0) {
+      console.log('First post created_at:', postsResult.rows[0].created_at);
+    }
 
     if (postsResult.rows.length === 0) {
       throw new Error('No data found for the specified date');

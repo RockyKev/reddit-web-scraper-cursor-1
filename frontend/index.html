@@ -18,7 +18,15 @@
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div id="app" class="space-y-8">
-        <div id="date-header" class="text-3xl font-bold mb-4"></div>
+        <div class="flex items-center justify-between mb-4">
+          <button id="prev-date" class="text-2xl text-gray-600 hover:text-blue-600 transition-colors duration-200">
+            ←
+          </button>
+          <div id="date-header" class="text-3xl font-bold text-gray-800"></div>
+          <button id="next-date" class="text-2xl text-gray-600 hover:text-blue-600 transition-colors duration-200">
+            →
+          </button>
+        </div>
         <div id="summary" class="mb-8"></div>
         <div id="posts" class="grid gap-4"></div>
       </div>
