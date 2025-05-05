@@ -5,13 +5,6 @@ export default defineConfig(({ mode }) => {
   // Load env file from root directory
   const env = loadEnv(mode, process.cwd() + '/..', '');
   
-  // Log environment variables for debugging
-  console.log('Environment variables:', {
-    VITE_API_URL: env.VITE_API_URL,
-    NODE_ENV: env.NODE_ENV,
-    mode
-  });
-
   return {
     build: {
       outDir: path.resolve(__dirname, '../dist/frontend'),
