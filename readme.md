@@ -69,7 +69,7 @@ The project consists of two main components:
 
 2. **Database Setup**
    ```bash
-   # Set up the database
+   # Set up the database (only needed once)
    npm run db:setup
    npm run db:migrate:up
    ```
@@ -101,7 +101,15 @@ The project consists of two main components:
 - Server deployment uses pre-compiled JavaScript for better performance
 - Always use `--production` flag when installing dependencies on the server
 - Keep your `.env` file secure and never commit it to version control
-- Database backups are available via `npm run db:backup`. There's some placeholder databases from prior scraping. 
+- Database backups are available via `npm run db:backup`
+- The application uses npm workspaces for better dependency management
+- Build outputs are located in `dist/frontend/` and `dist/backend/`
+- The database connection is configured to not attempt setup on every startup
+- Required environment variables:
+  - `DATABASE_URL`: PostgreSQL connection string
+  - `FRONTEND_URL`: URL of the frontend application
+  - `PORT`: Port for the API server
+- There's some placeholder databases from prior scraping. 
 
 ## Documentation
 

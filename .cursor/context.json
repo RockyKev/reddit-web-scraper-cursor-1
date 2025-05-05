@@ -12,6 +12,7 @@
       "buildTool": "vite",
       "styling": "tailwind-css",
       "location": "frontend/",
+      "buildOutput": "dist/frontend/",
       "features": [
         "Responsive grid layout",
         "Post cards with metadata",
@@ -24,6 +25,7 @@
       "language": "typescript",
       "database": "postgresql",
       "location": "backend/",
+      "buildOutput": "dist/backend/",
       "structure": {
         "scripts": "backend/scripts/",
         "services": "backend/services/",
@@ -90,6 +92,75 @@
           "headers": ["Content-Type"]
         },
         "json": "express.json()"
+      }
+    }
+  },
+  "build": {
+    "workspace": {
+      "type": "npm-workspace",
+      "rootDependencies": "package.json",
+      "frontendDependencies": "frontend/package.json"
+    },
+    "typescript": {
+      "baseConfig": "tsconfig.json",
+      "productionConfig": "tsconfig.prod.json",
+      "frontendConfig": "frontend/tsconfig.json",
+      "settings": {
+        "noEmit": false,
+        "allowImportingTsExtensions": false,
+        "module": "ESNext",
+        "moduleResolution": "bundler"
+      }
+    },
+    "process": {
+      "frontend": {
+        "command": "npm run frontend:build",
+        "output": "dist/frontend/",
+        "tool": "vite"
+      },
+      "backend": {
+        "command": "npm run api:build",
+        "output": "dist/backend/",
+        "tool": "typescript"
+      },
+      "platformSpecific": {
+        "windows": {
+          "copy": "copy",
+          "mkdir": "mkdir",
+          "pathSeparator": "\\"
+        },
+        "unix": {
+          "copy": "cp",
+          "mkdir": "mkdir -p",
+          "pathSeparator": "/"
+        }
+      }
+    }
+  },
+  "deployment": {
+    "database": {
+      "setup": {
+        "command": "npm run db:setup",
+        "migrations": "npm run db:migrate:up",
+        "location": "database/migrations/"
+      },
+      "runtime": {
+        "connection": "PostgreSQL",
+        "noSetupOnStart": true
+      }
+    },
+    "application": {
+      "build": [
+        "npm run frontend:build",
+        "npm run api:build"
+      ],
+      "start": "npm run api:prod",
+      "environment": {
+        "required": [
+          "DATABASE_URL",
+          "FRONTEND_URL",
+          "PORT"
+        ]
       }
     }
   },
@@ -197,8 +268,7 @@
       "locations": {
         "unit": "tests/jest/",
         "api": "tests/api/",
-        "mocks": "tests/mocks/",
-        "utils": "tests/utils/"
+        "mocks": "tests/mocks/"
       }
     }
   },
@@ -228,30 +298,6 @@
     },
     "errorHandling": {
       "patterns": ["try-catch blocks", "contextual logging", "database transactions", "API retry logic"]
-    }
-  },
-  "deployment": {
-    "environment": {
-      "development": {
-        "api": "http://localhost:3000",
-        "frontend": "http://localhost:5173"
-      },
-      "production": {
-        "platform": "Digital Ocean",
-        "proxy": "Nginx",
-        "ssl": "Required"
-      }
-    },
-    "database": {
-      "type": "PostgreSQL",
-      "migrationTool": "node-pg-migrate",
-      "backup": "Required",
-      "monitoring": "Required"
-    },
-    "collection": {
-      "schedule": "4:30 AM EST",
-      "service": "systemd",
-      "monitoring": "Required"
     }
   }
 } 

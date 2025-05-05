@@ -2,6 +2,42 @@
 
 This document provides comprehensive information for developers working on the Reddit PDX Scraper project.
 
+## Build Process
+
+### Workspace Configuration
+The project uses npm workspaces for better dependency management:
+- Root dependencies in `package.json`
+- Frontend dependencies in `frontend/package.json`
+
+### TypeScript Configuration
+The project uses multiple TypeScript configurations:
+- `tsconfig.json`: Base configuration
+- `tsconfig.prod.json`: Production build settings
+- `frontend/tsconfig.json`: Frontend-specific settings
+
+Key TypeScript settings:
+```json
+{
+  "noEmit": false,
+  "allowImportingTsExtensions": false,
+  "module": "ESNext",
+  "moduleResolution": "bundler"
+}
+```
+
+### Build Outputs
+- Frontend: `dist/frontend/`
+- Backend: `dist/backend/`
+
+### Build Commands
+```bash
+# Frontend build
+npm run frontend:build
+
+# Backend build
+npm run api:build
+```
+
 ## Available Scripts
 
 ### Test Scripts
@@ -16,7 +52,7 @@ This document provides comprehensive information for developers working on the R
 - `npm run test:coverage` - Generate test coverage report
 
 ### Database Scripts
-- `npm run db:setup` - Set up the main database
+- `npm run db:setup` - Set up the main database (one-time operation)
 - `npm run db:setup:test` - Set up the test database
 - `npm run db:drop` - Drop the database
 - `npm run db:reset` - Reset database (drops and recreates)
@@ -37,6 +73,13 @@ This document provides comprehensive information for developers working on the R
 - `npm run frontend:dev` - Start frontend development server
 - `npm run frontend:build` - Build frontend for production
 - `npm run frontend:preview` - Preview production build locally
+
+## Environment Variables
+
+Required environment variables:
+- `DATABASE_URL`: PostgreSQL connection string
+- `FRONTEND_URL`: URL of the frontend application
+- `PORT`: Port for the API server
 
 ## Core Services
 
@@ -171,6 +214,10 @@ npm run collect:live
 - Prefer interfaces over type aliases
 - Use meaningful type names
 - Document complex types
+- Use `.js` extensions in imports
+- Use `.ts` extensions for source files
+- Avoid using `any` type
+- Use ES modules instead of CommonJS
 
 ### Naming Conventions
 
@@ -185,6 +232,8 @@ npm run collect:live
 - Group related functionality
 - Keep files focused and small
 - Use index files for exports
+- Maintain clear separation between frontend and backend code
+- Keep types in `backend/types/` directory
 
 ### Comments and Documentation
 
@@ -215,3 +264,10 @@ npm run collect:live
 - Use `.test.ts` suffix
 - Group related tests
 - Use descriptive test names
+
+## Error Handling
+
+- Use try-catch blocks for error handling
+- Implement contextual logging
+- Use database transactions for data consistency
+- Implement API retry logic for external services
