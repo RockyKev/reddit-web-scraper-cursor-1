@@ -26,7 +26,7 @@
     "frontend:dev": "cd frontend && npm run dev",
     "frontend:build": "cd frontend && npm run build",
     "frontend:preview": "cd frontend && npm run preview",
-    "deploy:prod": "npm run api:build && pm2 restart reddit-scraper && frontend:build"
+    "deploy:prod": "npm run api:build && pm2 restart reddit-api && frontend:build"
   },
   "keywords": [
     "reddit",
