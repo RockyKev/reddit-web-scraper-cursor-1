@@ -13,6 +13,9 @@ const port = process.env.PORT || 3000;
 const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
 const allowedOrigins = [frontendUrl, 'http://localhost:4173'];
 
+// Trust proxy configuration for Nginx
+app.set('trust proxy', true);
+
 // Security headers middleware
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
