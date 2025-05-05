@@ -100,7 +100,7 @@ The project consists of two main components:
 - Server deployment uses pre-compiled JavaScript for better performance
 - Always use `--production` flag when installing dependencies on the server
 - Keep your `.env` file secure and never commit it to version control
-- Database backups are available via `npm run db:backup`
+- Database backups are available via `npm run db:backup`. There's some placeholder databases from prior scraping. 
 
 ## Documentation
 
