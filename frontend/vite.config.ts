@@ -5,6 +5,13 @@ export default defineConfig(({ mode }) => {
   // Load env file from root directory
   const env = loadEnv(mode, process.cwd() + '/..', '');
   
+  // Log environment variables for debugging
+  console.log('Environment variables:', {
+    VITE_API_URL: env.VITE_API_URL,
+    NODE_ENV: env.NODE_ENV,
+    mode
+  });
+
   return {
     build: {
       outDir: path.resolve(__dirname, '../dist/frontend'),
@@ -17,6 +24,7 @@ export default defineConfig(({ mode }) => {
       'import.meta.env.VITE_PROJECT_VERSION_DATABASE': JSON.stringify(env.VITE_PROJECT_VERSION_DATABASE || '6'),
       'import.meta.env.VITE_PROJECT_VERSION_FRONTEND': JSON.stringify(env.VITE_PROJECT_VERSION_FRONTEND || '6'),
       'import.meta.env.VITE_API_URL': JSON.stringify(env.VITE_API_URL || 'http://localhost:3000'),
+      'import.meta.env.NODE_ENV': JSON.stringify(env.NODE_ENV || 'development'),
     },
     server: {
       proxy: {

@@ -4,6 +4,13 @@ let apiFetchTime = 0;
 let lastFetchTime: Date | null = null;
 
 export async function fetchDigest(date?: Date): Promise<DigestData> {
+  // Debug environment variables
+  console.log('Environment in API:', {
+    VITE_API_URL: import.meta.env.VITE_API_URL,
+    NODE_ENV: import.meta.env.NODE_ENV,
+    MODE: import.meta.env.MODE
+  });
+
   const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
   const dateParam = date ? `?date=${date.toISOString().split('T')[0]}` : '';
   const fullUrl = `${apiUrl}/api/digest${dateParam}`;
