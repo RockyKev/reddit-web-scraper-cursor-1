@@ -1,5 +1,5 @@
 import './style.css';
-import { fetchDigest, getApiFetchTime, getLastFetchTime } from './api';
+import { fetchDigest, getLastFetchTime } from './api';
 import { formatDate } from './utils';
 import { createPostCard } from './components';
 import type { DigestData, Post } from './frontend-types';

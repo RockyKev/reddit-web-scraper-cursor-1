@@ -1,4 +1,4 @@
-import type { DigestData } from './types';
+import type { DigestData } from './frontend-types';
 
 let apiFetchTime = 0;
 let lastFetchTime: Date | null = null;

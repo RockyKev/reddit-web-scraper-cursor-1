@@ -1,4 +1,4 @@
-import type { Post } from './types';
+import type { Post } from './frontend-types';
 import { getPostTypeIcon } from './utils';
 
 export function createTitleSection(post: Post): HTMLElement {
@@ -51,7 +51,7 @@ export function createKeywordsSection(post: Post): HTMLElement | null {
   const list = document.createElement('div');
   list.className = 'flex flex-wrap gap-2';
   
-  post.keywords.forEach(keyword => {
+  post.keywords.forEach((keyword: string) => {
     const tag = document.createElement('span');
     tag.className = 'px-2 py-1 bg-gray-100 text-gray-700 text-sm rounded-full';
     tag.textContent = keyword;
@@ -74,12 +74,11 @@ export function createTopCommentersSection(post: Post): HTMLElement {
   const commentersList = document.createElement('div');
   commentersList.className = 'flex flex-wrap gap-2';
   
-  post.top_commenters.forEach(commenter => {
+  post.top_commenters.forEach((commenter: { username: string; contribution_score: number }) => {
     const commenterLink = document.createElement('a');
     commenterLink.href = `https://www.reddit.com/user/${commenter.username}/`;
-    commenterLink.target = '_blank';
-    commenterLink.className = 'hover:text-blue-600 transition-colors duration-200';
-    commenterLink.textContent = `u/${commenter.username} (${commenter.contribution_score})`;
+    commenterLink.className = 'px-2 py-1 bg-gray-100 text-gray-700 text-sm rounded-full';
+    commenterLink.textContent = `${commenter.username} (${commenter.contribution_score})`;
     commentersList.appendChild(commenterLink);
   });
   
