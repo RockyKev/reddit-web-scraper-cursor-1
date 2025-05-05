@@ -1,13 +1,14 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "outDir": "./dist/backend",
+    "rootDir": "./backend",
+    "sourceMap": false,
     "noEmit": false,
-    "sourceMap": true,
-    "removeComments": true,
-    "outDir": "./dist",
-    "rootDir": ".",
-    "allowImportingTsExtensions": false
+    "allowImportingTsExtensions": false,
+    "module": "ESNext",
+    "moduleResolution": "bundler"
   },
   "include": ["backend/**/*"],
-  "exclude": ["node_modules", "dist", "tests"]
+  "exclude": ["node_modules", "frontend", "tests"]
 } 

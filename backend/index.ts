@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { setupRoutes } from './routes.js';
-import { setupDatabase } from '../database/setup.js';
+import { getPool } from './config/database.js';
 import { logger } from './utils/logger.js';
 
 // Load environment variables
@@ -23,8 +23,9 @@ app.use(cors({
 // Setup routes
 setupRoutes(app);
 
-// Initialize database and start server
-setupDatabase()
+// Test database connection and start server
+getPool()
+  .query('SELECT NOW()')
   .then(() => {
     app.listen(port, () => {
       logger.info(`Server is running on port ${port}`);
@@ -32,6 +33,6 @@ setupDatabase()
     });
   })
   .catch((error) => {
-    logger.error('Failed to start server:', error);
+    logger.error('Failed to connect to database:', error);
     process.exit(1);
   }); 
