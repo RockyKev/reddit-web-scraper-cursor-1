@@ -38,6 +38,38 @@ npm run frontend:build
 npm run api:build
 ```
 
+### Testing the Build
+To verify that the API build is working correctly:
+
+1. **Build the API**
+   ```bash
+   npm run api:build
+   ```
+
+2. **Verify Build Output**
+   - Check that files are generated in `dist/backend/`
+   - Look for compiled JavaScript files (`.js`)
+   - Verify that type definitions are present (`.d.ts` files)
+
+3. **Test the Production Build**
+   ```bash
+   # Start the production server
+   npm run api:prod
+   
+   # In another terminal, test the API
+   curl http://localhost:3000/api/health
+   ```
+
+4. **Common Build Issues**
+   - If `dist/backend/` is empty:
+     - Check TypeScript configuration (`tsconfig.json` and `tsconfig.prod.json`)
+     - Verify `noEmit` is set to `false`
+     - Ensure `outDir` is set to `dist/backend`
+   - If build fails:
+     - Check for TypeScript errors
+     - Verify all dependencies are installed
+     - Check for missing environment variables
+
 ## Available Scripts
 
 ### Test Scripts
