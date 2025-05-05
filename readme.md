@@ -64,6 +64,7 @@ The project consists of two main components:
 
    # Build the application
    npm run api:build
+   npm run frontend:build
    ```
 
 2. **Database Setup**
