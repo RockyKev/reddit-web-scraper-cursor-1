@@ -16,58 +16,91 @@ The project consists of two main components:
 - Configurable thresholds and limits
 - Future AI-powered summaries and sentiment analysis
 
-### Future Roadmap
-- RSS feed generation
-- Slack bot integration
-- Email digest delivery
-- Mobile app development
-- AI-powered post and comment summaries
-- Sentiment analysis for posts and comments
-
 ### Technical Stack
 - **Backend**: Node.js + TypeScript
 - **Database**: PostgreSQL
 - **API Documentation**: OpenAPI/Swagger
-- **Frontend**: Server-rendered approach
+- **Frontend**: Vanilla JavaScript with TypeScript, Tailwind CSS
+- **Development**: Vite
 - **Deployment**: Digital Ocean
 
-## Getting Started
+## Quick Start
 
-### Prerequisites
-1. **Node.js and npm**
-   - Install Node.js v23 from [nodejs.org](https://nodejs.org/)
-   - npm comes bundled with Node.js
+### Local Development
 
-2. **Docker Desktop**
-   - Install Docker Desktop from [docker.com](https://www.docker.com/products/docker-desktop/)
-   - Required for running PostgreSQL locally
+1. **Prerequisites**
+   - Node.js v20.x (LTS) or higher
+   - Docker Desktop
 
-3. **Reddit API Credentials**
-   - Create a Reddit application at [reddit.com/prefs/apps](https://www.reddit.com/prefs/apps)
-   - Note down the client ID and client secret
-
-### Initial Setup
-1. **Install dependencies**
+2. **Setup**
    ```bash
+   # Clone and install
+   git clone <repository-url>
+   cd reddit-web-scraper
    npm install
-   ```
+   cd frontend && npm install
 
-2. **Set up environment variables**
-   ```bash
-   cp .env.example .env
-   ```
-   Edit `.env` with your Reddit API credentials and other configuration values.
-
-3. **Start the database and run migrations**
-   ```bash
+   # Start services
    docker-compose up -d
-   npm run migrate:up
+   npm run db:migrate:up // any migration work
+   npm run api:start // starts api server
+   npm run frontend:dev // starts frontend server
    ```
 
-4. **Start the development server**
+3. **Access**
+   - Frontend: http://localhost:5173
+   - API: http://localhost:3000
+
+### Server Deployment
+
+1. **Initial Setup**
    ```bash
-   npm run dev
+   # Clone repository
+   git clone <repository-url>
+   cd reddit-web-scraper
+
+   # Install only production dependencies
+   npm install --production
+
+   # Build the application
+   npm run api:build
    ```
+
+2. **Database Setup**
+   ```bash
+   # Set up the database
+   npm run db:setup
+   npm run db:migrate:up
+   ```
+
+3. **Start Services**
+   ```bash
+   # Start the API server
+   npm run api:prod
+
+   # Start the frontend server (if needed)
+   cd frontend
+   npm install --production
+   npm run build
+   npm run preview
+   ```
+
+4. **Data Collection**
+   ```bash
+   # Collect initial data
+   npm run api:collect:live
+
+   # Set up automated collection (optional)
+   # Add to crontab: 0 4 * * * cd /path/to/project && npm run api:collect:live
+   ```
+
+### Important Notes
+
+- Local development uses `ts-node` for on-the-fly compilation
+- Server deployment uses pre-compiled JavaScript for better performance
+- Always use `--production` flag when installing dependencies on the server
+- Keep your `.env` file secure and never commit it to version control
+- Database backups are available via `npm run db:backup`
 
 ## Documentation
 
@@ -76,35 +109,20 @@ The project consists of two main components:
 - [Database Guide](docs/database.md) - Database setup and management
 - [Testing Guide](docs/testing.md) - Testing strategy and procedures
 - [API Documentation](docs/api.md) - API endpoints and usage
-- [Data Collection](docs/data-collection.md) - Reddit data collection process
 
 ## Project Structure
 
 ```
 reddit-web-scraper/
-├── src/                    # Source code
-│   ├── api/               # API routes and controllers
-│   ├── config/            # Configuration files
-│   ├── db/               # Database related files
-│   ├── services/         # Core business logic
-│   ├── types/            # TypeScript type definitions
-│   └── utils/            # Shared utilities
-├── tests/                # Test files
-│   ├── mocks/           # Mock implementations for testing
-│   └── *.ts             # Test files
-├── docs/                # Documentation
-└── package.json         # Project configuration
+├── frontend/                 # Frontend application
+├── backend/                  # Backend application
+├── database/                # Database migrations
+├── tests/                   # Test files
+├── docs/                    # Documentation
+└── scripts/                 # Project-wide scripts
 ```
 
-For detailed information about the project's development phases and roadmap, see [Development Phases](docs/development-phases.md).
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+For detailed information about the project structure and components, see [Architecture Overview](docs/architecture.md).
 
 ## License
 

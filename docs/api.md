@@ -36,44 +36,60 @@ Returns the daily digest of top posts and comments.
   "summary": {
     "total_posts": 150,
     "total_comments": 1200,
-    "top_subreddits": ["r/Portland", "r/askportland"]
+    "top_subreddits": [
+      {
+        "name": "Portland",
+        "post_count": 75
+      },
+      {
+        "name": "askportland",
+        "post_count": 45
+      }
+    ]
   },
   "top_posts": [
     {
       "id": "abc123",
-      "subreddit": "r/Portland",
       "title": "Post Title",
-      "type": "text",
       "content": "This is the content of the post",
+      "permalink": "https://reddit.com/...",
       "score": 100,
-      "score_ratio": 0.98,
-      "comment_count": 100,
+      "num_comments": 50,
+      "created_at": "2024-03-20T08:00:00Z",
+      "is_archived": false,
+      "is_locked": false,
+      "post_type": "text",
       "daily_rank": 3,
       "daily_score": 120,
-      "permalink": "https://reddit.com/...",
-      "keywords": ["keyword1", "keyword2", "keyword3"],
-      "locked": false,
+      "subreddit": "Portland",
       "author": {
-        "username": "PDX_Dave",
-        "fullname": "t2_123abc",
-        "contribution_score": 2
+        "username": "CatLadySarah",
+        "reddit_id": "t2_123abc",
+        "contribution_score": 5
       },
+      "keywords": ["keyword1", "keyword2", "keyword3"],
       "top_commenters": [
         {
-          "username": "CatLadySarah",
-          "contribution_score": 5
-        },
-        {
           "username": "Zesty Steve",
-          "contribution_score": 7
+          "contribution_score": 0
         },
         {
           "username": "Banana123",
-          "contribution_score": 10
+          "contribution_score": 0
         }
       ],
       "summary": null,
       "sentiment": null
+    }
+  ],
+  "top_commenters": [
+    {
+      "username": "Zesty Steve",
+      "contribution_score": 0
+    },
+    {
+      "username": "Banana123",
+      "contribution_score": 0
     }
   ]
 }
@@ -89,24 +105,27 @@ Returns the daily digest of top posts and comments.
 | total_comments  | integer | Total number of comments collected             |
 | top_subreddits  | array   | List of subreddits with most activity          |
 | top_posts       | array   | List of top posts for the day                  |
+| top_commenters  | array   | List of top commenters for the day             |
 
 #### Post Object Fields
 
 | Field            | Type    | Description                                    |
 |------------------|---------|------------------------------------------------|
 | id               | string  | Unique identifier for the post                 |
-| subreddit        | string  | Name of the subreddit                          |
 | title            | string  | Post title                                     |
-| type             | string  | Type of post (text, link, image, video, etc.)  |
-| content          | string  | Post content (text or URL)                     |
-| upvotes          | integer | Number of upvotes                              |
-| comment_count    | integer | Number of comments                             |
+| content          | string  | Main post content (text or URL)                |
+| permalink        | string  | Link to the original Reddit post               |
+| score            | integer | Post score (upvotes)                           |
+| num_comments     | integer | Number of comments                             |
+| created_at       | string  | When the post was created                      |
+| is_archived      | boolean | Whether the post is archived on Reddit         |
+| is_locked        | boolean | Whether the post is locked                     |
+| post_type        | string  | Type of post ('text', 'link', 'image', 'hosted:video') |
 | daily_rank       | integer | Post's rank for the day                        |
 | daily_score      | integer | Post's calculated score for the day            |
-| permalink        | string  | Reddit permalink URL                           |
-| keywords         | array   | Extracted keywords from post and top comments  |
-| locked           | boolean | Whether the post is locked                     |
+| subreddit        | string  | Name of the subreddit                          |
 | author           | object  | Post author information                        |
+| keywords         | array   | Extracted keywords from post and top comments  |
 | top_commenters   | array   | List of top commenters on the post             |
 | summary          | string  | AI-generated summary (if available)            |
 | sentiment        | object  | Sentiment analysis results (if available)      |
@@ -115,9 +134,9 @@ Returns the daily digest of top posts and comments.
 
 | Field              | Type    | Description                                    |
 |-------------------|---------|------------------------------------------------|
-| username          | string  | Reddit username                                |
-| fullname          | string  | Reddit user ID                                 |
-| contribution_score| integer | User's contribution score                      |
+| username          | string  | Clean, human-readable username                 |
+| reddit_id         | string  | Reddit's database ID (t2_...)                  |
+| contribution_score| integer | Score based on frequency in our database       |
 
 #### Top Commenter Object Fields
 
@@ -126,40 +145,19 @@ Returns the daily digest of top posts and comments.
 | username          | string  | Reddit username                                |
 | contribution_score| integer | User's contribution score                      |
 
-## Rate Limiting
-
-The API implements rate limiting to prevent abuse. Current limits:
-- 100 requests per minute per IP address
-- 1000 requests per hour per IP address
-
-Rate limit headers are included in responses:
-```
-X-RateLimit-Limit: 100
-X-RateLimit-Remaining: 95
-X-RateLimit-Reset: 1616284800
-```
-
 ## Error Responses
 
 The API uses standard HTTP status codes and returns error details in the response body:
 
 ```json
 {
-  "error": {
-    "code": "RATE_LIMIT_EXCEEDED",
-    "message": "Rate limit exceeded. Please try again later.",
-    "details": {
-      "limit": 100,
-      "reset": 1616284800
-    }
-  }
+  "error": "No data found for the specified date"
 }
 ```
 
 Common error codes:
 - `400` - Bad Request
 - `404` - Not Found
-- `429` - Too Many Requests
 - `500` - Internal Server Error
 
 ## Example Usage

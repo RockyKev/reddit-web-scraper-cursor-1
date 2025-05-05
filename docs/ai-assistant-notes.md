@@ -2,9 +2,10 @@
 
 This document contains notes and guidelines for AI assistants working on the Reddit PDX Scraper project.
 
-## Project Structure
+## Project Overview
+This is a Reddit PDX Digest application that aggregates and displays daily Reddit activity from Portland-related subreddits. The project uses a modern tech stack with TypeScript, Express, and a vanilla JavaScript frontend.
 
-### Documentation Organization
+## Documentation Organization
 - README.md serves as the main entry point and project overview
 - Detailed documentation is split into focused guides:
   - architecture.md: System design and components
@@ -12,21 +13,177 @@ This document contains notes and guidelines for AI assistants working on the Red
   - database.md: Database setup and management
   - testing.md: Testing strategy and procedures
   - api.md: API endpoints and usage
-  - data-collection.md: Reddit data collection process
 
-### Database Management
-- Currently using both custom migration system and node-pg-migrate (to be standardized in Version 5)
+## Key Decisions
+
+### Frontend Architecture
+- Using vanilla JavaScript with TypeScript instead of React for simplicity and performance
+- Vite for development and building
+- Tailwind CSS for styling
+- Responsive design with mobile-first approach
+
+### Backend Architecture
+- Express with TypeScript
+- PostgreSQL for data storage
+- CORS enabled for frontend development
+- Environment-based configuration
+
+### Data Management
+- PostgreSQL for data storage
+- Structured data format for posts and digests
+- Daily scoring and ranking system
+- User contribution tracking
+
+## Best Practices
+
+### Code Organization
+- Clear separation of frontend and backend code
+- TypeScript interfaces for type safety
+- Modular service architecture
+- Environment-based configuration
+
+### Development Workflow
+- Use environment variables for configuration
+- Keep sensitive data out of version control
+- Follow TypeScript best practices
+- Maintain consistent code style
+
+### API Design
+- RESTful endpoints
+- Clear error handling
+- CORS configuration for development
+- Proper response formatting
+
+### Frontend Development
+- Responsive design principles
+- Progressive enhancement
+- Accessibility considerations
+- Performance optimization
+
+## Current Status
+- Frontend and backend setup complete
+- PostgreSQL database implemented
+- Reddit API integration working
+- Scoring and ranking system implemented
+- Documentation updated
+
+## Project Structure
+- Frontend: `frontend/` - Vite + vanilla JS + Tailwind CSS
+- Backend: `backend/` - Node.js + Express + TypeScript
+- Database: `database/` - PostgreSQL migrations and setup
+- Tests: `tests/` - Jest test files
+- Docs: `docs/` - Project documentation
+- Scripts: `scripts/` - Utility scripts
+
+## Database Management
+- Using node-pg-migrate for database migrations
 - Migration files follow timestamp-based naming: YYYYMMDDHHMMSS_migration_name.sql
-- Each migration can include up and down sections
+- Each migration includes up and down sections
 - Migrations are tracked in a dedicated migrations table
 - Supports transaction-based rollbacks
-- Note: Migration system choice will be finalized in Version 5
 
-### Testing Framework
-- Using Jest as the primary testing framework
-- Mock implementations available in tests/mocks/
-- Test files follow .test.ts naming convention
-- Database tests use a separate test database
+## TypeScript Guidelines
+1. File Extensions:
+   - Use `.js` extension in import statements (e.g., `import { foo } from './bar.js'`)
+   - This is required for ES modules at runtime, even though the source files are `.ts`
+   - TypeScript will automatically resolve `.js` extensions to `.ts` files during compilation
+   - This follows the Node.js ES modules specification
+
+2. Module Resolution:
+   - Project uses ES modules exclusively (package.json has "type": "module")
+   - tsconfig.json is configured with "module": "NodeNext" and "moduleResolution": "NodeNext"
+   - All imports should use relative paths (starting with ./ or ../)
+   - Avoid using path aliases unless absolutely necessary
+
+3. Running TypeScript:
+   - Use `node --loader ts-node/esm` for running TypeScript files directly
+   - For development with nodemon, use `nodemon --exec 'node --loader ts-node/esm'`
+   - Build process uses `tsc` to compile to JavaScript
+
+4. Type Definitions:
+   - Keep type definitions in `backend/types/`
+   - Use interfaces for object shapes
+   - Use type aliases for complex types
+   - Export all types that are used across multiple files
+
+5. Project Organization:
+   - Backend code goes in `backend/`
+   - Frontend code goes in `frontend/`
+   - Database migrations in `database/migrations/`
+   - Test files mirror the source structure in `tests/`
+
+## Frontend Guidelines
+1. Vanilla JavaScript:
+   - No framework dependencies
+   - Use ES modules for code organization
+   - Keep components in `frontend/components/`
+   - Use Tailwind CSS for styling
+
+2. State Management:
+   - Use browser's localStorage for persistence
+   - Keep state management simple and centralized
+   - Avoid complex state management libraries
+
+## Backend Guidelines
+1. API Structure:
+   - RESTful endpoints in `backend/api/routes/`
+   - Services in `backend/services/`
+   - Types in `backend/types/`
+   - Utils in `backend/utils/`
+
+2. Database:
+   - Use migrations for schema changes
+   - Keep database setup scripts in `database/setup/`
+   - Use environment variables for configuration
+
+## Testing Guidelines
+1. Test Organization:
+   - Unit tests in `tests/jest/`
+   - API tests in `tests/api/`
+   - Mock data in `tests/mocks/`
+   - Test utilities in `tests/utils/`
+
+2. Test Coverage:
+   - Aim for high test coverage
+   - Mock external dependencies
+   - Use test databases for integration tests
+
+## Development Workflow
+1. Code Style:
+   - Use TypeScript's strict mode
+   - Follow ESLint rules
+   - Use Prettier for formatting
+   - Keep functions small and focused
+
+2. Git Workflow:
+   - Feature branches from main
+   - PR reviews required
+   - Squash merges preferred
+   - Keep commits atomic
+
+3. Environment:
+   - Use .env for local development
+   - Keep sensitive data out of version control
+   - Document all environment variables
+
+## Common Pitfalls to Avoid
+1. TypeScript:
+   - Don't use `any` type unless absolutely necessary
+   - Don't mix `.js` and `.ts` extensions in imports
+   - Don't ignore type errors
+   - Don't use `require()` - use ES imports
+
+2. Project Structure:
+   - Don't put frontend code in backend
+   - Don't mix concerns between layers
+   - Don't duplicate type definitions
+   - Don't ignore migration files
+
+3. Testing:
+   - Don't skip writing tests
+   - Don't use production database for tests
+   - Don't ignore test failures
+   - Don't write brittle tests
 
 ## Common Tasks
 
@@ -51,26 +208,6 @@ This document contains notes and guidelines for AI assistants working on the Red
 4. Include examples where helpful
 5. Cross-reference related documentation
 
-## Best Practices
-
-### Code Style
-- Use TypeScript's strict mode
-- Follow project naming conventions
-- Document public APIs
-- Keep files focused and small
-
-### Testing
-- Test each component in isolation
-- Use mocks for external dependencies
-- Clean up after tests
-- Aim for high test coverage
-
-### Documentation
-- Keep it up to date
-- Include examples
-- Cross-reference related docs
-- Use clear, concise language
-
 ## Common Issues
 
 ### Database
@@ -82,177 +219,45 @@ This document contains notes and guidelines for AI assistants working on the Red
 ### Reddit API
 - Respect rate limits
 - Implement retry logic
-- Cache responses when possible
 - Handle API errors gracefully
+- Cache responses when appropriate
 
-### Testing
-- Clear test database between runs
-- Check mock implementations
-- Verify test environment
-- Handle async operations properly
+### Scoring System
+- Verify daily score calculations
+- Check rank assignments
+- Monitor user statistics updates
+- Validate keyword extraction
 
-## Future Considerations
+## Important Notes for AI Agents
 
-### Planned Features
-- RSS feed generation
-- Slack bot integration
-- Email digest delivery
-- Mobile app development
-- AI-powered summaries
-- Sentiment analysis
+1. **Service Dependencies**:
+   - `reddit-scraper.ts` depends on Reddit API
+   - `reddit-storage.ts` depends on PostgreSQL
+   - `score-calculator.ts` depends on `reddit-storage.ts`
+   - `digest-service.ts` depends on `score-calculator.ts`
 
-### Technical Debt
-- Monitor test coverage
-- Review and update dependencies
-- Optimize database queries
-- Improve error handling
+2. **Data Flow**:
+   - Collection: `reddit-collector.ts` → `reddit-scraper.ts` → `reddit-storage.ts`
+   - Scoring: `score-calculator.ts` → `reddit-storage.ts`
+   - Digest: `digest-service.ts` → `score-calculator.ts` → `reddit-storage.ts`
 
-## Notes for AI Assistants
+3. **Error Handling**:
+   - All services use try-catch blocks
+   - Errors are logged with appropriate context
+   - Database errors are handled with transactions
+   - API errors include retry logic
 
-1. Always check existing documentation before making changes
-2. Keep documentation consistent across files
-3. Update related documentation when making changes
-4. Follow project conventions and best practices
-5. Provide clear explanations and examples
-6. Cross-reference related documentation
-7. Keep the README.md focused and high-level
-8. Use appropriate formatting and structure
-9. Include code examples where helpful
-10. Maintain backward compatibility
+4. **Testing Strategy**:
+   - Unit tests for each service
+   - Integration tests for data flow
+   - Mock external dependencies
+   - Use test database for integration tests
 
-## PowerShell Console Issues
-- The PowerShell console has issues with long commit messages, causing `System.ArgumentOutOfRangeException`
-- Workaround: Use shorter commit messages or break them into multiple lines
-- Example: Instead of "docs: move development phases to separate file and update Phase 1 progress", use "docs: move dev phases"
-
-## Git Commands
-- When committing changes, prefer shorter commit messages to avoid PowerShell console issues
-- Use `git add *` to stage all changes when working with multiple files
-- The repository is hosted at: https://github.com/robingamedev/reddit-web-scraper-cursor.git
-
-## Project Structure
-- The project uses TypeScript with Node.js
-- Main source code is in `src/` directory
-- Test files are in `tests/` directory
-- Documentation is in `docs/` directory
-- Scripts for various tasks are in `src/scripts/` directory
-
-## Database
-- Uses PostgreSQL
-- Database management commands are available through npm scripts:
-  - `npm run db:migrate-up` - Run migrations
-  - `npm run db:migrate-down` - Rollback migrations
-  - `npm run db:drop` - Drop the database
-  - `npm run db:reset` - Drop and recreate the database
-
-## Reddit API
-- Rate limiting is important to respect
-- Live data collection should be done with conservative delays between requests
-- Post types and permalinks need to be properly handled to avoid null values
-
-## Content Handling
-- Reddit posts can be of different types:
-  - `link`: External links to other websites
-  - `self`: Text posts within Reddit
-  - `image`: Image posts (can be single or multiple images)
-  - `video`: Video posts (hosted on Reddit or external platforms)
-  - `gallery`: Multiple image posts
-  - `poll`: Reddit polls
-  - `rich_video`: Rich media posts (e.g., YouTube embeds)
-  - `crosspost`: Posts crossposted from other subreddits
-- Each type requires specific handling:
-  - `link`: Store the external URL and title
-  - `self`: Store the text content and markdown formatting
-  - `image`: Store image URLs and metadata
-  - `video`: Store video URLs and playback information
-  - `gallery`: Store multiple image URLs and gallery metadata
-  - `poll`: Store poll options and voting data
-  - `rich_video`: Store embed URLs and metadata
-  - `crosspost`: Store original post reference and crosspost metadata
-- Always verify post_type and permalink fields are populated
-- Handle null values gracefully in the API response
-- Consider content type when generating summaries or extracting keywords
-
-## Common Fixes
-1. Database Issues:
-   - If database operations fail, try running `npm run db:reset`
-   - Check for proper environment variables in `.env` file
-
-2. TypeScript Issues:
-   - Ensure proper type definitions in `src/types/`
-   - Check for missing imports in service files
-
-3. Reddit Data Collection:
-   - Verify post_type and permalink fields are populated
-   - Implement proper rate limiting between API calls
-   - Use the live collection scripts for real-time data gathering
-
-## Development Workflow
-1. Make changes to source files
-2. Test changes using appropriate npm scripts
-3. Update documentation if needed
-4. Commit changes with concise messages
-5. Push to remote repository
-
-## Useful npm Scripts
-- `npm run dev` - Start development server
-- `npm run collect:live` - Run live post collection
-- `npm run test:unit` - Run unit tests
-- `npm run test:db` - Test database operations
-- `npm run lint` - Run ESLint
-- `npm run format` - Format code with Prettier
-
-## Critical Mistakes and Learnings
-
-### Environment Files and Destructive Commands
-- NEVER use `git clean -fdx` or similar destructive commands without explicit warning and confirmation
-- Environment files (.env) are typically not tracked in git for security reasons
-- Always check what files will be affected before running any command
-- Be especially careful with:
-  - Environment files (.env)
-  - Configuration files
-  - Any files containing sensitive data
-  - Local development filesC
-
-### Test Organization
-- Don't assume test files are Jest tests or direct ts-node tests without checking
-- Don't reorganize test files without understanding the current structure
-- Don't make changes to test organization without clear requirements
-
-### General Guidelines
-1. Before running any command:
-   - Check what files will be affected
-   - Warn about potential destructive actions
-   - Ask for confirmation if there's any risk
-2. When dealing with environment files:
-   - Never delete or modify .env files without explicit permission
-   - Always keep .env.example as a template
-   - Document any changes to environment variables
-3. When reorganizing files:
-   - Understand the current structure first
-   - Don't make assumptions about file organization
-   - Get clear requirements before making changes
-
-### Session Context
-- User was working on a Reddit web scraper project
-- Attempted to clean up test organization but made incorrect assumptions
-- Accidentally deleted .env file using git clean
-- Had to recreate .env from template
-- User had to provide their own values for sensitive data
-
-### Future Improvements
-1. For destructive commands:
-   - Always show what will be deleted first
-   - Get explicit confirmation
-   - Provide alternatives if available
-2. For environment files:
-   - Treat them as sensitive data
-   - Never modify without explicit permission
-   - Keep backups if making changes
-3. For test organization:
-   - Understand the current structure
-   - Don't make assumptions about test frameworks
-   - Get clear requirements before reorganizing 
+5. **Documentation Updates**:
+   - Keep architecture.md high-level
+   - Add implementation details to development.md
+   - Update api.md for new endpoints
+   - Document database changes in database.md
 
 ## Response example with details
 
@@ -348,3 +353,304 @@ Note 2: Keywords is generated by collecting a list of the top comments and pulli
 - Avoid making database changes until the API structure is stable
 - Keep track of completed features and dependencies
 - Document decisions and their rationale
+
+## Post Ranking and Filtering
+- Daily rank is determined by score count (upvotes)
+- Posts are sorted by score in descending order
+- Daily rank is assigned based on position in sorted list (highest score = rank 1)
+- API filtering is controlled by POSTS_PER_SUBREDDIT environment variable
+  - Example: If POSTS_PER_SUBREDDIT=20, only posts with daily_rank 1-20 are returned
+  - Changing POSTS_PER_SUBREDDIT to 10 would return only posts with daily_rank 1-10
+- This simple ranking system allows for efficient filtering and pagination
+
+## Frontend and API Development
+- Frontend and API are separate applications
+- API runs on Express server (port 3000)
+- Frontend runs on Vite dev server (port 5173)
+- Development scripts:
+  - `npm run api:start` - Start Express API server
+  - `npm run frontend:dev` - Start Vite dev server
+  - `npm run frontend:build` - Build frontend for production
+- Frontend proxies API requests to backend during development
+- Frontend is built as static files for production
+- API endpoints:
+  - `/api/digest` - Returns daily digest data
+  - More endpoints to be added as needed
+
+## Development Environment
+- TypeScript for both frontend and backend
+- No .js files in src/ directory (all TypeScript)
+- ES modules for imports/exports
+- Strict TypeScript configuration
+- Separate package.json for frontend and backend
+- Frontend uses Vite for development and building
+- Backend uses Express for API server
+
+## Content Handling
+- Reddit posts can be of different types:
+  - `link`: External links to other websites
+  - `self`: Text posts within Reddit
+  - `image`: Image posts (can be single or multiple images)
+  - `video`: Video posts (hosted on Reddit or external platforms)
+  - `gallery`: Multiple image posts
+  - `poll`: Reddit polls
+  - `rich_video`: Rich media posts (e.g., YouTube embeds)
+  - `crosspost`: Posts crossposted from other subreddits
+- Each type requires specific handling:
+  - `link`: Store the external URL and title
+  - `self`: Store the text content and markdown formatting
+  - `image`: Store image URLs and metadata
+  - `video`: Store video URLs and playback information
+  - `gallery`: Store multiple image URLs and gallery metadata
+  - `poll`: Store poll options and voting data
+  - `rich_video`: Store embed URLs and metadata
+  - `crosspost`: Store original post reference and crosspost metadata
+- Always verify post_type and permalink fields are populated
+- Handle null values gracefully in the API response
+- Consider content type when generating summaries or extracting keywords
+
+## Common Fixes
+1. Database Issues:
+   - If database operations fail, try running `npm run db:reset`
+   - Check for proper environment variables in `.env` file
+
+2. TypeScript Issues:
+   - Ensure proper type definitions in `backend/types/`
+   - Check for missing imports in service files
+   - Don't use `any` type unless absolutely necessary
+   - Don't mix `.js` and `.ts` extensions in imports
+   - Don't ignore type errors
+   - Don't use `require()` - use ES imports
+
+3. Reddit Data Collection:
+   - Verify post_type and permalink fields are populated
+   - Implement proper rate limiting between API calls
+   - Use the live collection scripts for real-time data gathering
+
+## CommonJS vs ES Modules Issues
+
+### Problem
+When using ES Modules (indicated by `"type": "module"` in package.json), importing CommonJS modules (like `pg`) directly can cause issues:
+```typescript
+// This will fail:
+import { Pool } from 'pg';  // Error: Named export 'Pool' not found
+```
+
+### Solution
+For CommonJS modules, use the following pattern:
+```typescript
+// This works:
+import pkg from 'pg';
+const { Pool } = pkg;
+```
+
+### Common Modules That Need This Fix
+- `pg` (PostgreSQL client)
+- `express`
+- Other older Node.js packages that haven't fully migrated to ES Modules
+
+### Best Practices
+1. Always check if a package is CommonJS or ES Module before importing
+2. Use the `pkg` import pattern for CommonJS modules
+3. Consider creating a central database connection file to avoid repeating this pattern
+4. Document this pattern in project documentation for future reference
+
+## Data Structure Guidelines
+
+### Post Content Handling
+1. Posts have multiple content-related fields:
+   - `selftext`: Raw text content for text posts
+   - `url`: Raw URL for link posts
+   - `post_type`: Determines which field contains the main content
+   - `content`: Frontend-friendly field derived from either selftext or url based on post_type
+
+2. Content Field Rules:
+   - For text posts: `content` is derived from `selftext`
+   - For link posts: `content` is derived from `url`
+   - The raw fields (`selftext`, `url`) are always included in the API response
+   - Frontend should primarily use the `content` field for display
+
+### Author Structure
+1. Author information is returned as an object with three fields:
+   - `username`: Clean, human-readable username for display
+   - `reddit_id`: Reddit's database ID (t2_...)
+   - `contribution_score`: Score based on frequency in our database
+
+2. Author Data Rules:
+   - Always include all three fields in the author object
+   - Keep usernames clean and human-readable
+   - Maintain Reddit's ID format for reddit_id
+   - Calculate contribution_score based on user activity
+
+### Documentation Requirements
+1. Database Schema:
+   - Document raw fields and their purposes
+   - Include notes about field relationships
+   - Specify which fields determine content type
+
+2. API Documentation:
+   - Show both raw and derived fields
+   - Explain field relationships clearly
+   - Provide examples of different content types
+
+## Database Refactoring Experience
+
+### Directory Structure Improvements
+- Moved all database-related code from `backend/db` to the root `database` directory
+- Consolidated database setup scripts into a single location
+- Eliminated duplicate functionality between `backend/scripts/setup-database.ts` and `database/setup/setup-test-db.ts`
+
+### Database Setup Improvements
+1. Created a unified setup script (`database/setup.ts`) that:
+   - Handles both test and production database setup
+   - Uses a single schema file (`database/schema.sql`)
+   - Properly handles SQL statement splitting with dollar-quoted strings
+   - Gracefully handles existing tables (ignores "relation already exists" errors)
+   - Provides clear logging and error messages
+
+2. Database Connection Management:
+   - Moved from callback-style to async/await for better error handling
+   - Added explicit connection testing functionality
+   - Improved connection pool management for tests
+   - Added proper cleanup in test environment
+
+### Test Suite Improvements
+1. Test Setup:
+   - Consolidated test database setup into a single approach
+   - Added proper console output suppression during tests
+   - Implemented proper database connection cleanup
+   - Added appropriate timeouts for database operations
+
+2. Test Structure:
+   - Organized test data setup in `beforeAll` blocks
+   - Added proper cleanup in `afterAll` blocks
+   - Implemented comprehensive test cases for different scenarios
+   - Added proper error handling for missing data
+
+### NPM Scripts Organization
+Consolidated and improved database-related npm scripts:
+```json
+{
+  "db:setup": "tsx database/setup.ts",
+  "db:setup:test": "tsx database/setup.ts --test",
+  "db:migrate": "tsx database/migrate.ts up",
+  "db:migrate:down": "tsx database/migrate.ts down",
+  "db:migrate:status": "tsx database/migrate.ts status"
+}
+```
+
+### Lessons Learned
+1. SQL Statement Handling:
+   - Need to properly handle dollar-quoted strings in PostgreSQL
+   - Better to execute schema as individual statements
+   - Important to handle existing relations gracefully
+
+2. Test Environment:
+   - Jest requires proper cleanup of database connections
+   - Console output should be suppressed but restorable
+   - Test database should be properly isolated
+   - Important to test both success and error cases
+
+3. Code Organization:
+   - Keep database-related code in a single location
+   - Use consistent import paths
+   - Maintain clear separation between test and production code
+   - Avoid duplicate functionality across different scripts
+
+4. Error Handling:
+   - Properly handle database connection errors
+   - Add informative error messages
+   - Include proper type checking for errors
+   - Add graceful fallbacks where appropriate
+
+### Future Improvements
+1. Consider adding:
+   - Database migration versioning
+   - Automatic test database naming
+   - More comprehensive error handling
+   - Better logging and monitoring
+   - Transaction support for test data setup
+   - Database connection pooling configuration
+
+2. Potential Optimizations:
+   - Batch database operations
+   - Improve schema loading performance
+   - Add connection pooling metrics
+   - Implement query timeout handling
+   - Add retry mechanisms for transient failures
+
+## Lessons Learned
+
+### Critical Mistakes and Learnings
+
+#### Environment Files and Destructive Commands
+- NEVER use `git clean -fdx` or similar destructive commands without explicit warning and confirmation
+- Environment files (.env) are typically not tracked in git for security reasons
+- Always check what files will be affected before running any command
+- Be especially careful with:
+  - Environment files (.env)
+  - Configuration files
+  - Any files containing sensitive data
+  - Local development files
+
+#### Test Organization
+- Don't assume test files are Jest tests or direct ts-node tests without checking
+- Don't reorganize test files without understanding the current structure
+- Don't make changes to test organization without clear requirements
+
+#### General Guidelines
+1. Before running any command:
+   - Check what files will be affected
+   - Warn about potential destructive actions
+   - Ask for confirmation if there's any risk
+2. When dealing with environment files:
+   - Never delete or modify .env files without explicit permission
+   - Always keep .env.example as a template
+   - Document any changes to environment variables
+3. When reorganizing files:
+   - Understand the current structure first
+   - Don't make assumptions about file organization
+   - Get clear requirements before making changes
+
+### Session Context
+- User was working on a Reddit web scraper project
+- Attempted to clean up test organization but made incorrect assumptions
+- Accidentally deleted .env file using git clean
+- Had to recreate .env from template
+- User had to provide their own values for sensitive data
+
+### Future Improvements
+1. For destructive commands:
+   - Always show what will be deleted first
+   - Get explicit confirmation
+   - Provide alternatives if available
+2. For environment files:
+   - Treat them as sensitive data
+   - Never modify without explicit permission
+   - Keep backups if making changes
+3. For test organization:
+   - Understand the current structure
+   - Don't make assumptions about test frameworks
+   - Get clear requirements before reorganizing
+
+### PowerShell Console Issues
+- The PowerShell console has issues with long commit messages, causing `System.ArgumentOutOfRangeException`
+- Workaround: Use shorter commit messages or break them into multiple lines
+- Example: Instead of "docs: move development phases to separate file and update Phase 1 progress", use "docs: move dev phases"
+
+### Git Commands
+- When committing changes, prefer shorter commit messages to avoid PowerShell console issues
+- Use `git add *` to stage all changes when working with multiple files
+- The repository is hosted at: https://github.com/robingamedev/reddit-web-scraper-cursor.git
+
+### Useful npm Scripts
+- `npm run dev` - Start development server
+- `npm run collect:live` - Run live post collection
+- `npm run test:unit` - Run unit tests
+- `npm run test:db` - Test database operations
+- `npm run lint` - Run ESLint
+- `npm run format` - Format code with Prettier
+
+## Code Quality
+
+Avoid wrapping every method in try/catch. Only catch errors when you intend to handle them meaningfully—such as logging, adding context, or recovering safely. Let unexpected errors propagate upward so they can be handled at a higher level or cause a controlled failure. Catching and suppressing errors (especially by returning default values) hides problems, making debugging harder and leading to misleading behavior. Prioritize visibility and traceability over silent recovery.

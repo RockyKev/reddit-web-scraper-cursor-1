@@ -1,0 +1,4255 @@
+{
+	"kind": "Listing",
+	"data": {
+	  "after": "t3_1jojtlb",
+	  "dist": 25,
+	  "modhash": "lyp53ss21g8ff3783179ced85792e425a0b61731dc74635d12",
+	  "geo_filter": "",
+	  "children": [
+		{
+		  "kind": "t3",
+		  "data": {
+			"approved_at_utc": null,
+			"subreddit": "Portland",
+			"selftext": "",
+			"author_fullname": "t2_xu6jr",
+			"saved": false,
+			"mod_reason_title": null,
+			"gilded": 0,
+			"clicked": false,
+			"title": "New bill proposes repealing vote-by-mail in Oregon, public invited to testify",
+			"link_flair_richtext": [],
+			"subreddit_name_prefixed": "r/Portland",
+			"hidden": false,
+			"pwls": 6,
+			"link_flair_css_class": "news",
+			"downs": 0,
+			"thumbnail_height": 93,
+			"top_awarded_type": null,
+			"hide_score": false,
+			"name": "t3_1jo3fbw",
+			"quarantine": false,
+			"link_flair_text_color": "light",
+			"upvote_ratio": 0.98,
+			"author_flair_background_color": null,
+			"ups": 840,
+			"total_awards_received": 0,
+			"media_embed": {
+  
+			},
+			"thumbnail_width": 140,
+			"author_flair_template_id": "02698216-4254-11e1-a562-12313b08a511",
+			"is_original_content": false,
+			"user_reports": [],
+			"secure_media": null,
+			"is_reddit_media_domain": false,
+			"is_meta": false,
+			"category": null,
+			"secure_media_embed": {
+  
+			},
+			"link_flair_text": "News",
+			"can_mod_post": false,
+			"score": 840,
+			"approved_by": null,
+			"is_created_from_ads_ui": false,
+			"author_premium": false,
+			"thumbnail": "https://b.thumbs.redditmedia.com/oVJZa1GoCvXWSqMQugjz4NYl4ysmbHUM5SFm5GnRF4s.jpg",
+			"edited": false,
+			"author_flair_css_class": null,
+			"author_flair_richtext": [],
+			"gildings": {
+  
+			},
+			"post_hint": "link",
+			"content_categories": null,
+			"is_self": false,
+			"subreddit_type": "public",
+			"created": 1743428391,
+			"link_flair_type": "text",
+			"wls": 6,
+			"removed_by_category": null,
+			"banned_by": null,
+			"author_flair_type": "text",
+			"domain": "koin.com",
+			"allow_live_comments": false,
+			"selftext_html": null,
+			"likes": null,
+			"suggested_sort": "confidence",
+			"banned_at_utc": null,
+			"url_overridden_by_dest": "https://www.koin.com/news/politics/new-bill-proposes-repealing-vote-by-mail-in-oregon-public-invited-to-testify/",
+			"view_count": null,
+			"archived": false,
+			"no_follow": false,
+			"is_crosspostable": true,
+			"pinned": false,
+			"over_18": false,
+			"preview": {
+			  "images": [
+				{
+				  "source": {
+					"url": "https://external-preview.redd.it/rzp40EYRZQ3gO1wBN70FMsBZLM1wQfmy5eiLXcqq5xc.jpg?auto=webp&amp;s=a7596de206d719dc21d1278164683b0521205af3",
+					"width": 1024,
+					"height": 683
+				  },
+				  "resolutions": [
+					{
+					  "url": "https://external-preview.redd.it/rzp40EYRZQ3gO1wBN70FMsBZLM1wQfmy5eiLXcqq5xc.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=ae801e89ab144586f5e2906ee007ed7ca057081d",
+					  "width": 108,
+					  "height": 72
+					},
+					{
+					  "url": "https://external-preview.redd.it/rzp40EYRZQ3gO1wBN70FMsBZLM1wQfmy5eiLXcqq5xc.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=50b55325fb26c3075794200d08242945eeacad85",
+					  "width": 216,
+					  "height": 144
+					},
+					{
+					  "url": "https://external-preview.redd.it/rzp40EYRZQ3gO1wBN70FMsBZLM1wQfmy5eiLXcqq5xc.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=39c706310168e392b34d8e49d6ef5b66d24eb7f3",
+					  "width": 320,
+					  "height": 213
+					},
+					{
+					  "url": "https://external-preview.redd.it/rzp40EYRZQ3gO1wBN70FMsBZLM1wQfmy5eiLXcqq5xc.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=c6934edce29f1556dcc20b19f650bbb6a7f4237b",
+					  "width": 640,
+					  "height": 426
+					},
+					{
+					  "url": "https://external-preview.redd.it/rzp40EYRZQ3gO1wBN70FMsBZLM1wQfmy5eiLXcqq5xc.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=6dd53d1025ad32709d7b6730a3cafa861383359e",
+					  "width": 960,
+					  "height": 640
+					}
+				  ],
+				  "variants": {
+  
+				  },
+				  "id": "siaMUctt4WI_lgk7zyWlNqdF6VuDZ9AxaCyPIZ-ImT4"
+				}
+			  ],
+			  "enabled": false
+			},
+			"all_awardings": [],
+			"awarders": [],
+			"media_only": false,
+			"link_flair_template_id": "0620b916-f866-11e5-a8d7-0eab7e252831",
+			"can_gild": false,
+			"spoiler": false,
+			"locked": false,
+			"author_flair_text": "NE",
+			"treatment_tags": [],
+			"visited": false,
+			"removed_by": null,
+			"mod_note": null,
+			"distinguished": null,
+			"subreddit_id": "t5_2qi2i",
+			"author_is_blocked": false,
+			"mod_reason_by": null,
+			"num_reports": null,
+			"removal_reason": null,
+			"link_flair_background_color": "#005ba1",
+			"id": "1jo3fbw",
+			"is_robot_indexable": true,
+			"report_reasons": null,
+			"author": "picturesofbowls",
+			"discussion_type": null,
+			"num_comments": 187,
+			"send_replies": true,
+			"contest_mode": false,
+			"mod_reports": [],
+			"author_patreon_flair": false,
+			"author_flair_text_color": "dark",
+			"permalink": "/r/Portland/comments/1jo3fbw/new_bill_proposes_repealing_votebymail_in_oregon/",
+			"stickied": false,
+			"url": "https://www.koin.com/news/politics/new-bill-proposes-repealing-vote-by-mail-in-oregon-public-invited-to-testify/",
+			"subreddit_subscribers": 350340,
+			"created_utc": 1743428391,
+			"num_crossposts": 1,
+			"media": null,
+			"is_video": false
+		  }
+		},
+		{
+		  "kind": "t3",
+		  "data": {
+			"approved_at_utc": null,
+			"subreddit": "Portland",
+			"selftext": "",
+			"author_fullname": "t2_dgn9u",
+			"saved": false,
+			"mod_reason_title": null,
+			"gilded": 0,
+			"clicked": false,
+			"title": "Get me to God’s country",
+			"link_flair_richtext": [],
+			"subreddit_name_prefixed": "r/Portland",
+			"hidden": false,
+			"pwls": 6,
+			"link_flair_css_class": "meme",
+			"downs": 0,
+			"thumbnail_height": 140,
+			"top_awarded_type": null,
+			"hide_score": false,
+			"name": "t3_1jo5fwd",
+			"quarantine": false,
+			"link_flair_text_color": "light",
+			"upvote_ratio": 0.92,
+			"author_flair_background_color": null,
+			"ups": 564,
+			"total_awards_received": 0,
+			"media_embed": {
+  
+			},
+			"thumbnail_width": 140,
+			"author_flair_template_id": null,
+			"is_original_content": false,
+			"user_reports": [],
+			"secure_media": null,
+			"is_reddit_media_domain": true,
+			"is_meta": false,
+			"category": null,
+			"secure_media_embed": {
+  
+			},
+			"link_flair_text": "Meme",
+			"can_mod_post": false,
+			"score": 564,
+			"approved_by": null,
+			"is_created_from_ads_ui": false,
+			"author_premium": false,
+			"thumbnail": "https://a.thumbs.redditmedia.com/CwDFt7ucH_hdWg3OPh6HIaDegVnx-hElndN38uKGJo4.jpg",
+			"edited": false,
+			"author_flair_css_class": null,
+			"author_flair_richtext": [],
+			"gildings": {
+  
+			},
+			"post_hint": "image",
+			"content_categories": null,
+			"is_self": false,
+			"subreddit_type": "public",
+			"created": 1743433728,
+			"link_flair_type": "text",
+			"wls": 6,
+			"removed_by_category": null,
+			"banned_by": null,
+			"author_flair_type": "text",
+			"domain": "i.redd.it",
+			"allow_live_comments": false,
+			"selftext_html": null,
+			"likes": null,
+			"suggested_sort": "confidence",
+			"banned_at_utc": null,
+			"url_overridden_by_dest": "https://i.redd.it/g1rt84tkj1se1.jpeg",
+			"view_count": null,
+			"archived": false,
+			"no_follow": false,
+			"is_crosspostable": true,
+			"pinned": false,
+			"over_18": false,
+			"preview": {
+			  "images": [
+				{
+				  "source": {
+					"url": "https://preview.redd.it/g1rt84tkj1se1.jpeg?auto=webp&amp;s=20e0315b28ec3775775f9cb28d798a12b7d1d105",
+					"width": 1179,
+					"height": 1929
+				  },
+				  "resolutions": [
+					{
+					  "url": "https://preview.redd.it/g1rt84tkj1se1.jpeg?width=108&amp;crop=smart&amp;auto=webp&amp;s=f8444a99f6cdfc70c1051bb6c5701064d11bcad9",
+					  "width": 108,
+					  "height": 176
+					},
+					{
+					  "url": "https://preview.redd.it/g1rt84tkj1se1.jpeg?width=216&amp;crop=smart&amp;auto=webp&amp;s=663def01d2ee9f8616ba276afeba0a82af8e06e5",
+					  "width": 216,
+					  "height": 353
+					},
+					{
+					  "url": "https://preview.redd.it/g1rt84tkj1se1.jpeg?width=320&amp;crop=smart&amp;auto=webp&amp;s=be69387cea4a6a4eb37d641144c1211e64cb237c",
+					  "width": 320,
+					  "height": 523
+					},
+					{
+					  "url": "https://preview.redd.it/g1rt84tkj1se1.jpeg?width=640&amp;crop=smart&amp;auto=webp&amp;s=1f695a734332e6e783b62ad393e7462d15f2f7db",
+					  "width": 640,
+					  "height": 1047
+					},
+					{
+					  "url": "https://preview.redd.it/g1rt84tkj1se1.jpeg?width=960&amp;crop=smart&amp;auto=webp&amp;s=454074cf8c21f50686c9fbb1f2b7ecc6129d8500",
+					  "width": 960,
+					  "height": 1570
+					},
+					{
+					  "url": "https://preview.redd.it/g1rt84tkj1se1.jpeg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=d34dde8871a6c523f1e600bfedd73464ae973075",
+					  "width": 1080,
+					  "height": 1767
+					}
+				  ],
+				  "variants": {
+  
+				  },
+				  "id": "OCSHOSOGZl6z1tYciVtcdlgeuEhuuMveLy4Xm83GY8Y"
+				}
+			  ],
+			  "enabled": true
+			},
+			"all_awardings": [],
+			"awarders": [],
+			"media_only": false,
+			"link_flair_template_id": "8d1764e8-443f-11ed-a8f9-7a5e358241eb",
+			"can_gild": false,
+			"spoiler": false,
+			"locked": false,
+			"author_flair_text": null,
+			"treatment_tags": [],
+			"visited": false,
+			"removed_by": null,
+			"mod_note": null,
+			"distinguished": null,
+			"subreddit_id": "t5_2qi2i",
+			"author_is_blocked": false,
+			"mod_reason_by": null,
+			"num_reports": null,
+			"removal_reason": null,
+			"link_flair_background_color": "#cc8b00",
+			"id": "1jo5fwd",
+			"is_robot_indexable": true,
+			"report_reasons": null,
+			"author": "nsctank",
+			"discussion_type": null,
+			"num_comments": 36,
+			"send_replies": true,
+			"contest_mode": false,
+			"mod_reports": [],
+			"author_patreon_flair": false,
+			"author_flair_text_color": null,
+			"permalink": "/r/Portland/comments/1jo5fwd/get_me_to_gods_country/",
+			"stickied": false,
+			"url": "https://i.redd.it/g1rt84tkj1se1.jpeg",
+			"subreddit_subscribers": 350340,
+			"created_utc": 1743433728,
+			"num_crossposts": 0,
+			"media": null,
+			"is_video": false
+		  }
+		},
+		{
+		  "kind": "t3",
+		  "data": {
+			"approved_at_utc": null,
+			"subreddit": "Portland",
+			"selftext": "PORTLAND, Ore. (KOIN) A public hearing on a proposed bill to repeal Oregon's standard vote-by-mail system is set to take place in Salem on Monday. Known as SB 210, the bill would end mail-in voting, require voter ID and ensure in-person voting on Election Day in the state of Oregon. But it would still retain mail-in voting for military and overseas voters, as well as those with a mailing address outside Oregon\n... \nThe hearing on the new bill, sponsored by State Sen. David Brock Smith (R-Port Orford), comes days after President Trump sent a new executive order calling for identity verification requirements and changing vote-by-mail deadlines.\n... \nOregon state legislators are inviting the public to submit testimony on SB210 either online, remote, or in-person. \n\n**The hearing is set to start at 1 p.m. Monday.**\n\nPlease use this link to submit testimony. It is an automated form that allows you to submit your testimony!\n\n\n[Link to testimony form](https://olis.oregonlegislature.gov/liz/2025R1/Testimony/SRULES/SB/210/0000-00-00-00-00?area=Measures)",
+			"author_fullname": "t2_4agoa",
+			"saved": false,
+			"mod_reason_title": null,
+			"gilded": 0,
+			"clicked": false,
+			"title": "REMINDER! Today is the last chance to submit testimony (link to form on post) - New bill proposes repealing vote-by-mail in Oregon, public invited to testify",
+			"link_flair_richtext": [],
+			"subreddit_name_prefixed": "r/Portland",
+			"hidden": false,
+			"pwls": 6,
+			"link_flair_css_class": "news",
+			"downs": 0,
+			"thumbnail_height": null,
+			"top_awarded_type": null,
+			"hide_score": false,
+			"name": "t3_1jo4iwu",
+			"quarantine": false,
+			"link_flair_text_color": "light",
+			"upvote_ratio": 0.96,
+			"author_flair_background_color": null,
+			"subreddit_type": "public",
+			"ups": 264,
+			"total_awards_received": 0,
+			"media_embed": {
+  
+			},
+			"thumbnail_width": null,
+			"author_flair_template_id": null,
+			"is_original_content": false,
+			"user_reports": [],
+			"secure_media": null,
+			"is_reddit_media_domain": false,
+			"is_meta": false,
+			"category": null,
+			"secure_media_embed": {
+  
+			},
+			"link_flair_text": "News",
+			"can_mod_post": false,
+			"score": 264,
+			"approved_by": null,
+			"is_created_from_ads_ui": false,
+			"author_premium": false,
+			"thumbnail": "self",
+			"edited": 1743432230,
+			"author_flair_css_class": null,
+			"author_flair_richtext": [],
+			"gildings": {
+  
+			},
+			"content_categories": null,
+			"is_self": true,
+			"mod_note": null,
+			"created": 1743431360,
+			"link_flair_type": "text",
+			"wls": 6,
+			"removed_by_category": null,
+			"banned_by": null,
+			"author_flair_type": "text",
+			"domain": "self.Portland",
+			"allow_live_comments": false,
+			"selftext_html": "&lt;!-- SC_OFF --&gt;&lt;div class=\"md\"&gt;&lt;p&gt;PORTLAND, Ore. (KOIN) A public hearing on a proposed bill to repeal Oregon&amp;#39;s standard vote-by-mail system is set to take place in Salem on Monday. Known as SB 210, the bill would end mail-in voting, require voter ID and ensure in-person voting on Election Day in the state of Oregon. But it would still retain mail-in voting for military and overseas voters, as well as those with a mailing address outside Oregon\n... \nThe hearing on the new bill, sponsored by State Sen. David Brock Smith (R-Port Orford), comes days after President Trump sent a new executive order calling for identity verification requirements and changing vote-by-mail deadlines.\n... \nOregon state legislators are inviting the public to submit testimony on SB210 either online, remote, or in-person. &lt;/p&gt;\n\n&lt;p&gt;&lt;strong&gt;The hearing is set to start at 1 p.m. Monday.&lt;/strong&gt;&lt;/p&gt;\n\n&lt;p&gt;Please use this link to submit testimony. It is an automated form that allows you to submit your testimony!&lt;/p&gt;\n\n&lt;p&gt;&lt;a href=\"https://olis.oregonlegislature.gov/liz/2025R1/Testimony/SRULES/SB/210/0000-00-00-00-00?area=Measures\"&gt;Link to testimony form&lt;/a&gt;&lt;/p&gt;\n&lt;/div&gt;&lt;!-- SC_ON --&gt;",
+			"likes": null,
+			"suggested_sort": "confidence",
+			"banned_at_utc": null,
+			"view_count": null,
+			"archived": false,
+			"no_follow": false,
+			"is_crosspostable": true,
+			"pinned": false,
+			"over_18": false,
+			"all_awardings": [],
+			"awarders": [],
+			"media_only": false,
+			"link_flair_template_id": "0620b916-f866-11e5-a8d7-0eab7e252831",
+			"can_gild": false,
+			"spoiler": false,
+			"locked": false,
+			"author_flair_text": null,
+			"treatment_tags": [],
+			"visited": false,
+			"removed_by": null,
+			"num_reports": null,
+			"distinguished": null,
+			"subreddit_id": "t5_2qi2i",
+			"author_is_blocked": false,
+			"mod_reason_by": null,
+			"removal_reason": null,
+			"link_flair_background_color": "#005ba1",
+			"id": "1jo4iwu",
+			"is_robot_indexable": true,
+			"report_reasons": null,
+			"author": "coastiefish",
+			"discussion_type": null,
+			"num_comments": 59,
+			"send_replies": true,
+			"contest_mode": false,
+			"mod_reports": [],
+			"author_patreon_flair": false,
+			"author_flair_text_color": null,
+			"permalink": "/r/Portland/comments/1jo4iwu/reminder_today_is_the_last_chance_to_submit/",
+			"stickied": false,
+			"url": "https://www.reddit.com/r/Portland/comments/1jo4iwu/reminder_today_is_the_last_chance_to_submit/",
+			"subreddit_subscribers": 350340,
+			"created_utc": 1743431360,
+			"num_crossposts": 0,
+			"media": null,
+			"is_video": false
+		  }
+		},
+		{
+		  "kind": "t3",
+		  "data": {
+			"approved_at_utc": null,
+			"subreddit": "Portland",
+			"selftext": "Man... such a fun lineup, but every year they somehow make the experience worse and more expensive. Are others fed up or do I just need to get over it?",
+			"author_fullname": "t2_x5feg",
+			"saved": false,
+			"mod_reason_title": null,
+			"gilded": 0,
+			"clicked": false,
+			"title": "Are y'all still going to Edgefield this summer?",
+			"link_flair_richtext": [],
+			"subreddit_name_prefixed": "r/Portland",
+			"hidden": false,
+			"pwls": 6,
+			"link_flair_css_class": "discussion",
+			"downs": 0,
+			"thumbnail_height": null,
+			"top_awarded_type": null,
+			"hide_score": false,
+			"name": "t3_1jo8smp",
+			"quarantine": false,
+			"link_flair_text_color": "light",
+			"upvote_ratio": 0.9,
+			"author_flair_background_color": null,
+			"subreddit_type": "public",
+			"ups": 235,
+			"total_awards_received": 0,
+			"media_embed": {
+  
+			},
+			"thumbnail_width": null,
+			"author_flair_template_id": null,
+			"is_original_content": false,
+			"user_reports": [],
+			"secure_media": null,
+			"is_reddit_media_domain": false,
+			"is_meta": false,
+			"category": null,
+			"secure_media_embed": {
+  
+			},
+			"link_flair_text": "Discussion",
+			"can_mod_post": false,
+			"score": 235,
+			"approved_by": null,
+			"is_created_from_ads_ui": false,
+			"author_premium": false,
+			"thumbnail": "self",
+			"edited": false,
+			"author_flair_css_class": null,
+			"author_flair_richtext": [],
+			"gildings": {
+  
+			},
+			"content_categories": null,
+			"is_self": true,
+			"mod_note": null,
+			"created": 1743442075,
+			"link_flair_type": "text",
+			"wls": 6,
+			"removed_by_category": null,
+			"banned_by": null,
+			"author_flair_type": "text",
+			"domain": "self.Portland",
+			"allow_live_comments": false,
+			"selftext_html": "&lt;!-- SC_OFF --&gt;&lt;div class=\"md\"&gt;&lt;p&gt;Man... such a fun lineup, but every year they somehow make the experience worse and more expensive. Are others fed up or do I just need to get over it?&lt;/p&gt;\n&lt;/div&gt;&lt;!-- SC_ON --&gt;",
+			"likes": null,
+			"suggested_sort": "confidence",
+			"banned_at_utc": null,
+			"view_count": null,
+			"archived": false,
+			"no_follow": false,
+			"is_crosspostable": true,
+			"pinned": false,
+			"over_18": false,
+			"all_awardings": [],
+			"awarders": [],
+			"media_only": false,
+			"link_flair_template_id": "7a5134cc-4586-11ed-989a-925fe15f40db",
+			"can_gild": false,
+			"spoiler": false,
+			"locked": false,
+			"author_flair_text": null,
+			"treatment_tags": [],
+			"visited": false,
+			"removed_by": null,
+			"num_reports": null,
+			"distinguished": null,
+			"subreddit_id": "t5_2qi2i",
+			"author_is_blocked": false,
+			"mod_reason_by": null,
+			"removal_reason": null,
+			"link_flair_background_color": "#646d73",
+			"id": "1jo8smp",
+			"is_robot_indexable": true,
+			"report_reasons": null,
+			"author": "catalinacruiseking",
+			"discussion_type": null,
+			"num_comments": 235,
+			"send_replies": true,
+			"contest_mode": false,
+			"mod_reports": [],
+			"author_patreon_flair": false,
+			"author_flair_text_color": null,
+			"permalink": "/r/Portland/comments/1jo8smp/are_yall_still_going_to_edgefield_this_summer/",
+			"stickied": false,
+			"url": "https://www.reddit.com/r/Portland/comments/1jo8smp/are_yall_still_going_to_edgefield_this_summer/",
+			"subreddit_subscribers": 350340,
+			"created_utc": 1743442075,
+			"num_crossposts": 0,
+			"media": null,
+			"is_video": false
+		  }
+		},
+		{
+		  "kind": "t3",
+		  "data": {
+			"approved_at_utc": null,
+			"subreddit": "Portland",
+			"selftext": "Yall. Im so happy. Love this weather. THIS is what i was promised last week. Come rejoice with me thunder lovers. ",
+			"author_fullname": "t2_3jbpwx10",
+			"saved": false,
+			"mod_reason_title": null,
+			"gilded": 0,
+			"clicked": false,
+			"title": "This hail is NOT letting up",
+			"link_flair_richtext": [],
+			"subreddit_name_prefixed": "r/Portland",
+			"hidden": false,
+			"pwls": 6,
+			"link_flair_css_class": "event",
+			"downs": 0,
+			"thumbnail_height": null,
+			"top_awarded_type": null,
+			"hide_score": false,
+			"name": "t3_1john7w",
+			"quarantine": false,
+			"link_flair_text_color": "dark",
+			"upvote_ratio": 0.87,
+			"author_flair_background_color": null,
+			"subreddit_type": "public",
+			"ups": 214,
+			"total_awards_received": 0,
+			"media_embed": {
+  
+			},
+			"thumbnail_width": null,
+			"author_flair_template_id": null,
+			"is_original_content": false,
+			"user_reports": [],
+			"secure_media": null,
+			"is_reddit_media_domain": false,
+			"is_meta": false,
+			"category": null,
+			"secure_media_embed": {
+  
+			},
+			"link_flair_text": "Events",
+			"can_mod_post": false,
+			"score": 214,
+			"approved_by": null,
+			"is_created_from_ads_ui": false,
+			"author_premium": false,
+			"thumbnail": "self",
+			"edited": false,
+			"author_flair_css_class": null,
+			"author_flair_richtext": [],
+			"gildings": {
+  
+			},
+			"content_categories": null,
+			"is_self": true,
+			"mod_note": null,
+			"created": 1743464241,
+			"link_flair_type": "text",
+			"wls": 6,
+			"removed_by_category": null,
+			"banned_by": null,
+			"author_flair_type": "text",
+			"domain": "self.Portland",
+			"allow_live_comments": false,
+			"selftext_html": "&lt;!-- SC_OFF --&gt;&lt;div class=\"md\"&gt;&lt;p&gt;Yall. Im so happy. Love this weather. THIS is what i was promised last week. Come rejoice with me thunder lovers. &lt;/p&gt;\n&lt;/div&gt;&lt;!-- SC_ON --&gt;",
+			"likes": null,
+			"suggested_sort": "confidence",
+			"banned_at_utc": null,
+			"view_count": null,
+			"archived": false,
+			"no_follow": false,
+			"is_crosspostable": true,
+			"pinned": false,
+			"over_18": false,
+			"all_awardings": [],
+			"awarders": [],
+			"media_only": false,
+			"link_flair_template_id": "15259f58-f866-11e5-a8fa-0ed23bc17a17",
+			"can_gild": false,
+			"spoiler": false,
+			"locked": false,
+			"author_flair_text": null,
+			"treatment_tags": [],
+			"visited": false,
+			"removed_by": null,
+			"num_reports": null,
+			"distinguished": null,
+			"subreddit_id": "t5_2qi2i",
+			"author_is_blocked": false,
+			"mod_reason_by": null,
+			"removal_reason": null,
+			"link_flair_background_color": "#94e044",
+			"id": "1john7w",
+			"is_robot_indexable": true,
+			"report_reasons": null,
+			"author": "totheranch1",
+			"discussion_type": null,
+			"num_comments": 81,
+			"send_replies": true,
+			"contest_mode": false,
+			"mod_reports": [],
+			"author_patreon_flair": false,
+			"author_flair_text_color": null,
+			"permalink": "/r/Portland/comments/1john7w/this_hail_is_not_letting_up/",
+			"stickied": false,
+			"url": "https://www.reddit.com/r/Portland/comments/1john7w/this_hail_is_not_letting_up/",
+			"subreddit_subscribers": 350340,
+			"created_utc": 1743464241,
+			"num_crossposts": 0,
+			"media": null,
+			"is_video": false
+		  }
+		},
+		{
+		  "kind": "t3",
+		  "data": {
+			"approved_at_utc": null,
+			"subreddit": "Portland",
+			"selftext": "I'll start with: \n\n\\[At Chameleon Salon in Sellwood\\] : \"I cook, I drive, I top. Girl, it's rough out here, but at least Gaga's new album is good.\"\n\nBelated edit: I realize I didn't post an exchange at all! If I could edit the title, it'd be about \"overheard words\" or something. Sorry! ",
+			"author_fullname": "t2_88bkjhj9",
+			"saved": false,
+			"mod_reason_title": null,
+			"gilded": 0,
+			"clicked": false,
+			"title": "Post your good overheard exchanges here!",
+			"link_flair_richtext": [],
+			"subreddit_name_prefixed": "r/Portland",
+			"hidden": false,
+			"pwls": 6,
+			"link_flair_css_class": "discussion",
+			"downs": 0,
+			"thumbnail_height": null,
+			"top_awarded_type": null,
+			"hide_score": false,
+			"name": "t3_1jnv04z",
+			"quarantine": false,
+			"link_flair_text_color": "light",
+			"upvote_ratio": 0.87,
+			"author_flair_background_color": null,
+			"subreddit_type": "public",
+			"ups": 159,
+			"total_awards_received": 0,
+			"media_embed": {
+  
+			},
+			"thumbnail_width": null,
+			"author_flair_template_id": "e3c4b4ca-4276-11e1-b00a-12313d18ad57",
+			"is_original_content": false,
+			"user_reports": [],
+			"secure_media": null,
+			"is_reddit_media_domain": false,
+			"is_meta": false,
+			"category": null,
+			"secure_media_embed": {
+  
+			},
+			"link_flair_text": "Discussion",
+			"can_mod_post": false,
+			"score": 159,
+			"approved_by": null,
+			"is_created_from_ads_ui": false,
+			"author_premium": false,
+			"thumbnail": "self",
+			"edited": 1743401727,
+			"author_flair_css_class": null,
+			"author_flair_richtext": [],
+			"gildings": {
+  
+			},
+			"content_categories": null,
+			"is_self": true,
+			"mod_note": null,
+			"created": 1743394728,
+			"link_flair_type": "text",
+			"wls": 6,
+			"removed_by_category": null,
+			"banned_by": null,
+			"author_flair_type": "text",
+			"domain": "self.Portland",
+			"allow_live_comments": false,
+			"selftext_html": "&lt;!-- SC_OFF --&gt;&lt;div class=\"md\"&gt;&lt;p&gt;I&amp;#39;ll start with: &lt;/p&gt;\n\n&lt;p&gt;[At Chameleon Salon in Sellwood] : &amp;quot;I cook, I drive, I top. Girl, it&amp;#39;s rough out here, but at least Gaga&amp;#39;s new album is good.&amp;quot;&lt;/p&gt;\n\n&lt;p&gt;Belated edit: I realize I didn&amp;#39;t post an exchange at all! If I could edit the title, it&amp;#39;d be about &amp;quot;overheard words&amp;quot; or something. Sorry! &lt;/p&gt;\n&lt;/div&gt;&lt;!-- SC_ON --&gt;",
+			"likes": null,
+			"suggested_sort": "confidence",
+			"banned_at_utc": null,
+			"view_count": null,
+			"archived": false,
+			"no_follow": false,
+			"is_crosspostable": true,
+			"pinned": false,
+			"over_18": false,
+			"all_awardings": [],
+			"awarders": [],
+			"media_only": false,
+			"link_flair_template_id": "7a5134cc-4586-11ed-989a-925fe15f40db",
+			"can_gild": false,
+			"spoiler": false,
+			"locked": false,
+			"author_flair_text": "Sellwood-Moreland",
+			"treatment_tags": [],
+			"visited": false,
+			"removed_by": null,
+			"num_reports": null,
+			"distinguished": null,
+			"subreddit_id": "t5_2qi2i",
+			"author_is_blocked": false,
+			"mod_reason_by": null,
+			"removal_reason": null,
+			"link_flair_background_color": "#646d73",
+			"id": "1jnv04z",
+			"is_robot_indexable": true,
+			"report_reasons": null,
+			"author": "gruenes_licht",
+			"discussion_type": null,
+			"num_comments": 122,
+			"send_replies": true,
+			"contest_mode": false,
+			"mod_reports": [],
+			"author_patreon_flair": false,
+			"author_flair_text_color": "dark",
+			"permalink": "/r/Portland/comments/1jnv04z/post_your_good_overheard_exchanges_here/",
+			"stickied": false,
+			"url": "https://www.reddit.com/r/Portland/comments/1jnv04z/post_your_good_overheard_exchanges_here/",
+			"subreddit_subscribers": 350340,
+			"created_utc": 1743394728,
+			"num_crossposts": 0,
+			"media": null,
+			"is_video": false
+		  }
+		},
+		{
+		  "kind": "t3",
+		  "data": {
+			"approved_at_utc": null,
+			"subreddit": "Portland",
+			"selftext": "",
+			"author_fullname": "t2_nqh65",
+			"saved": false,
+			"mod_reason_title": null,
+			"gilded": 0,
+			"clicked": false,
+			"title": "Finally a decent storm!",
+			"link_flair_richtext": [],
+			"subreddit_name_prefixed": "r/Portland",
+			"hidden": false,
+			"pwls": 6,
+			"link_flair_css_class": "photo",
+			"downs": 0,
+			"thumbnail_height": 105,
+			"top_awarded_type": null,
+			"hide_score": false,
+			"name": "t3_1joi8df",
+			"quarantine": false,
+			"link_flair_text_color": "light",
+			"upvote_ratio": 0.99,
+			"author_flair_background_color": "#dadada",
+			"ups": 154,
+			"total_awards_received": 0,
+			"media_embed": {
+  
+			},
+			"thumbnail_width": 140,
+			"author_flair_template_id": "a811512e-6e2f-11eb-981a-0e4c847e8281",
+			"is_original_content": false,
+			"user_reports": [],
+			"secure_media": null,
+			"is_reddit_media_domain": true,
+			"is_meta": false,
+			"category": null,
+			"secure_media_embed": {
+  
+			},
+			"link_flair_text": " Photo/Video",
+			"can_mod_post": false,
+			"score": 154,
+			"approved_by": null,
+			"is_created_from_ads_ui": false,
+			"author_premium": false,
+			"thumbnail": "https://b.thumbs.redditmedia.com/Bfnk3RB2pfAq5HZJuSYkpwrtM324yEoe5wMqG8_cZJk.jpg",
+			"edited": false,
+			"author_flair_css_class": null,
+			"author_flair_richtext": [],
+			"gildings": {
+  
+			},
+			"post_hint": "image",
+			"content_categories": null,
+			"is_self": false,
+			"subreddit_type": "public",
+			"created": 1743465920,
+			"link_flair_type": "text",
+			"wls": 6,
+			"removed_by_category": null,
+			"banned_by": null,
+			"author_flair_type": "text",
+			"domain": "i.redd.it",
+			"allow_live_comments": false,
+			"selftext_html": null,
+			"likes": null,
+			"suggested_sort": "confidence",
+			"banned_at_utc": null,
+			"url_overridden_by_dest": "https://i.redd.it/31pz8o0574se1.jpeg",
+			"view_count": null,
+			"archived": false,
+			"no_follow": false,
+			"is_crosspostable": true,
+			"pinned": false,
+			"over_18": false,
+			"preview": {
+			  "images": [
+				{
+				  "source": {
+					"url": "https://preview.redd.it/31pz8o0574se1.jpeg?auto=webp&amp;s=16d472a9c346d8aa6c7436c709762c3d69f3ea38",
+					"width": 2376,
+					"height": 1782
+				  },
+				  "resolutions": [
+					{
+					  "url": "https://preview.redd.it/31pz8o0574se1.jpeg?width=108&amp;crop=smart&amp;auto=webp&amp;s=afe9a6bb2cdf6c8d661b4b6bff513ccc40df2685",
+					  "width": 108,
+					  "height": 81
+					},
+					{
+					  "url": "https://preview.redd.it/31pz8o0574se1.jpeg?width=216&amp;crop=smart&amp;auto=webp&amp;s=d5efc39f1cf317e2f81c6cbac67b28b8fd95c3b1",
+					  "width": 216,
+					  "height": 162
+					},
+					{
+					  "url": "https://preview.redd.it/31pz8o0574se1.jpeg?width=320&amp;crop=smart&amp;auto=webp&amp;s=a437c7cb2243bf310aa242ed8a52efec1ee5447b",
+					  "width": 320,
+					  "height": 240
+					},
+					{
+					  "url": "https://preview.redd.it/31pz8o0574se1.jpeg?width=640&amp;crop=smart&amp;auto=webp&amp;s=c7518e18de8a8843ebce09e67380b3c208f95d36",
+					  "width": 640,
+					  "height": 480
+					},
+					{
+					  "url": "https://preview.redd.it/31pz8o0574se1.jpeg?width=960&amp;crop=smart&amp;auto=webp&amp;s=22c95a6bc16f2bc2d6a9607937e8f65d693c9835",
+					  "width": 960,
+					  "height": 720
+					},
+					{
+					  "url": "https://preview.redd.it/31pz8o0574se1.jpeg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=3996ddad55c61ff869ba7150575e486c85748134",
+					  "width": 1080,
+					  "height": 810
+					}
+				  ],
+				  "variants": {
+  
+				  },
+				  "id": "k6Gx_OuHjlfVoj7PX0Q5oQcRVMi6hOLFITW9j2BVI1Y"
+				}
+			  ],
+			  "enabled": true
+			},
+			"all_awardings": [],
+			"awarders": [],
+			"media_only": false,
+			"link_flair_template_id": "ec34c718-f865-11e5-80b8-0e40834ec031",
+			"can_gild": false,
+			"spoiler": false,
+			"locked": false,
+			"author_flair_text": "fattal.photography | Part 107",
+			"treatment_tags": [],
+			"visited": false,
+			"removed_by": null,
+			"mod_note": null,
+			"distinguished": null,
+			"subreddit_id": "t5_2qi2i",
+			"author_is_blocked": false,
+			"mod_reason_by": null,
+			"num_reports": null,
+			"removal_reason": null,
+			"link_flair_background_color": "#8362b4",
+			"id": "1joi8df",
+			"is_robot_indexable": true,
+			"report_reasons": null,
+			"author": "partiallycylon",
+			"discussion_type": null,
+			"num_comments": 10,
+			"send_replies": true,
+			"contest_mode": false,
+			"mod_reports": [],
+			"author_patreon_flair": false,
+			"author_flair_text_color": "dark",
+			"permalink": "/r/Portland/comments/1joi8df/finally_a_decent_storm/",
+			"stickied": false,
+			"url": "https://i.redd.it/31pz8o0574se1.jpeg",
+			"subreddit_subscribers": 350340,
+			"created_utc": 1743465920,
+			"num_crossposts": 0,
+			"media": null,
+			"is_video": false
+		  }
+		},
+		{
+		  "kind": "t3",
+		  "data": {
+			"approved_at_utc": null,
+			"subreddit": "Portland",
+			"selftext": "This is why I still love Portland. ",
+			"author_fullname": "t2_11ozle",
+			"saved": false,
+			"mod_reason_title": null,
+			"gilded": 0,
+			"clicked": false,
+			"title": "Good Morning Portland",
+			"link_flair_richtext": [],
+			"subreddit_name_prefixed": "r/Portland",
+			"hidden": false,
+			"pwls": 6,
+			"link_flair_css_class": "photo",
+			"downs": 0,
+			"thumbnail_height": 140,
+			"top_awarded_type": null,
+			"hide_score": false,
+			"name": "t3_1jod2os",
+			"quarantine": false,
+			"link_flair_text_color": "light",
+			"upvote_ratio": 0.92,
+			"author_flair_background_color": null,
+			"ups": 126,
+			"total_awards_received": 0,
+			"media_embed": {
+  
+			},
+			"thumbnail_width": 140,
+			"author_flair_template_id": null,
+			"is_original_content": false,
+			"user_reports": [],
+			"secure_media": {
+			  "reddit_video": {
+				"bitrate_kbps": 5000,
+				"fallback_url": "https://v.redd.it/psxys3z933se1/DASH_1080.mp4?source=fallback",
+				"has_audio": true,
+				"height": 1920,
+				"width": 1080,
+				"scrubber_media_url": "https://v.redd.it/psxys3z933se1/DASH_96.mp4",
+				"dash_url": "https://v.redd.it/psxys3z933se1/DASHPlaylist.mpd?a=1746073221%2CNjAyMmE3NDAzNzg2MjJjZmUzOTllNGM3N2IzNjU1MjcwM2Y3NGZjOTkxZTI1N2EwNzZjM2RiOGJjOWNmNTQyNQ%3D%3D&amp;v=1&amp;f=sd",
+				"duration": 32,
+				"hls_url": "https://v.redd.it/psxys3z933se1/HLSPlaylist.m3u8?a=1746073221%2CYWU3NTRjMmFlZTVmMjY0YWVjZWZjMzIwMGIzZmFlMDk5YjQ3ODVlM2FhMTE2YTJiMmJkYzgyZjJhZGZjMGU5Ng%3D%3D&amp;v=1&amp;f=sd",
+				"is_gif": false,
+				"transcoding_status": "completed"
+			  }
+			},
+			"is_reddit_media_domain": true,
+			"is_meta": false,
+			"category": null,
+			"secure_media_embed": {
+  
+			},
+			"link_flair_text": " Photo/Video",
+			"can_mod_post": false,
+			"score": 126,
+			"approved_by": null,
+			"is_created_from_ads_ui": false,
+			"author_premium": false,
+			"thumbnail": "https://external-preview.redd.it/OTFidW41dTgzM3NlMQsYFrSjYI6HPP9oLVHi00CwrgK0r5GIlP8RuS9ejvZv.png?width=140&amp;height=140&amp;crop=140:140,smart&amp;format=jpg&amp;v=enabled&amp;lthumb=true&amp;s=b375fbf3b38f5e2bdbfad08f96cf2921e8fcb36f",
+			"edited": false,
+			"author_flair_css_class": null,
+			"author_flair_richtext": [],
+			"gildings": {
+  
+			},
+			"post_hint": "hosted:video",
+			"content_categories": null,
+			"is_self": false,
+			"subreddit_type": "public",
+			"created": 1743452467,
+			"link_flair_type": "text",
+			"wls": 6,
+			"removed_by_category": null,
+			"banned_by": null,
+			"author_flair_type": "text",
+			"domain": "v.redd.it",
+			"allow_live_comments": false,
+			"selftext_html": "&lt;!-- SC_OFF --&gt;&lt;div class=\"md\"&gt;&lt;p&gt;This is why I still love Portland. &lt;/p&gt;\n&lt;/div&gt;&lt;!-- SC_ON --&gt;",
+			"likes": null,
+			"suggested_sort": "confidence",
+			"banned_at_utc": null,
+			"url_overridden_by_dest": "https://v.redd.it/psxys3z933se1",
+			"view_count": null,
+			"archived": false,
+			"no_follow": false,
+			"is_crosspostable": true,
+			"pinned": false,
+			"over_18": false,
+			"preview": {
+			  "images": [
+				{
+				  "source": {
+					"url": "https://external-preview.redd.it/OTFidW41dTgzM3NlMQsYFrSjYI6HPP9oLVHi00CwrgK0r5GIlP8RuS9ejvZv.png?format=pjpg&amp;auto=webp&amp;s=44e79c1f71b9fe3a97013ec953543d21445da36b",
+					"width": 1080,
+					"height": 1920
+				  },
+				  "resolutions": [
+					{
+					  "url": "https://external-preview.redd.it/OTFidW41dTgzM3NlMQsYFrSjYI6HPP9oLVHi00CwrgK0r5GIlP8RuS9ejvZv.png?width=108&amp;crop=smart&amp;format=pjpg&amp;auto=webp&amp;s=83a54714c7af0949208dbb5b738053ef8c8e0c09",
+					  "width": 108,
+					  "height": 192
+					},
+					{
+					  "url": "https://external-preview.redd.it/OTFidW41dTgzM3NlMQsYFrSjYI6HPP9oLVHi00CwrgK0r5GIlP8RuS9ejvZv.png?width=216&amp;crop=smart&amp;format=pjpg&amp;auto=webp&amp;s=f2977e05cd80b590d36fab3f5298a64e7a788d6a",
+					  "width": 216,
+					  "height": 384
+					},
+					{
+					  "url": "https://external-preview.redd.it/OTFidW41dTgzM3NlMQsYFrSjYI6HPP9oLVHi00CwrgK0r5GIlP8RuS9ejvZv.png?width=320&amp;crop=smart&amp;format=pjpg&amp;auto=webp&amp;s=edf06e7e1d045ec8cd387834055ea0f0b7db8d9b",
+					  "width": 320,
+					  "height": 568
+					},
+					{
+					  "url": "https://external-preview.redd.it/OTFidW41dTgzM3NlMQsYFrSjYI6HPP9oLVHi00CwrgK0r5GIlP8RuS9ejvZv.png?width=640&amp;crop=smart&amp;format=pjpg&amp;auto=webp&amp;s=f3939a685249e0cf754b4a503cb74b5fc297d39b",
+					  "width": 640,
+					  "height": 1137
+					},
+					{
+					  "url": "https://external-preview.redd.it/OTFidW41dTgzM3NlMQsYFrSjYI6HPP9oLVHi00CwrgK0r5GIlP8RuS9ejvZv.png?width=960&amp;crop=smart&amp;format=pjpg&amp;auto=webp&amp;s=fa11e12f6266083a1424b2b1e1ad5e269279f65e",
+					  "width": 960,
+					  "height": 1706
+					},
+					{
+					  "url": "https://external-preview.redd.it/OTFidW41dTgzM3NlMQsYFrSjYI6HPP9oLVHi00CwrgK0r5GIlP8RuS9ejvZv.png?width=1080&amp;crop=smart&amp;format=pjpg&amp;auto=webp&amp;s=73a6b955d03954faa16c1e1c87d8637af837e26a",
+					  "width": 1080,
+					  "height": 1920
+					}
+				  ],
+				  "variants": {
+  
+				  },
+				  "id": "OTFidW41dTgzM3NlMQsYFrSjYI6HPP9oLVHi00CwrgK0r5GIlP8RuS9ejvZv"
+				}
+			  ],
+			  "enabled": false
+			},
+			"all_awardings": [],
+			"awarders": [],
+			"media_only": false,
+			"link_flair_template_id": "ec34c718-f865-11e5-80b8-0e40834ec031",
+			"can_gild": false,
+			"spoiler": false,
+			"locked": false,
+			"author_flair_text": null,
+			"treatment_tags": [],
+			"visited": false,
+			"removed_by": null,
+			"mod_note": null,
+			"distinguished": null,
+			"subreddit_id": "t5_2qi2i",
+			"author_is_blocked": false,
+			"mod_reason_by": null,
+			"num_reports": null,
+			"removal_reason": null,
+			"link_flair_background_color": "#8362b4",
+			"id": "1jod2os",
+			"is_robot_indexable": true,
+			"report_reasons": null,
+			"author": "iamhovering",
+			"discussion_type": null,
+			"num_comments": 13,
+			"send_replies": true,
+			"contest_mode": false,
+			"mod_reports": [],
+			"author_patreon_flair": false,
+			"author_flair_text_color": null,
+			"permalink": "/r/Portland/comments/1jod2os/good_morning_portland/",
+			"stickied": false,
+			"url": "https://v.redd.it/psxys3z933se1",
+			"subreddit_subscribers": 350340,
+			"created_utc": 1743452467,
+			"num_crossposts": 0,
+			"media": {
+			  "reddit_video": {
+				"bitrate_kbps": 5000,
+				"fallback_url": "https://v.redd.it/psxys3z933se1/DASH_1080.mp4?source=fallback",
+				"has_audio": true,
+				"height": 1920,
+				"width": 1080,
+				"scrubber_media_url": "https://v.redd.it/psxys3z933se1/DASH_96.mp4",
+				"dash_url": "https://v.redd.it/psxys3z933se1/DASHPlaylist.mpd?a=1746073221%2CNjAyMmE3NDAzNzg2MjJjZmUzOTllNGM3N2IzNjU1MjcwM2Y3NGZjOTkxZTI1N2EwNzZjM2RiOGJjOWNmNTQyNQ%3D%3D&amp;v=1&amp;f=sd",
+				"duration": 32,
+				"hls_url": "https://v.redd.it/psxys3z933se1/HLSPlaylist.m3u8?a=1746073221%2CYWU3NTRjMmFlZTVmMjY0YWVjZWZjMzIwMGIzZmFlMDk5YjQ3ODVlM2FhMTE2YTJiMmJkYzgyZjJhZGZjMGU5Ng%3D%3D&amp;v=1&amp;f=sd",
+				"is_gif": false,
+				"transcoding_status": "completed"
+			  }
+			},
+			"is_video": true
+		  }
+		},
+		{
+		  "kind": "t3",
+		  "data": {
+			"approved_at_utc": null,
+			"subreddit": "Portland",
+			"selftext": "",
+			"author_fullname": "t2_4bc6meye",
+			"saved": false,
+			"mod_reason_title": null,
+			"gilded": 0,
+			"clicked": false,
+			"title": "Hospital mergers alarm experts. OHSU says its acquisition of Legacy Health will be different",
+			"link_flair_richtext": [],
+			"subreddit_name_prefixed": "r/Portland",
+			"hidden": false,
+			"pwls": 6,
+			"link_flair_css_class": "news",
+			"downs": 0,
+			"thumbnail_height": 93,
+			"top_awarded_type": null,
+			"hide_score": false,
+			"name": "t3_1jo41s1",
+			"quarantine": false,
+			"link_flair_text_color": "light",
+			"upvote_ratio": 0.96,
+			"author_flair_background_color": null,
+			"ups": 113,
+			"total_awards_received": 0,
+			"media_embed": {
+  
+			},
+			"thumbnail_width": 140,
+			"author_flair_template_id": null,
+			"is_original_content": false,
+			"user_reports": [],
+			"secure_media": null,
+			"is_reddit_media_domain": false,
+			"is_meta": false,
+			"category": null,
+			"secure_media_embed": {
+  
+			},
+			"link_flair_text": "News",
+			"can_mod_post": false,
+			"score": 113,
+			"approved_by": null,
+			"is_created_from_ads_ui": false,
+			"author_premium": false,
+			"thumbnail": "https://b.thumbs.redditmedia.com/uljEf1MoYh1eYtQXi52YLuMS8HS00soZbha8JQEiWzY.jpg",
+			"edited": false,
+			"author_flair_css_class": null,
+			"author_flair_richtext": [],
+			"gildings": {
+  
+			},
+			"post_hint": "link",
+			"content_categories": null,
+			"is_self": false,
+			"subreddit_type": "public",
+			"created": 1743430080,
+			"link_flair_type": "text",
+			"wls": 6,
+			"removed_by_category": null,
+			"banned_by": null,
+			"author_flair_type": "text",
+			"domain": "oregonlive.com",
+			"allow_live_comments": false,
+			"selftext_html": null,
+			"likes": null,
+			"suggested_sort": "confidence",
+			"banned_at_utc": null,
+			"url_overridden_by_dest": "https://www.oregonlive.com/health/2025/03/hospital-mergers-alarm-experts-ohsu-says-its-acquisition-of-legacy-health-will-be-different.html?outputType=amp",
+			"view_count": null,
+			"archived": false,
+			"no_follow": false,
+			"is_crosspostable": true,
+			"pinned": false,
+			"over_18": false,
+			"preview": {
+			  "images": [
+				{
+				  "source": {
+					"url": "https://external-preview.redd.it/u_CHWlaLeJnEs69BlXKBmvyEYNw0pIXnD9djKBexjr8.jpg?auto=webp&amp;s=85f86b5a3a884ed3d664345e5e1cfbc54ba522b2",
+					"width": 1280,
+					"height": 853
+				  },
+				  "resolutions": [
+					{
+					  "url": "https://external-preview.redd.it/u_CHWlaLeJnEs69BlXKBmvyEYNw0pIXnD9djKBexjr8.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=31fee6ef08b13480cdfe7043bba459174ee1f410",
+					  "width": 108,
+					  "height": 71
+					},
+					{
+					  "url": "https://external-preview.redd.it/u_CHWlaLeJnEs69BlXKBmvyEYNw0pIXnD9djKBexjr8.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=1a7544c982d5d1daedbd5a6e153677b9155d58a8",
+					  "width": 216,
+					  "height": 143
+					},
+					{
+					  "url": "https://external-preview.redd.it/u_CHWlaLeJnEs69BlXKBmvyEYNw0pIXnD9djKBexjr8.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=475a28c5741b2ec463d3fa20de7f0e59a1b57a56",
+					  "width": 320,
+					  "height": 213
+					},
+					{
+					  "url": "https://external-preview.redd.it/u_CHWlaLeJnEs69BlXKBmvyEYNw0pIXnD9djKBexjr8.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=fbba1d476d5a5062a286b68b70581b04b4d1db1f",
+					  "width": 640,
+					  "height": 426
+					},
+					{
+					  "url": "https://external-preview.redd.it/u_CHWlaLeJnEs69BlXKBmvyEYNw0pIXnD9djKBexjr8.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=ddd7cd39d282240c44fd48f81b77dfb860b9e124",
+					  "width": 960,
+					  "height": 639
+					},
+					{
+					  "url": "https://external-preview.redd.it/u_CHWlaLeJnEs69BlXKBmvyEYNw0pIXnD9djKBexjr8.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=23847cc84c62cb3edcd78ce52e31e3ad00330db8",
+					  "width": 1080,
+					  "height": 719
+					}
+				  ],
+				  "variants": {
+  
+				  },
+				  "id": "XjdqybDG9OtPmXTBceDS7mwqBmUWU4TtuMY3GtLCWLk"
+				}
+			  ],
+			  "enabled": false
+			},
+			"all_awardings": [],
+			"awarders": [],
+			"media_only": false,
+			"link_flair_template_id": "0620b916-f866-11e5-a8d7-0eab7e252831",
+			"can_gild": false,
+			"spoiler": false,
+			"locked": false,
+			"author_flair_text": null,
+			"treatment_tags": [],
+			"visited": false,
+			"removed_by": null,
+			"mod_note": null,
+			"distinguished": null,
+			"subreddit_id": "t5_2qi2i",
+			"author_is_blocked": false,
+			"mod_reason_by": null,
+			"num_reports": null,
+			"removal_reason": null,
+			"link_flair_background_color": "#005ba1",
+			"id": "1jo41s1",
+			"is_robot_indexable": true,
+			"report_reasons": null,
+			"author": "Numerous_Many7542",
+			"discussion_type": null,
+			"num_comments": 45,
+			"send_replies": true,
+			"contest_mode": false,
+			"mod_reports": [],
+			"author_patreon_flair": false,
+			"author_flair_text_color": null,
+			"permalink": "/r/Portland/comments/1jo41s1/hospital_mergers_alarm_experts_ohsu_says_its/",
+			"stickied": false,
+			"url": "https://www.oregonlive.com/health/2025/03/hospital-mergers-alarm-experts-ohsu-says-its-acquisition-of-legacy-health-will-be-different.html?outputType=amp",
+			"subreddit_subscribers": 350340,
+			"created_utc": 1743430080,
+			"num_crossposts": 0,
+			"media": null,
+			"is_video": false
+		  }
+		},
+		{
+		  "kind": "t3",
+		  "data": {
+			"approved_at_utc": null,
+			"subreddit": "Portland",
+			"selftext": "As a TriMet Operator I am astounded by the number of Portland metro drivers that ignore the flashing red yield sign on the back of TriMet busses that are pulling from the curb. The law states drivers are to yield to the bus. At most, 1 in 10 do. The others are risking an accident, traffic ticket, and fines.",
+			"author_fullname": "t2_3zqvjjcu",
+			"saved": false,
+			"mod_reason_title": null,
+			"gilded": 0,
+			"clicked": false,
+			"title": "TriMet bus yield signs",
+			"link_flair_richtext": [],
+			"subreddit_name_prefixed": "r/Portland",
+			"hidden": false,
+			"pwls": 6,
+			"link_flair_css_class": "discussion",
+			"downs": 0,
+			"thumbnail_height": null,
+			"top_awarded_type": null,
+			"hide_score": false,
+			"name": "t3_1jo9shf",
+			"quarantine": false,
+			"link_flair_text_color": "light",
+			"upvote_ratio": 0.88,
+			"author_flair_background_color": null,
+			"subreddit_type": "public",
+			"ups": 97,
+			"total_awards_received": 0,
+			"media_embed": {
+  
+			},
+			"thumbnail_width": null,
+			"author_flair_template_id": null,
+			"is_original_content": false,
+			"user_reports": [],
+			"secure_media": null,
+			"is_reddit_media_domain": false,
+			"is_meta": false,
+			"category": null,
+			"secure_media_embed": {
+  
+			},
+			"link_flair_text": "Discussion",
+			"can_mod_post": false,
+			"score": 97,
+			"approved_by": null,
+			"is_created_from_ads_ui": false,
+			"author_premium": false,
+			"thumbnail": "self",
+			"edited": false,
+			"author_flair_css_class": null,
+			"author_flair_richtext": [],
+			"gildings": {
+  
+			},
+			"content_categories": null,
+			"is_self": true,
+			"mod_note": null,
+			"created": 1743444468,
+			"link_flair_type": "text",
+			"wls": 6,
+			"removed_by_category": null,
+			"banned_by": null,
+			"author_flair_type": "text",
+			"domain": "self.Portland",
+			"allow_live_comments": false,
+			"selftext_html": "&lt;!-- SC_OFF --&gt;&lt;div class=\"md\"&gt;&lt;p&gt;As a TriMet Operator I am astounded by the number of Portland metro drivers that ignore the flashing red yield sign on the back of TriMet busses that are pulling from the curb. The law states drivers are to yield to the bus. At most, 1 in 10 do. The others are risking an accident, traffic ticket, and fines.&lt;/p&gt;\n&lt;/div&gt;&lt;!-- SC_ON --&gt;",
+			"likes": null,
+			"suggested_sort": "confidence",
+			"banned_at_utc": null,
+			"view_count": null,
+			"archived": false,
+			"no_follow": false,
+			"is_crosspostable": true,
+			"pinned": false,
+			"over_18": false,
+			"all_awardings": [],
+			"awarders": [],
+			"media_only": false,
+			"link_flair_template_id": "7a5134cc-4586-11ed-989a-925fe15f40db",
+			"can_gild": false,
+			"spoiler": false,
+			"locked": false,
+			"author_flair_text": null,
+			"treatment_tags": [],
+			"visited": false,
+			"removed_by": null,
+			"num_reports": null,
+			"distinguished": null,
+			"subreddit_id": "t5_2qi2i",
+			"author_is_blocked": false,
+			"mod_reason_by": null,
+			"removal_reason": null,
+			"link_flair_background_color": "#646d73",
+			"id": "1jo9shf",
+			"is_robot_indexable": true,
+			"report_reasons": null,
+			"author": "BlackfootOne",
+			"discussion_type": null,
+			"num_comments": 62,
+			"send_replies": true,
+			"contest_mode": false,
+			"mod_reports": [],
+			"author_patreon_flair": false,
+			"author_flair_text_color": null,
+			"permalink": "/r/Portland/comments/1jo9shf/trimet_bus_yield_signs/",
+			"stickied": false,
+			"url": "https://www.reddit.com/r/Portland/comments/1jo9shf/trimet_bus_yield_signs/",
+			"subreddit_subscribers": 350340,
+			"created_utc": 1743444468,
+			"num_crossposts": 0,
+			"media": null,
+			"is_video": false
+		  }
+		},
+		{
+		  "kind": "t3",
+		  "data": {
+			"approved_at_utc": null,
+			"subreddit": "Portland",
+			"selftext": "",
+			"author_fullname": "t2_95g1a",
+			"saved": false,
+			"mod_reason_title": null,
+			"gilded": 0,
+			"clicked": false,
+			"title": "Please keep an eye out",
+			"link_flair_richtext": [],
+			"subreddit_name_prefixed": "r/Portland",
+			"hidden": false,
+			"pwls": 6,
+			"link_flair_css_class": "lost-found",
+			"downs": 0,
+			"thumbnail_height": 140,
+			"top_awarded_type": null,
+			"hide_score": false,
+			"name": "t3_1jo90ka",
+			"quarantine": false,
+			"link_flair_text_color": "light",
+			"upvote_ratio": 0.94,
+			"author_flair_background_color": null,
+			"ups": 58,
+			"total_awards_received": 0,
+			"media_embed": {
+  
+			},
+			"thumbnail_width": 140,
+			"author_flair_template_id": null,
+			"is_original_content": false,
+			"user_reports": [],
+			"secure_media": null,
+			"is_reddit_media_domain": true,
+			"is_meta": false,
+			"category": null,
+			"secure_media_embed": {
+  
+			},
+			"link_flair_text": "Lost &amp; Found",
+			"can_mod_post": false,
+			"score": 58,
+			"approved_by": null,
+			"is_created_from_ads_ui": false,
+			"author_premium": false,
+			"thumbnail": "https://b.thumbs.redditmedia.com/lCChkyNXRlQlO5khRtaKzhFs_VKPVfuZyZHB078JmoY.jpg",
+			"edited": false,
+			"author_flair_css_class": null,
+			"author_flair_richtext": [],
+			"gildings": {
+  
+			},
+			"post_hint": "image",
+			"content_categories": null,
+			"is_self": false,
+			"subreddit_type": "public",
+			"created": 1743442603,
+			"link_flair_type": "text",
+			"wls": 6,
+			"removed_by_category": null,
+			"banned_by": null,
+			"author_flair_type": "text",
+			"domain": "i.redd.it",
+			"allow_live_comments": false,
+			"selftext_html": null,
+			"likes": null,
+			"suggested_sort": "confidence",
+			"banned_at_utc": null,
+			"url_overridden_by_dest": "https://i.redd.it/7ma5ustt92se1.jpeg",
+			"view_count": null,
+			"archived": false,
+			"no_follow": false,
+			"is_crosspostable": true,
+			"pinned": false,
+			"over_18": false,
+			"preview": {
+			  "images": [
+				{
+				  "source": {
+					"url": "https://preview.redd.it/7ma5ustt92se1.jpeg?auto=webp&amp;s=9e9e6711d489e44b93a5aa7d7e312b86bb94b0b5",
+					"width": 1074,
+					"height": 1330
+				  },
+				  "resolutions": [
+					{
+					  "url": "https://preview.redd.it/7ma5ustt92se1.jpeg?width=108&amp;crop=smart&amp;auto=webp&amp;s=c1789a1ed2e2e389512777e00783a034419b8403",
+					  "width": 108,
+					  "height": 133
+					},
+					{
+					  "url": "https://preview.redd.it/7ma5ustt92se1.jpeg?width=216&amp;crop=smart&amp;auto=webp&amp;s=d762584d171c50322f009bf07fc6ee2e22509239",
+					  "width": 216,
+					  "height": 267
+					},
+					{
+					  "url": "https://preview.redd.it/7ma5ustt92se1.jpeg?width=320&amp;crop=smart&amp;auto=webp&amp;s=9f95f2c54981f935803b51c38ecb8c266f37c087",
+					  "width": 320,
+					  "height": 396
+					},
+					{
+					  "url": "https://preview.redd.it/7ma5ustt92se1.jpeg?width=640&amp;crop=smart&amp;auto=webp&amp;s=cad3e74f76d206799cefb6fd4f2ad2faaad19c9e",
+					  "width": 640,
+					  "height": 792
+					},
+					{
+					  "url": "https://preview.redd.it/7ma5ustt92se1.jpeg?width=960&amp;crop=smart&amp;auto=webp&amp;s=beb4cb8200781dfe1d5d2094071de0acaf4da3ff",
+					  "width": 960,
+					  "height": 1188
+					}
+				  ],
+				  "variants": {
+  
+				  },
+				  "id": "kxTTh-1HmeRhH_6IhZ2EgU3e7HAamuKGYd8N4elhU2Y"
+				}
+			  ],
+			  "enabled": true
+			},
+			"all_awardings": [],
+			"awarders": [],
+			"media_only": false,
+			"link_flair_template_id": "d1493bb0-3dc2-11ed-be95-a6441b0861d2",
+			"can_gild": false,
+			"spoiler": false,
+			"locked": false,
+			"author_flair_text": null,
+			"treatment_tags": [],
+			"visited": false,
+			"removed_by": null,
+			"mod_note": null,
+			"distinguished": null,
+			"subreddit_id": "t5_2qi2i",
+			"author_is_blocked": false,
+			"mod_reason_by": null,
+			"num_reports": null,
+			"removal_reason": null,
+			"link_flair_background_color": "#373c3f",
+			"id": "1jo90ka",
+			"is_robot_indexable": true,
+			"report_reasons": null,
+			"author": "AllegraGellar",
+			"discussion_type": null,
+			"num_comments": 0,
+			"send_replies": true,
+			"contest_mode": false,
+			"mod_reports": [],
+			"author_patreon_flair": false,
+			"author_flair_text_color": null,
+			"permalink": "/r/Portland/comments/1jo90ka/please_keep_an_eye_out/",
+			"stickied": false,
+			"url": "https://i.redd.it/7ma5ustt92se1.jpeg",
+			"subreddit_subscribers": 350340,
+			"created_utc": 1743442603,
+			"num_crossposts": 0,
+			"media": null,
+			"is_video": false
+		  }
+		},
+		{
+		  "kind": "t3",
+		  "data": {
+			"approved_at_utc": null,
+			"subreddit": "Portland",
+			"selftext": "",
+			"author_fullname": "t2_1h3jvut0b0",
+			"saved": false,
+			"mod_reason_title": null,
+			"gilded": 0,
+			"clicked": false,
+			"title": "Bonsai is big in Portland. Here’s how you can learn the gardening art",
+			"link_flair_richtext": [],
+			"subreddit_name_prefixed": "r/Portland",
+			"hidden": false,
+			"pwls": 6,
+			"link_flair_css_class": "news",
+			"downs": 0,
+			"thumbnail_height": 78,
+			"top_awarded_type": null,
+			"hide_score": false,
+			"name": "t3_1jo6qce",
+			"quarantine": false,
+			"link_flair_text_color": "light",
+			"upvote_ratio": 0.95,
+			"author_flair_background_color": null,
+			"ups": 54,
+			"total_awards_received": 0,
+			"media_embed": {
+  
+			},
+			"thumbnail_width": 140,
+			"author_flair_template_id": null,
+			"is_original_content": false,
+			"user_reports": [],
+			"secure_media": null,
+			"is_reddit_media_domain": false,
+			"is_meta": false,
+			"category": null,
+			"secure_media_embed": {
+  
+			},
+			"link_flair_text": "News",
+			"can_mod_post": false,
+			"score": 54,
+			"approved_by": null,
+			"is_created_from_ads_ui": false,
+			"author_premium": false,
+			"thumbnail": "https://b.thumbs.redditmedia.com/H3v4n4KUmmbgLhET82qsS-sRi_Gh-NHkG6IBlyzMQLk.jpg",
+			"edited": false,
+			"author_flair_css_class": null,
+			"author_flair_richtext": [],
+			"gildings": {
+  
+			},
+			"post_hint": "link",
+			"content_categories": null,
+			"is_self": false,
+			"subreddit_type": "public",
+			"created": 1743437004,
+			"link_flair_type": "text",
+			"wls": 6,
+			"removed_by_category": null,
+			"banned_by": null,
+			"author_flair_type": "text",
+			"domain": "oregonlive.com",
+			"allow_live_comments": false,
+			"selftext_html": null,
+			"likes": null,
+			"suggested_sort": "confidence",
+			"banned_at_utc": null,
+			"url_overridden_by_dest": "https://www.oregonlive.com/hg/2025/03/bonsai-is-big-in-portland-heres-how-you-can-learn-the-gardening-art.html",
+			"view_count": null,
+			"archived": false,
+			"no_follow": false,
+			"is_crosspostable": true,
+			"pinned": false,
+			"over_18": false,
+			"preview": {
+			  "images": [
+				{
+				  "source": {
+					"url": "https://external-preview.redd.it/dD-nZWHgxjtV7eC9NwMAcwbpg5IlRq2TRhiCq0eC-3k.jpg?auto=webp&amp;s=847cb74e3ba9e42b630863ec8519aa771cd12628",
+					"width": 1280,
+					"height": 720
+				  },
+				  "resolutions": [
+					{
+					  "url": "https://external-preview.redd.it/dD-nZWHgxjtV7eC9NwMAcwbpg5IlRq2TRhiCq0eC-3k.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=d6cae73572222cd592248e15d41f93b9bb3ace51",
+					  "width": 108,
+					  "height": 60
+					},
+					{
+					  "url": "https://external-preview.redd.it/dD-nZWHgxjtV7eC9NwMAcwbpg5IlRq2TRhiCq0eC-3k.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=e50863230657752c745bf4c9079caacf12aabf00",
+					  "width": 216,
+					  "height": 121
+					},
+					{
+					  "url": "https://external-preview.redd.it/dD-nZWHgxjtV7eC9NwMAcwbpg5IlRq2TRhiCq0eC-3k.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=4c10e71923d4c6ba3666355c7a3ab84e054c379b",
+					  "width": 320,
+					  "height": 180
+					},
+					{
+					  "url": "https://external-preview.redd.it/dD-nZWHgxjtV7eC9NwMAcwbpg5IlRq2TRhiCq0eC-3k.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=078b060c05a35c64fe5a061b45fcd4b5e9aba356",
+					  "width": 640,
+					  "height": 360
+					},
+					{
+					  "url": "https://external-preview.redd.it/dD-nZWHgxjtV7eC9NwMAcwbpg5IlRq2TRhiCq0eC-3k.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=df45a126464a182a6177035f240ed4850ea95265",
+					  "width": 960,
+					  "height": 540
+					},
+					{
+					  "url": "https://external-preview.redd.it/dD-nZWHgxjtV7eC9NwMAcwbpg5IlRq2TRhiCq0eC-3k.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=021a9eb124047b00f8ee8a47699501728cb2e043",
+					  "width": 1080,
+					  "height": 607
+					}
+				  ],
+				  "variants": {
+  
+				  },
+				  "id": "zhkpW0B5e9aXrxVyoc5sQLW5MboCH6pohPY1xH1NZ84"
+				}
+			  ],
+			  "enabled": false
+			},
+			"all_awardings": [],
+			"awarders": [],
+			"media_only": false,
+			"link_flair_template_id": "0620b916-f866-11e5-a8d7-0eab7e252831",
+			"can_gild": false,
+			"spoiler": false,
+			"locked": false,
+			"author_flair_text": null,
+			"treatment_tags": [],
+			"visited": false,
+			"removed_by": null,
+			"mod_note": null,
+			"distinguished": null,
+			"subreddit_id": "t5_2qi2i",
+			"author_is_blocked": false,
+			"mod_reason_by": null,
+			"num_reports": null,
+			"removal_reason": null,
+			"link_flair_background_color": "#005ba1",
+			"id": "1jo6qce",
+			"is_robot_indexable": true,
+			"report_reasons": null,
+			"author": "oldermuscles",
+			"discussion_type": null,
+			"num_comments": 5,
+			"send_replies": true,
+			"contest_mode": false,
+			"mod_reports": [],
+			"author_patreon_flair": false,
+			"author_flair_text_color": null,
+			"permalink": "/r/Portland/comments/1jo6qce/bonsai_is_big_in_portland_heres_how_you_can_learn/",
+			"stickied": false,
+			"url": "https://www.oregonlive.com/hg/2025/03/bonsai-is-big-in-portland-heres-how-you-can-learn-the-gardening-art.html",
+			"subreddit_subscribers": 350340,
+			"created_utc": 1743437004,
+			"num_crossposts": 0,
+			"media": null,
+			"is_video": false
+		  }
+		},
+		{
+		  "kind": "t3",
+		  "data": {
+			"approved_at_utc": null,
+			"subreddit": "Portland",
+			"selftext": "We decided this time to go for some breakfast chicken. Overall the food was really good, but the wait was brutal. We went on a Sunday so we knew it would be a long wait. We were told it would be an hour, but it ended up being a two hour wait. We saw some people showing up to pick up pre-ordered takeout and that is 100% the way to go.\n\n  \nI feel like Waffle Window has chicken and waffles that are just as good with a much shorter wait. What's your favorite place for chicken and waffles?\n\n  \nSo far, Alberta Market still leads in all 3 scores. Which of our scores do you disagree with the most?",
+			"author_fullname": "t2_16vrcqvu",
+			"saved": false,
+			"mod_reason_title": null,
+			"gilded": 0,
+			"clicked": false,
+			"title": "Reviewing Portland's Fried Chicken; Round 4: Screen Door",
+			"link_flair_richtext": [],
+			"subreddit_name_prefixed": "r/Portland",
+			"hidden": false,
+			"pwls": 6,
+			"link_flair_css_class": "discussion",
+			"downs": 0,
+			"thumbnail_height": 140,
+			"top_awarded_type": null,
+			"hide_score": false,
+			"name": "t3_1jogrm0",
+			"quarantine": false,
+			"link_flair_text_color": "light",
+			"upvote_ratio": 0.87,
+			"author_flair_background_color": null,
+			"ups": 59,
+			"total_awards_received": 0,
+			"media_embed": {
+  
+			},
+			"thumbnail_width": 140,
+			"author_flair_template_id": null,
+			"is_original_content": false,
+			"user_reports": [],
+			"secure_media": null,
+			"is_reddit_media_domain": true,
+			"is_meta": false,
+			"category": null,
+			"secure_media_embed": {
+  
+			},
+			"link_flair_text": "Discussion",
+			"can_mod_post": false,
+			"score": 59,
+			"approved_by": null,
+			"is_created_from_ads_ui": false,
+			"author_premium": false,
+			"thumbnail": "https://b.thumbs.redditmedia.com/2s1RwpRACIWsRDl3Z2KRRFEoVda_LXY2QHTTvzL8MhE.jpg",
+			"edited": false,
+			"author_flair_css_class": null,
+			"author_flair_richtext": [],
+			"gildings": {
+  
+			},
+			"post_hint": "image",
+			"content_categories": null,
+			"is_self": false,
+			"subreddit_type": "public",
+			"created": 1743461804,
+			"link_flair_type": "text",
+			"wls": 6,
+			"removed_by_category": null,
+			"banned_by": null,
+			"author_flair_type": "text",
+			"domain": "i.redd.it",
+			"allow_live_comments": false,
+			"selftext_html": "&lt;!-- SC_OFF --&gt;&lt;div class=\"md\"&gt;&lt;p&gt;We decided this time to go for some breakfast chicken. Overall the food was really good, but the wait was brutal. We went on a Sunday so we knew it would be a long wait. We were told it would be an hour, but it ended up being a two hour wait. We saw some people showing up to pick up pre-ordered takeout and that is 100% the way to go.&lt;/p&gt;\n\n&lt;p&gt;I feel like Waffle Window has chicken and waffles that are just as good with a much shorter wait. What&amp;#39;s your favorite place for chicken and waffles?&lt;/p&gt;\n\n&lt;p&gt;So far, Alberta Market still leads in all 3 scores. Which of our scores do you disagree with the most?&lt;/p&gt;\n&lt;/div&gt;&lt;!-- SC_ON --&gt;",
+			"likes": null,
+			"suggested_sort": "confidence",
+			"banned_at_utc": null,
+			"url_overridden_by_dest": "https://i.redd.it/qp85g4d5l3se1.png",
+			"view_count": null,
+			"archived": false,
+			"no_follow": false,
+			"is_crosspostable": true,
+			"pinned": false,
+			"over_18": false,
+			"preview": {
+			  "images": [
+				{
+				  "source": {
+					"url": "https://preview.redd.it/qp85g4d5l3se1.png?auto=webp&amp;s=baef1a84690eb8acb043b4086fb381d1ba5a8959",
+					"width": 778,
+					"height": 811
+				  },
+				  "resolutions": [
+					{
+					  "url": "https://preview.redd.it/qp85g4d5l3se1.png?width=108&amp;crop=smart&amp;auto=webp&amp;s=68b61545fd2998d28acd921e433cd7ed5691daf0",
+					  "width": 108,
+					  "height": 112
+					},
+					{
+					  "url": "https://preview.redd.it/qp85g4d5l3se1.png?width=216&amp;crop=smart&amp;auto=webp&amp;s=5bfa405306d8ab72dac17f0d9751e61bc0ff760c",
+					  "width": 216,
+					  "height": 225
+					},
+					{
+					  "url": "https://preview.redd.it/qp85g4d5l3se1.png?width=320&amp;crop=smart&amp;auto=webp&amp;s=7c7d2f69040917f901e77c70783388de3085886a",
+					  "width": 320,
+					  "height": 333
+					},
+					{
+					  "url": "https://preview.redd.it/qp85g4d5l3se1.png?width=640&amp;crop=smart&amp;auto=webp&amp;s=fd42fdde2dfe459d82293bf82c4f6cc60ef4f467",
+					  "width": 640,
+					  "height": 667
+					}
+				  ],
+				  "variants": {
+  
+				  },
+				  "id": "lJMoOYi7_qw9QOHdln9lTTZhjAkVfRSD6CiL-rfgYQw"
+				}
+			  ],
+			  "enabled": true
+			},
+			"all_awardings": [],
+			"awarders": [],
+			"media_only": false,
+			"link_flair_template_id": "7a5134cc-4586-11ed-989a-925fe15f40db",
+			"can_gild": false,
+			"spoiler": false,
+			"locked": false,
+			"author_flair_text": null,
+			"treatment_tags": [],
+			"visited": false,
+			"removed_by": null,
+			"mod_note": null,
+			"distinguished": null,
+			"subreddit_id": "t5_2qi2i",
+			"author_is_blocked": false,
+			"mod_reason_by": null,
+			"num_reports": null,
+			"removal_reason": null,
+			"link_flair_background_color": "#646d73",
+			"id": "1jogrm0",
+			"is_robot_indexable": true,
+			"report_reasons": null,
+			"author": "Cosmik_Music",
+			"discussion_type": null,
+			"num_comments": 46,
+			"send_replies": true,
+			"contest_mode": false,
+			"mod_reports": [],
+			"author_patreon_flair": false,
+			"author_flair_text_color": null,
+			"permalink": "/r/Portland/comments/1jogrm0/reviewing_portlands_fried_chicken_round_4_screen/",
+			"stickied": false,
+			"url": "https://i.redd.it/qp85g4d5l3se1.png",
+			"subreddit_subscribers": 350340,
+			"created_utc": 1743461804,
+			"num_crossposts": 0,
+			"media": null,
+			"is_video": false
+		  }
+		},
+		{
+		  "kind": "t3",
+		  "data": {
+			"approved_at_utc": null,
+			"subreddit": "Portland",
+			"selftext": "",
+			"author_fullname": "t2_hr0um8pbg",
+			"saved": false,
+			"mod_reason_title": null,
+			"gilded": 0,
+			"clicked": false,
+			"title": "Senate committee move MLB Stadium forward with a do-pass recommendation.",
+			"link_flair_richtext": [],
+			"subreddit_name_prefixed": "r/Portland",
+			"hidden": false,
+			"pwls": 6,
+			"link_flair_css_class": "news",
+			"downs": 0,
+			"thumbnail_height": 78,
+			"top_awarded_type": null,
+			"hide_score": true,
+			"name": "t3_1jolh9t",
+			"quarantine": false,
+			"link_flair_text_color": "light",
+			"upvote_ratio": 0.86,
+			"author_flair_background_color": null,
+			"ups": 56,
+			"total_awards_received": 0,
+			"media_embed": {
+  
+			},
+			"thumbnail_width": 140,
+			"author_flair_template_id": null,
+			"is_original_content": false,
+			"user_reports": [],
+			"secure_media": null,
+			"is_reddit_media_domain": false,
+			"is_meta": false,
+			"category": null,
+			"secure_media_embed": {
+  
+			},
+			"link_flair_text": "News",
+			"can_mod_post": false,
+			"score": 56,
+			"approved_by": null,
+			"is_created_from_ads_ui": false,
+			"author_premium": false,
+			"thumbnail": "https://a.thumbs.redditmedia.com/eJGAfP2Eorr6KeV8VgobDHSwYEWLmyDbHFtghxf3rg8.jpg",
+			"edited": false,
+			"author_flair_css_class": null,
+			"author_flair_richtext": [],
+			"gildings": {
+  
+			},
+			"post_hint": "link",
+			"content_categories": null,
+			"is_self": false,
+			"subreddit_type": "public",
+			"created": 1743475743,
+			"link_flair_type": "text",
+			"wls": 6,
+			"removed_by_category": null,
+			"banned_by": null,
+			"author_flair_type": "text",
+			"domain": "katu.com",
+			"allow_live_comments": false,
+			"selftext_html": null,
+			"likes": null,
+			"suggested_sort": "confidence",
+			"banned_at_utc": null,
+			"url_overridden_by_dest": "https://katu.com/news/local/senate-committee-advances-bill-fund-major-league-baseball-mlb-stadium-portland-diamond-project",
+			"view_count": null,
+			"archived": false,
+			"no_follow": false,
+			"is_crosspostable": true,
+			"pinned": false,
+			"over_18": false,
+			"preview": {
+			  "images": [
+				{
+				  "source": {
+					"url": "https://external-preview.redd.it/iXT0Ix9ovTJhtLWrL_4TNUMjMKVY2CTiqYzFqw0KDWM.jpg?auto=webp&amp;s=5c7758585e6197639b39d140a974e8e45d92c9df",
+					"width": 986,
+					"height": 555
+				  },
+				  "resolutions": [
+					{
+					  "url": "https://external-preview.redd.it/iXT0Ix9ovTJhtLWrL_4TNUMjMKVY2CTiqYzFqw0KDWM.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=4a32e3462acdaf75bdedd4a92bc891af6ce90bb9",
+					  "width": 108,
+					  "height": 60
+					},
+					{
+					  "url": "https://external-preview.redd.it/iXT0Ix9ovTJhtLWrL_4TNUMjMKVY2CTiqYzFqw0KDWM.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=f81cd471102f183cf02f86d6f788efcaeb2861f8",
+					  "width": 216,
+					  "height": 121
+					},
+					{
+					  "url": "https://external-preview.redd.it/iXT0Ix9ovTJhtLWrL_4TNUMjMKVY2CTiqYzFqw0KDWM.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=32ef2e8ef3bf8a48c41e00374b2a0a866b1a9abe",
+					  "width": 320,
+					  "height": 180
+					},
+					{
+					  "url": "https://external-preview.redd.it/iXT0Ix9ovTJhtLWrL_4TNUMjMKVY2CTiqYzFqw0KDWM.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=7259483d4a1ed06390c5f38c5bd4abd4d07178da",
+					  "width": 640,
+					  "height": 360
+					},
+					{
+					  "url": "https://external-preview.redd.it/iXT0Ix9ovTJhtLWrL_4TNUMjMKVY2CTiqYzFqw0KDWM.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=eeaedb02f6dca82c5fbc9d5d5c5244e6d72f4f4d",
+					  "width": 960,
+					  "height": 540
+					}
+				  ],
+				  "variants": {
+  
+				  },
+				  "id": "Lo61MvYWGFvGBrFDUaqZVI8fGpfg2grdc88x5mCjSUM"
+				}
+			  ],
+			  "enabled": false
+			},
+			"all_awardings": [],
+			"awarders": [],
+			"media_only": false,
+			"link_flair_template_id": "0620b916-f866-11e5-a8d7-0eab7e252831",
+			"can_gild": false,
+			"spoiler": false,
+			"locked": false,
+			"author_flair_text": null,
+			"treatment_tags": [],
+			"visited": false,
+			"removed_by": null,
+			"mod_note": null,
+			"distinguished": null,
+			"subreddit_id": "t5_2qi2i",
+			"author_is_blocked": false,
+			"mod_reason_by": null,
+			"num_reports": null,
+			"removal_reason": null,
+			"link_flair_background_color": "#005ba1",
+			"id": "1jolh9t",
+			"is_robot_indexable": true,
+			"report_reasons": null,
+			"author": "Brasi91Luca",
+			"discussion_type": null,
+			"num_comments": 70,
+			"send_replies": true,
+			"contest_mode": false,
+			"mod_reports": [],
+			"author_patreon_flair": false,
+			"author_flair_text_color": null,
+			"permalink": "/r/Portland/comments/1jolh9t/senate_committee_move_mlb_stadium_forward_with_a/",
+			"stickied": false,
+			"url": "https://katu.com/news/local/senate-committee-advances-bill-fund-major-league-baseball-mlb-stadium-portland-diamond-project",
+			"subreddit_subscribers": 350340,
+			"created_utc": 1743475743,
+			"num_crossposts": 0,
+			"media": null,
+			"is_video": false
+		  }
+		},
+		{
+		  "kind": "t3",
+		  "data": {
+			"approved_at_utc": null,
+			"subreddit": "Portland",
+			"selftext": "It has finally arrived.  Merely 1/8” of a size though ",
+			"author_fullname": "t2_24oas0qn",
+			"saved": false,
+			"mod_reason_title": null,
+			"gilded": 0,
+			"clicked": false,
+			"title": "Hail",
+			"link_flair_richtext": [],
+			"subreddit_name_prefixed": "r/Portland",
+			"hidden": false,
+			"pwls": 6,
+			"link_flair_css_class": "meme",
+			"downs": 0,
+			"thumbnail_height": 140,
+			"top_awarded_type": null,
+			"hide_score": false,
+			"name": "t3_1johy4j",
+			"quarantine": false,
+			"link_flair_text_color": "light",
+			"upvote_ratio": 0.86,
+			"author_flair_background_color": null,
+			"ups": 49,
+			"total_awards_received": 0,
+			"media_embed": {
+  
+			},
+			"thumbnail_width": 140,
+			"author_flair_template_id": null,
+			"is_original_content": false,
+			"user_reports": [],
+			"secure_media": null,
+			"is_reddit_media_domain": true,
+			"is_meta": false,
+			"category": null,
+			"secure_media_embed": {
+  
+			},
+			"link_flair_text": "Meme",
+			"can_mod_post": false,
+			"score": 49,
+			"approved_by": null,
+			"is_created_from_ads_ui": false,
+			"author_premium": false,
+			"thumbnail": "https://b.thumbs.redditmedia.com/Xjp9JJe6jK1IMa2s0xRw3Uf9lcwPEGsEVZukD01AizI.jpg",
+			"edited": false,
+			"author_flair_css_class": null,
+			"author_flair_richtext": [],
+			"gildings": {
+  
+			},
+			"post_hint": "image",
+			"content_categories": null,
+			"is_self": false,
+			"subreddit_type": "public",
+			"created": 1743465118,
+			"link_flair_type": "text",
+			"wls": 6,
+			"removed_by_category": null,
+			"banned_by": null,
+			"author_flair_type": "text",
+			"domain": "i.redd.it",
+			"allow_live_comments": false,
+			"selftext_html": "&lt;!-- SC_OFF --&gt;&lt;div class=\"md\"&gt;&lt;p&gt;It has finally arrived.  Merely 1/8” of a size though &lt;/p&gt;\n&lt;/div&gt;&lt;!-- SC_ON --&gt;",
+			"likes": null,
+			"suggested_sort": "confidence",
+			"banned_at_utc": null,
+			"url_overridden_by_dest": "https://i.redd.it/tsloh7yw44se1.jpeg",
+			"view_count": null,
+			"archived": false,
+			"no_follow": false,
+			"is_crosspostable": true,
+			"pinned": false,
+			"over_18": false,
+			"preview": {
+			  "images": [
+				{
+				  "source": {
+					"url": "https://preview.redd.it/tsloh7yw44se1.jpeg?auto=webp&amp;s=458acbfdbc11822f94f5178ba84e64ae58344bdd",
+					"width": 475,
+					"height": 475
+				  },
+				  "resolutions": [
+					{
+					  "url": "https://preview.redd.it/tsloh7yw44se1.jpeg?width=108&amp;crop=smart&amp;auto=webp&amp;s=e0c20d18d241b9d25e9f0d2d3352ee3a063233fc",
+					  "width": 108,
+					  "height": 108
+					},
+					{
+					  "url": "https://preview.redd.it/tsloh7yw44se1.jpeg?width=216&amp;crop=smart&amp;auto=webp&amp;s=981a00e6c9454db8fe8159c923f19661ecd9e841",
+					  "width": 216,
+					  "height": 216
+					},
+					{
+					  "url": "https://preview.redd.it/tsloh7yw44se1.jpeg?width=320&amp;crop=smart&amp;auto=webp&amp;s=b0127966588930e0a85336da59e2178765efd8c8",
+					  "width": 320,
+					  "height": 320
+					}
+				  ],
+				  "variants": {
+  
+				  },
+				  "id": "w82v4QbzsGZwjHQYy-3q1hFBtfE8fQqHHJdxeulsv-g"
+				}
+			  ],
+			  "enabled": true
+			},
+			"all_awardings": [],
+			"awarders": [],
+			"media_only": false,
+			"link_flair_template_id": "8d1764e8-443f-11ed-a8f9-7a5e358241eb",
+			"can_gild": false,
+			"spoiler": false,
+			"locked": false,
+			"author_flair_text": null,
+			"treatment_tags": [],
+			"visited": false,
+			"removed_by": null,
+			"mod_note": null,
+			"distinguished": null,
+			"subreddit_id": "t5_2qi2i",
+			"author_is_blocked": false,
+			"mod_reason_by": null,
+			"num_reports": null,
+			"removal_reason": null,
+			"link_flair_background_color": "#cc8b00",
+			"id": "1johy4j",
+			"is_robot_indexable": true,
+			"report_reasons": null,
+			"author": "MaksimusFootball",
+			"discussion_type": null,
+			"num_comments": 10,
+			"send_replies": true,
+			"contest_mode": false,
+			"mod_reports": [],
+			"author_patreon_flair": false,
+			"author_flair_text_color": null,
+			"permalink": "/r/Portland/comments/1johy4j/hail/",
+			"stickied": false,
+			"url": "https://i.redd.it/tsloh7yw44se1.jpeg",
+			"subreddit_subscribers": 350340,
+			"created_utc": 1743465118,
+			"num_crossposts": 0,
+			"media": null,
+			"is_video": false
+		  }
+		},
+		{
+		  "kind": "t3",
+		  "data": {
+			"approved_at_utc": null,
+			"subreddit": "Portland",
+			"selftext": "",
+			"author_fullname": "t2_j2ermw00",
+			"saved": false,
+			"mod_reason_title": null,
+			"gilded": 0,
+			"clicked": false,
+			"title": "Cool view flying out just a view minutes ago",
+			"link_flair_richtext": [],
+			"subreddit_name_prefixed": "r/Portland",
+			"hidden": false,
+			"pwls": 6,
+			"link_flair_css_class": "photo",
+			"downs": 0,
+			"thumbnail_height": 140,
+			"top_awarded_type": null,
+			"hide_score": false,
+			"name": "t3_1joi47u",
+			"quarantine": false,
+			"link_flair_text_color": "light",
+			"upvote_ratio": 0.93,
+			"author_flair_background_color": null,
+			"ups": 40,
+			"total_awards_received": 0,
+			"media_embed": {
+  
+			},
+			"thumbnail_width": 140,
+			"author_flair_template_id": null,
+			"is_original_content": false,
+			"user_reports": [],
+			"secure_media": null,
+			"is_reddit_media_domain": true,
+			"is_meta": false,
+			"category": null,
+			"secure_media_embed": {
+  
+			},
+			"link_flair_text": " Photo/Video",
+			"can_mod_post": false,
+			"score": 40,
+			"approved_by": null,
+			"is_created_from_ads_ui": false,
+			"author_premium": false,
+			"thumbnail": "https://b.thumbs.redditmedia.com/1keQNmgcAiJGQmn1qsoRyirEtSVHWB7O2GHazDcYgMY.jpg",
+			"edited": false,
+			"author_flair_css_class": null,
+			"author_flair_richtext": [],
+			"gildings": {
+  
+			},
+			"post_hint": "image",
+			"content_categories": null,
+			"is_self": false,
+			"subreddit_type": "public",
+			"created": 1743465606,
+			"link_flair_type": "text",
+			"wls": 6,
+			"removed_by_category": null,
+			"banned_by": null,
+			"author_flair_type": "text",
+			"domain": "i.redd.it",
+			"allow_live_comments": false,
+			"selftext_html": null,
+			"likes": null,
+			"suggested_sort": "confidence",
+			"banned_at_utc": null,
+			"url_overridden_by_dest": "https://i.redd.it/9xclv38a64se1.jpeg",
+			"view_count": null,
+			"archived": false,
+			"no_follow": false,
+			"is_crosspostable": true,
+			"pinned": false,
+			"over_18": false,
+			"preview": {
+			  "images": [
+				{
+				  "source": {
+					"url": "https://preview.redd.it/9xclv38a64se1.jpeg?auto=webp&amp;s=1a47a5712949cefc5828bbb45827ea5f333495e1",
+					"width": 3024,
+					"height": 4032
+				  },
+				  "resolutions": [
+					{
+					  "url": "https://preview.redd.it/9xclv38a64se1.jpeg?width=108&amp;crop=smart&amp;auto=webp&amp;s=f938a6add8fd435f754c3b7a0dc8ff67be84b7ea",
+					  "width": 108,
+					  "height": 144
+					},
+					{
+					  "url": "https://preview.redd.it/9xclv38a64se1.jpeg?width=216&amp;crop=smart&amp;auto=webp&amp;s=db275d45a1817e3620885bb8aac665f0adc3d62f",
+					  "width": 216,
+					  "height": 288
+					},
+					{
+					  "url": "https://preview.redd.it/9xclv38a64se1.jpeg?width=320&amp;crop=smart&amp;auto=webp&amp;s=f11c4510eaef57676ce28b7eb2c78a7d68d5b90f",
+					  "width": 320,
+					  "height": 426
+					},
+					{
+					  "url": "https://preview.redd.it/9xclv38a64se1.jpeg?width=640&amp;crop=smart&amp;auto=webp&amp;s=937480ea1a4edee3dc4fa5e8189180f2f7490e25",
+					  "width": 640,
+					  "height": 853
+					},
+					{
+					  "url": "https://preview.redd.it/9xclv38a64se1.jpeg?width=960&amp;crop=smart&amp;auto=webp&amp;s=6724cdac6c4ebdd1ad0b45857f54b74bbe4fe1a1",
+					  "width": 960,
+					  "height": 1280
+					},
+					{
+					  "url": "https://preview.redd.it/9xclv38a64se1.jpeg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=54f1847b9363149bee72e2c58b74d38489c624a1",
+					  "width": 1080,
+					  "height": 1440
+					}
+				  ],
+				  "variants": {
+  
+				  },
+				  "id": "wR1p8fKfyEl1vcMNoNyK5UXIL-UszxqHdHDfVEkWUdo"
+				}
+			  ],
+			  "enabled": true
+			},
+			"all_awardings": [],
+			"awarders": [],
+			"media_only": false,
+			"link_flair_template_id": "ec34c718-f865-11e5-80b8-0e40834ec031",
+			"can_gild": false,
+			"spoiler": false,
+			"locked": false,
+			"author_flair_text": null,
+			"treatment_tags": [],
+			"visited": false,
+			"removed_by": null,
+			"mod_note": null,
+			"distinguished": null,
+			"subreddit_id": "t5_2qi2i",
+			"author_is_blocked": false,
+			"mod_reason_by": null,
+			"num_reports": null,
+			"removal_reason": null,
+			"link_flair_background_color": "#8362b4",
+			"id": "1joi47u",
+			"is_robot_indexable": true,
+			"report_reasons": null,
+			"author": "PNW_Hokage",
+			"discussion_type": null,
+			"num_comments": 2,
+			"send_replies": true,
+			"contest_mode": false,
+			"mod_reports": [],
+			"author_patreon_flair": false,
+			"author_flair_text_color": null,
+			"permalink": "/r/Portland/comments/1joi47u/cool_view_flying_out_just_a_view_minutes_ago/",
+			"stickied": false,
+			"url": "https://i.redd.it/9xclv38a64se1.jpeg",
+			"subreddit_subscribers": 350340,
+			"created_utc": 1743465606,
+			"num_crossposts": 0,
+			"media": null,
+			"is_video": false
+		  }
+		},
+		{
+		  "kind": "t3",
+		  "data": {
+			"approved_at_utc": null,
+			"subreddit": "Portland",
+			"selftext": "Noticed this while at work just now. Looks like the FX2 accordion bus got stuck trying to make a u-turn on 1st Ave. North bound traffic on 1st is being routed through a parking lot and one south bound lane is blocked. ",
+			"author_fullname": "t2_argxmmkr",
+			"saved": false,
+			"mod_reason_title": null,
+			"gilded": 0,
+			"clicked": false,
+			"is_gallery": true,
+			"title": "FX 2 Bus stuck on 1st Ave",
+			"link_flair_richtext": [],
+			"subreddit_name_prefixed": "r/Portland",
+			"hidden": false,
+			"pwls": 6,
+			"link_flair_css_class": "photo",
+			"downs": 0,
+			"thumbnail_height": 105,
+			"top_awarded_type": null,
+			"hide_score": false,
+			"media_metadata": {
+			  "xdvwdyix43se1": {
+				"status": "valid",
+				"e": "Image",
+				"m": "image/jpg",
+				"p": [
+				  {
+					"y": 144,
+					"x": 108,
+					"u": "https://preview.redd.it/xdvwdyix43se1.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=c9cf8cc91cb8170d9f7028f0d5c26e6e2739f2be"
+				  },
+				  {
+					"y": 288,
+					"x": 216,
+					"u": "https://preview.redd.it/xdvwdyix43se1.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=54759da0e9a0355b8201fe2779fd195a31253769"
+				  },
+				  {
+					"y": 426,
+					"x": 320,
+					"u": "https://preview.redd.it/xdvwdyix43se1.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=63e116d04a9c6d4615877ee673566215c24b0129"
+				  },
+				  {
+					"y": 853,
+					"x": 640,
+					"u": "https://preview.redd.it/xdvwdyix43se1.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=770dca98e1fb849d0b3f9eb5cdcfe2fc4aa80084"
+				  },
+				  {
+					"y": 1280,
+					"x": 960,
+					"u": "https://preview.redd.it/xdvwdyix43se1.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=f48b22311a5634c50d7c8abc634775e3d5a87ee6"
+				  },
+				  {
+					"y": 1440,
+					"x": 1080,
+					"u": "https://preview.redd.it/xdvwdyix43se1.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=8523d715bd9c04ffae68341181c8c9415578c422"
+				  }
+				],
+				"s": {
+				  "y": 4032,
+				  "x": 3024,
+				  "u": "https://preview.redd.it/xdvwdyix43se1.jpg?width=3024&amp;format=pjpg&amp;auto=webp&amp;s=ee3017c5e16be8217d62f92eb8ce3262f0b477b1"
+				},
+				"id": "xdvwdyix43se1"
+			  },
+			  "9aur7zix43se1": {
+				"status": "valid",
+				"e": "Image",
+				"m": "image/jpg",
+				"p": [
+				  {
+					"y": 81,
+					"x": 108,
+					"u": "https://preview.redd.it/9aur7zix43se1.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=e8e1187eca58d412f2cc26c7e52abf5911b3d7d6"
+				  },
+				  {
+					"y": 162,
+					"x": 216,
+					"u": "https://preview.redd.it/9aur7zix43se1.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=450945a73f45453b115eb7fcde00a8ba5470ce13"
+				  },
+				  {
+					"y": 240,
+					"x": 320,
+					"u": "https://preview.redd.it/9aur7zix43se1.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=dab785ba8c303c0c9b7922c1448a1a9a81b480d8"
+				  },
+				  {
+					"y": 480,
+					"x": 640,
+					"u": "https://preview.redd.it/9aur7zix43se1.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=0c7ec3c8076d7102d5e33a5ca8f558b9ada694b8"
+				  },
+				  {
+					"y": 720,
+					"x": 960,
+					"u": "https://preview.redd.it/9aur7zix43se1.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=c8163774bf193d609cb56238aaefd02e0279f7e7"
+				  },
+				  {
+					"y": 810,
+					"x": 1080,
+					"u": "https://preview.redd.it/9aur7zix43se1.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=5669a3364c6bcf5d66926270d256b5ba65344d59"
+				  }
+				],
+				"s": {
+				  "y": 3024,
+				  "x": 4032,
+				  "u": "https://preview.redd.it/9aur7zix43se1.jpg?width=4032&amp;format=pjpg&amp;auto=webp&amp;s=b00fbcb6523fce9579d3459bc3b4110854645be2"
+				},
+				"id": "9aur7zix43se1"
+			  },
+			  "s0uizyix43se1": {
+				"status": "valid",
+				"e": "Image",
+				"m": "image/jpg",
+				"p": [
+				  {
+					"y": 144,
+					"x": 108,
+					"u": "https://preview.redd.it/s0uizyix43se1.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=5f9839be2406c1c7e496cba13df0f7869062f09e"
+				  },
+				  {
+					"y": 288,
+					"x": 216,
+					"u": "https://preview.redd.it/s0uizyix43se1.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=6a1ac757145d592ba1b16fa2e99439ca43d7af77"
+				  },
+				  {
+					"y": 426,
+					"x": 320,
+					"u": "https://preview.redd.it/s0uizyix43se1.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=cbe33e790422c497f0d81387799fd9460687db57"
+				  },
+				  {
+					"y": 853,
+					"x": 640,
+					"u": "https://preview.redd.it/s0uizyix43se1.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=ae39a19336bab04e8963e91664f291e1fb052783"
+				  },
+				  {
+					"y": 1280,
+					"x": 960,
+					"u": "https://preview.redd.it/s0uizyix43se1.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=ababbe9aa045c6123be6e13f972dea30f617e811"
+				  },
+				  {
+					"y": 1440,
+					"x": 1080,
+					"u": "https://preview.redd.it/s0uizyix43se1.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=04495c3b789aabbb4f51e329363070c804fbdd07"
+				  }
+				],
+				"s": {
+				  "y": 4032,
+				  "x": 3024,
+				  "u": "https://preview.redd.it/s0uizyix43se1.jpg?width=3024&amp;format=pjpg&amp;auto=webp&amp;s=1331c0b0ea120cb68b7bda482b06508109a8a730"
+				},
+				"id": "s0uizyix43se1"
+			  },
+			  "sytllzix43se1": {
+				"status": "valid",
+				"e": "Image",
+				"m": "image/jpg",
+				"p": [
+				  {
+					"y": 81,
+					"x": 108,
+					"u": "https://preview.redd.it/sytllzix43se1.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=101dc729a4fc301268b19102b7523b7bd7d24499"
+				  },
+				  {
+					"y": 162,
+					"x": 216,
+					"u": "https://preview.redd.it/sytllzix43se1.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=20472bf7513bc659b6f366c80858e550c5783773"
+				  },
+				  {
+					"y": 240,
+					"x": 320,
+					"u": "https://preview.redd.it/sytllzix43se1.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=c906c00024fea883aa9834dc46ce3e6e8f9511c7"
+				  },
+				  {
+					"y": 480,
+					"x": 640,
+					"u": "https://preview.redd.it/sytllzix43se1.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=472ca97e53ed02328d1122ad2942194edb8149c4"
+				  },
+				  {
+					"y": 720,
+					"x": 960,
+					"u": "https://preview.redd.it/sytllzix43se1.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=4680cbd8e3220496e10e1c8f71c00ee31f945e47"
+				  },
+				  {
+					"y": 810,
+					"x": 1080,
+					"u": "https://preview.redd.it/sytllzix43se1.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=25f15179d6c7bddf0f2bde38615a6ca233fce3bb"
+				  }
+				],
+				"s": {
+				  "y": 3024,
+				  "x": 4032,
+				  "u": "https://preview.redd.it/sytllzix43se1.jpg?width=4032&amp;format=pjpg&amp;auto=webp&amp;s=6aa89082539192622b62953fccc1ca602aef578e"
+				},
+				"id": "sytllzix43se1"
+			  },
+			  "krsh6zix43se1": {
+				"status": "valid",
+				"e": "Image",
+				"m": "image/jpg",
+				"p": [
+				  {
+					"y": 81,
+					"x": 108,
+					"u": "https://preview.redd.it/krsh6zix43se1.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=5434e00ee638083a1e0488c28375340e7505e5c3"
+				  },
+				  {
+					"y": 162,
+					"x": 216,
+					"u": "https://preview.redd.it/krsh6zix43se1.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=95c33fdf733313d3d78de47516f8bb254df77d71"
+				  },
+				  {
+					"y": 240,
+					"x": 320,
+					"u": "https://preview.redd.it/krsh6zix43se1.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=6e40c6e797f67075b59461c0075304e67c45e015"
+				  },
+				  {
+					"y": 480,
+					"x": 640,
+					"u": "https://preview.redd.it/krsh6zix43se1.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=dc2ad6f62e44284ce94e7462524e86e3e4f502e6"
+				  },
+				  {
+					"y": 720,
+					"x": 960,
+					"u": "https://preview.redd.it/krsh6zix43se1.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=f2429ca8242ba07bea93a3ce2837768888f5fc2c"
+				  },
+				  {
+					"y": 810,
+					"x": 1080,
+					"u": "https://preview.redd.it/krsh6zix43se1.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=df30d292de0796770a61424c045d869ae60d1d1e"
+				  }
+				],
+				"s": {
+				  "y": 3024,
+				  "x": 4032,
+				  "u": "https://preview.redd.it/krsh6zix43se1.jpg?width=4032&amp;format=pjpg&amp;auto=webp&amp;s=40a30276b67142d2a25c776d61ef25a91595db8b"
+				},
+				"id": "krsh6zix43se1"
+			  }
+			},
+			"name": "t3_1jodaoq",
+			"quarantine": false,
+			"link_flair_text_color": "light",
+			"upvote_ratio": 0.87,
+			"author_flair_background_color": null,
+			"ups": 39,
+			"domain": "reddit.com",
+			"media_embed": {
+  
+			},
+			"thumbnail_width": 140,
+			"author_flair_template_id": null,
+			"is_original_content": false,
+			"user_reports": [],
+			"secure_media": null,
+			"is_reddit_media_domain": false,
+			"is_meta": false,
+			"category": null,
+			"secure_media_embed": {
+  
+			},
+			"gallery_data": {
+			  "items": [
+				{
+				  "media_id": "9aur7zix43se1",
+				  "id": 634204209
+				},
+				{
+				  "media_id": "sytllzix43se1",
+				  "id": 634204210
+				},
+				{
+				  "media_id": "krsh6zix43se1",
+				  "id": 634204211
+				},
+				{
+				  "media_id": "xdvwdyix43se1",
+				  "id": 634204212
+				},
+				{
+				  "media_id": "s0uizyix43se1",
+				  "id": 634204213
+				}
+			  ]
+			},
+			"link_flair_text": "Photo/Video",
+			"can_mod_post": false,
+			"score": 39,
+			"approved_by": null,
+			"is_created_from_ads_ui": false,
+			"author_premium": false,
+			"thumbnail": "https://b.thumbs.redditmedia.com/s_Z2zkrdFpQ3GzwfgKdgDAa5NgTz5WQxXBjFVjZiWRk.jpg",
+			"edited": false,
+			"author_flair_css_class": null,
+			"author_flair_richtext": [],
+			"gildings": {
+  
+			},
+			"content_categories": null,
+			"is_self": false,
+			"subreddit_type": "public",
+			"created": 1743453024,
+			"link_flair_type": "text",
+			"wls": 6,
+			"removed_by_category": null,
+			"banned_by": null,
+			"author_flair_type": "text",
+			"total_awards_received": 0,
+			"allow_live_comments": false,
+			"selftext_html": "&lt;!-- SC_OFF --&gt;&lt;div class=\"md\"&gt;&lt;p&gt;Noticed this while at work just now. Looks like the FX2 accordion bus got stuck trying to make a u-turn on 1st Ave. North bound traffic on 1st is being routed through a parking lot and one south bound lane is blocked. &lt;/p&gt;\n&lt;/div&gt;&lt;!-- SC_ON --&gt;",
+			"likes": null,
+			"suggested_sort": "confidence",
+			"banned_at_utc": null,
+			"url_overridden_by_dest": "https://www.reddit.com/gallery/1jodaoq",
+			"view_count": null,
+			"archived": false,
+			"no_follow": false,
+			"is_crosspostable": true,
+			"pinned": false,
+			"over_18": false,
+			"all_awardings": [],
+			"awarders": [],
+			"media_only": false,
+			"link_flair_template_id": "ec34c718-f865-11e5-80b8-0e40834ec031",
+			"can_gild": false,
+			"spoiler": false,
+			"locked": false,
+			"author_flair_text": null,
+			"treatment_tags": [],
+			"visited": false,
+			"removed_by": null,
+			"mod_note": null,
+			"distinguished": null,
+			"subreddit_id": "t5_2qi2i",
+			"author_is_blocked": false,
+			"mod_reason_by": null,
+			"num_reports": null,
+			"removal_reason": null,
+			"link_flair_background_color": "#8362b4",
+			"id": "1jodaoq",
+			"is_robot_indexable": true,
+			"report_reasons": null,
+			"author": "Mostlymexican",
+			"discussion_type": null,
+			"num_comments": 18,
+			"send_replies": true,
+			"contest_mode": false,
+			"mod_reports": [],
+			"author_patreon_flair": false,
+			"author_flair_text_color": null,
+			"permalink": "/r/Portland/comments/1jodaoq/fx_2_bus_stuck_on_1st_ave/",
+			"stickied": false,
+			"url": "https://www.reddit.com/gallery/1jodaoq",
+			"subreddit_subscribers": 350340,
+			"created_utc": 1743453024,
+			"num_crossposts": 0,
+			"media": null,
+			"is_video": false
+		  }
+		},
+		{
+		  "kind": "t3",
+		  "data": {
+			"approved_at_utc": null,
+			"subreddit": "Portland",
+			"selftext": "",
+			"author_fullname": "t2_hpl7y",
+			"saved": false,
+			"mod_reason_title": null,
+			"gilded": 0,
+			"clicked": false,
+			"title": "Free aquarium gravel from the sky!",
+			"link_flair_richtext": [],
+			"subreddit_name_prefixed": "r/Portland",
+			"hidden": false,
+			"pwls": 6,
+			"link_flair_css_class": "photo",
+			"downs": 0,
+			"thumbnail_height": 140,
+			"top_awarded_type": null,
+			"hide_score": false,
+			"name": "t3_1johwow",
+			"quarantine": false,
+			"link_flair_text_color": "light",
+			"upvote_ratio": 0.91,
+			"author_flair_background_color": null,
+			"ups": 42,
+			"total_awards_received": 0,
+			"media_embed": {
+  
+			},
+			"thumbnail_width": 140,
+			"author_flair_template_id": null,
+			"is_original_content": false,
+			"user_reports": [],
+			"secure_media": null,
+			"is_reddit_media_domain": true,
+			"is_meta": false,
+			"category": null,
+			"secure_media_embed": {
+  
+			},
+			"link_flair_text": " Photo/Video",
+			"can_mod_post": false,
+			"score": 42,
+			"approved_by": null,
+			"is_created_from_ads_ui": false,
+			"author_premium": false,
+			"thumbnail": "https://b.thumbs.redditmedia.com/bPe61OJx_vRQ7sgN_oJtV8Wxse7T9ApXwlmcR38c_ho.jpg",
+			"edited": false,
+			"author_flair_css_class": null,
+			"author_flair_richtext": [],
+			"gildings": {
+  
+			},
+			"post_hint": "image",
+			"content_categories": null,
+			"is_self": false,
+			"subreddit_type": "public",
+			"created": 1743464999,
+			"link_flair_type": "text",
+			"wls": 6,
+			"removed_by_category": null,
+			"banned_by": null,
+			"author_flair_type": "text",
+			"domain": "i.redd.it",
+			"allow_live_comments": false,
+			"selftext_html": null,
+			"likes": null,
+			"suggested_sort": "confidence",
+			"banned_at_utc": null,
+			"url_overridden_by_dest": "https://i.redd.it/98dl663k44se1.jpeg",
+			"view_count": null,
+			"archived": false,
+			"no_follow": false,
+			"is_crosspostable": true,
+			"pinned": false,
+			"over_18": false,
+			"preview": {
+			  "images": [
+				{
+				  "source": {
+					"url": "https://preview.redd.it/98dl663k44se1.jpeg?auto=webp&amp;s=869b9b879c6d5e28fc388df18ba6b531b430752c",
+					"width": 3024,
+					"height": 4032
+				  },
+				  "resolutions": [
+					{
+					  "url": "https://preview.redd.it/98dl663k44se1.jpeg?width=108&amp;crop=smart&amp;auto=webp&amp;s=84d5d5288fc8152b38045ad34e257cc4d5be5923",
+					  "width": 108,
+					  "height": 144
+					},
+					{
+					  "url": "https://preview.redd.it/98dl663k44se1.jpeg?width=216&amp;crop=smart&amp;auto=webp&amp;s=8699e347633853cc691095202e42a9b0fde96f41",
+					  "width": 216,
+					  "height": 288
+					},
+					{
+					  "url": "https://preview.redd.it/98dl663k44se1.jpeg?width=320&amp;crop=smart&amp;auto=webp&amp;s=2c9dfdf92933a735b8376e71d0e0881507e83477",
+					  "width": 320,
+					  "height": 426
+					},
+					{
+					  "url": "https://preview.redd.it/98dl663k44se1.jpeg?width=640&amp;crop=smart&amp;auto=webp&amp;s=40a103e3a578ed0f369e28fea7f52e4ce62da48d",
+					  "width": 640,
+					  "height": 853
+					},
+					{
+					  "url": "https://preview.redd.it/98dl663k44se1.jpeg?width=960&amp;crop=smart&amp;auto=webp&amp;s=a256b179b8c9a988edb14f581f78b3bbf84620e9",
+					  "width": 960,
+					  "height": 1280
+					},
+					{
+					  "url": "https://preview.redd.it/98dl663k44se1.jpeg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=c0e92aa2d2aa3d59b3a06576955fd646f86e5567",
+					  "width": 1080,
+					  "height": 1440
+					}
+				  ],
+				  "variants": {
+  
+				  },
+				  "id": "0q9ZS4fxEihRE_cyqKUfXX2sjQxW8c08WGRIcXrgAB8"
+				}
+			  ],
+			  "enabled": true
+			},
+			"all_awardings": [],
+			"awarders": [],
+			"media_only": false,
+			"link_flair_template_id": "ec34c718-f865-11e5-80b8-0e40834ec031",
+			"can_gild": false,
+			"spoiler": false,
+			"locked": false,
+			"author_flair_text": null,
+			"treatment_tags": [],
+			"visited": false,
+			"removed_by": null,
+			"mod_note": null,
+			"distinguished": null,
+			"subreddit_id": "t5_2qi2i",
+			"author_is_blocked": false,
+			"mod_reason_by": null,
+			"num_reports": null,
+			"removal_reason": null,
+			"link_flair_background_color": "#8362b4",
+			"id": "1johwow",
+			"is_robot_indexable": true,
+			"report_reasons": null,
+			"author": "allisjow",
+			"discussion_type": null,
+			"num_comments": 3,
+			"send_replies": true,
+			"contest_mode": false,
+			"mod_reports": [],
+			"author_patreon_flair": false,
+			"author_flair_text_color": null,
+			"permalink": "/r/Portland/comments/1johwow/free_aquarium_gravel_from_the_sky/",
+			"stickied": false,
+			"url": "https://i.redd.it/98dl663k44se1.jpeg",
+			"subreddit_subscribers": 350340,
+			"created_utc": 1743464999,
+			"num_crossposts": 0,
+			"media": null,
+			"is_video": false
+		  }
+		},
+		{
+		  "kind": "t3",
+		  "data": {
+			"approved_at_utc": null,
+			"subreddit": "Portland",
+			"selftext": "",
+			"author_fullname": "t2_4avorxvp",
+			"saved": false,
+			"mod_reason_title": null,
+			"gilded": 0,
+			"clicked": false,
+			"title": "4 Days Left to Watch Portland Pickles documentary for Free- 'Pickles, Pickles, Pickles!\"",
+			"link_flair_richtext": [],
+			"subreddit_name_prefixed": "r/Portland",
+			"hidden": false,
+			"pwls": 6,
+			"link_flair_css_class": "photo",
+			"downs": 0,
+			"thumbnail_height": 105,
+			"top_awarded_type": null,
+			"hide_score": false,
+			"name": "t3_1jod2zl",
+			"quarantine": false,
+			"link_flair_text_color": "light",
+			"upvote_ratio": 0.95,
+			"author_flair_background_color": null,
+			"ups": 37,
+			"total_awards_received": 0,
+			"media_embed": {
+			  "content": "&lt;iframe width=\"356\" height=\"200\" src=\"https://www.youtube.com/embed/7UNaZ1q9E98?feature=oembed&amp;enablejsapi=1\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen title=\"Pickles, Pickles, Pickles\"&gt;&lt;/iframe&gt;",
+			  "width": 356,
+			  "scrolling": false,
+			  "height": 200
+			},
+			"thumbnail_width": 140,
+			"author_flair_template_id": "2064d6aa-42fc-11e1-a83e-12313d096aae",
+			"is_original_content": false,
+			"user_reports": [],
+			"secure_media": {
+			  "type": "youtube.com",
+			  "oembed": {
+				"provider_url": "https://www.youtube.com/",
+				"version": "1.0",
+				"title": "Pickles, Pickles, Pickles",
+				"type": "video",
+				"thumbnail_width": 480,
+				"height": 200,
+				"width": 356,
+				"html": "&lt;iframe width=\"356\" height=\"200\" src=\"https://www.youtube.com/embed/7UNaZ1q9E98?feature=oembed&amp;enablejsapi=1\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen title=\"Pickles, Pickles, Pickles\"&gt;&lt;/iframe&gt;",
+				"author_name": "Portland Pickles Baseball",
+				"provider_name": "YouTube",
+				"thumbnail_url": "https://i.ytimg.com/vi/7UNaZ1q9E98/hqdefault.jpg",
+				"thumbnail_height": 360,
+				"author_url": "https://www.youtube.com/@PortlandPicklesBaseball"
+			  }
+			},
+			"is_reddit_media_domain": false,
+			"is_meta": false,
+			"category": null,
+			"secure_media_embed": {
+			  "content": "&lt;iframe width=\"356\" height=\"200\" src=\"https://www.youtube.com/embed/7UNaZ1q9E98?feature=oembed&amp;enablejsapi=1\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen title=\"Pickles, Pickles, Pickles\"&gt;&lt;/iframe&gt;",
+			  "width": 356,
+			  "scrolling": false,
+			  "media_domain_url": "https://www.redditmedia.com/mediaembed/1jod2zl",
+			  "height": 200
+			},
+			"link_flair_text": " Photo/Video",
+			"can_mod_post": false,
+			"score": 37,
+			"approved_by": null,
+			"is_created_from_ads_ui": false,
+			"author_premium": false,
+			"thumbnail": "https://b.thumbs.redditmedia.com/bBLWd3Ip9L67n9REIUagg5FUmlw-hdnN__Bjjvef2Ok.jpg",
+			"edited": false,
+			"author_flair_css_class": null,
+			"author_flair_richtext": [],
+			"gildings": {
+  
+			},
+			"post_hint": "rich:video",
+			"content_categories": null,
+			"is_self": false,
+			"subreddit_type": "public",
+			"created": 1743452487,
+			"link_flair_type": "text",
+			"wls": 6,
+			"removed_by_category": null,
+			"banned_by": null,
+			"author_flair_type": "text",
+			"domain": "youtube.com",
+			"allow_live_comments": false,
+			"selftext_html": null,
+			"likes": null,
+			"suggested_sort": "confidence",
+			"banned_at_utc": null,
+			"url_overridden_by_dest": "https://www.youtube.com/watch?v=7UNaZ1q9E98",
+			"view_count": null,
+			"archived": false,
+			"no_follow": false,
+			"is_crosspostable": true,
+			"pinned": false,
+			"over_18": false,
+			"preview": {
+			  "images": [
+				{
+				  "source": {
+					"url": "https://external-preview.redd.it/e7aakrvk_TUN5atqR90gy8IzWv9OfFk2vc6RV-V7IO4.jpg?auto=webp&amp;s=2a226b134118836e77a9191eb944111bb6d0768d",
+					"width": 480,
+					"height": 360
+				  },
+				  "resolutions": [
+					{
+					  "url": "https://external-preview.redd.it/e7aakrvk_TUN5atqR90gy8IzWv9OfFk2vc6RV-V7IO4.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=8df8aba47c6c7ab294b0d647dba721d1fad2ef93",
+					  "width": 108,
+					  "height": 81
+					},
+					{
+					  "url": "https://external-preview.redd.it/e7aakrvk_TUN5atqR90gy8IzWv9OfFk2vc6RV-V7IO4.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=904d71a69a17cc7d5c17cd46738d0b6eb6d63034",
+					  "width": 216,
+					  "height": 162
+					},
+					{
+					  "url": "https://external-preview.redd.it/e7aakrvk_TUN5atqR90gy8IzWv9OfFk2vc6RV-V7IO4.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=fe9f24dc9e85a6d00e5d8e9af70d55a885837b83",
+					  "width": 320,
+					  "height": 240
+					}
+				  ],
+				  "variants": {
+  
+				  },
+				  "id": "PRrcys1d-mB8fXjcJ7X-Oxci7_-V7cWniX2y1QZSxns"
+				}
+			  ],
+			  "enabled": false
+			},
+			"all_awardings": [],
+			"awarders": [],
+			"media_only": false,
+			"link_flair_template_id": "ec34c718-f865-11e5-80b8-0e40834ec031",
+			"can_gild": false,
+			"spoiler": false,
+			"locked": false,
+			"author_flair_text": "Lents",
+			"treatment_tags": [],
+			"visited": false,
+			"removed_by": null,
+			"mod_note": null,
+			"distinguished": null,
+			"subreddit_id": "t5_2qi2i",
+			"author_is_blocked": false,
+			"mod_reason_by": null,
+			"num_reports": null,
+			"removal_reason": null,
+			"link_flair_background_color": "#8362b4",
+			"id": "1jod2zl",
+			"is_robot_indexable": true,
+			"report_reasons": null,
+			"author": "PicklesBaseball",
+			"discussion_type": null,
+			"num_comments": 3,
+			"send_replies": true,
+			"contest_mode": false,
+			"mod_reports": [],
+			"author_patreon_flair": false,
+			"author_flair_text_color": "dark",
+			"permalink": "/r/Portland/comments/1jod2zl/4_days_left_to_watch_portland_pickles_documentary/",
+			"stickied": false,
+			"url": "https://www.youtube.com/watch?v=7UNaZ1q9E98",
+			"subreddit_subscribers": 350340,
+			"created_utc": 1743452487,
+			"num_crossposts": 0,
+			"media": {
+			  "type": "youtube.com",
+			  "oembed": {
+				"provider_url": "https://www.youtube.com/",
+				"version": "1.0",
+				"title": "Pickles, Pickles, Pickles",
+				"type": "video",
+				"thumbnail_width": 480,
+				"height": 200,
+				"width": 356,
+				"html": "&lt;iframe width=\"356\" height=\"200\" src=\"https://www.youtube.com/embed/7UNaZ1q9E98?feature=oembed&amp;enablejsapi=1\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen title=\"Pickles, Pickles, Pickles\"&gt;&lt;/iframe&gt;",
+				"author_name": "Portland Pickles Baseball",
+				"provider_name": "YouTube",
+				"thumbnail_url": "https://i.ytimg.com/vi/7UNaZ1q9E98/hqdefault.jpg",
+				"thumbnail_height": 360,
+				"author_url": "https://www.youtube.com/@PortlandPicklesBaseball"
+			  }
+			},
+			"is_video": false
+		  }
+		},
+		{
+		  "kind": "t3",
+		  "data": {
+			"approved_at_utc": null,
+			"subreddit": "Portland",
+			"selftext": "Looking for a dog with range? Check out my foster dog, Spot! He’s a 1 year old husky-pittie mix (we think) who’s equal parts goofball, athlete, and cryptid. He’s snuggly, hilarious, driven, and has the best ears this side of the Willamette. Think “starter pack for your dream dog,” some assembly required.\n\nhttps://www.streetdoghero.org/rescue-dogs-for-adoption/#sl_embed&amp;page=shelterluv_wrap_1731695077%2Fembed%2Fanimal%2F210059096",
+			"author_fullname": "t2_8qi66r3",
+			"saved": false,
+			"mod_reason_title": null,
+			"gilded": 0,
+			"clicked": false,
+			"title": "Good Boy (Most of the Time). Gremlin (The Rest). Adopt Spot!",
+			"link_flair_richtext": [],
+			"subreddit_name_prefixed": "r/Portland",
+			"hidden": false,
+			"pwls": 6,
+			"link_flair_css_class": "adoption",
+			"downs": 0,
+			"thumbnail_height": 140,
+			"top_awarded_type": null,
+			"hide_score": false,
+			"name": "t3_1job025",
+			"quarantine": false,
+			"link_flair_text_color": "light",
+			"upvote_ratio": 0.86,
+			"author_flair_background_color": null,
+			"ups": 30,
+			"total_awards_received": 0,
+			"media_embed": {
+  
+			},
+			"thumbnail_width": 140,
+			"author_flair_template_id": null,
+			"is_original_content": false,
+			"user_reports": [],
+			"secure_media": null,
+			"is_reddit_media_domain": true,
+			"is_meta": false,
+			"category": null,
+			"secure_media_embed": {
+  
+			},
+			"link_flair_text": "Adopt Me",
+			"can_mod_post": false,
+			"score": 30,
+			"approved_by": null,
+			"is_created_from_ads_ui": false,
+			"author_premium": false,
+			"thumbnail": "https://b.thumbs.redditmedia.com/yfPIis0Kjldcac89gMmIjhKTJnprGYDK9nVBPZg2fNU.jpg",
+			"edited": false,
+			"author_flair_css_class": null,
+			"author_flair_richtext": [],
+			"gildings": {
+  
+			},
+			"post_hint": "image",
+			"content_categories": null,
+			"is_self": false,
+			"subreddit_type": "public",
+			"created": 1743447413,
+			"link_flair_type": "text",
+			"wls": 6,
+			"removed_by_category": null,
+			"banned_by": null,
+			"author_flair_type": "text",
+			"domain": "i.redd.it",
+			"allow_live_comments": false,
+			"selftext_html": "&lt;!-- SC_OFF --&gt;&lt;div class=\"md\"&gt;&lt;p&gt;Looking for a dog with range? Check out my foster dog, Spot! He’s a 1 year old husky-pittie mix (we think) who’s equal parts goofball, athlete, and cryptid. He’s snuggly, hilarious, driven, and has the best ears this side of the Willamette. Think “starter pack for your dream dog,” some assembly required.&lt;/p&gt;\n\n&lt;p&gt;&lt;a href=\"https://www.streetdoghero.org/rescue-dogs-for-adoption/#sl_embed&amp;amp;page=shelterluv_wrap_1731695077%2Fembed%2Fanimal%2F210059096\"&gt;https://www.streetdoghero.org/rescue-dogs-for-adoption/#sl_embed&amp;amp;page=shelterluv_wrap_1731695077%2Fembed%2Fanimal%2F210059096&lt;/a&gt;&lt;/p&gt;\n&lt;/div&gt;&lt;!-- SC_ON --&gt;",
+			"likes": null,
+			"suggested_sort": "confidence",
+			"banned_at_utc": null,
+			"url_overridden_by_dest": "https://i.redd.it/jwxjnwv9o2se1.jpeg",
+			"view_count": null,
+			"archived": false,
+			"no_follow": false,
+			"is_crosspostable": true,
+			"pinned": false,
+			"over_18": false,
+			"preview": {
+			  "images": [
+				{
+				  "source": {
+					"url": "https://preview.redd.it/jwxjnwv9o2se1.jpeg?auto=webp&amp;s=2e15741d8e08941721b3209356fb0c5cb33aa6b3",
+					"width": 908,
+					"height": 1965
+				  },
+				  "resolutions": [
+					{
+					  "url": "https://preview.redd.it/jwxjnwv9o2se1.jpeg?width=108&amp;crop=smart&amp;auto=webp&amp;s=a2ae5c0f81f865a3bdbaa81e00e1a88d7d2ad2ab",
+					  "width": 108,
+					  "height": 216
+					},
+					{
+					  "url": "https://preview.redd.it/jwxjnwv9o2se1.jpeg?width=216&amp;crop=smart&amp;auto=webp&amp;s=b57e1f57d500041d4539643e667ec5879d9412d8",
+					  "width": 216,
+					  "height": 432
+					},
+					{
+					  "url": "https://preview.redd.it/jwxjnwv9o2se1.jpeg?width=320&amp;crop=smart&amp;auto=webp&amp;s=f8774cc940a2fc1748c32c9f54113669121a4bef",
+					  "width": 320,
+					  "height": 640
+					},
+					{
+					  "url": "https://preview.redd.it/jwxjnwv9o2se1.jpeg?width=640&amp;crop=smart&amp;auto=webp&amp;s=8037a174a89dcd5aaadc8dbd3e0a7980151c3169",
+					  "width": 640,
+					  "height": 1280
+					}
+				  ],
+				  "variants": {
+  
+				  },
+				  "id": "Vln20vwWAxykHP8GKgd1PJTIqZytevgtJwBtFVzDgDA"
+				}
+			  ],
+			  "enabled": true
+			},
+			"all_awardings": [],
+			"awarders": [],
+			"media_only": false,
+			"link_flair_template_id": "2e639898-42e1-11ea-bb79-0e1fa9880cc5",
+			"can_gild": false,
+			"spoiler": false,
+			"locked": false,
+			"author_flair_text": null,
+			"treatment_tags": [],
+			"visited": false,
+			"removed_by": null,
+			"mod_note": null,
+			"distinguished": null,
+			"subreddit_id": "t5_2qi2i",
+			"author_is_blocked": false,
+			"mod_reason_by": null,
+			"num_reports": null,
+			"removal_reason": null,
+			"link_flair_background_color": "#7193ff",
+			"id": "1job025",
+			"is_robot_indexable": true,
+			"report_reasons": null,
+			"author": "j3nb0",
+			"discussion_type": null,
+			"num_comments": 0,
+			"send_replies": true,
+			"contest_mode": false,
+			"mod_reports": [],
+			"author_patreon_flair": false,
+			"author_flair_text_color": null,
+			"permalink": "/r/Portland/comments/1job025/good_boy_most_of_the_time_gremlin_the_rest_adopt/",
+			"stickied": false,
+			"url": "https://i.redd.it/jwxjnwv9o2se1.jpeg",
+			"subreddit_subscribers": 350340,
+			"created_utc": 1743447413,
+			"num_crossposts": 0,
+			"media": null,
+			"is_video": false
+		  }
+		},
+		{
+		  "kind": "t3",
+		  "data": {
+			"approved_at_utc": null,
+			"subreddit": "Portland",
+			"selftext": "Springtime in Oregon",
+			"author_fullname": "t2_o9l6qnpz",
+			"saved": false,
+			"mod_reason_title": null,
+			"gilded": 0,
+			"clicked": false,
+			"is_gallery": true,
+			"title": "Random pictures",
+			"link_flair_richtext": [],
+			"subreddit_name_prefixed": "r/Portland",
+			"hidden": false,
+			"pwls": 6,
+			"link_flair_css_class": "photo",
+			"downs": 0,
+			"thumbnail_height": 105,
+			"top_awarded_type": null,
+			"hide_score": false,
+			"media_metadata": {
+			  "qnpe0sif51se1": {
+				"status": "valid",
+				"e": "Image",
+				"m": "image/jpg",
+				"p": [
+				  {
+					"y": 81,
+					"x": 108,
+					"u": "https://preview.redd.it/qnpe0sif51se1.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=61c63fc006511987312730373fc421a55c3fab92"
+				  },
+				  {
+					"y": 162,
+					"x": 216,
+					"u": "https://preview.redd.it/qnpe0sif51se1.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=4aca4be4371f5e0a0fec9264a455eae926cbcccd"
+				  },
+				  {
+					"y": 240,
+					"x": 320,
+					"u": "https://preview.redd.it/qnpe0sif51se1.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=34b5e57ffe9722840a3a76a20f74596073cc8eb6"
+				  },
+				  {
+					"y": 480,
+					"x": 640,
+					"u": "https://preview.redd.it/qnpe0sif51se1.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=694ce782dabf93de9861a434b32ad2b679b019b8"
+				  },
+				  {
+					"y": 720,
+					"x": 960,
+					"u": "https://preview.redd.it/qnpe0sif51se1.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=0d4eb0b71a8b68972f1e82ce1e0e491d5839ff2b"
+				  },
+				  {
+					"y": 810,
+					"x": 1080,
+					"u": "https://preview.redd.it/qnpe0sif51se1.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=2a153e7de94520d9d85848e3ea2877e791b33655"
+				  }
+				],
+				"s": {
+				  "y": 3000,
+				  "x": 4000,
+				  "u": "https://preview.redd.it/qnpe0sif51se1.jpg?width=4000&amp;format=pjpg&amp;auto=webp&amp;s=efcc43b7d9f416b8a15013e644ce6b860b280af4"
+				},
+				"id": "qnpe0sif51se1"
+			  },
+			  "u40aviej51se1": {
+				"status": "valid",
+				"e": "Image",
+				"m": "image/jpg",
+				"p": [
+				  {
+					"y": 144,
+					"x": 108,
+					"u": "https://preview.redd.it/u40aviej51se1.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=33ea5c59399545abcc5eb4feaca1b2ca81d970be"
+				  },
+				  {
+					"y": 288,
+					"x": 216,
+					"u": "https://preview.redd.it/u40aviej51se1.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=ccb933bb8946bd3d0b59b30eb4a7eaaff7cfeae1"
+				  },
+				  {
+					"y": 426,
+					"x": 320,
+					"u": "https://preview.redd.it/u40aviej51se1.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=15ce879e5107d3429eef2b8c4959793b911447e5"
+				  },
+				  {
+					"y": 853,
+					"x": 640,
+					"u": "https://preview.redd.it/u40aviej51se1.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=46227dc4dd21f716e69a41c0229e4c6fa163fea5"
+				  },
+				  {
+					"y": 1280,
+					"x": 960,
+					"u": "https://preview.redd.it/u40aviej51se1.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=4c9ad9d549d9889b1de2b430b1a85da49d9461d8"
+				  },
+				  {
+					"y": 1440,
+					"x": 1080,
+					"u": "https://preview.redd.it/u40aviej51se1.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=0ba6835a27eae5374fbd67ae17afa2ad8b696571"
+				  }
+				],
+				"s": {
+				  "y": 4000,
+				  "x": 3000,
+				  "u": "https://preview.redd.it/u40aviej51se1.jpg?width=3000&amp;format=pjpg&amp;auto=webp&amp;s=a543501614524f61ca1f16680cbdaa29587a58f4"
+				},
+				"id": "u40aviej51se1"
+			  },
+			  "d4k0zheg51se1": {
+				"status": "valid",
+				"e": "Image",
+				"m": "image/jpg",
+				"p": [
+				  {
+					"y": 81,
+					"x": 108,
+					"u": "https://preview.redd.it/d4k0zheg51se1.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=ec72f1cc6037e3f84eea178778600f7cdab6fcfb"
+				  },
+				  {
+					"y": 162,
+					"x": 216,
+					"u": "https://preview.redd.it/d4k0zheg51se1.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=4031f7954f3c78012f24730cc932007da0b0b8c4"
+				  },
+				  {
+					"y": 240,
+					"x": 320,
+					"u": "https://preview.redd.it/d4k0zheg51se1.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=6282789b8dab0f96df15258ce2dc33906a3b29ac"
+				  },
+				  {
+					"y": 480,
+					"x": 640,
+					"u": "https://preview.redd.it/d4k0zheg51se1.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=1dede98b9ba1ddab6ab86313f2cbc11a62b24841"
+				  },
+				  {
+					"y": 720,
+					"x": 960,
+					"u": "https://preview.redd.it/d4k0zheg51se1.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=d8536bef031ba4a931a22a82520390017cba457d"
+				  },
+				  {
+					"y": 810,
+					"x": 1080,
+					"u": "https://preview.redd.it/d4k0zheg51se1.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=0ca3cc063538ab31adfd87f6bca9c78c09ed168c"
+				  }
+				],
+				"s": {
+				  "y": 3000,
+				  "x": 4000,
+				  "u": "https://preview.redd.it/d4k0zheg51se1.jpg?width=4000&amp;format=pjpg&amp;auto=webp&amp;s=9a336b5f6b7e683e7f232c670bfa8af41b1f7032"
+				},
+				"id": "d4k0zheg51se1"
+			  },
+			  "w7sdfhoi51se1": {
+				"status": "valid",
+				"e": "Image",
+				"m": "image/jpg",
+				"p": [
+				  {
+					"y": 81,
+					"x": 108,
+					"u": "https://preview.redd.it/w7sdfhoi51se1.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=addcf133d651b026ea5d6bffb18d14f2e460ce0e"
+				  },
+				  {
+					"y": 162,
+					"x": 216,
+					"u": "https://preview.redd.it/w7sdfhoi51se1.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=cfd4917d022fd26c42b6a5273d98014058224d06"
+				  },
+				  {
+					"y": 240,
+					"x": 320,
+					"u": "https://preview.redd.it/w7sdfhoi51se1.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=ab60d7349182c7936052eb1647607a67da696249"
+				  },
+				  {
+					"y": 480,
+					"x": 640,
+					"u": "https://preview.redd.it/w7sdfhoi51se1.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=f3976bf57fe4ed32c6861fde8e41f3530967207d"
+				  },
+				  {
+					"y": 720,
+					"x": 960,
+					"u": "https://preview.redd.it/w7sdfhoi51se1.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=41c7c185d419b620d0532a8f01303ddd3e7bea65"
+				  },
+				  {
+					"y": 810,
+					"x": 1080,
+					"u": "https://preview.redd.it/w7sdfhoi51se1.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=25ae61eb7d7d8ac14152abae9d8449f97710789b"
+				  }
+				],
+				"s": {
+				  "y": 3000,
+				  "x": 4000,
+				  "u": "https://preview.redd.it/w7sdfhoi51se1.jpg?width=4000&amp;format=pjpg&amp;auto=webp&amp;s=55b7a6f5fbd0148a357a1194c3f79a83b53bec02"
+				},
+				"id": "w7sdfhoi51se1"
+			  },
+			  "si1b913f51se1": {
+				"status": "valid",
+				"e": "Image",
+				"m": "image/jpg",
+				"p": [
+				  {
+					"y": 81,
+					"x": 108,
+					"u": "https://preview.redd.it/si1b913f51se1.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=189f1aa232c28a2d1435b336de7a8f2c002a7292"
+				  },
+				  {
+					"y": 162,
+					"x": 216,
+					"u": "https://preview.redd.it/si1b913f51se1.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=51c29b3dfac0514a80946791fe6cdf4d0abfc7e3"
+				  },
+				  {
+					"y": 240,
+					"x": 320,
+					"u": "https://preview.redd.it/si1b913f51se1.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=70a546a45c10d7159796d27e99f157b35dc840a5"
+				  },
+				  {
+					"y": 480,
+					"x": 640,
+					"u": "https://preview.redd.it/si1b913f51se1.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=fd2bc8caafa63884537824b0db7452778b72f4f3"
+				  },
+				  {
+					"y": 720,
+					"x": 960,
+					"u": "https://preview.redd.it/si1b913f51se1.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=815266a3f1bbcfc2d231d70da1879b1631ff2c7a"
+				  },
+				  {
+					"y": 810,
+					"x": 1080,
+					"u": "https://preview.redd.it/si1b913f51se1.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=8440352c4fde4339cd3648d33d33c87576f78e8e"
+				  }
+				],
+				"s": {
+				  "y": 3000,
+				  "x": 4000,
+				  "u": "https://preview.redd.it/si1b913f51se1.jpg?width=4000&amp;format=pjpg&amp;auto=webp&amp;s=f3b1612b4934729f807c882123ab7c9f16d0283e"
+				},
+				"id": "si1b913f51se1"
+			  },
+			  "4bf6p3vf51se1": {
+				"status": "valid",
+				"e": "Image",
+				"m": "image/jpg",
+				"p": [
+				  {
+					"y": 81,
+					"x": 108,
+					"u": "https://preview.redd.it/4bf6p3vf51se1.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=fdb0c7df91cb9f6e5610685504f5d6c5149d58d8"
+				  },
+				  {
+					"y": 162,
+					"x": 216,
+					"u": "https://preview.redd.it/4bf6p3vf51se1.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=dbc3572b6cea2f0f4a8ea468e62f1235cc93534e"
+				  },
+				  {
+					"y": 240,
+					"x": 320,
+					"u": "https://preview.redd.it/4bf6p3vf51se1.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=3a7652a53cafbd02ddebbaba9be4120abaa6b5ae"
+				  },
+				  {
+					"y": 480,
+					"x": 640,
+					"u": "https://preview.redd.it/4bf6p3vf51se1.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=9d718c969eccfe7d168dd86cb00e6dc74cc7f0cf"
+				  },
+				  {
+					"y": 720,
+					"x": 960,
+					"u": "https://preview.redd.it/4bf6p3vf51se1.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=e7c2aab582880818d4a6abcff9035444e9009385"
+				  },
+				  {
+					"y": 810,
+					"x": 1080,
+					"u": "https://preview.redd.it/4bf6p3vf51se1.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=d80e011c22daf09dc0d176033a96de2a8cca94bf"
+				  }
+				],
+				"s": {
+				  "y": 3000,
+				  "x": 4000,
+				  "u": "https://preview.redd.it/4bf6p3vf51se1.jpg?width=4000&amp;format=pjpg&amp;auto=webp&amp;s=a1530fe641bf07c653a746c44b9c201768d6e63d"
+				},
+				"id": "4bf6p3vf51se1"
+			  }
+			},
+			"name": "t3_1jo3nbn",
+			"quarantine": false,
+			"link_flair_text_color": "light",
+			"upvote_ratio": 0.89,
+			"author_flair_background_color": null,
+			"ups": 28,
+			"domain": "reddit.com",
+			"media_embed": {
+  
+			},
+			"thumbnail_width": 140,
+			"author_flair_template_id": "065fa756-4254-11e1-92dd-12313d096aae",
+			"is_original_content": false,
+			"user_reports": [],
+			"secure_media": null,
+			"is_reddit_media_domain": false,
+			"is_meta": false,
+			"category": null,
+			"secure_media_embed": {
+  
+			},
+			"gallery_data": {
+			  "items": [
+				{
+				  "caption": "",
+				  "media_id": "si1b913f51se1",
+				  "id": 633972997
+				},
+				{
+				  "caption": "",
+				  "media_id": "qnpe0sif51se1",
+				  "id": 633972998
+				},
+				{
+				  "caption": "",
+				  "media_id": "4bf6p3vf51se1",
+				  "id": 633972999
+				},
+				{
+				  "caption": "",
+				  "media_id": "d4k0zheg51se1",
+				  "id": 633973000
+				},
+				{
+				  "caption": "",
+				  "media_id": "w7sdfhoi51se1",
+				  "id": 633973001
+				},
+				{
+				  "caption": "",
+				  "media_id": "u40aviej51se1",
+				  "id": 633973002
+				}
+			  ]
+			},
+			"link_flair_text": " Photo/Video",
+			"can_mod_post": false,
+			"score": 28,
+			"approved_by": null,
+			"is_created_from_ads_ui": false,
+			"author_premium": false,
+			"thumbnail": "https://b.thumbs.redditmedia.com/OZlHoQSeM5HxT4IZYyXnCc2g73cwPJ7BQxCMlHO2HOQ.jpg",
+			"edited": false,
+			"author_flair_css_class": null,
+			"author_flair_richtext": [],
+			"gildings": {
+  
+			},
+			"content_categories": null,
+			"is_self": false,
+			"subreddit_type": "public",
+			"created": 1743429014,
+			"link_flair_type": "text",
+			"wls": 6,
+			"removed_by_category": null,
+			"banned_by": null,
+			"author_flair_type": "text",
+			"total_awards_received": 0,
+			"allow_live_comments": false,
+			"selftext_html": "&lt;!-- SC_OFF --&gt;&lt;div class=\"md\"&gt;&lt;p&gt;Springtime in Oregon&lt;/p&gt;\n&lt;/div&gt;&lt;!-- SC_ON --&gt;",
+			"likes": null,
+			"suggested_sort": "confidence",
+			"banned_at_utc": null,
+			"url_overridden_by_dest": "https://www.reddit.com/gallery/1jo3nbn",
+			"view_count": null,
+			"archived": false,
+			"no_follow": false,
+			"is_crosspostable": true,
+			"pinned": false,
+			"over_18": false,
+			"all_awardings": [],
+			"awarders": [],
+			"media_only": false,
+			"link_flair_template_id": "ec34c718-f865-11e5-80b8-0e40834ec031",
+			"can_gild": false,
+			"spoiler": false,
+			"locked": false,
+			"author_flair_text": "SE",
+			"treatment_tags": [],
+			"visited": false,
+			"removed_by": null,
+			"mod_note": null,
+			"distinguished": null,
+			"subreddit_id": "t5_2qi2i",
+			"author_is_blocked": false,
+			"mod_reason_by": null,
+			"num_reports": null,
+			"removal_reason": null,
+			"link_flair_background_color": "#8362b4",
+			"id": "1jo3nbn",
+			"is_robot_indexable": true,
+			"report_reasons": null,
+			"author": "Alex_Has_No_Soul",
+			"discussion_type": null,
+			"num_comments": 9,
+			"send_replies": true,
+			"contest_mode": false,
+			"mod_reports": [],
+			"author_patreon_flair": false,
+			"author_flair_text_color": "dark",
+			"permalink": "/r/Portland/comments/1jo3nbn/random_pictures/",
+			"stickied": false,
+			"url": "https://www.reddit.com/gallery/1jo3nbn",
+			"subreddit_subscribers": 350340,
+			"created_utc": 1743429014,
+			"num_crossposts": 0,
+			"media": null,
+			"is_video": false
+		  }
+		},
+		{
+		  "kind": "t3",
+		  "data": {
+			"approved_at_utc": null,
+			"subreddit": "Portland",
+			"selftext": "",
+			"author_fullname": "t2_i5qef4c9",
+			"saved": false,
+			"mod_reason_title": null,
+			"gilded": 0,
+			"clicked": false,
+			"title": "Demand for inpatient drug treatment in Portland has recently dropped off, providers report",
+			"link_flair_richtext": [],
+			"subreddit_name_prefixed": "r/Portland",
+			"hidden": false,
+			"pwls": 6,
+			"link_flair_css_class": "news",
+			"downs": 0,
+			"thumbnail_height": 78,
+			"top_awarded_type": null,
+			"hide_score": false,
+			"name": "t3_1jokv40",
+			"quarantine": false,
+			"link_flair_text_color": "light",
+			"upvote_ratio": 0.96,
+			"author_flair_background_color": null,
+			"ups": 23,
+			"total_awards_received": 0,
+			"media_embed": {
+  
+			},
+			"thumbnail_width": 140,
+			"author_flair_template_id": null,
+			"is_original_content": false,
+			"user_reports": [],
+			"secure_media": null,
+			"is_reddit_media_domain": false,
+			"is_meta": false,
+			"category": null,
+			"secure_media_embed": {
+  
+			},
+			"link_flair_text": "News",
+			"can_mod_post": false,
+			"score": 23,
+			"approved_by": null,
+			"is_created_from_ads_ui": false,
+			"author_premium": false,
+			"thumbnail": "https://b.thumbs.redditmedia.com/kxAluPUXhhm3AWjC1QN7TzMC75nYaa-aIp950M3MCqA.jpg",
+			"edited": false,
+			"author_flair_css_class": null,
+			"author_flair_richtext": [],
+			"gildings": {
+  
+			},
+			"post_hint": "link",
+			"content_categories": null,
+			"is_self": false,
+			"subreddit_type": "public",
+			"created": 1743473794,
+			"link_flair_type": "text",
+			"wls": 6,
+			"removed_by_category": null,
+			"banned_by": null,
+			"author_flair_type": "text",
+			"domain": "kgw.com",
+			"allow_live_comments": false,
+			"selftext_html": null,
+			"likes": null,
+			"suggested_sort": "confidence",
+			"banned_at_utc": null,
+			"url_overridden_by_dest": "https://www.kgw.com/article/news/local/the-story/portland-drug-treatment-detox-withdrawal-management-empty-beds-fora-health/283-9984012a-5cd7-4df6-988d-9022db375eee",
+			"view_count": null,
+			"archived": false,
+			"no_follow": false,
+			"is_crosspostable": true,
+			"pinned": false,
+			"over_18": false,
+			"preview": {
+			  "images": [
+				{
+				  "source": {
+					"url": "https://external-preview.redd.it/ao_nENDg0ITkmZxtm3a5UQUbW1UeXUzS4LcYb__Il50.jpg?auto=webp&amp;s=7d867d8e7d8832edf1257ce3f56907bbd59cdb91",
+					"width": 1140,
+					"height": 641
+				  },
+				  "resolutions": [
+					{
+					  "url": "https://external-preview.redd.it/ao_nENDg0ITkmZxtm3a5UQUbW1UeXUzS4LcYb__Il50.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=2057d3d994849401740e58b261a3c6cb7648ae29",
+					  "width": 108,
+					  "height": 60
+					},
+					{
+					  "url": "https://external-preview.redd.it/ao_nENDg0ITkmZxtm3a5UQUbW1UeXUzS4LcYb__Il50.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=f1b88acf82e39d1fd5360b262edc248c17168c50",
+					  "width": 216,
+					  "height": 121
+					},
+					{
+					  "url": "https://external-preview.redd.it/ao_nENDg0ITkmZxtm3a5UQUbW1UeXUzS4LcYb__Il50.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=631bd42d4a341d8a162e12ae809c59a7476fce85",
+					  "width": 320,
+					  "height": 179
+					},
+					{
+					  "url": "https://external-preview.redd.it/ao_nENDg0ITkmZxtm3a5UQUbW1UeXUzS4LcYb__Il50.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=60e6c431c087317e4bfac0ed397e8de002e06bcc",
+					  "width": 640,
+					  "height": 359
+					},
+					{
+					  "url": "https://external-preview.redd.it/ao_nENDg0ITkmZxtm3a5UQUbW1UeXUzS4LcYb__Il50.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=224e662fb1ab5d4e5e562bbedbdc6ca70fd2479e",
+					  "width": 960,
+					  "height": 539
+					},
+					{
+					  "url": "https://external-preview.redd.it/ao_nENDg0ITkmZxtm3a5UQUbW1UeXUzS4LcYb__Il50.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=6c334ea00a87d7fe14890e11506e0067334900cb",
+					  "width": 1080,
+					  "height": 607
+					}
+				  ],
+				  "variants": {
+  
+				  },
+				  "id": "1dBI9t26qFGrSEtTflxw-A6MS3ncu2BN8ut9uU6Y8LY"
+				}
+			  ],
+			  "enabled": false
+			},
+			"all_awardings": [],
+			"awarders": [],
+			"media_only": false,
+			"link_flair_template_id": "0620b916-f866-11e5-a8d7-0eab7e252831",
+			"can_gild": false,
+			"spoiler": false,
+			"locked": false,
+			"author_flair_text": null,
+			"treatment_tags": [],
+			"visited": false,
+			"removed_by": null,
+			"mod_note": null,
+			"distinguished": null,
+			"subreddit_id": "t5_2qi2i",
+			"author_is_blocked": false,
+			"mod_reason_by": null,
+			"num_reports": null,
+			"removal_reason": null,
+			"link_flair_background_color": "#005ba1",
+			"id": "1jokv40",
+			"is_robot_indexable": true,
+			"report_reasons": null,
+			"author": "Art_Vancore111",
+			"discussion_type": null,
+			"num_comments": 2,
+			"send_replies": true,
+			"contest_mode": false,
+			"mod_reports": [],
+			"author_patreon_flair": false,
+			"author_flair_text_color": null,
+			"permalink": "/r/Portland/comments/1jokv40/demand_for_inpatient_drug_treatment_in_portland/",
+			"stickied": false,
+			"url": "https://www.kgw.com/article/news/local/the-story/portland-drug-treatment-detox-withdrawal-management-empty-beds-fora-health/283-9984012a-5cd7-4df6-988d-9022db375eee",
+			"subreddit_subscribers": 350340,
+			"created_utc": 1743473794,
+			"num_crossposts": 0,
+			"media": null,
+			"is_video": false
+		  }
+		},
+		{
+		  "kind": "t3",
+		  "data": {
+			"approved_at_utc": null,
+			"subreddit": "Portland",
+			"selftext": "",
+			"author_fullname": "t2_1jdgty139x",
+			"saved": false,
+			"mod_reason_title": null,
+			"gilded": 0,
+			"clicked": false,
+			"title": "Free dental cleaning",
+			"link_flair_richtext": [],
+			"subreddit_name_prefixed": "r/Portland",
+			"hidden": false,
+			"pwls": 6,
+			"link_flair_css_class": "event",
+			"downs": 0,
+			"thumbnail_height": 140,
+			"top_awarded_type": null,
+			"hide_score": false,
+			"name": "t3_1jo4fpq",
+			"quarantine": false,
+			"link_flair_text_color": "dark",
+			"upvote_ratio": 0.94,
+			"author_flair_background_color": null,
+			"ups": 15,
+			"total_awards_received": 0,
+			"media_embed": {
+  
+			},
+			"thumbnail_width": 140,
+			"author_flair_template_id": null,
+			"is_original_content": false,
+			"user_reports": [],
+			"secure_media": null,
+			"is_reddit_media_domain": true,
+			"is_meta": false,
+			"category": null,
+			"secure_media_embed": {
+  
+			},
+			"link_flair_text": "Events",
+			"can_mod_post": false,
+			"score": 15,
+			"approved_by": null,
+			"is_created_from_ads_ui": false,
+			"author_premium": false,
+			"thumbnail": "https://b.thumbs.redditmedia.com/U9t6Z7U8zsu4N61DS_cIZvpwSvBYaQ8gAShjxOOUHhE.jpg",
+			"edited": false,
+			"author_flair_css_class": null,
+			"author_flair_richtext": [],
+			"gildings": {
+  
+			},
+			"post_hint": "image",
+			"content_categories": null,
+			"is_self": false,
+			"subreddit_type": "public",
+			"created": 1743431129,
+			"link_flair_type": "text",
+			"wls": 6,
+			"removed_by_category": null,
+			"banned_by": null,
+			"author_flair_type": "text",
+			"domain": "i.redd.it",
+			"allow_live_comments": false,
+			"selftext_html": null,
+			"likes": null,
+			"suggested_sort": "confidence",
+			"banned_at_utc": null,
+			"url_overridden_by_dest": "https://i.redd.it/ogd217pub1se1.jpeg",
+			"view_count": null,
+			"archived": false,
+			"no_follow": false,
+			"is_crosspostable": true,
+			"pinned": false,
+			"over_18": false,
+			"preview": {
+			  "images": [
+				{
+				  "source": {
+					"url": "https://preview.redd.it/ogd217pub1se1.jpeg?auto=webp&amp;s=1ff31b0f2331c8851f16c771c53df3ad801599e1",
+					"width": 1236,
+					"height": 1600
+				  },
+				  "resolutions": [
+					{
+					  "url": "https://preview.redd.it/ogd217pub1se1.jpeg?width=108&amp;crop=smart&amp;auto=webp&amp;s=d98cfebb22bf52c136a09fce3468fc5ae5b5143c",
+					  "width": 108,
+					  "height": 139
+					},
+					{
+					  "url": "https://preview.redd.it/ogd217pub1se1.jpeg?width=216&amp;crop=smart&amp;auto=webp&amp;s=260bf3a4dc8f862b6f187f085dff8449357cc54b",
+					  "width": 216,
+					  "height": 279
+					},
+					{
+					  "url": "https://preview.redd.it/ogd217pub1se1.jpeg?width=320&amp;crop=smart&amp;auto=webp&amp;s=70a5b28fd61dba1ee7f345ae59cc66eedaf7836c",
+					  "width": 320,
+					  "height": 414
+					},
+					{
+					  "url": "https://preview.redd.it/ogd217pub1se1.jpeg?width=640&amp;crop=smart&amp;auto=webp&amp;s=d66b610f06f1d6d2c3719300f9bc3d4e4a6fefb0",
+					  "width": 640,
+					  "height": 828
+					},
+					{
+					  "url": "https://preview.redd.it/ogd217pub1se1.jpeg?width=960&amp;crop=smart&amp;auto=webp&amp;s=46288c6c2736a4ae561db1df1905bcf3e2244fa6",
+					  "width": 960,
+					  "height": 1242
+					},
+					{
+					  "url": "https://preview.redd.it/ogd217pub1se1.jpeg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=7ac920b02fa9aa9f679ce9204758f050c937426f",
+					  "width": 1080,
+					  "height": 1398
+					}
+				  ],
+				  "variants": {
+  
+				  },
+				  "id": "5GqfWlq5c9zMlkCzOCrr2UEwov8vIo0_O-QbnYndh2s"
+				}
+			  ],
+			  "enabled": true
+			},
+			"all_awardings": [],
+			"awarders": [],
+			"media_only": false,
+			"link_flair_template_id": "15259f58-f866-11e5-a8fa-0ed23bc17a17",
+			"can_gild": false,
+			"spoiler": false,
+			"locked": false,
+			"author_flair_text": null,
+			"treatment_tags": [],
+			"visited": false,
+			"removed_by": null,
+			"mod_note": null,
+			"distinguished": null,
+			"subreddit_id": "t5_2qi2i",
+			"author_is_blocked": false,
+			"mod_reason_by": null,
+			"num_reports": null,
+			"removal_reason": null,
+			"link_flair_background_color": "#94e044",
+			"id": "1jo4fpq",
+			"is_robot_indexable": true,
+			"report_reasons": null,
+			"author": "dalal-studentDH",
+			"discussion_type": null,
+			"num_comments": 0,
+			"send_replies": true,
+			"contest_mode": false,
+			"mod_reports": [],
+			"author_patreon_flair": false,
+			"author_flair_text_color": null,
+			"permalink": "/r/Portland/comments/1jo4fpq/free_dental_cleaning/",
+			"stickied": false,
+			"url": "https://i.redd.it/ogd217pub1se1.jpeg",
+			"subreddit_subscribers": 350340,
+			"created_utc": 1743431129,
+			"num_crossposts": 0,
+			"media": null,
+			"is_video": false
+		  }
+		},
+		{
+		  "kind": "t3",
+		  "data": {
+			"approved_at_utc": null,
+			"subreddit": "Portland",
+			"selftext": "Hi everyone! My name is Hailey, I am currently enrolled in a Dental Hygiene program in the Portland area. \n\nI am looking for patients who are interested in getting a no cost cleaning which includes: \n-X-rays\n-Fluoride Treatment (if wanted)\n-oral cancer screening/head and neck exam\n-comprehensive Dentist exam\n-and of course the cleaning\n\nAppointments are a little longer and may require up to 3-4 visits. Appointment time would be Monday, Wednesday and Fridays. I do have different appointments times so please reach out if you have any questions regarding that on the google form!\n\n Please fill out this google form to be contacted to schedule or message me if you are interested in more information ",
+			"author_fullname": "t2_mx0c2itx",
+			"saved": false,
+			"mod_reason_title": null,
+			"gilded": 0,
+			"clicked": false,
+			"title": "FREE DENTAL CLEANINGS",
+			"link_flair_richtext": [],
+			"subreddit_name_prefixed": "r/Portland",
+			"hidden": false,
+			"pwls": 6,
+			"link_flair_css_class": "discussion",
+			"downs": 0,
+			"thumbnail_height": null,
+			"top_awarded_type": null,
+			"hide_score": false,
+			"name": "t3_1jo9o6t",
+			"quarantine": false,
+			"link_flair_text_color": "light",
+			"upvote_ratio": 0.86,
+			"author_flair_background_color": null,
+			"subreddit_type": "public",
+			"ups": 15,
+			"total_awards_received": 0,
+			"media_embed": {
+  
+			},
+			"thumbnail_width": null,
+			"author_flair_template_id": null,
+			"is_original_content": false,
+			"user_reports": [],
+			"secure_media": null,
+			"is_reddit_media_domain": false,
+			"is_meta": false,
+			"category": null,
+			"secure_media_embed": {
+  
+			},
+			"link_flair_text": "Discussion",
+			"can_mod_post": false,
+			"score": 15,
+			"approved_by": null,
+			"is_created_from_ads_ui": false,
+			"author_premium": false,
+			"thumbnail": "self",
+			"edited": false,
+			"author_flair_css_class": null,
+			"author_flair_richtext": [],
+			"gildings": {
+  
+			},
+			"content_categories": null,
+			"is_self": true,
+			"mod_note": null,
+			"created": 1743444191,
+			"link_flair_type": "text",
+			"wls": 6,
+			"removed_by_category": null,
+			"banned_by": null,
+			"author_flair_type": "text",
+			"domain": "self.Portland",
+			"allow_live_comments": false,
+			"selftext_html": "&lt;!-- SC_OFF --&gt;&lt;div class=\"md\"&gt;&lt;p&gt;Hi everyone! My name is Hailey, I am currently enrolled in a Dental Hygiene program in the Portland area. &lt;/p&gt;\n\n&lt;p&gt;I am looking for patients who are interested in getting a no cost cleaning which includes: \n-X-rays\n-Fluoride Treatment (if wanted)\n-oral cancer screening/head and neck exam\n-comprehensive Dentist exam\n-and of course the cleaning&lt;/p&gt;\n\n&lt;p&gt;Appointments are a little longer and may require up to 3-4 visits. Appointment time would be Monday, Wednesday and Fridays. I do have different appointments times so please reach out if you have any questions regarding that on the google form!&lt;/p&gt;\n\n&lt;p&gt;Please fill out this google form to be contacted to schedule or message me if you are interested in more information &lt;/p&gt;\n&lt;/div&gt;&lt;!-- SC_ON --&gt;",
+			"likes": null,
+			"suggested_sort": "confidence",
+			"banned_at_utc": null,
+			"view_count": null,
+			"archived": false,
+			"no_follow": false,
+			"is_crosspostable": true,
+			"pinned": false,
+			"over_18": false,
+			"all_awardings": [],
+			"awarders": [],
+			"media_only": false,
+			"link_flair_template_id": "7a5134cc-4586-11ed-989a-925fe15f40db",
+			"can_gild": false,
+			"spoiler": false,
+			"locked": false,
+			"author_flair_text": null,
+			"treatment_tags": [],
+			"visited": false,
+			"removed_by": null,
+			"num_reports": null,
+			"distinguished": null,
+			"subreddit_id": "t5_2qi2i",
+			"author_is_blocked": false,
+			"mod_reason_by": null,
+			"removal_reason": null,
+			"link_flair_background_color": "#646d73",
+			"id": "1jo9o6t",
+			"is_robot_indexable": true,
+			"report_reasons": null,
+			"author": "haileycora02",
+			"discussion_type": null,
+			"num_comments": 1,
+			"send_replies": true,
+			"contest_mode": false,
+			"mod_reports": [],
+			"author_patreon_flair": false,
+			"author_flair_text_color": null,
+			"permalink": "/r/Portland/comments/1jo9o6t/free_dental_cleanings/",
+			"stickied": false,
+			"url": "https://www.reddit.com/r/Portland/comments/1jo9o6t/free_dental_cleanings/",
+			"subreddit_subscribers": 350340,
+			"created_utc": 1743444191,
+			"num_crossposts": 0,
+			"media": null,
+			"is_video": false
+		  }
+		},
+		{
+		  "kind": "t3",
+		  "data": {
+			"approved_at_utc": null,
+			"subreddit": "Portland",
+			"selftext": "Hello! My apartment building has been without heat for 2+ weeks. When our heat went out, the leasing agency gave us a space heater, and that's it. I'm trying to find out what I can do here to either expedite the process, lower my rent, or make the leasing agency pay for our suffering in someway. The last 2 weeks have been 40-50 degree weather, minus the couple of days we had in the 70s. My partner and I go to bed every night in freezing cold sheets, despite the space heater and an electric blanket that we have. What can we do here?! Why is the building taking so damn long to get our heat back?! Can anyone offer any advice here? TYIA",
+			"author_fullname": "t2_z1ki125a9",
+			"saved": false,
+			"mod_reason_title": null,
+			"gilded": 0,
+			"clicked": false,
+			"title": "No heat in apartment building for 2+ weeks",
+			"link_flair_richtext": [],
+			"subreddit_name_prefixed": "r/Portland",
+			"hidden": false,
+			"pwls": 6,
+			"link_flair_css_class": "discussion",
+			"downs": 0,
+			"thumbnail_height": null,
+			"top_awarded_type": null,
+			"hide_score": false,
+			"name": "t3_1jojtlb",
+			"quarantine": false,
+			"link_flair_text_color": "light",
+			"upvote_ratio": 0.77,
+			"author_flair_background_color": null,
+			"subreddit_type": "public",
+			"ups": 11,
+			"total_awards_received": 0,
+			"media_embed": {
+  
+			},
+			"thumbnail_width": null,
+			"author_flair_template_id": null,
+			"is_original_content": false,
+			"user_reports": [],
+			"secure_media": null,
+			"is_reddit_media_domain": false,
+			"is_meta": false,
+			"category": null,
+			"secure_media_embed": {
+  
+			},
+			"link_flair_text": "Discussion",
+			"can_mod_post": false,
+			"score": 11,
+			"approved_by": null,
+			"is_created_from_ads_ui": false,
+			"author_premium": false,
+			"thumbnail": "self",
+			"edited": false,
+			"author_flair_css_class": null,
+			"author_flair_richtext": [],
+			"gildings": {
+  
+			},
+			"content_categories": null,
+			"is_self": true,
+			"mod_note": null,
+			"created": 1743470684,
+			"link_flair_type": "text",
+			"wls": 6,
+			"removed_by_category": null,
+			"banned_by": null,
+			"author_flair_type": "text",
+			"domain": "self.Portland",
+			"allow_live_comments": false,
+			"selftext_html": "&lt;!-- SC_OFF --&gt;&lt;div class=\"md\"&gt;&lt;p&gt;Hello! My apartment building has been without heat for 2+ weeks. When our heat went out, the leasing agency gave us a space heater, and that&amp;#39;s it. I&amp;#39;m trying to find out what I can do here to either expedite the process, lower my rent, or make the leasing agency pay for our suffering in someway. The last 2 weeks have been 40-50 degree weather, minus the couple of days we had in the 70s. My partner and I go to bed every night in freezing cold sheets, despite the space heater and an electric blanket that we have. What can we do here?! Why is the building taking so damn long to get our heat back?! Can anyone offer any advice here? TYIA&lt;/p&gt;\n&lt;/div&gt;&lt;!-- SC_ON --&gt;",
+			"likes": null,
+			"suggested_sort": "confidence",
+			"banned_at_utc": null,
+			"view_count": null,
+			"archived": false,
+			"no_follow": false,
+			"is_crosspostable": true,
+			"pinned": false,
+			"over_18": false,
+			"all_awardings": [],
+			"awarders": [],
+			"media_only": false,
+			"link_flair_template_id": "7a5134cc-4586-11ed-989a-925fe15f40db",
+			"can_gild": false,
+			"spoiler": false,
+			"locked": false,
+			"author_flair_text": null,
+			"treatment_tags": [],
+			"visited": false,
+			"removed_by": null,
+			"num_reports": null,
+			"distinguished": null,
+			"subreddit_id": "t5_2qi2i",
+			"author_is_blocked": false,
+			"mod_reason_by": null,
+			"removal_reason": null,
+			"link_flair_background_color": "#646d73",
+			"id": "1jojtlb",
+			"is_robot_indexable": true,
+			"report_reasons": null,
+			"author": "Altruistic-Sort-5383",
+			"discussion_type": null,
+			"num_comments": 15,
+			"send_replies": true,
+			"contest_mode": false,
+			"mod_reports": [],
+			"author_patreon_flair": false,
+			"author_flair_text_color": null,
+			"permalink": "/r/Portland/comments/1jojtlb/no_heat_in_apartment_building_for_2_weeks/",
+			"stickied": false,
+			"url": "https://www.reddit.com/r/Portland/comments/1jojtlb/no_heat_in_apartment_building_for_2_weeks/",
+			"subreddit_subscribers": 350340,
+			"created_utc": 1743470684,
+			"num_crossposts": 0,
+			"media": null,
+			"is_video": false
+		  }
+		}
+	  ],
+	  "before": null
+	}
+  }
