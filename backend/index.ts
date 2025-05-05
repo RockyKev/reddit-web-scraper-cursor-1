@@ -16,6 +16,17 @@ const allowedOrigins = [frontendUrl, 'http://localhost:4173'];
 // Trust proxy configuration for Nginx
 app.set('trust proxy', true);
 
+// Origin checking middleware
+app.use((req, res, next) => {
+  const origin = req.get('Origin') || req.get('Referer') || '';
+  
+  if (!allowedOrigins.some((allowed) => origin.startsWith(allowed))) {
+    return res.status(403).json({ error: 'Forbidden: Invalid origin' });
+  }
+  
+  next();
+});
+
 // Security headers middleware
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
