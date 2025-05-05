@@ -1,16 +1,16 @@
 {
   "name": "reddit-web-scraper-frontend",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "node ../node_modules/typescript/bin/tsc && vite build",
     "preview": "vite preview"
   },
+  "dependencies": {
+    "vite": "^5.0.12"
+  },
   "devDependencies": {
-    "typescript": "^5.3.3",
-    "vite": "^5.0.12",
     "tailwindcss": "^3.4.1",
     "postcss": "^8.4.35",
     "autoprefixer": "^10.4.17"

@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A web application that aggregates and displays daily Reddit activity from Portland-related subreddits",
   "type": "module",
+  "workspaces": [
+    "frontend"
+  ],
   "main": "backend/index.ts",
   "scripts": {
     "db:setup": "node --loader ts-node/esm database/setup.ts",
