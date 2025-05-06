@@ -13,6 +13,12 @@ const port = process.env.PORT || 3000;
 const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
 const allowedOrigins = [frontendUrl, 'http://localhost:4173'];
 
+// Debug logging
+logger.info('Environment variables loaded:');
+logger.info(`FRONTEND_URL: ${process.env.FRONTEND_URL}`);
+logger.info(`frontendUrl: ${frontendUrl}`);
+logger.info(`allowedOrigins: ${allowedOrigins.join(', ')}`);
+
 // Trust proxy configuration for Nginx
 app.set('trust proxy', true);
 
