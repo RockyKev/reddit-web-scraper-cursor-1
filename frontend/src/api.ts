@@ -10,15 +10,26 @@ export async function fetchDigest(date?: Date): Promise<DigestData> {
   
   const fetchStartTime = performance.now();
   try {
-    const response = await fetch(fullUrl);
+    const response = await fetch(fullUrl, {
+      signal: AbortSignal.timeout(10000)
+    });
+    
     if (!response.ok) {
-      throw new Error(`Failed to fetch digest data: ${response.status} ${response.statusText}`);
+      const errorText = await response.text();
+      throw new Error(`Server error (${response.status}): ${errorText || response.statusText}`);
     }
+    
     const data = await response.json();
     apiFetchTime = performance.now() - fetchStartTime;
     lastFetchTime = new Date();
     return data;
   } catch (error) {
+    if (error instanceof TypeError && error.message === 'Failed to fetch') {
+      throw new Error(`Cannot connect to API server at ${apiUrl}. Please check if the server is running and accessible.`);
+    }
+    if (error instanceof DOMException && error.name === 'AbortError') {
+      throw new Error('Request timed out. The server took too long to respond.');
+    }
     console.error('Error fetching digest:', error);
     throw error;
   }

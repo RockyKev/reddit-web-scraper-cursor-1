@@ -26,6 +26,11 @@ app.set('trust proxy', true);
 app.use((req, res, next) => {
   const origin = req.get('Origin') || req.get('Referer') || '';
   
+  // If no origin is provided (like in direct API calls), allow the request
+  if (!origin) {
+    return next();
+  }
+  
   if (!allowedOrigins.some((allowed) => origin.startsWith(allowed))) {
     return res.status(403).json({ error: 'Forbidden: Invalid origin' });
   }

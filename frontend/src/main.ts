@@ -76,9 +76,17 @@ async function updateUI(date?: Date) {
     console.error('Error updating UI:', error);
     const postsContainer = document.getElementById('posts');
     if (postsContainer) {
+      const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
       postsContainer.innerHTML = `
-        <div class="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">
-          Failed to load digest data. Please try again later.
+        <div class="bg-red-50 border border-red-200 rounded-lg p-6 text-red-700">
+          <h3 class="text-lg font-semibold mb-2">Failed to load digest data</h3>
+          <p class="mb-4">${errorMessage}</p>
+          <button 
+            onclick="window.location.reload()" 
+            class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors duration-200"
+          >
+            Retry
+          </button>
         </div>
       `;
     }
