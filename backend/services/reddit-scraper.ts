@@ -3,6 +3,7 @@ import axiosRetry from 'axios-retry';
 import * as cheerio from 'cheerio';
 import { logger } from '../utils/logger.js';
 import { RedditPost, RedditComment, IRedditScraper, RedditSortType, RedditTimeFilter } from '../types/reddit.js';
+import { getRandomUserAgent } from '../utils/user-agents.js';
 
 // Configure axios with retry logic
 // We keep this configuration in this file since it's specific to Reddit scraping
@@ -10,7 +11,7 @@ import { RedditPost, RedditComment, IRedditScraper, RedditSortType, RedditTimeFi
 // similar HTTP client behavior, we should consider moving this to a shared client file.
 const client = axios.create({
   headers: {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'User-Agent': getRandomUserAgent(),
     'Accept': 'application/json',
     'Accept-Language': 'en-US,en;q=0.9',
     'Accept-Encoding': 'gzip, deflate, br',
@@ -32,9 +33,9 @@ axiosRetry(client, {
 
 export class RedditScraper implements IRedditScraper {
   private lastRequestTime: number = 0;
-  private readonly minRequestInterval: number; // 5 seconds between requests
-  private readonly commentRequestInterval: number; // 8 seconds between comment requests
-
+  private readonly minRequestInterval: number; // Base delay between requests
+  private readonly commentRequestInterval: number; // Base delay for comment requests
+  private readonly jitterRange: number = 5000; // 0-5s random jitter
 
   private readonly _subreddit: string;
 
@@ -42,11 +43,11 @@ export class RedditScraper implements IRedditScraper {
     const rawRate = process.env.API_RATE_WAIT_TIME;
     const parsedRate = parseInt(rawRate || '', 10);
 
-    // Fallback to 5000 if the env var is missing or invalid
-    const rate = Number.isNaN(parsedRate) ? 5000 : parsedRate;
+    // Fallback to 10000 if the env var is missing or invalid
+    const rate = Number.isNaN(parsedRate) ? 10000 : parsedRate;
 
     this.minRequestInterval = rate;
-    this.commentRequestInterval = rate + 3000; // add delay for comment fetches
+    this.commentRequestInterval = rate + 5000; // add 5s extra delay for comment fetches
  
     this._subreddit = subreddit;
   }
@@ -55,10 +56,17 @@ export class RedditScraper implements IRedditScraper {
     return this._subreddit;
   }
 
+  private rotateUserAgent(): void {
+    client.defaults.headers['User-Agent'] = getRandomUserAgent();
+    logger.info('Rotated User-Agent header');
+  }
+
   private async rateLimit(isCommentRequest: boolean = false): Promise<void> {
     const now = Date.now();
     const timeSinceLastRequest = now - this.lastRequestTime;
-    const requiredDelay = isCommentRequest ? this.commentRequestInterval : this.minRequestInterval;
+    const baseDelay = isCommentRequest ? this.commentRequestInterval : this.minRequestInterval;
+    const jitter = Math.random() * this.jitterRange;
+    const requiredDelay = baseDelay + jitter;
     
     if (timeSinceLastRequest < requiredDelay) {
       const delay = requiredDelay - timeSinceLastRequest;
@@ -66,6 +74,7 @@ export class RedditScraper implements IRedditScraper {
       await new Promise(resolve => setTimeout(resolve, delay));
     }
     
+    this.rotateUserAgent();
     this.lastRequestTime = Date.now();
   }
 

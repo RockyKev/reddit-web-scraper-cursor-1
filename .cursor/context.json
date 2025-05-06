@@ -1,10 +1,16 @@
 {
   "project": {
     "name": "Reddit PDX Scraper",
-    "description": "A TypeScript + Node.js web application that creates a daily digest of the best Reddit content from Portland-related subreddits",
+    "description": "A TypeScript + Node.js web application that creates a daily digest of the best content from Portland-related subreddits by scraping public web pages. This project does NOT use the Reddit API - it is purely a web scraping solution.",
     "type": "web-application",
     "version": "5",
-    "status": "In development, preparing for production deployment"
+    "status": "In development, preparing for production deployment",
+    "important_notes": [
+      "This project uses web scraping to collect data from public Reddit pages. It does NOT use the Reddit API.",
+      "All data collection is done through public web page scraping.",
+      "The project respects rate limits and robots.txt guidelines for web scraping.",
+      "Enhanced scraping strategy includes rotating user agents and intelligent rate limiting."
+    ]
   },
   "architecture": {
     "frontend": {
@@ -43,7 +49,27 @@
             "getComments(postId)",
             "transformPost(rawData)",
             "transformComment(rawData)"
-          ]
+          ],
+          "scrapingStrategy": {
+            "rateLimiting": {
+              "baseDelay": "10 seconds (configurable via API_RATE_WAIT_TIME)",
+              "commentDelay": "15 seconds (base + 5s)",
+              "jitter": "0-5 seconds random delay",
+              "retryStrategy": "Progressive delays (2s, 4s, 6s)"
+            },
+            "userAgents": {
+              "count": 18,
+              "types": [
+                "Chrome (Windows/macOS/Linux)",
+                "Firefox (Windows/macOS/Linux)",
+                "Safari (macOS)",
+                "Edge (Windows)",
+                "Mobile Chrome (Android)",
+                "Mobile Safari (iOS)"
+              ],
+              "rotation": "Per request"
+            }
+          }
         },
         "reddit-storage": {
           "responsibility": "Database operations",
