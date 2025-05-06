@@ -53,7 +53,16 @@ async function updateUI(date?: Date) {
       const apiVersion = import.meta.env.VITE_PROJECT_VERSION_API || '6';
       const dbVersion = import.meta.env.VITE_PROJECT_VERSION_DATABASE || '6';
       const frontendVersion = import.meta.env.VITE_PROJECT_VERSION_FRONTEND || '6';
-      elements.versionInfo.textContent = `${version} (api: v${apiVersion}, db: ${dbVersion}, frontend: v${frontendVersion})`;
+      const buildTimestamp = new Date().toISOString();
+      const commitHash = import.meta.env.VITE_GIT_COMMIT_HASH || 'unknown';
+      
+      elements.versionInfo.innerHTML = `
+        <div class="text-sm text-gray-500">
+          <div>Version ${version} (api: v${apiVersion}, db: ${dbVersion}, frontend: v${frontendVersion})</div>
+          <div class="text-xs">Build: ${buildTimestamp}</div>
+          <div class="text-xs">Commit: ${commitHash}</div>
+        </div>
+      `;
     }
 
     // Update last fetch time
@@ -111,5 +120,11 @@ function setupDateNavigation() {
 }
 
 // Start the application
+console.log('Frontend started:', {
+  buildTime: new Date().toISOString(),
+  commitHash: import.meta.env.VITE_GIT_COMMIT_HASH || 'unknown',
+  apiUrl: import.meta.env.VITE_API_URL || 'http://localhost:3000'
+});
+
 setupDateNavigation();
 updateUI(); 
